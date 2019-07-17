@@ -8,7 +8,7 @@ session_start();
 <head>
 	<meta charset="utf-8">
 	<meta name="description" content="Página login">
-	<meta name="author" content="Jéssica Cechin">
+	<meta name="author" content="Jéssica M. Cechin">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<title>Login - Contratos</title>
 	<link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.css">
