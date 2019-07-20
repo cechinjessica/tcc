@@ -14,18 +14,26 @@ session_start();
 	<link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.css">
 	<link rel="stylesheet" href="css/csslogin.css">
 	<link rel="icon" href="image/iconcotract.png">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
 
 <body class="text-center">
+	<script src="js/login.js"></script>
 	<div class="bloco sombra">
-		<form class="form-signin">
+		<form class="form-signin" role="form" action="js/login.js">
 			<img src="image/imagecontract.png" class="img-fluid" style="width:20%; height:10%;">
 			<h1 class="h3 mb-3 font-weight-normal">Faça login</h1>
-			<label for="usuario" class="sr-only">Endereço de email</label>
-			<input type="email" id="usuario" class="form-control" placeholder="Seu email" required autofocus>
-			<label for="inputPassword" class="sr-only">Senha</label>
-			<input type="password" id="inputPassword" class="form-control" placeholder="Senha" required>
-			<button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
+			<div class="form-group">
+				<label for="usuario" class="sr-only">Usuário</label>
+				<input type="email" id="usuario" class="form-control" placeholder="Seu login" required autofocus>
+				<div class="help-block with-errors"></div>
+			</div>
+			<div class="form-group">
+				<label for="inputPassword" class="sr-only">Senha</label>
+				<input type="password" id="senha" class="form-control" required data-minlength="6" data-error="Por favor, informe uma senha valida." placeholder="Senha">
+				<div class="help-block with-errors"></div>
+			</div>
+			<button class="btn btn-lg btn-primary btn-block" id="logar" type="submit">Login</button>
 			<button class="btn btn-lg btn-secundary btn-block" type="button">Cadastre-se</button>
 		</form>
 
@@ -34,6 +42,7 @@ session_start();
 	<script src="./node_modules/jquery/dist/jquery.slim.min.js"></script>
 	<script src="./node_modules/popper.js/dist/popper.min.js"></script>
 	<script src="./node_modules/bootstrap/dist/js/bootstrap.js"></script>
+	<script src="js/validator.min.js"></script>
 </body>
 
 </html>
