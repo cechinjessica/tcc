@@ -14,13 +14,13 @@ session_start();
 	<link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.css">
 	<link rel="stylesheet" href="css/csslogin.css">
 	<link rel="icon" href="image/iconcotract.png">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
 </head>
 
 <body class="text-center">
 	<script src="js/login.js"></script>
 	<div class="bloco sombra">
-		<form class="form-signin" role="form" action="js/login.js">
+		<form class="form-signin" role="form" action="js/login.js" method="post">
 			<img src="image/imagecontract.png" class="img-fluid" style="width:20%; height:10%;">
 			<h1 class="h3 mb-3 font-weight-normal">Faça login</h1>
 			<div class="form-group">
@@ -40,7 +40,7 @@ session_start();
 	</div>
 
 	<script src="./node_modules/jquery/dist/jquery.slim.min.js"></script>
-	<script src="./node_modules/popper.js/dist/popper.min.js"></script>
+	<!--<script src="./node_modules/popper.js/dist/popper.min.js"></script>-->
 	<script src="./node_modules/bootstrap/dist/js/bootstrap.js"></script>
 	<script src="js/validator.min.js"></script>
 </body>

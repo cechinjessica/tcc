@@ -1,0 +1,143 @@
+* {
+	font-family: serif;
+	font-size: 15.5px;
+	border-radius: 7px;
+	margin: 3px;
+}
+
+img {
+	max-width: 25px;
+	max-height: 25px;
+
+}
+
+img:hover {
+	/*background-color: brown;*/
+	border-bottom: 2px solid black;
+	border-left: 2px solid black;
+}
+
+body {
+	background-color: #fffff5;
+}
+
+fieldset {
+	background-color: #A9F5BC;
+	border: 2px outset gray;
+}
+
+table td,
+th {
+	border: 1px outset gray;
+	border-radius: 0px;
+	padding: 8px;
+	text-align: center;
+}
+
+#menu ul {
+	list-style: none;
+	background-color: #ffcc83;
+	width: auto;
+	padding-left: 20px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+
+#menu ul li {
+	display: inline;
+}
+
+#menu ul li a {
+	padding: 2px 10px;
+	display: inline-block;
+	/* visual do link */
+	color: #333;
+	text-decoration: none;
+}
+
+#menu ul li a:hover {
+	border-bottom: 3px solid gray;
+}
+
+
+.campo label {
+	margin-bottom: 3px;
+	color: #363636;
+	display: inline-block;
+}
+
+fieldset.grupo .campo {
+	display: inline-block;
+	/*float: left;*/
+	margin-left: 20px;
+	margin-bottom: 4px;
+}
+
+input,
+select,
+option {
+	padding: 3px;
+	border: 1px solid #CCC;
+}
+
+.campo input[type="text"],
+.campo input[type="number"],
+.campo input[type="password"],
+.campo input[type="date"],
+select,
+option {
+	box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
+}
+
+.campo input:focus,
+select:focus {
+	background: #E0F8F7;
+}
+
+
+
+input[type="button"] {
+	padding: 2px 6px;
+}
+
+input[type="button"]:hover {
+	background: #CEF6F5;
+	box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
+	text-shadow: none;
+	border-bottom: 3px solid gray;
+}
+
+input[type="button"],
+input[type="radio"],
+select,
+checkbox {
+	cursor: pointer;
+}
+
+.certo {
+	box-shadow: 0 0 5px 1px green !important;
+
+}
+
+.erro {
+	box-shadow: 0 0 5px 1px red !important;
+
+}
+
+p {
+	color: red;
+	display: inline-block;
+
+}
+
+#txtcli {
+	border: 1px solid lightgrey;
+}
+
+#gcnpj {
+	display: inline;
+}
+
+.representante {
+	display: inline;
+}
