@@ -35,6 +35,7 @@ function login() {
 
 	if ($("#usuario").val() == "") {
 		$("#msg_usuario").text("Usuário inválido");
+		$("#msg_usuario").css("color", "red");
 		$("#usuario").addClass("erro");
 		a = false;
 	}
@@ -53,6 +54,7 @@ function senha() {
 
 	if ($("#senha").val() == "") {
 		$("#msg_senha").text("Senha inválido");
+		$("#msg_senha").css("color", "red");
 		$("#senha").addClass("erro");
 		a = false;
 	}
@@ -72,6 +74,7 @@ function nsenha() {
 	if ($("#senha").val() == "") {
 		$("#msg_senha").text("Senha inválido");
 		$("#senha").addClass("erro");
+		$("#msg_senha").css("color", "red");
 		a = false;
 	}
 	return a;

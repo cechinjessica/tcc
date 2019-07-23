@@ -1,95 +1,129 @@
 <?php
-require 'config/conexao.php';
-
-
-if (isset($_POST['cadastre'])){
-	$usuario = $_POST["usuario"];
-	$senha= $_POST["senha"];
-
-
-	$sql = "SELECT * FROM login WHERE usuario='$usuario'";
-	mysqli_query($conexao,$sql);
-	echo $sql;
-	//$con->query($sql);
-	if (mysqli_affected_rows($conexao)!=0) {
-		mysqli_close($conexao);
-		$_SESSION['msg'] = "<h3>Usuario $usuario já existe</h3>";
-		header('Location:cadastrese.php');
-	}
-
-	else {
-		$sql = "INSERT INTO login (usuario, senha) VALUES ('$usuario', '$senha' )";
-		echo $sql;
-		echo 'cadastrou';
-
-		mysqli_query($conexao,$sql);
-		if (mysqli_affected_rows($conexao)!=0) {
-			//echo "Usuario $nome inserido com sucesso!";
-			$_SESSION['msg'] = "<h1>Usuario $usuario cadastrado com sucesso! </h1>";
-			header('Location:index.php');
-		} else {
-			$_SESSION['msg'] ="<h1>Erro: " . $sql . "<br/>" . mysqli_error($conexao) . "<h1>" . "<br/>";
-			header('Location:cadastrese.php');
-		}
-		mysqli_close($conexao);
-	}
-}
-
-?>
-
-<!-- -->
-<?php
 session_start();
 ?>
 <!DOCTYPE html>
 <html>
 
 <head>
-	<title>Contrato - Cadastre-se</title>
-	<link rel="shortcut icon" href="imagens/icone.ico" />
-	<link rel="stylesheet" type="text/css" href="css/style.css">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
 	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+	<title>Contrato - Cadastre-se</title>
+	<link rel="shortcut icon" href="imagens/icone.png" />
+	<!--<link rel="stylesheet" type="text/css" href="css/style.css">-->
+
+	<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+	<style>
+		:root {
+			--input-padding-x: 1.5rem;
+			--input-padding-y: .75rem;
+		}
+
+		body {
+			background: #007bff;
+			background: linear-gradient(to left, #1E458D, #D4B11C);
+		}
+
+		.card-signup {
+			border: 0;
+			border-radius: 1rem;
+			box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.1);
+		}
+
+		.card-signup .card-title {
+			margin-bottom: 2rem;
+			font-weight: 300;
+			font-size: 1.5rem;
+		}
+
+		.card-signup .card-body {
+			padding: 2rem;
+		}
+
+		.form-signup {
+			width: 100%;
+		}
+
+		.form-signup .btn {
+			font-size: 80%;
+			border-radius: 5rem;
+			letter-spacing: .1rem;
+			font-weight: bold;
+			padding: 1rem;
+			transition: all 0.2s;
+		}
+
+		.form-group {
+			position: relative;
+			margin-bottom: 1rem;
+		}
+
+		.form-group input {
+			height: auto;
+			border-radius: 2rem;
+		}
+
+		.form-group>input,
+		.form-group>label {
+			padding: var(--input-padding-y) var(--input-padding-x);
+		}
+
+		.certo {
+			border: 1px solid green;
+		}
+
+		.erro {
+			border: 1px solid red;
+		}
+
+	</style>
 </head>
 
 <body>
 	<script type="text/javascript" src="javascript/cadastre.js"></script>
-	<form action="#" method="Post">
-		<div id="cadastre">
-			<h2>Formulário de Contrato</h2>
-			<fieldset>
-				<fieldset class="grupo" style="background-color:#F7BE81">
+	<div class="container-fluid">
+		<div class="col-sm-9 col-md-8 col-lg-6 mx-auto">
+			<div class="card card-signup my-5">
+				<div class="card-body">
+					<h5 class="card-title text-center">Cadastre-se</h5>
+					<form action="config/cadastre.php" method="post" class="form-signup">
+						<div class="form-group">
+							<!--<label for="usuario">Usuário:</label>-->
 
-					<legend><b>Cadastre-se</b></legend>
+							<input type="text" id="usuario" class="form-control" name="usuario" placeholder="Seu usuário">
+							<label class="form-text text-muted">Escolha um usuário com, no máximo, 25 caracteres</label>
+							<p id="msg_usuario" class="form-control-feedback"></p>
+						</div>
+						<div class="form-group">
+							<!--<label for="senha">Senha:</label>-->
 
-					<div class="campo">
-						<label>Escolha um usuário com, no máximo, 25 caracteres</label>
-						<label for="usuario">Usuário:</label>
-						<input type="text" id="usuario" name="usuario" placeholder="Seu usuário">
-						<p id="msg_usuario"></p>
-					</div>
-					<div class="campo">
-						<label>Escolha uma senha com, no máximo, 25 caracteres</label>
-						<label for="senha">Senha:</label>
-						<input type="password" id="senha" name="senha" placeholder="Sua senha">
-						<p id="msg_senha"></p>
-					</div>
-					<p>
-						<?php
+							<input type="password" id="senha" class="form-control" name="senha" placeholder="Sua senha">
+							<label class="form-text text-muted">Escolha uma senha com, no máximo, 25 caracteres</label>
+							<p id="msg_senha" class="form-control-feedback"></p>
+						</div>
+						<p>
+							<?php
 							if (isset($_SESSION['msg'])) {
 								echo  $_SESSION['msg'];
 								unset ($_SESSION['msg']);
 							}
 						?>
-					</p>
-				</fieldset>
-				<input type="submit" id="cadastrese" name="cadastre" value="Cadastre-se" style="float:left;">
+						</p>
 
-				<a href="index.php"><input type="button" id="voltar" name="voltar" value="Voltar"></a>
-
-			</fieldset>
+						<button class="btn btn-md btn-primary btn-block text-uppercase" type="submit" id="cadastrese">Cadastre-se</button>
+					</form>
+					<div class="form-signup">
+						<a href="index.php"><button id="voltar" class="btn btn-outline-info text-uppercase btn-inline">Voltar</button></a>
+					</div>
+				</div>
+			</div>
 		</div>
-	</form>
+	</div>
+
+
+	<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
 </body>
 
 </html>

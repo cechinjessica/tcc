@@ -14,7 +14,6 @@ session_start();
 	<link rel="shortcut icon" href="imagens/icone.png" />
 	<!--<link rel="stylesheet" type="text/css" href="css/style.css">-->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
-	<meta charset="utf-8">
 	<style>
 		:root {
 			--input-padding-x: 1.5rem;
@@ -84,7 +83,6 @@ session_start();
 <body>
 	<script type="text/javascript" src="javascript/login.js"></script>
 	<div class="container-fluid">
-
 		<div class="col-sm-9 col-md-8 col-lg-6 mx-auto">
 			<div class="card card-signin my-5">
 				<div class="card-body">
@@ -117,11 +115,12 @@ session_start();
 								}
 								?>
 						<button class="btn btn-md btn-primary btn-block text-uppercase" type="submit" id="logar">Login</button>
-						<div>
-							<a href="cadastrese.php"><button id="cadastrese1" class="btn btn-outline-info text-uppercase btn-inline" style="width:49%;">Cadastre-se</button></a>
-							<a href="redefinirsenha.php"><button id="redefinir1" class="btn btn-outline-info text-uppercase btn-inline" style="width:49%;">Redefinir senha</button></a>
-						</div>
+
 					</form>
+					<div class="form-signin">
+						<a href="cadastrese.php"><button id="cadastrese1" class="btn btn-outline-info text-uppercase btn-inline" style="width:49%;">Cadastre-se</button></a>
+						<a href="redefinirsenha.php"><button id="redefinir1" class="btn btn-outline-info text-uppercase btn-inline" style="width:49%;">Redefinir senha</button></a>
+					</div>
 				</div>
 			</div>
 		</div>
