@@ -23,7 +23,7 @@ session_start();
 
 		body {
 			background: #007bff;
-			background: linear-gradient(to right, #1E458D, #D4B11C);
+			background: linear-gradient(to left, #1E458D, #D4B11C);
 		}
 
 		.card-signin {
@@ -85,7 +85,7 @@ session_start();
 	<script type="text/javascript" src="javascript/login.js"></script>
 	<div class="container-fluid">
 		<div class="row">
-			<div class="col-sm-9 col-md-7 col-lg-4 mx-auto">
+			<div class="col-sm-9 col-md-7 col-lg-6 mx-auto">
 				<div class="card card-signin my-5">
 					<div class="card-body">
 						<h5 class="card-title text-center">Login</h5>
