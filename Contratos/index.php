@@ -84,48 +84,48 @@ session_start();
 <body>
 	<script type="text/javascript" src="javascript/login.js"></script>
 	<div class="container-fluid">
-		<div class="row">
-			<div class="col-sm-9 col-md-7 col-lg-6 mx-auto">
-				<div class="card card-signin my-5">
-					<div class="card-body">
-						<h5 class="card-title text-center">Login</h5>
-						<form action="config/login.php" method="post" class="form-signin">
-							<div class="form-group">
-								<!--<label for="usuario">Usuário</label>-->
-								<input type="text" id="usuario" class="form-control" placeholder="Seu usuário" name="usuario" autofocus>
-								<p id="msg_usuario" class="form-control-feedback "></p>
-							</div>
-							<div class="form-group">
-								<!--<label for="senha">Senha</label>-->
-								<input type="password" name="senha" id="senha" class="form-control" placeholder="Sua senha">
-								<p id="msg_senha" class="form-control-feedback "></p>
-							</div>
-							<?php
+
+		<div class="col-sm-9 col-md-8 col-lg-6 mx-auto">
+			<div class="card card-signin my-5">
+				<div class="card-body">
+					<h5 class="card-title text-center">Login</h5>
+					<form action="config/login.php" method="post" class="form-signin">
+						<div class="form-group">
+							<!--<label for="usuario">Usuário</label>-->
+							<input type="text" id="usuario" class="form-control" placeholder="Seu usuário" name="usuario" autofocus>
+							<p id="msg_usuario" class="form-control-feedback "></p>
+						</div>
+						<div class="form-group">
+							<!--<label for="senha">Senha</label>-->
+							<input type="password" name="senha" id="senha" class="form-control" placeholder="Sua senha">
+							<p id="msg_senha" class="form-control-feedback "></p>
+						</div>
+						<?php
 								if(isset($_SESSION['nao_autenticado'])):
 								?>
 
-							<p class="alert alert-danger" role="alert">Usuário ou senha inválidos.</p>
+						<p class="alert alert-danger" role="alert">Usuário ou senha inválidos.</p>
 
-							<?php
+						<?php
 								endif;
 								unset($_SESSION['nao_autenticado']);
 								?>
-							<?php
+						<?php
 								if (isset($_SESSION['msg'])) {
 									echo  $_SESSION['msg'];
 									unset ($_SESSION['msg']);
 								}
 								?>
-							<button class="btn btn-md btn-primary btn-block text-uppercase" type="submit" id="logar">Login</button>
-							<div>
-								<a href="cadastrese.php"><button id="cadastrese1" class="btn btn-outline-info text-uppercase btn-inline" style="width:49%;">Cadastre-se</button></a>
-								<a href="redefinirsenha.php"><button id="redefinir1" class="btn btn-outline-info text-uppercase btn-inline" style="width:49%;">Redefinir senha</button></a>
-							</div>
-						</form>
-					</div>
+						<button class="btn btn-md btn-primary btn-block text-uppercase" type="submit" id="logar">Login</button>
+						<div>
+							<a href="cadastrese.php"><button id="cadastrese1" class="btn btn-outline-info text-uppercase btn-inline" style="width:49%;">Cadastre-se</button></a>
+							<a href="redefinirsenha.php"><button id="redefinir1" class="btn btn-outline-info text-uppercase btn-inline" style="width:49%;">Redefinir senha</button></a>
+						</div>
+					</form>
 				</div>
 			</div>
 		</div>
+
 	</div>
 
 
