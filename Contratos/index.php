@@ -23,7 +23,7 @@ session_start();
 
 		body {
 			background: #007bff;
-			background: linear-gradient(to right, #0062E6, #476b6b);
+			background: linear-gradient(to right, #1E458D, #D4B11C);
 		}
 
 		.card-signin {
@@ -117,9 +117,10 @@ session_start();
 								}
 								?>
 							<button class="btn btn-md btn-primary btn-block text-uppercase" type="submit" id="logar">Login</button>
-							<a href="cadastrese.php"><button id="cadastrese1" class="btn btn-outline-info text-uppercase btn-block">Cadastre-se</button></a>
-							<a href="redefinirsenha.php"><button id="redefinir1" class="btn btn-outline-info text-uppercase btn-block">Redefinir senha</button></a>
-
+							<div>
+								<a href="cadastrese.php"><button id="cadastrese1" class="btn btn-outline-info text-uppercase btn-inline" style="width:49%;">Cadastre-se</button></a>
+								<a href="redefinirsenha.php"><button id="redefinir1" class="btn btn-outline-info text-uppercase btn-inline" style="width:49%;">Redefinir senha</button></a>
+							</div>
 						</form>
 					</div>
 				</div>
