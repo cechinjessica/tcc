@@ -8,17 +8,6 @@ $(document).ready(function () {
 		}
 
 	});
-	$("#cadastre").click(function (e) {
-		if (!login()) {
-			e.preventDefault();
-		}
-		if (!senha()) {
-			e.preventDefault();
-		}
-
-
-	});
-
 })
 
 
@@ -52,29 +41,10 @@ function senha() {
 	var a = true;
 	$("#msg_senha").text("");
 
-	if ($("#senha").val() == "") {
-		$("#msg_senha").text("Senha inválido");
+	if ($("#senha").val().length < 6) {
+		$("#msg_senha").text("Senha inválida");
 		$("#msg_senha").css("color", "red");
 		$("#senha").addClass("erro");
-		a = false;
-	}
-	return a;
-}
-
-function nsenha() {
-	if ($("#senha").hasClass("erro")) {
-		$("#senha").removeClass("erro");
-	} else if ($("#senha").hasClass("certo")) {
-		$("#senha").removeClass("certo");
-	}
-	$("#senha").addClass("certo");
-	var a = true;
-	$("#msg_senha").text("");
-
-	if ($("#senha").val() == "") {
-		$("#msg_senha").text("Senha inválido");
-		$("#senha").addClass("erro");
-		$("#msg_senha").css("color", "red");
 		a = false;
 	}
 	return a;

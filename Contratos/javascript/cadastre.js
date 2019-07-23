@@ -42,8 +42,8 @@ function senha() {
 	var a = true;
 	$("#msg_senha").text("");
 
-	if ($("#senha").val() == "") {
-		$("#msg_senha").text("Senha inválido");
+	if ($("#senha").val().length < 6) {
+		$("#msg_senha").text("Senha inválida");
 		$("#msg_senha").css("color", "red");
 		$("#senha").addClass("erro");
 		a = false;

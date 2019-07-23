@@ -12,82 +12,18 @@ session_start();
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
 	<title>Contrato - Login</title>
 	<link rel="shortcut icon" href="imagens/icone.png" />
-	<!--<link rel="stylesheet" type="text/css" href="css/style.css">-->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
-	<style>
-		:root {
-			--input-padding-x: 1.5rem;
-			--input-padding-y: .75rem;
-		}
-
-		body {
-			background: #007bff;
-			background: linear-gradient(to left, #1E458D, #D4B11C);
-		}
-
-		.card-signin {
-			border: 0;
-			border-radius: 1rem;
-			box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.1);
-		}
-
-		.card-signin .card-title {
-			margin-bottom: 2rem;
-			font-weight: 300;
-			font-size: 1.5rem;
-		}
-
-		.card-signin .card-body {
-			padding: 2rem;
-		}
-
-		.form-signin {
-			width: 100%;
-		}
-
-		.form-signin .btn {
-			font-size: 80%;
-			border-radius: 5rem;
-			letter-spacing: .1rem;
-			font-weight: bold;
-			padding: 1rem;
-			transition: all 0.2s;
-		}
-
-		.form-group {
-			position: relative;
-			margin-bottom: 1rem;
-		}
-
-		.form-group input {
-			height: auto;
-			border-radius: 2rem;
-		}
-
-		.form-group>input,
-		.form-group>label {
-			padding: var(--input-padding-y) var(--input-padding-x);
-		}
-
-		.certo {
-			border: 1px solid green;
-		}
-
-		.erro {
-			border: 1px solid red;
-		}
-
-	</style>
+	<link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 
 <body>
 	<script type="text/javascript" src="javascript/login.js"></script>
 	<div class="container-fluid">
 		<div class="col-sm-9 col-md-8 col-lg-6 mx-auto">
-			<div class="card card-signin my-5">
+			<div class="card card-padrao my-5">
 				<div class="card-body">
 					<h5 class="card-title text-center">Login</h5>
-					<form action="config/login.php" method="post" class="form-signin">
+					<form action="config/login.php" method="post" class="form-padrao">
 						<div class="form-group">
 							<!--<label for="usuario">Usuário</label>-->
 							<input type="text" id="usuario" class="form-control" placeholder="Seu usuário" name="usuario" autofocus>
@@ -117,7 +53,7 @@ session_start();
 						<button class="btn btn-md btn-primary btn-block text-uppercase" type="submit" id="logar">Login</button>
 
 					</form>
-					<div class="form-signin">
+					<div class="form-padrao">
 						<a href="cadastrese.php"><button id="cadastrese1" class="btn btn-outline-info text-uppercase btn-inline" style="width:49%;">Cadastre-se</button></a>
 						<a href="redefinirsenha.php"><button id="redefinir1" class="btn btn-outline-info text-uppercase btn-inline" style="width:49%;">Redefinir senha</button></a>
 					</div>

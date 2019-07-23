@@ -15,39 +15,58 @@ $(document).ready(function () {
 })
 
 function login() {
-	$("#usuario").attr("class", "certo");
+	if ($("#usuario").hasClass("erro")) {
+		$("#usuario").removeClass("erro");
+	} else if ($("#usuario").hasClass("certo")) {
+		$("#usuario").removeClass("certo");
+	}
+
+	$("#usuario").addClass("certo");
 	var a = true;
 	$("#msg_usuario").text("");
 
 	if ($("#usuario").val() == "") {
 		$("#msg_usuario").text("Usuário inválido");
-		$("#usuario").attr("class", "erro");
+		$("#msg_usuario").css("color", "red");
+		$("#usuario").addClass("erro");
 		a = false;
 	}
 	return a;
 }
 
 function senha() {
-	$("#senha").attr("class", "certo");
+	if ($("#senha").hasClass("erro")) {
+		$("#senha").removeClass("erro");
+	} else if ($("#senha").hasClass("certo")) {
+		$("#senha").removeClass("certo");
+	}
+	$("#senha").addClass("certo");
 	var a = true;
 	$("#msg_senha").text("");
 
-	if ($("#senha").val() == "") {
-		$("#msg_senha").text("Senha inválido");
-		$("#senha").attr("class", "erro");
+	if ($("#senha").val().length < 6) {
+		$("#msg_senha").text("Senha inválida");
+		$("#msg_senha").css("color", "red");
+		$("#senha").addClass("erro");
 		a = false;
 	}
 	return a;
 }
 
 function nsenha() {
-	$("#senha").attr("class", "certo");
+	if ($("#nsenha").hasClass("erro")) {
+		$("#nsenha").removeClass("erro");
+	} else if ($("#nsenha").hasClass("certo")) {
+		$("#nsenha").removeClass("certo");
+	}
+	$("#nsenha").addClass("certo");
 	var a = true;
-	$("#msg_senha").text("");
+	$("#msg_nsenha").text("");
 
-	if ($("#senha").val() == "") {
-		$("#msg_senha").text("Senha inválido");
-		$("#senha").attr("class", "erro");
+	if ($("#nsenha").val().length < 6) {
+		$("#msg_nsenha").text("Nova senha inválida");
+		$("#msg_nsenha").css("color", "red");
+		$("#nsenha").addClass("erro");
 		a = false;
 	}
 	return a;
