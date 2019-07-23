@@ -11,8 +11,7 @@ session_start();
 	<title>Contrato - Cadastre-se</title>
 	<link rel="shortcut icon" href="imagens/icone.png" />
 	<!--<link rel="stylesheet" type="text/css" href="css/style.css">-->
-
-	<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
 	<style>
 		:root {
 			--input-padding-x: 1.5rem;
@@ -110,7 +109,7 @@ session_start();
 						?>
 						</p>
 
-						<button class="btn btn-md btn-primary btn-block text-uppercase" type="submit" id="cadastrese">Cadastre-se</button>
+						<button class="btn btn-md btn-primary btn-block text-uppercase" type="submit" id="cadastre">Cadastre-se</button>
 					</form>
 					<div class="form-signup">
 						<a href="index.php"><button id="voltar" class="btn btn-outline-info text-uppercase btn-inline">Voltar</button></a>
