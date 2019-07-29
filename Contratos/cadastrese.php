@@ -12,7 +12,6 @@ session_start();
 	<title>Contrato - Cadastre-se</title>
 	<link rel="shortcut icon" href="imagens/icone.png" />
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
-
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 
