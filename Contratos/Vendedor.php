@@ -1,5 +1,161 @@
 <?php
 session_start();
+require 'config/conexao.php';
+
+//PARA COLOCAR AS INFORMAÇÕES DO BD NOS CAMPOS
+if (isset($_GET['id'])){
+	$id=$_GET['id'];
+	$op=$_GET['op'];
+	$sql = "SELECT idpessoa, tipopessoa, nome, nacionalidade, profissao, estadocivil, rg, cpf, endereco, sexo, numero, cidade, cep, cnpj, enderecoempresa, cargo, tipoempresa, cidadeempresa, numeroempresa, nomeempresa FROM pessoa WHERE idpessoa='$id'";
+	$res=mysqli_query($conexao,$sql);
+	$row=mysqli_fetch_row($res);
+	$id= $row[0];
+	$tipopessoa = $row[1];
+	$nome = $row[2];
+	$nacionalidade = $row[3];
+	$profissao = $row[4];
+	$ecivil = $row[5];
+	$rg = $row[6];
+	$cpf = $row[7];
+	$endereco = $row[8];
+	$sexo = $row[9];
+	$numero = $row[10];
+	$cidade = $row[11];
+	$cep = $row[12];
+	$cnpjempresa = $row[13];
+	$enderecoempresa = $row[14];
+	$cargoempresa = $row[15];
+	$tipoempresa = $row[16];
+	$cidadeempresa = $row[17];
+	$numeroempresa = $row[18];
+	$nomeempresa = $row[19];
+
+	if($tipopessoa == "f"){
+		$pessoaf = "checked";
+		$pessoaj = "";
+	}else if($tipopessoa == "j"){
+		$pessoaf = "";
+		$pessoaj = "checked";
+	}
+
+	if($ecivil == "solteiro"){
+		$solteiro = "checked";
+		$casado = "";
+		$divorciado = "";
+		$viuvo = "";
+		$separado = "";
+	}else if ($ecivil == "casado"){
+		$solteiro = "";
+		$casado = "checked";
+		$divorciado = "";
+		$viuvo = "";
+		$separado = "";
+	}
+
+	if($sexo = "m"){
+		$sexom = "checked";
+		$sexof = "";
+	}else if ($sexo = "f"){
+		$sexom = "";
+		$sexof = "checked";
+	}
+
+	if ($tipoempresa = "pu"){
+		$tipoempresapu = "checked";
+		$tipoempresapr = "";
+	}else if ($tipoempresa = "pr"){
+		$tipoempresapu = "";
+		$tipoempresapr = "checked";
+	}
+
+} else{
+	$id=0;
+}
+
+
+//PARA PEGAR OS DADOS DOS CAMPOS
+if (isset($_POST['enviar'])){
+	$id= $_POST['pessoa'];
+	$tipopessoa = $_POST['pessoa'];
+	$nome = $_POST['nome'];
+	$nacionalidade = $_POST['nacionalidade'];
+	$profissao = $_POST['profissao'];
+	$ecivil = $_POST['ecivil'];
+	$rg = $_POST['rg'];
+	$cpf = $_POST['cpf'];
+	$endereco = $_POST['endereco'];
+	$sexo = $_POST['sexo'];
+	$numero = $_POST['numero'];
+	$cidade = $_POST['cidade'];
+	$cep = $_POST['cep'];
+	$cnpjempresa = $_POST['cnpjempresa'];
+	$enderecoempresa = $_POST['enderecoempresa'];
+	$cargoempresa = $_POST['cargoempresa'];
+	$tipoempresa = $_POST['tipoempresa'];
+	$cidadeempresa = $_POST['cidadeempresa'];
+	$numeroempresa = $_POST['numeroempresa'];
+	$nomeempresa = $_POST['nomeempresa'];
+	$op=$_POST['op'];
+
+
+	//PARA ATUALIZAR, HAVERÁ ID POIS HÁ UMA PESSOA
+	if ($id != 0) {
+		if ($op == 'A') {
+			$sql="UPDATE pessoa SET tipopessoa='$tipopessoa', nome ='$nome', nacionalidade ='$nacionalidade', profissao ='$profissao', estadocivil ='$ecivil', rg='$rg', cpf='$cpf', endereco ='$endereco', sexo='$sexo', numero ='$numero', cidade ='$cidade', cep ='$cep', cnpj ='$cnpjempresa', enderecoempresa ='$enderecoempresa', cargo ='$cargoempresa', tipoempresa ='$tipoempresa', cidadeempresa ='$cidadeempresa', numeroempresa ='$numeroempresa', nomeempresa ='$nomeempresa' where idpessoa ='$id'";
+
+			$res = mysqli_query($conexao,$sql);
+			if (mysqli_error($conexao)) {
+				$_SESSION['msg'] = "<p class='alert alert-danger' role='alert'>Erro na atualização de $nome</p>";
+				header('Location:vendedor.php');
+			} else {
+				$_SESSION['msg'] = "<p class='alert alert-success' role='alert'>$nome atualizado com sucesso!</p>";
+				header('Location:vendedor.php');
+			}
+			mysqli_close($conexao);
+
+		} else { //PARA EXCLUIR
+			$sql="DELETE FROM pessoa WHERE idpessoa='$id'";
+			$res = mysqli_query($conexao,$sql);
+			if (mysqli_affected_rows($conexao)=='1') {
+				$_SESSION['msg'] = "<p class='alert alert-success' role='alert'>$nome excluído com sucesso!</p>";
+				header('Location:cadastro_tela.php');
+			} else {
+				$_SESSION['msg'] = "p class='alert alert-danger' role='alert'>Erro na exclusão de $nome</p>";
+			}
+			mysqli_close($conexao);
+		}
+
+	}else{//SE FOR == 0 ENTÃO A PESSOA AINDA NÃO ESTÁ CADASTRADA
+		//INCLUSÃO
+		$sql = "SELECT * FROM pessoa WHERE cpf='$cpf'";
+		mysqli_query($conexao,$sql);
+
+		if (mysqli_affected_rows($conexao)!=0) {
+			mysqli_close($conexao);
+			$_SESSION['msg'] = "p class='alert alert-danger' role='alert'>$cpf já foi cadastrado</p>";
+			header('Location:vendedor.php');
+
+		}else {
+			$sql = "INSERT INTO pessoa (tipopessoa, nome, nacionalidade, profissao, estadocivil, rg, cpf, endereco, sexo, numero, cidade, cep, cnpj, enderecoempresa, cargo, tipoempresa, cidadeempresa, numeroempresa, nomeempresa) VALUES ('$tipopessoa', '$nome', '$nacionalidade', '$profissao', '$ecivil', '$rg', '$cpf', '$endereco', '$sexo', '$numero', '$cidade', '$cep', '$cnpjempresa', '$enderecoempresa', '$cargoempresa', '$tipoempresa', '$cidadeempresa', '$numeroempresa', '$nomeempresa')";
+			mysqli_query($conexao,$sql);
+
+			if (mysqli_affected_rows($conexao) =='1') {
+				$_SESSION['msg'] = "<p class='alert alert-success' role='alert'>$nome inserido com sucesso!</p>";
+				header('Location:vendedor.php');
+			} else {
+				$_SESSION['msg'] ="<p class='alert alert-danger' role='alert'>Erro: ".mysqli_error($conexao)."<p>";
+				header('Location:vendedor.php');
+			}
+			mysqli_close($conexao);
+		}
+	}
+	$id=0;
+}
+?>
+
+<!--////////////////////////////////////////////////////////////////////////////-->
+
+<?php
 include('config/verifica_login.php');
 ?>
 <!DOCTYPE html>
@@ -13,40 +169,60 @@ include('config/verifica_login.php');
 	<link rel="shortcut icon" href="imagens/icone.png" />
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<script>
+		function verif_cli(cpf) {
+			str = cpf;
+			if (window.XMLHttpRequest) {
+				// code for IE7+, Firefox, Chrome, Opera, Safari
+				xmlhttp = new XMLHttpRequest();
+			} else {
+				// code for IE6, IE5
+				xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+			}
+			xmlhttp.onreadystatechange = function() {
+				if (this.readyState == 4 && this.status == 200) {
+					if ((this.response) == '1') {
+						$('#rescli').html("<p class='alert alert-success' role='alert'>CPF já cadastrado</p>");
+						$('#cpf').addClass('erro');
+					} else {
+						$('#cpf').removeClass('erro');
+						$('#rescli').html("");
+					}
+					//return (this.response);
+				}
+			};
+			//xmlhttp.open("GET", "busca_cli.php?q=" + str, true);
+			//xmlhttp.send();
+			xmlhttp.open("POST", "config/busca_cli_cpf.php", true);
+			xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+			xmlhttp.send("q=" + str);
+		}
+		$(document).ready(function() {
+			$('#cpf').blur(function() {
+				if (($('#codigo').val() == '0') && ($('#cpf').val().trim() != '')) {
+					verif_cli($('#cpf').val());
+				}
+
+			});
+		});
+
+	</script>
 
 </head>
 
 <body>
-	<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-		<div class="container">
-			<div class="navbar-header">
-				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-					<span class="sr-only">Toggle navigation</span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-				</button>
-				<a href="index.php" class="navbar-brand">CRUD</a> </div>
-			<div id="navbar" class="navbar-collapse collapse">
-				<ul class="nav navbar-nav">
-					<li class="dropdown">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> Clientes <span class="caret"></span></a>
-						<ul class="dropdown-menu">
-							<li><a href="#">Gerenciar Clientes</a></li>
-							<li><a href="#">Novo Cliente</a></li>
-						</ul>
-					</li>
-				</ul>
-			</div>
-			<!--/.navbar-collapse -->
-		</div>
-	</nav>
 	<div class="container-fluid">
-		<div class="col-sm-9 col-md-8 col-lg-6 mx-auto">
+		<div class="col-sm-12 col-md-11 col-lg-10 mx-auto">
+			<?php
+				if (isset($_SESSION['msg'])) {
+					echo  $_SESSION['msg'];
+					unset ($_SESSION['msg']);
+				}
+				?>
 			<div class="card card-padrao my-5">
 				<div class="card-body">
 					<h5 class="card-title text-center">Sobre o vendedor:</h5>
-					<form action="config/vendedor.php" method="post" class="form-padrao">
+					<form action="#" method="post" class="form-padrao">
 						<div class="form-group">
 							<!--faltou: o php do input-->
 							<label for="pessoa">Tipo de pessoa</label>
@@ -61,7 +237,7 @@ include('config/verifica_login.php');
 
 						<div class="form-group">
 							<label for="nome">Nome Completo</label><label for="nome" class="representante"> do representante</label>
-							<input type="text" id="nome" class="form-control" name="nome" value="<?php echo ($id!=0)?'$nome':'';?>">
+							<input type="text" id="nome" class="form-control" name="nome" value="<?php echo ($id!=0)?"$nome":'';?>">
 							<p id="msg_nome" class="form-control-feedback "></p>
 						</div>
 
@@ -147,25 +323,25 @@ include('config/verifica_login.php');
 
 						<div class="form-group">
 							<label for="nomeempresa">Nome</label><label for="nomeempresa" class="representante"> da empresa</label>
-							<input type="text" id="nomeempresa" class="form-control" name="nomeempresa" value="<?php echo ($id!=0)?'$nomeempresa':'';?>">
+							<input type="text" id="nomeempresa" class="form-control" name="nomeempresa" value="<?php echo ($id!=0)?"$nomeempresa":'';?>">
 							<p id="msg_nomeempresa" class="form-control-feedback "></p>
 						</div>
 
 						<div class="form-group">
 							<label for="cnpj">CNPJ</label><label for="cnpj" class="representante"> da empresa</label>
-							<input type="text" id="cnpj" class="form-control" name="cnpj" value="<?php echo ($id!=0)?'$cnpj':'';?>">
+							<input type="text" id="cnpj" class="form-control" name="cnpjempresa" value="<?php echo ($id!=0)?"$cnpjempresa":'';?>">
 							<p id="msg_cnpj" class="form-control-feedback "></p>
 						</div>
 
 						<div class="form-group">
 							<label for="enderecoempresa">Endereço</label><label for="enderecoempresa" class="representante"> da empresa</label>
-							<input type="text" id="enderecoempresa" class="form-control" name="enderecoempresa" value="<?php echo ($id!=0)?'$enderecoempresa':'';?>">
+							<input type="text" id="enderecoempresa" class="form-control" name="enderecoempresa" value="<?php echo ($id!=0)?"$enderecoempresa":'';?>">
 							<p id="msg_enderecoempresa" class="form-control-feedback "></p>
 						</div>
 
 						<div class="form-group">
 							<label for="cargo">Cargo</label><label for="cargo" class="representante"> do representante</label>
-							<input type="text" id="cargo" class="form-control" name="cargo" value="<?php echo ($id!=0)?'$cargo':'';?>">
+							<input type="text" id="cargo" class="form-control" name="cargoempresa" value="<?php echo ($id!=0)?"$cargoempresa":'';?>">
 							<p id="msg_cargo" class="form-control-feedback "></p>
 						</div>
 
@@ -176,26 +352,33 @@ include('config/verifica_login.php');
 								<input type="radio" class="form-check-input" name="tipoempresa" value="pu" id="tipoempresapu" <?php echo ($id!=0)?"$tipoempresapu":'';?>>Pública
 							</div>
 							<div class="form-check-inline">
-								<input type="radio" class="form-check-input" name="tipoempresa" value="pr" id="tipoempresapr" <?php echo ($id!=0)?"$tipoemprespr":'';?>>Privada
+								<input type="radio" class="form-check-input" name="tipoempresa" value="pr" id="tipoempresapr" <?php echo ($id!=0)?"$tipoempresapr":'';?>>Privada
 							</div>
 							<p id="msg_tipoempresa" class="form-control feedback"></p>
 						</div>
 
 						<div class="form-group">
 							<label for="cidadeempresa">Cidade</label><label for="cidadeempresa" class="representante"> da empresa</label>
-							<input type="text" id="cidadeempresa" class="form-control" name="cidadeempresa" value="<?php echo ($id!=0)?'$cidadeempresa':'';?>">
+							<input type="text" id="cidadeempresa" class="form-control" name="cidadeempresa" value="<?php echo ($id!=0)?"$cidadeempresa":'';?>">
 							<p id="msg_cidadeempresa" class="form-control-feedback "></p>
 						</div>
 
 						<div class="form-group">
 							<label for="numeroempresa">Número</label><label for="numeroempresa" class="representante"> da empresa</label>
-							<input type="text" id="numeroempresa" class="form-control" name="numeroempresa" value="<?php echo ($id!=0)?'$numeroempresa':'';?>">
+							<input type="text" id="numeroempresa" class="form-control" name="numeroempresa" value="<?php echo ($id!=0)?"$numeroempresa":'';?>">
 							<p id="msg_numeroempresa" class="form-control-feedback "></p>
 						</div>
 
+						<input type='hidden' name='id' id='codigo' value="<?php echo ($id!=0)?"$id":'0';?>">
+						<input type='hidden' name='op' value="<?php echo ($id!=0)?"$op":'';?>">
 
-
-
+						<?php
+							$txtbtn='Incluir';
+							if (isset($op)){
+								$txtbtn=($op=='A')?'Salvar':'Excluir';
+							}
+							?>
+						<button class="btn btn-md btn-primary btn-block text-uppercase" type="submit" name="enviar" value="<?php echo $txtbtn; ?>" id="salvar"></button>
 
 					</form>
 				</div>
