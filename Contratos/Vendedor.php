@@ -212,7 +212,7 @@ include('config/verifica_login.php');
 
 <body>
 	<div class="container-fluid">
-		<div class="col-sm-12 col-md-11 col-lg-10 mx-auto">
+		<div class="col-sm-12 col-md-11 col-lg-11 mx-auto">
 			<?php
 				if (isset($_SESSION['msg'])) {
 					echo  $_SESSION['msg'];
@@ -223,22 +223,24 @@ include('config/verifica_login.php');
 				<div class="card-body">
 					<h5 class="card-title text-center">Sobre o vendedor:</h5>
 					<form action="#" method="post" class="form-padrao">
-						<div class="form-group">
-							<!--faltou: o php do input-->
-							<label for="pessoa">Tipo de pessoa</label>
-							<div class="form-check-inline">
-								<input type="radio" class="form-check-input" name="pessoa" value="f" id="pessoaf" <?php echo ($id!=0)?"$pessoaf":'';?>>Pessoa física
+						<div class="row">
+							<div class="form-group col-sm-12 col-md-5 col-lg-5">
+								<!--faltou: o php do input-->
+								<label for="pessoa">Tipo de pessoa</label>
+								<div class="form-check-inline">
+									<input type="radio" class="form-check-input" name="pessoa" value="f" id="pessoaf" <?php echo ($id!=0)?"$pessoaf":'';?>>Pessoa física
+								</div>
+								<div class="form-check-inline">
+									<input type="radio" class="form-check-input" name="pessoa" value="j" id="pessoaj" <?php echo ($id!=0)?"$pessoaj":'';?>>Pessoa jurídica
+								</div>
+								<p id="msg_pessoa" class="form-control feedback"></p>
 							</div>
-							<div class="form-check-inline">
-								<input type="radio" class="form-check-input" name="pessoa" value="j" id="pessoaj" <?php echo ($id!=0)?"$pessoaj":'';?>>Pessoa jurídica
-							</div>
-							<p id="msg_pessoa" class="form-control feedback"></p>
-						</div>
 
-						<div class="form-group">
-							<label for="nome">Nome Completo</label><label for="nome" class="representante"> do representante</label>
-							<input type="text" id="nome" class="form-control" name="nome" value="<?php echo ($id!=0)?"$nome":'';?>">
-							<p id="msg_nome" class="form-control-feedback "></p>
+							<div class="form-group col-sm-12 col-md-5 col-lg-5">
+								<label for="nome">Nome Completo</label><label for="nome" class="representante"> do representante</label>
+								<input type="text" id="nome" class="form-control" name="nome" value="<?php echo ($id!=0)?"$nome":'';?>">
+								<p id="msg_nome" class="form-control-feedback"></p>
+							</div>
 						</div>
 
 						<div class="form-group">
@@ -373,12 +375,12 @@ include('config/verifica_login.php');
 						<input type='hidden' name='op' value="<?php echo ($id!=0)?"$op":'';?>">
 
 						<?php
-							$txtbtn='Incluir';
+							$txtbtn="Incluir";
 							if (isset($op)){
 								$txtbtn=($op=='A')?'Salvar':'Excluir';
 							}
 							?>
-						<button class="btn btn-md btn-primary btn-block text-uppercase" type="submit" name="enviar" value="<?php echo $txtbtn; ?>" id="salvar"></button>
+						<input class="btn btn-md btn-primary btn-block text-uppercase" type="submit" name="enviar" value="<?php echo $txtbtn?>" id="salvar">
 
 					</form>
 				</div>
