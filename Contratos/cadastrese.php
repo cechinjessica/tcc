@@ -18,7 +18,7 @@ session_start();
 <body>
 	<script type="text/javascript" src="javascript/cadastre.js"></script>
 	<div class="container-fluid">
-		<div class="col-sm-9 col-md-8 col-lg-6 mx-auto">
+		<div class="col-sm-11 col-md-10 col-lg-8 mx-auto">
 			<div class="card card-padrao my-5">
 				<div class="card-body">
 					<h5 class="card-title text-center">Cadastre-se</h5>
@@ -43,11 +43,14 @@ session_start();
 								unset ($_SESSION['msg']);
 							}
 						?>
-
-						<button class="btn btn-md btn-primary btn-block text-uppercase" type="submit" id="cadastre">Cadastre-se</button>
+						<center>
+							<button class="btn btn-md btn-primary btn-block text-uppercase col-sm-11 col-md-9 col-lg-9" type="submit" id="cadastre">Cadastre-se</button>
+						</center>
 					</form>
 					<div class="form-padrao">
-						<a href="index.php"><button id="voltar" class="btn btn-outline-info text-uppercase btn-inline">Voltar</button></a>
+						<center>
+							<a href="index.php"><button id="voltar" class="btn btn-outline-info text-uppercase btn-inline col-sm-11 col-md-9 col-lg-9">Voltar</button></a>
+						</center>
 					</div>
 				</div>
 			</div>

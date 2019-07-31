@@ -1,17 +1,15 @@
 $(document).ready(function () {
-	/*if ($("input[type='radio'][value='f']").is(":checked")) {
-		selecionarf();
-	}
-	if ($("input[type='radio'][value='j']").is(":checked")) {
-		selecionarj();
-	}*/
+	//MASCARAS
 	$("#cnpj").mask("00.000.000/0000-00");
 	$("#cpf").mask("000.000.000-00");
-	$("#fisica").click(selecionarf);
-	$("#juridica").click(selecionarj);
+	$("#rg").mask("00.000.000-0");
+	$("#cep").mask("00000-000");
 
-	$("#fisica").change(selecionarf);
-	$("#juridica").change(selecionarj);
+
+	$("#pessoaf").click(selecionarf);
+	$("#pessoaj").click(selecionarj);
+	$("#pessoaf").change(selecionarf);
+	$("#pessoaj").change(selecionarj);
 	$("#salvar").click(function (e) {
 		if (!nome()) {
 			e.preventDefault();
@@ -34,11 +32,11 @@ $(document).ready(function () {
 		if (!sexo()) {
 			e.preventDefault();
 		}
-		if ($("#fisica").is(":checked")) {
+		if ($("#pessoaf").is(":checked")) {
 			if (!cnpjfisico()) {
 				e.preventDefault();
 			}
-		} else if ($("#juridica").is(":checked")) {
+		} else if ($("#pessoaj").is(":checked")) {
 			if (!cnpj()) {
 				e.preventDefault();
 			}
@@ -52,17 +50,28 @@ $(document).ready(function () {
 })
 
 function selecionarf() {
-	//if ($("input[type='radio'][value='f']").is(":checked")) {
-	$("#gcnpj").css("display", "none");
 	$(".representante").css("display", "none");
-	//}
+	$("#gnomeempresa").css("display", "none");
+	$("#gcnpj").css("display", "none");
+	$("#genderecoempresa").css("display", "none");
+	$("#gcargoempresa").css("display", "none");
+	$("#gtipoempresa").css("display", "none");
+	$("#gcidadeempresa").css("display", "none");
+	$("#gnumeroempresa").css("display", "none");
+
+
 }
 
 function selecionarj() {
-	//if ($("input[type='radio'][value='j']").is(":checked")) {
-	$("#gcnpj").css("display", "inline");
 	$(".representante").css("display", "inline");
-	//}
+	$("#gnomeempresa").css("display", "inline");
+	$("#gcnpj").css("display", "inline");
+	$("#genderecoempresa").css("display", "inline");
+	$("#gcargoempresa").css("display", "inline");
+	$("#gtipoempresa").css("display", "inline");
+	$("#gcidadeempresa").css("display", "inline");
+	$("#gnumeroempresa").css("display", "inline");
+
 
 }
 

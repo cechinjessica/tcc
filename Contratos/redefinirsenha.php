@@ -18,7 +18,7 @@ session_start();
 <body>
 	<script type="text/javascript" src="javascript/redefinir.js"></script>
 	<div class="container-fluid">
-		<div class="col-sm-9 col-md-8 col-lg-6 mx-auto">
+		<div class="col-sm-11 col-md-10 col-lg-8 mx-auto">
 			<div class="card card-padrao my-5">
 				<div class="card-body">
 					<h5 class="card-title text-center">Redefinir a Senha</h5>
@@ -44,12 +44,15 @@ session_start();
 								unset ($_SESSION['msg']);
 							}
 						?>
-
-						<button type="submit" id="redefinir" class="btn btn-md btn-primary btn-block text-uppercase">Redefinir</button>
+						<center>
+							<button type="submit" id="redefinir" class="btn btn-md btn-primary btn-block text-uppercase col-sm-11 col-md-9 col-lg-9">Redefinir</button>
+						</center>
 					</form>
-					<div class="form-padrao">
-						<a href="index.php"><button id="voltar" class="btn btn-outline-info text-uppercase btn-inline">Voltar</button></a>
-					</div>
+					<center>
+						<div class="form-padrao"><a href="index.php"><button id="voltar" class="btn btn-outline-info text-uppercase btn-inline col-sm-11 col-md-9 col-lg-9">Voltar</button></a>
+						</div>
+					</center>
+
 				</div>
 			</div>
 		</div>

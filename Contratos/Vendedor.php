@@ -169,6 +169,8 @@ include('config/verifica_login.php');
 	<link rel="shortcut icon" href="imagens/icone.png" />
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.12/jquery.mask.min.js"></script>
+
 	<script>
 		function verif_cli(cpf) {
 			str = cpf;
@@ -211,6 +213,7 @@ include('config/verifica_login.php');
 </head>
 
 <body>
+	<script type="text/javascript" src="javascript/vendedorcomprador.js"></script>
 	<div class="container-fluid">
 		<div class="col-sm-12 col-md-11 col-lg-11 mx-auto">
 			<?php
@@ -323,31 +326,31 @@ include('config/verifica_login.php');
 							<p id="msg_sexo" class="form-control feedback"></p>
 						</div>
 
-						<div class="form-group">
+						<div class="form-group" id="gnomeempresa">
 							<label for="nomeempresa">Nome</label><label for="nomeempresa" class="representante"> da empresa</label>
 							<input type="text" id="nomeempresa" class="form-control" name="nomeempresa" value="<?php echo ($id!=0)?"$nomeempresa":'';?>">
 							<p id="msg_nomeempresa" class="form-control-feedback "></p>
 						</div>
 
-						<div class="form-group">
+						<div class="form-group" id="gcnpj">
 							<label for="cnpj">CNPJ</label><label for="cnpj" class="representante"> da empresa</label>
 							<input type="text" id="cnpj" class="form-control" name="cnpjempresa" value="<?php echo ($id!=0)?"$cnpjempresa":'';?>">
 							<p id="msg_cnpj" class="form-control-feedback "></p>
 						</div>
 
-						<div class="form-group">
+						<div class="form-group" id="genderecoempresa">
 							<label for="enderecoempresa">Endereço</label><label for="enderecoempresa" class="representante"> da empresa</label>
 							<input type="text" id="enderecoempresa" class="form-control" name="enderecoempresa" value="<?php echo ($id!=0)?"$enderecoempresa":'';?>">
 							<p id="msg_enderecoempresa" class="form-control-feedback "></p>
 						</div>
 
-						<div class="form-group">
+						<div class="form-group" id="gcargoempresa">
 							<label for="cargo">Cargo</label><label for="cargo" class="representante"> do representante</label>
 							<input type="text" id="cargo" class="form-control" name="cargoempresa" value="<?php echo ($id!=0)?"$cargoempresa":'';?>">
 							<p id="msg_cargo" class="form-control-feedback "></p>
 						</div>
 
-						<div class="form-group">
+						<div class="form-group" id="gtipoempresa">
 							<label for="tipoempresa">Tipo</label>
 							<label for="tipoempresa" class="representante"> da empresa</label>
 							<div class="form-check-inline">
@@ -359,13 +362,13 @@ include('config/verifica_login.php');
 							<p id="msg_tipoempresa" class="form-control feedback"></p>
 						</div>
 
-						<div class="form-group">
+						<div class="form-group" id="gcidadeempresa">
 							<label for="cidadeempresa">Cidade</label><label for="cidadeempresa" class="representante"> da empresa</label>
 							<input type="text" id="cidadeempresa" class="form-control" name="cidadeempresa" value="<?php echo ($id!=0)?"$cidadeempresa":'';?>">
 							<p id="msg_cidadeempresa" class="form-control-feedback "></p>
 						</div>
 
-						<div class="form-group">
+						<div class="form-group" id="gnumeroempresa">
 							<label for="numeroempresa">Número</label><label for="numeroempresa" class="representante"> da empresa</label>
 							<input type="text" id="numeroempresa" class="form-control" name="numeroempresa" value="<?php echo ($id!=0)?"$numeroempresa":'';?>">
 							<p id="msg_numeroempresa" class="form-control-feedback "></p>
@@ -392,9 +395,9 @@ include('config/verifica_login.php');
 
 
 
-	<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+	<!--<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>-->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </body>
 
 </html>

@@ -19,7 +19,7 @@ session_start();
 <body>
 	<script type="text/javascript" src="javascript/login.js"></script>
 	<div class="container-fluid">
-		<div class="col-sm-9 col-md-8 col-lg-6 mx-auto">
+		<div class="col-sm-11 col-md-10 col-lg-8 mx-auto">
 			<div class="card card-padrao my-5">
 				<div class="card-body">
 					<h5 class="card-title text-center">Login</h5>
@@ -54,8 +54,9 @@ session_start();
 
 					</form>
 					<div class="form-padrao">
-						<a href="cadastrese.php"><button id="cadastrese1" class="btn btn-outline-info text-uppercase btn-inline" style="width:49%;">Cadastre-se</button></a>
-						<a href="redefinirsenha.php"><button id="redefinir1" class="btn btn-outline-info text-uppercase btn-inline" style="width:49%;">Redefinir senha</button></a>
+						<center><a href="cadastrese.php"><button id="cadastrese1" class="btn btn-outline-info text-uppercase btn-inline col-sm-9 col-md-5 col-lg-5">Cadastre-se</button></a>
+							<a href="redefinirsenha.php"><button id="redefinir1" class="btn btn-outline-info text-uppercase btn-inline col-sm-9 col-md-5 col-lg-5">Redefinir senha</button></a>
+						</center>
 					</div>
 				</div>
 			</div>
