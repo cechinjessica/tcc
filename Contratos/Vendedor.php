@@ -258,7 +258,7 @@ include('config/verifica_login.php');
 							<p id="msg_profissao" class="form-control feedback"></p>
 						</div>
 
-						<div class="form-group">
+						<div class="form-group" id="ecivil">
 							<label for="ecivil">Estado cívil</label>
 							<label for="ecivil" class="representante"> do representante</label>
 							<div class="form-check-inline">
