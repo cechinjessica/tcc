@@ -12,43 +12,43 @@ $(document).ready(function () {
 	$("#pessoaf").change(selecionarf);
 	$("#pessoaj").change(selecionarj);
 	$("#salvar").click(function (e) {
-		if (!pessoa()) {
-			e.preventDefault();
-		}
-		if (!nome()) {
-			e.preventDefault();
-		}
-		if (!nacionalidade()) {
-			e.preventDefault();
-		}
-		if (!profissao()) {
-			e.preventDefault();
-		}
-		if (!estadocivil()) {
-			e.preventDefault();
-		}
-		if (!rg()) {
-			e.preventDefault();
-		}
-		//if (!cpf()) {
-		//	e.preventDefault();
-		//}
-		if (!endereco()) {
-			e.preventDefault();
-		}
-		if (!numero()) {
-			e.preventDefault();
-		}
-		if (!cidade()) {
-			e.preventDefault();
-		}
-		if (!cep()) {
-			e.preventDefault();
-		}
-		if (!sexo()) {
-			e.preventDefault();
-		}
 		if ($("#pessoaf").is(":checked")) {
+			if (!pessoa()) {
+				e.preventDefault();
+			}
+			if (!nome()) {
+				e.preventDefault();
+			}
+			if (!nacionalidade()) {
+				e.preventDefault();
+			}
+			if (!profissao()) {
+				e.preventDefault();
+			}
+			if (!estadocivil()) {
+				e.preventDefault();
+			}
+			if (!rg()) {
+				e.preventDefault();
+			}
+			if (!cpf()) {
+				e.preventDefault();
+			}
+			if (!endereco()) {
+				e.preventDefault();
+			}
+			if (!numero()) {
+				e.preventDefault();
+			}
+			if (!cidade()) {
+				e.preventDefault();
+			}
+			if (!cep()) {
+				e.preventDefault();
+			}
+			if (!sexo()) {
+				e.preventDefault();
+			}
 			if (!nomeempresafisico()) {
 				e.preventDefault();
 			}
@@ -71,6 +71,42 @@ $(document).ready(function () {
 				e.preventDefault();
 			}
 		} else if ($("#pessoaj").is(":checked")) {
+			if (!pessoa()) {
+				e.preventDefault();
+			}
+			if (!nome()) {
+				e.preventDefault();
+			}
+			if (!nacionalidade()) {
+				e.preventDefault();
+			}
+			if (!profissao()) {
+				e.preventDefault();
+			}
+			if (!estadocivil()) {
+				e.preventDefault();
+			}
+			if (!rg()) {
+				e.preventDefault();
+			}
+			if (!cpf()) {
+				e.preventDefault();
+			}
+			if (!endereco()) {
+				e.preventDefault();
+			}
+			if (!numero()) {
+				e.preventDefault();
+			}
+			if (!cidade()) {
+				e.preventDefault();
+			}
+			if (!cep()) {
+				e.preventDefault();
+			}
+			if (!sexo()) {
+				e.preventDefault();
+			}
 			if (!nomeempresa()) {
 				e.preventDefault();
 			}
@@ -93,8 +129,9 @@ $(document).ready(function () {
 				e.preventDefault();
 			}
 		} else {
-			$("#msg_pessoa").text("Selecione o tipo de pessoa");
-			$("#gpessoa").attr("class", "erro");
+			$("#msg_pessoa").text("*Selecione o tipo de pessoa");
+			$("#msg_pessoa").css("color", "red");
+			$("#pessoa").addClass("erro");
 			e.preventDefault();
 		}
 
@@ -222,7 +259,6 @@ function rg() {
 	return a;
 }
 
-/*
 function cpf() {
 	if ($("#cpf").hasClass("erro")) {
 		$("#cpf").removeClass("erro");
@@ -233,7 +269,8 @@ function cpf() {
 	var a = true;
 	$("#msg_cpf").text("");
 
-	while (cpf.search(".") != -1 || cpf.search("-") != -1) {
+	var cpf = $("#cpf").val();
+	while (cpf.indexOf(".") != -1 || cpf.indexOf("-") != -1) {
 		cpf = cpf.replace(".", "");
 		cpf = cpf.replace("-", "");
 	}
@@ -243,60 +280,61 @@ function cpf() {
 		$("#msg_cpf").css("color", "red");
 		$("#cpf").addClass("erro");
 		a = false;
-	}
-
-	var cpfA = cpf.split("");
-	var J = 0;
-	var l = 11;
-
-	for (i = 0; i <= 8; i++) {
-
-		l--;
-		J += cpfA[i] * l;
-
-	}
-
-	J = J % 11;
-	if (J == 1 || J == 0) {
-		J = 0;
 	} else {
-		J = 11 - J;
-	}
 
-	if (J != cpfA[9]) {
-		$("#msg_cpf").text("*CPF inválido");
-		$("#msg_cpf").css("color", "red");
-		$("#cpf").addClass("erro");
-		a = false;
-		return false;
-	}
+		var cpfA = cpf.split("");
+		var J = 0;
+		var l = 11;
 
-	//alert(J);
-	var k = 0;
-	l = 12;
-	for (i = 0; i <= 9; i++) {
-		l--;
-		k += cpfA[i] * l;
+		for (i = 0; i <= 8; i++) {
 
-	}
+			l--;
+			J += cpfA[i] * l;
 
-	k = k % 11;
-	if (k == 1 || k == 0) {
-		k = 0;
-	} else {
-		k = 11 - k;
-	}
-	//alert(k);
-	if (k != cpfA[10]) {
-		$("#msg_cpf").text("*CPF inválido");
-		$("#msg_cpf").css("color", "red");
-		$("#cpf").addClass("erro");
-		a = false;
-		return false;
+		}
+
+		J = J % 11;
+		if (J == 1 || J == 0) {
+			J = 0;
+		} else {
+			J = 11 - J;
+		}
+
+		if (J != cpfA[9]) {
+			$("#msg_cpf").text("*CPF inválido");
+			$("#msg_cpf").css("color", "red");
+			$("#cpf").addClass("erro");
+			a = false;
+			return false;
+		}
+
+		//alert(J);
+		var k = 0;
+		l = 12;
+		for (i = 0; i <= 9; i++) {
+			l--;
+			k += cpfA[i] * l;
+
+		}
+
+		k = k % 11;
+		if (k == 1 || k == 0) {
+			k = 0;
+		} else {
+			k = 11 - k;
+		}
+		//alert(k);
+		if (k != cpfA[10]) {
+			$("#msg_cpf").text("*CPF inválido");
+			$("#msg_cpf").css("color", "red");
+			$("#cpf").addClass("erro");
+			a = false;
+			return false;
+		}
 	}
 	return a;
 
-}*/
+}
 
 function endereco() {
 	if ($("#endereco").hasClass("erro")) {
@@ -406,7 +444,8 @@ function sexo() {
 
 	if (!$("input[type='radio'][name='sexo']").is(':checked')) {
 		$("#msg_sexo").text("*Sexo inválido");
-		$("input[name='sexo']").attr("class", "erro");
+		$("#msg_sexo").css("color", "red");
+		$("input[name='sexo']").addClass("erro");
 		a = false;
 	}
 	return a;
@@ -535,7 +574,14 @@ function cargoempresa() {
 	var a = true;
 	$("#msg_cargoempresa").text("");
 
-	if ($("#cargoempresa").val().trim() == "") {
+	var cargoempresa = $("#cargoempresa").val();
+	if ($("#cargoempresa") == undefined) {
+		cargoempresa = "";
+	} else {
+		cargoempresa = $("#cargoempresa").val();
+	}
+
+	if (cargoempresa.trim() == "") {
 		$("#msg_cargoempresa").text("*Cargo da empresa inválido");
 		$("#msg_cargoempresa").css("color", "red");
 		$("#cargoempresa").addClass("erro");
@@ -573,8 +619,8 @@ function tipoempresa() {
 	var a = true;
 	$("#msg_tipoempresa").text("");
 
-	if (!$("#input[name='tipoempresa']").is(':checked')) {
-		$("#msg_tipoempresa").text("*Cargo da empresa inválido");
+	if (!$("input[type='radio'][name='tipoempresa']").is(':checked')) {
+		$("#msg_tipoempresa").text("*Tipo da empresa inválido");
 		$("#msg_tipoempresa").css("color", "red");
 		$("#input[name='tipoempresa']").addClass("erro");
 		a = false;
@@ -592,8 +638,8 @@ function tipoempresafisico() {
 	var a = true;
 	$("#msg_tipoempresa").text("");
 
-	if ($("#input[name='tipoempresa']").is(':checked')) {
-		$("#msg_tipoempresa").text("*Cargo da empresa inválido");
+	if ($("input[type='radio'][name='tipoempresa']").is(':checked')) {
+		$("#msg_tipoempresa").text("*Tipo da empresa inválido");
 		$("#msg_tipoempresa").css("color", "red");
 		$("#input[name='tipoempresa']").addClass("erro");
 		a = false;

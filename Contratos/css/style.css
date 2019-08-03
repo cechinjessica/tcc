@@ -43,7 +43,6 @@ body {
 }
 
 .form-group input {
-	height: auto;
 	border-radius: 2rem;
 }
 
@@ -58,4 +57,13 @@ body {
 
 .erro {
 	border: 1px solid red;
+}
+
+.representante {
+	margin-left: -2.8em;
+
+}
+
+.feedback {
+	border: none;
 }
