@@ -100,7 +100,7 @@ if (isset($_POST['enviar'])){
 	//PARA ATUALIZAR, HAVERÁ ID POIS HÁ UMA PESSOA
 	if ($id != 0) {
 		if ($op == 'A') {
-			$sql="UPDATE pessoa SET tipopessoa='$tipopessoa', nome ='$nome', nacionalidade ='$nacionalidade', profissao ='$profissao', estadocivil ='$ecivil', rg='$rg', cpf='$cpf', endereco ='$endereco', sexo='$sexo', numero ='$numero', cidade ='$cidade', cep ='$cep', cnpj ='$cnpjempresa', enderecoempresa ='$enderecoempresa', cargo ='$cargoempresa', tipoempresa ='$tipoempresa', cidadeempresa ='$cidadeempresa', numeroempresa ='$numeroempresa', nomeempresa ='$nomeempresa' where idpessoa ='$id'";
+			$sql="UPDATE pessoa SET tipopessoa='$tipopessoa', nome ='$nome', nacionalidade ='$nacionalidade', profissao ='$profissao', estadocivil ='$ecivil', rg='$rg', cpf='$cpf', endereco ='$endereco', sexo='$sexo', numero ='$numero', cidade ='$cidade', cep ='$cep', cnpj ='$cnpjempresa', enderecoempresa ='$enderecoempresa', cargoempresa ='$cargoempresa', tipoempresa ='$tipoempresa', cidadeempresa ='$cidadeempresa', numeroempresa ='$numeroempresa', nomeempresa ='$nomeempresa' where idpessoa ='$id'";
 
 			$res = mysqli_query($conexao,$sql);
 			if (mysqli_error($conexao)) {
@@ -117,7 +117,7 @@ if (isset($_POST['enviar'])){
 			$res = mysqli_query($conexao,$sql);
 			if (mysqli_affected_rows($conexao)=='1') {
 				$_SESSION['msg'] = "<p class='alert alert-success' role='alert'>$nome excluído com sucesso!</p>";
-				header('Location:cadastro_tela.php');
+				header('Location:cadastro_pessoa.php');
 			} else {
 				$_SESSION['msg'] = "p class='alert alert-danger' role='alert'>Erro na exclusão de $nome</p>";
 			}
@@ -135,7 +135,7 @@ if (isset($_POST['enviar'])){
 			header('Location:vendedor.php');
 
 		}else {
-			$sql = "INSERT INTO pessoa (tipopessoa, nome, nacionalidade, profissao, estadocivil, rg, cpf, endereco, sexo, numero, cidade, cep, cnpj, enderecoempresa, cargo, tipoempresa, cidadeempresa, numeroempresa, nomeempresa) VALUES ('$tipopessoa', '$nome', '$nacionalidade', '$profissao', '$ecivil', '$rg', '$cpf', '$endereco', '$sexo', '$numero', '$cidade', '$cep', '$cnpjempresa', '$enderecoempresa', '$cargoempresa', '$tipoempresa', '$cidadeempresa', '$numeroempresa', '$nomeempresa')";
+			$sql = "INSERT INTO pessoa (tipopessoa, nome, nacionalidade, profissao, estadocivil, rg, cpf, endereco, sexo, numero, cidade, cep, cnpj, enderecoempresa, cargoempresa, tipoempresa, cidadeempresa, numeroempresa, nomeempresa) VALUES ('$tipopessoa', '$nome', '$nacionalidade', '$profissao', '$ecivil', '$rg', '$cpf', '$endereco', '$sexo', '$numero', '$cidade', '$cep', '$cnpjempresa', '$enderecoempresa', '$cargoempresa', '$tipoempresa', '$cidadeempresa', '$numeroempresa', '$nomeempresa')";
 			mysqli_query($conexao,$sql);
 
 			if (mysqli_affected_rows($conexao) =='1') {
@@ -163,10 +163,14 @@ include('config/verifica_login.php');
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
-	<title>Contrato - Vendedor</title>
 	<link rel="shortcut icon" href="imagens/icone.png" />
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+	<title>Contrato - Vendedor</title>
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.12/jquery.mask.min.js"></script>
 
@@ -183,11 +187,11 @@ include('config/verifica_login.php');
 			xmlhttp.onreadystatechange = function() {
 				if (this.readyState == 4 && this.status == 200) {
 					if ((this.response) == '1') {
-						$('#rescli').html("<p class='alert alert-success' role='alert'>CPF já cadastrado</p>");
+						$('#msg_cpf').html("<p class='alert alert-danger' role='alert'>CPF já cadastrado</p>");
 						$('#cpf').addClass('erro');
 					} else {
 						$('#cpf').removeClass('erro');
-						$('#rescli').html("");
+						$('#msg_cpf').html("");
 					}
 					//return (this.response);
 				}
@@ -223,10 +227,56 @@ include('config/verifica_login.php');
 
 </head>
 
-<body>
+<body style="background: #007bff;
+	background: linear-gradient(to left, #5A8BB7, #2D9AAD);">
 	<script type="text/javascript" src="javascript/vendedorcomprador.js"></script>
+	<!--NAVBAR-->
+	<nav class="navbar navbar-expand-sm bg-info navbar-light fixed-top">
+		<a class="navbar-brand" href="#"><img src="imagens/icone.png" width="30px">Á definir</a>
+		<a class="nav-text">Bem vindo(a) <?php echo $_SESSION['usuario']; ?></a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="collapsibleNavbar">
+			<ul class="navbar-nav">
+				<li class="nav-item">
+					<a class="nav-link" href="#">Link</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="#">Link</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="#">Link</a>
+				</li>
+				<li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+						Cadastrar
+					</a>
+					<div class="dropdown-menu">
+						<a class="dropdown-item" href="vendedor.php">Pessoa</a>
+						<a class="dropdown-item" href="#">Link 2</a>
+						<a class="dropdown-item" href="#">Link 3</a>
+					</div>
+				</li>
+				<li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+						Relatórios
+					</a>
+					<div class="dropdown-menu">
+						<a class="dropdown-item" href="cadastro_pessoa.php">Pessoa</a>
+						<a class="dropdown-item" href="#">Link 2</a>
+						<a class="dropdown-item" href="#">Link 3</a>
+					</div>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="config/logout.php">Logout</a>
+				</li>
+			</ul>
+		</div>
+	</nav>
+	<!--</NAVBAR-->
 
-	<div class="container-fluid">
+	<div class="container-fluid fundo-card">
 		<div class="col-sm-12 col-md-11 col-lg-11 mx-auto">
 			<?php
 				if (isset($_SESSION['msg'])) {

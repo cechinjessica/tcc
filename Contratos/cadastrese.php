@@ -15,9 +15,10 @@ session_start();
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 
-<body>
+<body style="background: #007bff;
+	background: linear-gradient(to left, #5A8BB7, #2D9AAD);">
 	<script type="text/javascript" src="javascript/cadastre.js"></script>
-	<div class="container-fluid">
+	<div class="container-fluid fundo-card">
 		<div class="col-sm-11 col-md-10 col-lg-8 mx-auto">
 			<div class="card card-padrao my-5">
 				<div class="card-body">

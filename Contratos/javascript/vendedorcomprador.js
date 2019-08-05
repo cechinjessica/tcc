@@ -49,27 +49,28 @@ $(document).ready(function () {
 			if (!sexo()) {
 				e.preventDefault();
 			}
-			if (!nomeempresafisico()) {
-				e.preventDefault();
-			}
-			if (!cnpjfisico()) {
-				e.preventDefault();
-			}
-			if (!enderecoempresafisico()) {
-				e.preventDefault();
-			}
-			if (!cargoempresafisico()) {
-				e.preventDefault();
-			}
-			if (!tipoempresafisico()) {
-				e.preventDefault();
-			}
-			if (!cidadeempresafisico()) {
-				e.preventDefault();
-			}
-			if (!numeroempresafisico()) {
-				e.preventDefault();
-			}
+			/*
+						if (!nomeempresafisico()) {
+							e.preventDefault();
+						}
+						if (!cnpjfisico()) {
+							e.preventDefault();
+						}
+						if (!enderecoempresafisico()) {
+							e.preventDefault();
+						}
+						if (!cargoempresafisico()) {
+							e.preventDefault();
+						}
+						if (!tipoempresafisico()) {
+							e.preventDefault();
+						}
+						if (!cidadeempresafisico()) {
+							e.preventDefault();
+						}
+						if (!numeroempresafisico()) {
+							e.preventDefault();
+						}*/
 		} else if ($("#pessoaj").is(":checked")) {
 			if (!pessoa()) {
 				e.preventDefault();

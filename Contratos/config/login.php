@@ -22,7 +22,7 @@ $row = mysqli_num_rows($result);
 
 if($row == 1) {
 	$_SESSION['usuario'] = $usuario;
-	header('Location: ../Vendedor.php');
+	header('Location: ../vendedor.php');
 	exit();
 } else {
 	$_SESSION['nao_autenticado'] = true;

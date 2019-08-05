@@ -3,10 +3,10 @@
 	--input-padding-y: .75rem;
 }
 
-body {
+/*.fundo-card {
 	background: #007bff;
 	background: linear-gradient(to left, #5A8BB7, #2D9AAD);
-}
+}*/
 
 .card-padrao {
 	border: 0;
@@ -64,6 +64,8 @@ body {
 
 }
 
-.feedback {
+.feedback:empty {
 	border: none;
+	padding: 0px 0px;
+	margin: 0px 0px 0px;
 }
