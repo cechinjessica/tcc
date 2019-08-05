@@ -6,6 +6,8 @@ require 'conexao.php';
 if (isset($_POST['usuario']) & isset($_POST['senha'])){
 	$usuario = $_POST["usuario"];
 	$senha= $_POST["senha"];
+	$nome= $_POST["nome"];
+	$email= $_POST["email"];
 
 
 	$sql = "SELECT * FROM login WHERE usuario='$usuario'";
@@ -19,9 +21,7 @@ if (isset($_POST['usuario']) & isset($_POST['senha'])){
 	}
 
 	else {
-		$sql = "INSERT INTO login (usuario, senha) VALUES ('$usuario', '$senha')";
-		//echo $sql;
-		//echo 'cadastrou';
+		$sql = "INSERT INTO login (usuario, senha, nome, email) VALUES ('$usuario', '$senha', '$nome', '$email')";
 
 		mysqli_query($conexao,$sql);
 		if (mysqli_affected_rows($conexao)!=0) {

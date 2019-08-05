@@ -26,14 +26,24 @@ session_start();
 					<form action="config/cadastre.php" method="post" class="form-padrao">
 						<div class="form-group">
 							<!--<label for="usuario">Usuário:</label>-->
-
 							<input type="text" id="usuario" class="form-control" name="usuario" placeholder="Seu usuário">
 							<label class="form-text text-muted">Escolha um usuário com, no máximo, 25 caracteres</label>
 							<p id="msg_usuario" class="form-control-feedback"></p>
 						</div>
 						<div class="form-group">
+							<!--<label for="nome">Nome:</label>-->
+							<input type="text" id="nome" class="form-control" name="nome" placeholder="Nome">
+							<label class="form-text text-muted">Seu nome completo</label>
+							<p id="msg_nome" class="form-control-feedback"></p>
+						</div>
+						<div class="form-group">
+							<!--<label for="email">Email:</label>-->
+							<input type="text" id="email" class="form-control" name="email" placeholder="Email">
+							<label class="form-text text-muted">Seu email para contato</label>
+							<p id="msg_email" class="form-control-feedback"></p>
+						</div>
+						<div class="form-group">
 							<!--<label for="senha">Senha:</label>-->
-
 							<input type="password" id="senha" class="form-control" name="senha" placeholder="Sua senha">
 							<label class="form-text text-muted">Escolha uma senha com, no mínimo, 6 caracteres</label>
 							<p id="msg_senha" class="form-control-feedback"></p>

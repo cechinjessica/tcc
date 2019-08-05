@@ -12,10 +12,11 @@ if(!isset($_POST['usuario']) || !isset($_POST['senha'])) {
 $usuario =  $_POST['usuario'];
 $senha =  $_POST['senha'];
 
-$query = "select usuariooid, usuario from login where usuario = '$usuario' and senha ='$senha'";
+$query = "select nome from login where usuario = '$usuario' and senha ='$senha'";
 echo $query;
 
 $result = mysqli_query($conexao, $query);
+
 //var_dump($result);
 
 $row = mysqli_num_rows($result);

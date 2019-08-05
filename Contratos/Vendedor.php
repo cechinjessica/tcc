@@ -6,7 +6,7 @@ require 'config/conexao.php';
 if (isset($_GET['id'])){
 	$id=$_GET['id'];
 	$op=$_GET['op'];
-	$sql = "SELECT idpessoa, tipopessoa, nome, nacionalidade, profissao, estadocivil, rg, cpf, endereco, sexo, numero, cidade, cep, cnpj, enderecoempresa, cargo, tipoempresa, cidadeempresa, numeroempresa, nomeempresa FROM pessoa WHERE idpessoa='$id'";
+	$sql = "SELECT idpessoa, tipopessoa, nome, nacionalidade, profissao, estadocivil, rg, cpf, endereco, sexo, numero, cidade, cep, cnpj, enderecoempresa, cargoempresa, tipoempresa, cidadeempresa, numeroempresa, nomeempresa FROM pessoa WHERE idpessoa='$id'";
 	$res=mysqli_query($conexao,$sql);
 	$row=mysqli_fetch_row($res);
 	$id= $row[0];
@@ -50,20 +50,38 @@ if (isset($_GET['id'])){
 		$divorciado = "";
 		$viuvo = "";
 		$separado = "";
+	}else if($ecivil == "divorciado"){
+		$solteiro = "";
+		$casado = "";
+		$divorciado = "checked";
+		$viuvo = "";
+		$separado = "";
+	}else if($ecivil == "viuvo"){
+		$solteiro = "";
+		$casado = "";
+		$divorciado = "";
+		$viuvo = "checked";
+		$separado = "";
+	}else if($ecivil == "separado"){
+		$solteiro = "";
+		$casado = "";
+		$divorciado = "";
+		$viuvo = "";
+		$separado = "checked";
 	}
 
-	if($sexo = "m"){
+	if($sexo == "m"){
 		$sexom = "checked";
 		$sexof = "";
-	}else if ($sexo = "f"){
+	}else if ($sexo == "f"){
 		$sexom = "";
 		$sexof = "checked";
 	}
 
-	if ($tipoempresa = "pu"){
+	if ($tipoempresa == "pu"){
 		$tipoempresapu = "checked";
 		$tipoempresapr = "";
-	}else if ($tipoempresa = "pr"){
+	}else if ($tipoempresa == "pr"){
 		$tipoempresapu = "";
 		$tipoempresapr = "checked";
 	}
@@ -101,6 +119,7 @@ if (isset($_POST['enviar'])){
 	if ($id != 0) {
 		if ($op == 'A') {
 			$sql="UPDATE pessoa SET tipopessoa='$tipopessoa', nome ='$nome', nacionalidade ='$nacionalidade', profissao ='$profissao', estadocivil ='$ecivil', rg='$rg', cpf='$cpf', endereco ='$endereco', sexo='$sexo', numero ='$numero', cidade ='$cidade', cep ='$cep', cnpj ='$cnpjempresa', enderecoempresa ='$enderecoempresa', cargoempresa ='$cargoempresa', tipoempresa ='$tipoempresa', cidadeempresa ='$cidadeempresa', numeroempresa ='$numeroempresa', nomeempresa ='$nomeempresa' where idpessoa ='$id'";
+			echo $sql;
 
 			$res = mysqli_query($conexao,$sql);
 			if (mysqli_error($conexao)) {
@@ -112,8 +131,9 @@ if (isset($_POST['enviar'])){
 			}
 			mysqli_close($conexao);
 
-		} else { //PARA EXCLUIR
+		} else if($op == "D") { //PARA EXCLUIR
 			$sql="DELETE FROM pessoa WHERE idpessoa='$id'";
+			echo $sql;
 			$res = mysqli_query($conexao,$sql);
 			if (mysqli_affected_rows($conexao)=='1') {
 				$_SESSION['msg'] = "<p class='alert alert-success' role='alert'>$nome excluído com sucesso!</p>";
@@ -278,16 +298,16 @@ include('config/verifica_login.php');
 
 	<div class="container-fluid fundo-card">
 		<div class="col-sm-12 col-md-11 col-lg-11 mx-auto">
-			<?php
-				if (isset($_SESSION['msg'])) {
-					echo  $_SESSION['msg'];
-					unset ($_SESSION['msg']);
-				}
-				?>
 			<div class="card card-padrao my-5">
 				<div class="card-body">
 					<h5 class="card-title text-center">Sobre o vendedor:</h5>
 					<form action="#" method="post" class="form-padrao">
+						<p class="feedback"><?php
+				if (isset($_SESSION['msg'])) {
+					echo  $_SESSION['msg'];
+					unset ($_SESSION['msg']);
+				}
+				?></p>
 						<div class="form-group">
 							<label for="pessoa">Tipo de pessoa</label>
 							<div class="form-check-inline">
@@ -322,7 +342,7 @@ include('config/verifica_login.php');
 
 							<div class="form-group col-xl">
 								<label for="rg">RG</label><label for="rg" class="representante"> do representante</label>
-								<input type="text" id="rg" class="form-control" name="rg" value="<?php echo ($id!=0)?'$rg':'';?>">
+								<input type="text" id="rg" class="form-control" name="rg" value="<?php echo ($id!=0)?"$rg":'';?>">
 								<p id="msg_rg" class="form-control-feedback "></p>
 							</div>
 						</div>
@@ -351,26 +371,26 @@ include('config/verifica_login.php');
 						<div class="row">
 							<div class="form-group col-xl">
 								<label for="cpf">CPF</label><label for="cpf" class="representante"> do representante</label>
-								<input type="text" id="cpf" class="form-control" name="cpf" value="<?php echo ($id!=0)?'$cpf':'';?>">
+								<input type="text" id="cpf" class="form-control" name="cpf" value="<?php echo ($id!=0)?"$cpf":'';?>">
 								<p id="msg_cpf" class="form-control-feedback "></p>
 							</div>
 
 							<div class="form-group col-xl">
 								<label for="endereco">Endereco</label><label for="endereco" class="representante"> do representante</label>
-								<input type="text" id="endereco" class="form-control" name="endereco" value="<?php echo ($id!=0)?'$endereco':'';?>">
+								<input type="text" id="endereco" class="form-control" name="endereco" value="<?php echo ($id!=0)?"$endereco":'';?>">
 								<p id="msg_endereco" class="form-control-feedback "></p>
 							</div>
 						</div>
 						<div class="row">
 							<div class="form-group col-xl">
 								<label for="numero">Número</label><label for="numero" class="representante"> do representante</label>
-								<input type="text" id="numero" class="form-control" name="numero" value="<?php echo ($id!=0)?'$numero':'';?>">
+								<input type="text" id="numero" class="form-control" name="numero" value="<?php echo ($id!=0)?"$numero":'';?>">
 								<p id="msg_numero" class="form-control-feedback "></p>
 							</div>
 
 							<div class="form-group col-xl">
 								<label for="cidade">Cidade</label><label for="cidade" class="representante"> do representante</label>
-								<input type="text" id="cidade" class="form-control" name="cidade" value="<?php echo ($id!=0)?'$cidade':'';?>">
+								<input type="text" id="cidade" class="form-control" name="cidade" value="<?php echo ($id!=0)?"$cidade":'';?>">
 								<p id="msg_cidade" class="form-control-feedback "></p>
 							</div>
 						</div>
@@ -378,7 +398,7 @@ include('config/verifica_login.php');
 						<div class="row">
 							<div class="form-group col-xl">
 								<label for="cep">CEP</label><label for="cep" class="representante"> do representante</label>
-								<input type="text" id="cep" class="form-control" name="cep" value="<?php echo ($id!=0)?'$cep':'';?>">
+								<input type="text" id="cep" class="form-control" name="cep" value="<?php echo ($id!=0)?"$cep":'';?>">
 								<p id="msg_cep" class="form-control-feedback "></p>
 							</div>
 
@@ -454,7 +474,7 @@ include('config/verifica_login.php');
 						<?php
 							$txtbtn="Incluir";
 							if (isset($op)){
-								$txtbtn=($op=='A')?'Salvar':'Excluir';
+								$txtbtn=($op=='A')?'Atualizar':'Excluir';
 							}
 							?>
 						<input class="btn btn-md btn-primary btn-block text-uppercase" type="submit" name="enviar" value="<?php echo $txtbtn?>" id="salvar">
