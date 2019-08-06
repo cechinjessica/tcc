@@ -2,101 +2,168 @@
 session_start();
 require 'conexao.php';
 
+//PARA COLOCAR AS INFORMAÇÕES DO BD NOS CAMPOS
 if (isset($_GET['id'])){
 	$id=$_GET['id'];
 	$op=$_GET['op'];
-	$sql = "SELECT idpessoa, pessoa, nome, nacionalidade, profissao, sexo, cpf, endereco, cnpj FROM pessoa WHERE idpessoa='$id'";
+	$sql = "SELECT idpessoa, tipopessoa, nome, nacionalidade, profissao, estadocivil, rg, cpf, endereco, sexo, numero, cidade, cep, cnpj, enderecoempresa, cargoempresa, tipoempresa, cidadeempresa, numeroempresa, nomeempresa FROM pessoa WHERE idpessoa='$id'";
 	$res=mysqli_query($conexao,$sql);
 	$row=mysqli_fetch_row($res);
 	$id= $row[0];
-	$pessoa= $row[1];
-	$nome= $row[2];
-	$nacionalidade= $row[3];
-	$profissao= $row[4];
-	$sexo= $row[5];
-	$cpf= $row[6];
-	$endereco= $row[7];
-	$cnpj= $row[8];
+	$tipopessoa = $row[1];
+	$nome = $row[2];
+	$nacionalidade = $row[3];
+	$profissao = $row[4];
+	$ecivil = $row[5];
+	$rg = $row[6];
+	$cpf = $row[7];
+	$endereco = $row[8];
+	$sexo = $row[9];
+	$numero = $row[10];
+	$cidade = $row[11];
+	$cep = $row[12];
+	$cnpjempresa = $row[13];
+	$enderecoempresa = $row[14];
+	$cargoempresa = $row[15];
+	$tipoempresa = $row[16];
+	$cidadeempresa = $row[17];
+	$numeroempresa = $row[18];
+	$nomeempresa = $row[19];
 
-	if($pessoa == 'f'){
-		$pessoaf='checked';
-		$pessoaj='';
-	}else if($pessoa =='j'){
-		$pessoaj='checked';
-		$pessoaf='';
+	if($tipopessoa == "f"){
+		$pessoaf = "checked";
+		$pessoaj = "";
+	}else if($tipopessoa == "j"){
+		$pessoaf = "";
+		$pessoaj = "checked";
 	}
-	if ($sexo =='m') {
-		$sexom='checked';
-		$sexof='';
-	} else if ($sexo == 'f') {
-		$sexof='checked';
-		$sexom='';
+
+	if($ecivil == "solteiro"){
+		$solteiro = "checked";
+		$casado = "";
+		$divorciado = "";
+		$viuvo = "";
+		$separado = "";
+	}else if ($ecivil == "casado"){
+		$solteiro = "";
+		$casado = "checked";
+		$divorciado = "";
+		$viuvo = "";
+		$separado = "";
+	}else if($ecivil == "divorciado"){
+		$solteiro = "";
+		$casado = "";
+		$divorciado = "checked";
+		$viuvo = "";
+		$separado = "";
+	}else if($ecivil == "viuvo"){
+		$solteiro = "";
+		$casado = "";
+		$divorciado = "";
+		$viuvo = "checked";
+		$separado = "";
+	}else if($ecivil == "separado"){
+		$solteiro = "";
+		$casado = "";
+		$divorciado = "";
+		$viuvo = "";
+		$separado = "checked";
 	}
+
+	if($sexo == "m"){
+		$sexom = "checked";
+		$sexof = "";
+	}else if ($sexo == "f"){
+		$sexom = "";
+		$sexof = "checked";
+	}
+
+	if ($tipoempresa == "pu"){
+		$tipoempresapu = "checked";
+		$tipoempresapr = "";
+	}else if ($tipoempresa == "pr"){
+		$tipoempresapu = "";
+		$tipoempresapr = "checked";
+	}
+
 } else{
 	$id=0;
 }
 
-if (isset($_POST['Enviar'])){
-	$pessoa = $_POST["pessoa"];
-	$nome= $_POST["nome"];
-	$nacionalidade=$_POST["nacionalidade"];
-	$profissao=$_POST["profissao"];
-	$sexo=$_POST["sexo"];
-	$cpf=$_POST["cpf"];
-	$endereco=$_POST["endereco"];
-	$cnpj=$_POST["cnpj"];
-	$op=$_POST["op"];
 
-	if ($id!=0) {
-		//atualização
-		if ($op=='A') {
-			$sql="UPDATE pessoa SET NOME='$nome', CPF='$cpf', pessoa='$pessoa', nacionalidade='$nacionalidade', profissao='$profissao', sexo='$sexo', endereco ='$endereco', cnpj ='$cnpj' WHERE idpessoa='$id'";
+//PARA PEGAR OS DADOS DOS CAMPOS
+if (isset($_POST['enviar'])){
+	$id= $_POST['pessoa'];
+	$tipopessoa = $_POST['pessoa'];
+	$nome = $_POST['nome'];
+	$nacionalidade = $_POST['nacionalidade'];
+	$profissao = $_POST['profissao'];
+	$ecivil = $_POST['ecivil'];
+	$rg = $_POST['rg'];
+	$cpf = $_POST['cpf'];
+	$endereco = $_POST['endereco'];
+	$sexo = $_POST['sexo'];
+	$numero = $_POST['numero'];
+	$cidade = $_POST['cidade'];
+	$cep = $_POST['cep'];
+	$cnpjempresa = $_POST['cnpjempresa'];
+	$enderecoempresa = $_POST['enderecoempresa'];
+	$cargoempresa = $_POST['cargoempresa'];
+	$tipoempresa = $_POST['tipoempresa'];
+	$cidadeempresa = $_POST['cidadeempresa'];
+	$numeroempresa = $_POST['numeroempresa'];
+	$nomeempresa = $_POST['nomeempresa'];
+	$op=$_POST['op'];
+
+	//PARA ATUALIZAR, HAVERÁ ID POIS HÁ UMA PESSOA
+	if ($id != 0) {
+		if ($op == 'A') {
+			$sql="UPDATE pessoa SET tipopessoa='$tipopessoa', nome ='$nome', nacionalidade ='$nacionalidade', profissao ='$profissao', estadocivil ='$ecivil', rg='$rg', cpf='$cpf', endereco ='$endereco', sexo='$sexo', numero ='$numero', cidade ='$cidade', cep ='$cep', cnpj ='$cnpjempresa', enderecoempresa ='$enderecoempresa', cargoempresa ='$cargoempresa', tipoempresa ='$tipoempresa', cidadeempresa ='$cidadeempresa', numeroempresa ='$numeroempresa', nomeempresa ='$nomeempresa' where idpessoa ='$id'";
+			echo $sql;
 
 			$res = mysqli_query($conexao,$sql);
 			if (mysqli_error($conexao)) {
-				$_SESSION['msg'] = "<h3>Erro na atualização do cliente $nome </h3>";
-				header('Location:cadastro_tela.php');
+				$_SESSION['msg'] = "<p class='alert alert-danger' role='alert'>Erro na atualização de $nome</p>";
+				header('Location:..\vendedor.php');
 			} else {
-
-				$_SESSION['msg'] = "<h3>Usuario $nome atualizado com exito!</h3>";
-				header('Location:cadastro_tela.php');
+				$_SESSION['msg'] = "<p class='alert alert-success' role='alert'>$nome atualizado com sucesso!</p>";
+				header('Location:..\vendedor.php');
 			}
 			mysqli_close($conexao);
-		} else {
-			//exclusão de clientes
-			$sql="DELETE FROM pessoa WHERE idpessoa='$id' ";
+
+		} else if($op == "D") { //PARA EXCLUIR
+			$sql="DELETE FROM pessoa WHERE idpessoa='$id'";
+			echo $sql;
 			$res = mysqli_query($conexao,$sql);
 			if (mysqli_affected_rows($conexao)=='1') {
-				$_SESSION['msg'] = "<h3>Usuario $nome excluído com exito!</h3>";
-				header('Location:cadastro_tela.php');
+				$_SESSION['msg'] = "<p class='alert alert-success' role='alert'>$nome excluído com sucesso!</p>";
+				header('Location:..\cadastro_pessoa.php');
 			} else {
-				$_SESSION['msg'] = "<h2>Erro na exclusão do usuario $nome</h2>";
+				$_SESSION['msg'] = "p class='alert alert-danger' role='alert'>Erro na exclusão de $nome</p>";
 			}
 			mysqli_close($conexao);
 		}
 
-	}
-
-	//inclusão de clientes novos
-	if ($id==0) {
+	}else{//SE FOR == 0 ENTÃO A PESSOA AINDA NÃO ESTÁ CADASTRADA
+		//INCLUSÃO
 		$sql = "SELECT * FROM pessoa WHERE cpf='$cpf'";
 		mysqli_query($conexao,$sql);
-		//$con->query($sql);
+
 		if (mysqli_affected_rows($conexao)!=0) {
 			mysqli_close($conexao);
-			$_SESSION['msg'] = "<h3>Usuario $nome já existe</h3>";
-			header('Location:cadastro_tela.php');
-		}else {
-			$sql = "INSERT INTO pessoa (nome, cpf, pessoa, nacionalidade, profissao, sexo, endereco, cnpj) VALUES ('$nome' ,'$cpf','$pessoa','$nacionalidade','$profissao','$sexo', '$endereco','$cnpj' )";
+			$_SESSION['msg'] = "p class='alert alert-danger' role='alert'>$cpf já foi cadastrado</p>";
+			header('Location:..\vendedor.php');
 
+		}else {
+			$sql = "INSERT INTO pessoa (tipopessoa, nome, nacionalidade, profissao, estadocivil, rg, cpf, endereco, sexo, numero, cidade, cep, cnpj, enderecoempresa, cargoempresa, tipoempresa, cidadeempresa, numeroempresa, nomeempresa) VALUES ('$tipopessoa', '$nome', '$nacionalidade', '$profissao', '$ecivil', '$rg', '$cpf', '$endereco', '$sexo', '$numero', '$cidade', '$cep', '$cnpjempresa', '$enderecoempresa', '$cargoempresa', '$tipoempresa', '$cidadeempresa', '$numeroempresa', '$nomeempresa')";
 			mysqli_query($conexao,$sql);
-			if (mysqli_affected_rows($conexao)!=0) {
-				//echo "Usuario $nome inserido com sucesso!";
-				$_SESSION['msg'] = "<h1>Usuario $nome inserido com sucesso! </h1>";
-				header('Location:cadastro_tela.php');
+
+			if (mysqli_affected_rows($conexao) =='1') {
+				$_SESSION['msg'] = "<p class='alert alert-success' role='alert'>$nome inserido com sucesso!</p>";
+				header('Location:..\vendedor.php');
 			} else {
-				$_SESSION['msg'] ="<h1>Erro: " . $sql . "<br/>" . mysqli_error($conexao) . "<h1>" . "<br/>";
-				header('Location:cadastro_tela.php');
+				$_SESSION['msg'] ="<p class='alert alert-danger' role='alert'>Erro: ".mysqli_error($conexao)."<p>";
+				header('Location:..\vendedor.php');
 			}
 			mysqli_close($conexao);
 		}

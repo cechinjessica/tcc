@@ -12,18 +12,17 @@ if(!isset($_POST['usuario']) || !isset($_POST['senha'])) {
 $usuario =  $_POST['usuario'];
 $senha =  $_POST['senha'];
 
-$query = "select nome from login where usuario = '$usuario' and senha ='$senha'";
+$query = "select usuariooid, usuario from login where usuario = '$usuario' and senha ='$senha'";
 echo $query;
 
 $result = mysqli_query($conexao, $query);
-
 //var_dump($result);
 
 $row = mysqli_num_rows($result);
 
 if($row == 1) {
 	$_SESSION['usuario'] = $usuario;
-	header('Location: ../vendedor.php');
+	header('Location: ../cadastro_pessoa.php');
 	exit();
 } else {
 	$_SESSION['nao_autenticado'] = true;
