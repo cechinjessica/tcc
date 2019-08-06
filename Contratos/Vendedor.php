@@ -93,7 +93,7 @@ if (isset($_GET['id'])){
 
 //PARA PEGAR OS DADOS DOS CAMPOS
 if (isset($_POST['enviar'])){
-	$id= $_POST['pessoa'];
+	//$id= $_POST['pessoa'];
 	$tipopessoa = $_POST['pessoa'];
 	$nome = $_POST['nome'];
 	$nacionalidade = $_POST['nacionalidade'];
@@ -118,16 +118,22 @@ if (isset($_POST['enviar'])){
 	//PARA ATUALIZAR, HAVERÁ ID POIS HÁ UMA PESSOA
 	if ($id != 0) {
 		if ($op == 'A') {
+            
+            if($tipopessoa == "j"){
 			$sql="UPDATE pessoa SET tipopessoa='$tipopessoa', nome ='$nome', nacionalidade ='$nacionalidade', profissao ='$profissao', estadocivil ='$ecivil', rg='$rg', cpf='$cpf', endereco ='$endereco', sexo='$sexo', numero ='$numero', cidade ='$cidade', cep ='$cep', cnpj ='$cnpjempresa', enderecoempresa ='$enderecoempresa', cargoempresa ='$cargoempresa', tipoempresa ='$tipoempresa', cidadeempresa ='$cidadeempresa', numeroempresa ='$numeroempresa', nomeempresa ='$nomeempresa' where idpessoa ='$id'";
+            }else if($tipopessoa == "f"){
+			$sql="UPDATE pessoa SET tipopessoa='$tipopessoa', nome ='$nome', nacionalidade ='$nacionalidade', profissao ='$profissao', estadocivil ='$ecivil', rg='$rg', cpf='$cpf', endereco ='$endereco', sexo='$sexo', numero ='$numero', cidade ='$cidade', cep ='$cep' where idpessoa ='$id'";
+            }
+            
 			echo $sql;
 
 			$res = mysqli_query($conexao,$sql);
 			if (mysqli_error($conexao)) {
 				$_SESSION['msg'] = "<p class='alert alert-danger' role='alert'>Erro na atualização de $nome</p>";
-				header('Location:vendedor.php');
+				header('Location:cadastro_pessoa.php');
 			} else {
 				$_SESSION['msg'] = "<p class='alert alert-success' role='alert'>$nome atualizado com sucesso!</p>";
-				header('Location:vendedor.php');
+				header('Location:cadastro_pessoa.php');
 			}
 			mysqli_close($conexao);
 
@@ -152,18 +158,22 @@ if (isset($_POST['enviar'])){
 		if (mysqli_affected_rows($conexao)!=0) {
 			mysqli_close($conexao);
 			$_SESSION['msg'] = "p class='alert alert-danger' role='alert'>$cpf já foi cadastrado</p>";
-			header('Location:vendedor.php');
+			header('Location:cadastro_pessoa.php');
 
 		}else {
+             if($tipopessoa == "j"){
 			$sql = "INSERT INTO pessoa (tipopessoa, nome, nacionalidade, profissao, estadocivil, rg, cpf, endereco, sexo, numero, cidade, cep, cnpj, enderecoempresa, cargoempresa, tipoempresa, cidadeempresa, numeroempresa, nomeempresa) VALUES ('$tipopessoa', '$nome', '$nacionalidade', '$profissao', '$ecivil', '$rg', '$cpf', '$endereco', '$sexo', '$numero', '$cidade', '$cep', '$cnpjempresa', '$enderecoempresa', '$cargoempresa', '$tipoempresa', '$cidadeempresa', '$numeroempresa', '$nomeempresa')";
+             } else if($tipopessoa == "f"){
+                 $sql = "INSERT INTO pessoa (tipopessoa, nome, nacionalidade, profissao, estadocivil, rg, cpf, endereco, sexo, numero, cidade, cep) VALUES ('$tipopessoa', '$nome', '$nacionalidade', '$profissao', '$ecivil', '$rg', '$cpf', '$endereco', '$sexo', '$numero', '$cidade', '$cep')";
+             }
 			mysqli_query($conexao,$sql);
 
 			if (mysqli_affected_rows($conexao) =='1') {
 				$_SESSION['msg'] = "<p class='alert alert-success' role='alert'>$nome inserido com sucesso!</p>";
-				header('Location:vendedor.php');
+				header('Location:cadastro_pessoa.php');
 			} else {
 				$_SESSION['msg'] ="<p class='alert alert-danger' role='alert'>Erro: ".mysqli_error($conexao)."<p>";
-				header('Location:vendedor.php');
+				header('Location:cadastro_pessoa.php');
 			}
 			mysqli_close($conexao);
 		}
@@ -185,7 +195,7 @@ include('config/verifica_login.php');
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="shortcut icon" href="imagens/icone.png" />
-    <title>Contrato - Vendedor</title>
+    <title>Contrato - Pessoa</title>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -301,7 +311,7 @@ include('config/verifica_login.php');
         <div class="col-sm-12 col-md-11 col-lg-11 mx-auto">
             <div class="card card-padrao my-5">
                 <div class="card-body">
-                    <h5 class="card-title text-center">Sobre o vendedor:</h5>
+                    <h5 class="card-title text-center">Sobre a pessoa:</h5>
                     <form action="#" method="post" class="form-padrao">
                         <p class="feedback"><?php
 				if (isset($_SESSION['msg'])) {
