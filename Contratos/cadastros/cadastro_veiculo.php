@@ -14,11 +14,11 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
-    <link rel="stylesheet" type="text/css" href="css/style.css">
-    <?php include('config/verifica_login.php');
+    <link rel="stylesheet" type="text/css" href="../css/style.css">
+    <?php include('../config/verifica_login.php');
 	?>
     <script>
-        function showcli(nm) {
+        function showvei(nm) {
             str = nm;
             //COM JQUERY
             //POST
@@ -34,11 +34,11 @@
             });*/
 
             ///GET
-            $.get("config/busca_cli.php?q=" + str, function(data, status) {
+            $.get("../config/busca_veiculo.php?q=" + str, function(data, status) {
                 if (status == 'success') {
-                    $('#txtcli').html(data);
+                    $('#txtvei').html(data);
                 } else {
-                    $('#txtcli').html("Erro na consulta de dados");
+                    $('#txtvei').html("Erro na consulta de dados");
                 }
             });
 
@@ -46,9 +46,9 @@
 
         $(document).ready(function() {
             $('#nome').keyup(function() {
-                showcli($('#nome').val());
+                showvei($('#nome').val());
             })
-            showcli('');
+            showvei('');
         });
 
     </script>
@@ -57,7 +57,7 @@
 <body>
     <!--NAVBAR-->
     <nav class="navbar navbar-expand-sm bg-info navbar-light fixed-top">
-        <a class="navbar-brand" href="#"><img src="imagens/icone.png" width="30px">Á definir</a>
+        <a class="navbar-brand" href="#"><img src="../imagens/icone.png" width="30px">Á definir</a>
         <a class="nav-text">Bem vindo(a) <?php echo $_SESSION['usuario']; ?></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
             <span class="navbar-toggler-icon"></span>
@@ -79,7 +79,7 @@
                     </a>
                     <div class="dropdown-menu">
                         <a class="dropdown-item" href="vendedor.php">Pessoa</a>
-                        <a class="dropdown-item" href="#">Link 2</a>
+                        <a class="dropdown-item" href="veiculo.php">Veículo</a>
                         <a class="dropdown-item" href="#">Link 3</a>
                     </div>
                 </li>
@@ -89,7 +89,7 @@
                     </a>
                     <div class="dropdown-menu">
                         <a class="dropdown-item" href="cadastro_pessoa.php">Pessoa</a>
-                        <a class="dropdown-item" href="#">Link 2</a>
+                        <a class="dropdown-item" href="cadastro_veiculo.php">Veículo</a>
                         <a class="dropdown-item" href="#">Link 3</a>
                     </div>
                 </li>
@@ -104,7 +104,7 @@
         <div class="col-sm-12 col-md-12 col-lg-11 mx-auto">
             <div class="card card-padrao my-5">
                 <div class="card-body">
-                    <h5 class="card-title text-center">Pessoas Cadastradas</h5>
+                    <h5 class="card-title text-center">Veículos Cadastrados</h5>
                     <?php
 						if (isset($_SESSION['msg'])) {
 						echo  $_SESSION['msg'];
@@ -116,16 +116,16 @@
                         <div class="row">
                             <div class="form-group">
                                 <!--<label for="nome" style="display:inline;">Pesquisar</label>-->
-                                <input type='text' name='nome' id='nome' class="form-control" placeholder="Pesquisar uma pessoa" style="display:inline;" autofocus>
+                                <input type='text' name='nome' id='nome' class="form-control" placeholder="Pesquisar um veículo" style="display:inline;" autofocus>
                             </div>
                         </div>
                     </form>
 
-                    <div id="txtcli">
+                    <div id="txtvei">
                         Dados dos usuario....
                     </div>
                     <div class="form-padrao">
-                        <center><a href="vendedor.php"><button class="btn btn-outline-info text-uppercase btn-inline col-sm-9 col-md-5 col-lg-5">Cadastrar uma Pessoa</button></a>
+                        <center><a href="veiculo.php"><button class="btn btn-outline-info text-uppercase btn-inline col-sm-9 col-md-5 col-lg-5">Cadastrar um Veiculo</button></a>
                             <a href="#"><button class="btn btn-outline-info text-uppercase btn-inline col-sm-9 col-md-5 col-lg-5">Voltar</button></a>
                         </center>
                     </div>

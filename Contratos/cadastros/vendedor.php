@@ -1,6 +1,6 @@
 <?php
 session_start();
-require 'config/conexao.php';
+require '../config/conexao.php';
 
 //PARA COLOCAR AS INFORMAÇÕES DO BD NOS CAMPOS
 if (isset($_GET['id'])){
@@ -118,13 +118,13 @@ if (isset($_POST['enviar'])){
 	//PARA ATUALIZAR, HAVERÁ ID POIS HÁ UMA PESSOA
 	if ($id != 0) {
 		if ($op == 'A') {
-            
+
             if($tipopessoa == "j"){
 			$sql="UPDATE pessoa SET tipopessoa='$tipopessoa', nome ='$nome', nacionalidade ='$nacionalidade', profissao ='$profissao', estadocivil ='$ecivil', rg='$rg', cpf='$cpf', endereco ='$endereco', sexo='$sexo', numero ='$numero', cidade ='$cidade', cep ='$cep', cnpj ='$cnpjempresa', enderecoempresa ='$enderecoempresa', cargoempresa ='$cargoempresa', tipoempresa ='$tipoempresa', cidadeempresa ='$cidadeempresa', numeroempresa ='$numeroempresa', nomeempresa ='$nomeempresa' where idpessoa ='$id'";
             }else if($tipopessoa == "f"){
 			$sql="UPDATE pessoa SET tipopessoa='$tipopessoa', nome ='$nome', nacionalidade ='$nacionalidade', profissao ='$profissao', estadocivil ='$ecivil', rg='$rg', cpf='$cpf', endereco ='$endereco', sexo='$sexo', numero ='$numero', cidade ='$cidade', cep ='$cep' where idpessoa ='$id'";
             }
-            
+
 			echo $sql;
 
 			$res = mysqli_query($conexao,$sql);
@@ -186,7 +186,7 @@ if (isset($_POST['enviar'])){
 <!--////////////////////////////////////////////////////////////////////////////-->
 
 <?php
-include('config/verifica_login.php');
+include('../config/verifica_login.php');
 ?>
 <!DOCTYPE html>
 <html>
@@ -194,7 +194,7 @@ include('config/verifica_login.php');
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="shortcut icon" href="imagens/icone.png" />
+    <link rel="shortcut icon" href="../imagens/icone.png" />
     <title>Contrato - Pessoa</title>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
@@ -202,7 +202,7 @@ include('config/verifica_login.php');
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
-    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="../css/style.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.12/jquery.mask.min.js"></script>
 
     <script>
@@ -229,7 +229,7 @@ include('config/verifica_login.php');
             };
             //xmlhttp.open("GET", "busca_cli.php?q=" + str, true);
             //xmlhttp.send();
-            xmlhttp.open("POST", "config/busca_cli_cpf.php", true);
+            xmlhttp.open("POST", "../config/busca_cli_cpf.php", true);
             xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
             xmlhttp.send("q=" + str);
         }
@@ -260,10 +260,10 @@ include('config/verifica_login.php');
 
 <body style="background: #007bff;
 	background: linear-gradient(to left, #5A8BB7, #2D9AAD);">
-    <script type="text/javascript" src="javascript/vendedorcomprador.js"></script>
+    <script type="text/javascript" src="../javascript/vendedorcomprador.js"></script>
     <!--NAVBAR-->
     <nav class="navbar navbar-expand-sm bg-info navbar-light fixed-top">
-        <a class="navbar-brand" href="#"><img src="imagens/icone.png" width="30px">Á definir</a>
+        <a class="navbar-brand" href="#"><img src="../imagens/icone.png" width="30px">Á definir</a>
         <a class="nav-text">Bem vindo(a) <?php echo $_SESSION['usuario']; ?></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
             <span class="navbar-toggler-icon"></span>
@@ -285,7 +285,7 @@ include('config/verifica_login.php');
                     </a>
                     <div class="dropdown-menu">
                         <a class="dropdown-item" href="vendedor.php">Pessoa</a>
-                        <a class="dropdown-item" href="#">Link 2</a>
+                        <a class="dropdown-item" href="veiculo.php">Veículo</a>
                         <a class="dropdown-item" href="#">Link 3</a>
                     </div>
                 </li>
@@ -295,12 +295,12 @@ include('config/verifica_login.php');
                     </a>
                     <div class="dropdown-menu">
                         <a class="dropdown-item" href="cadastro_pessoa.php">Pessoa</a>
-                        <a class="dropdown-item" href="#">Link 2</a>
+                        <a class="dropdown-item" href="cadastro_veiculo.php">Veículo</a>
                         <a class="dropdown-item" href="#">Link 3</a>
                     </div>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="config/logout.php">Logout</a>
+                    <a class="nav-link" href="../config/logout.php">Logout</a>
                 </li>
             </ul>
         </div>
