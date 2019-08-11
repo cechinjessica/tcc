@@ -247,7 +247,7 @@ include('../config/verifica_login.php');
                             <div class="form-group col-xl">
                                 <label for="marca">Marca</label>
                                 <input type="text" id="marca" class="form-control" name="marca" title="Ex.: Chevrolet, Volkswagen, Ford " value="<?php echo ($id!=0)?"$marca":'';?>">
-                                <p id="msg_marca" class="form-control feedback"></p>
+                                <p id="msg_marca" class="form-control-feedback"></p>
                             </div>
                         </div>
 
@@ -255,7 +255,7 @@ include('../config/verifica_login.php');
                             <div class="form-group col-xl">
                                 <label for="ano">Ano</label>
                                 <input type="text" id="ano" class="form-control" name="ano" title="Ex.: 2010, 2000, 2019" value="<?php echo ($id!=0)?"$ano":'';?>">
-                                <p id="msg_ano" class="form-control feedback"></p>
+                                <p id="msg_ano" class="form-control-feedback"></p>
                             </div>
 
                             <div class="form-group col-xl">

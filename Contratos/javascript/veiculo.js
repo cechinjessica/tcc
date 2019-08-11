@@ -26,13 +26,18 @@ $(document).ready(function () {
         if (!cor()) {
             e.preventDefault();
         }
-        if (!cidadeempresafisico()) {
+        if (!placa()) {
             e.preventDefault();
         }
-        if (!numeroempresafisico()) {
+        if (!renavam()) {
             e.preventDefault();
         }
-
+        if (!proprietario()) {
+            e.preventDefault();
+        }
+        if (!valor()) {
+            e.preventDefault();
+        }
     });
 })
 
@@ -104,15 +109,22 @@ function modelo() {
     var a = true;
     $("#msg_modelo").text("");
 
-    var ano = $("#ano").val();
-    var modelo = $("#modelo").val();
+    var ano = parseInt($("#ano").val());
+    var modelo = parseInt($("#modelo").val());
 
-    if (modelo == "" || modelo.length > 4 || (modelo != (ano - 1) | modelo != (ano + 1) | modelo == ano)) {
+    if (modelo == "" || modelo.length > 4) {
+        $("#msg_modelo").text("*Modelo inválido");
+        $("#msg_modelo").css("color", "red");
+        $("#modelo").addClass("erro");
+        return a = false;
+    }
+    if (!(modelo == ano - 1 | modelo == ano + 1 | modelo == ano)) {
         $("#msg_modelo").text("*Modelo inválido");
         $("#msg_modelo").css("color", "red");
         $("#modelo").addClass("erro");
         a = false;
     }
+
     return a;
 }
 
@@ -155,229 +167,79 @@ function cor() {
 }
 
 
-function endereco() {
-    if ($("#endereco").hasClass("erro")) {
-        $("#endereco").removeClass("erro");
-    } else if ($("#endereco").hasClass("certo")) {
-        $("#endereco").removeClass("certo");
+function placa() {
+    if ($("#placa").hasClass("erro")) {
+        $("#placa").removeClass("erro");
+    } else if ($("#placa").hasClass("certo")) {
+        $("#placa").removeClass("certo");
     }
-    $("#endereco").addClass("certo");
+    $("#placa").addClass("certo");
     var a = true;
-    $("#msg_endereco").text("");
+    $("#msg_placa").text("");
 
-    if ($("#endereco").val().trim() == "" || $("#endereco").val().trim().indexOf(" ") == -1) {
-        $("#msg_endereco").text("*Endereço inválido");
-        $("#msg_endereco").css("color", "red");
-        $("#endereco").addClass("erro");
+    if ($("#placa").val().trim() == "" || $("#placa").val().length > 8) {
+        $("#msg_placa").text("*Placa inválida");
+        $("#msg_placa").css("color", "red");
+        $("#placa").addClass("erro");
         a = false;
     }
     return a;
 }
 
 
-function pessoa() {
-    if ($("input[name='pessoa']").hasClass("erro")) {
-        $("input[name='pessoa']").removeClass("erro");
-    } else if ($("input[name='pessoa']").hasClass("certo")) {
-        $("input[name='pessoa']").removeClass("certo");
+function renavam() {
+    if ($("#renavam").hasClass("erro")) {
+        $("#renavam").removeClass("erro");
+    } else if ($("#renavam").hasClass("certo")) {
+        $("#renavam").removeClass("certo");
     }
-    $("input[name='pessoa']").addClass("certo");
+    $("#renavam").addClass("certo");
     var a = true;
-    $("#msg_pessoa").text("");
+    $("#msg_renavam").text("");
 
-    if (!$("input[name='pessoa']").is(':checked')) {
-        $("#msg_pessoa").text("*Tipo de pessoa inválido");
-        $("#msg_pessoa").css("color", "red");
-        $("input[name='pessoa']").addClass("erro");
-        a = false;
-    }
-    return a;
-}
-
-function numero() {
-    if ($("#numero").hasClass("erro")) {
-        $("#numero").removeClass("erro");
-    } else if ($("#numero").hasClass("certo")) {
-        $("#numero").removeClass("certo");
-    }
-    $("#numero").addClass("certo");
-    var a = true;
-    $("#msg_numero").text("");
-
-    if ($("#numero").val().trim() == "") {
-        $("#msg_numero").text("*Número inválido");
-        $("#msg_numero").css("color", "red");
-        $("#numero").addClass("erro");
-        a = false;
-    }
-    return a;
-}
-
-function cidade() {
-    if ($("#cidade").hasClass("erro")) {
-        $("#cidade").removeClass("erro");
-    } else if ($("#cidade").hasClass("certo")) {
-        $("#cidade").removeClass("certo");
-    }
-    $("#cidade").addClass("certo");
-    var a = true;
-    $("#msg_cidade").text("");
-
-    if ($("#cidade").val().trim() == "") {
-        $("#msg_cidade").text("*Cidade inválido");
-        $("#msg_cidade").css("color", "red");
-        $("#cidade").addClass("erro");
-        a = false;
-    }
-    return a;
-}
-
-function cep() {
-    if ($("#cep").hasClass("erro")) {
-        $("#cep").removeClass("erro");
-    } else if ($("#cep").hasClass("certo")) {
-        $("#cep").removeClass("certo");
-    }
-    $("#cep").addClass("certo");
-    var a = true;
-    $("#msg_cep").text("");
-
-    if ($("#cep").val() < 8) {
-        $("#msg_cep").text("*CEP inválido");
-        $("#msg_cep").css("color", "red");
-        $("#cep").addClass("erro");
-        a = false;
-    }
-    return a;
-}
-
-function sexo() {
-    if ($("input[name='sexo']").hasClass("erro")) {
-        $("input[name='sexo']").removeClass("erro");
-    } else if ($("input[name='sexo']").hasClass("certo")) {
-        $("input[name='sexo']").removeClass("certo");
-    }
-    $("input[name='sexo']").addClass("certo");
-    var a = true;
-    $("#msg_sexo").text("");
-
-    if (!$("input[type='radio'][name='sexo']").is(':checked')) {
-        $("#msg_sexo").text("*Sexo inválido");
-        $("#msg_sexo").css("color", "red");
-        $("input[name='sexo']").addClass("erro");
-        a = false;
-    }
-    return a;
-}
-
-function nomeempresa() {
-    if ($("#nomeempresa").hasClass("erro")) {
-        $("#nomeempresa").removeClass("erro");
-    } else if ($("#nomeempresa").hasClass("certo")) {
-        $("#nomeempresa").removeClass("certo");
-    }
-    $("#nomeempresa").addClass("certo");
-    var a = true;
-    $("#msg_nomeempresa").text("");
-
-    if ($("#nomeempresa").val().trim() == "" || $("#nomeempresa").val().trim().indexOf(" ") == -1) {
-        $("#msg_nomeempresa").text("*Nome da empresa inválido");
-        $("#msg_nomeempresa").css("color", "red");
-        $("#nomeempresa").addClass("erro");
-        a = false;
-    }
-    return a;
-}
-
-function nomeempresafisico() {
-    if ($("#nomeempresa").hasClass("erro")) {
-        $("#nomeempresa").removeClass("erro");
-    } else if ($("#nomeempresa").hasClass("certo")) {
-        $("#nomeempresa").removeClass("certo");
-    }
-    $("#nomeempresa").addClass("certo");
-    var a = true;
-    $("#msg_nomeempresa").text("");
-
-    if ($("#nomeempresa").val() != "") {
-        $("#msg_nomeempresa").text("*Nome da empresa inválido");
-        $("#msg_nomeempresa").css("color", "red");
-        $("#nomeempresa").addClass("erro");
+    if ($("#renavam").val().trim() == "" || $("#renavam").val().length > 11) {
+        $("#msg_renavam").text("*Renavam inválida");
+        $("#msg_renavam").css("color", "red");
+        $("#renavam").addClass("erro");
         a = false;
     }
     return a;
 }
 
 
-function cnpj() {
-    if ($("#cnpj").hasClass("erro")) {
-        $("#cnpj").removeClass("erro");
-    } else if ($("#cnpj").hasClass("certo")) {
-        $("#cnpj").removeClass("certo");
+function proprietario() {
+    if ($("#proprietario").hasClass("erro")) {
+        $("#proprietario").removeClass("erro");
+    } else if ($("#proprietario").hasClass("certo")) {
+        $("#proprietario").removeClass("certo");
     }
-    $("#cnpj").addClass("certo");
+    $("#proprietario").addClass("certo");
     var a = true;
-    $("#msg_cnpj").text("");
-    if ($("#cnpj").val().length < 14) {
-        $("#msg_cnpj").text("*CNPJ inválido");
-        $("#msg_cnpj").css("color", "red");
-        $("#cnpj").addClass("erro");
+    $("#msg_proprietario").text("");
+
+    if ($("#proprietario").val().trim() == "" || $("#proprietario").val().trim().indexOf(" ") == -1) {
+        $("#msg_proprietario").text("*Proprietário inválido");
+        $("#msg_proprietario").css("color", "red");
+        $("#proprietario").addClass("erro");
         a = false;
     }
     return a;
 }
 
-function cnpjfisico() {
-    if ($("#cnpj").hasClass("erro")) {
-        $("#cnpj").removeClass("erro");
-    } else if ($("#cnpj").hasClass("certo")) {
-        $("#cnpj").removeClass("certo");
+function valor() {
+    if ($("#valor").hasClass("erro")) {
+        $("#valor").removeClass("erro");
+    } else if ($("#valor").hasClass("certo")) {
+        $("#valor").removeClass("certo");
     }
-    $("#cnpj").addClass("certo");
+    $("#valor").addClass("certo");
     var a = true;
-    $("#msg_cnpj").text("");
-    if ($("#cnpj").val() != "") {
-        $("#msg_cnpj").text("*CNPJ inválido");
-        $("#msg_cnpj").css("color", "red");
-        $("#cnpj").addClass("erro");
-        a = false;
-    }
-    return a;
-}
+    $("#msg_valor").text("");
 
-function enderecoempresa() {
-    if ($("#enderecoempresa").hasClass("erro")) {
-        $("#enderecoempresa").removeClass("erro");
-    } else if ($("#enderecoempresa").hasClass("certo")) {
-        $("#enderecoempresa").removeClass("certo");
-    }
-    $("#enderecoempresa").addClass("certo");
-    var a = true;
-    $("#msg_enderecoempresa").text("");
-
-    if ($("#enderecoempresa").val().trim() == "" || $("#enderecoempresa").val().trim().indexOf(" ") == -1) {
-        $("#msg_enderecoempresa").text("*Endereço da empresa inválido");
-        $("#msg_enderecoempresa").css("color", "red");
-        $("#enderecoempresa").addClass("erro");
-        a = false;
-    }
-    return a;
-}
-
-function enderecoempresafisico() {
-    if ($("#enderecoempresa").hasClass("erro")) {
-        $("#enderecoempresa").removeClass("erro");
-    } else if ($("#enderecoempresa").hasClass("certo")) {
-        $("#enderecoempresa").removeClass("certo");
-    }
-    $("#enderecoempresa").addClass("certo");
-    var a = true;
-    $("#msg_enderecoempresa").text("");
-
-    if ($("#enderecoempresa").val() != "") {
-        $("#msg_enderecoempresa").text("*Endereço da empresa inválido");
-        $("#msg_enderecoempresa").css("color", "red");
-        $("#enderecoempresa").addClass("erro");
+    if ($("#valor").val().trim() == "") {
+        $("#msg_valor").text("*Valor inválido");
+        $("#msg_valor").css("color", "red");
+        $("#valor").addClass("erro");
         a = false;
     }
     return a;
