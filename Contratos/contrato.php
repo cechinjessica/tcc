@@ -2,8 +2,9 @@
 session_start();
 require '../config/conexao.php';
 
-//PARA COLOCAR AS INFORMAÇÕES DO BD NOS CAMPOS
 
+//PARA COLOCAR AS INFORMAÇÕES DO BD NOS CAMPOS
+/*
 if (isset($_GET['id'])){
 	$id=$_GET['id'];
 	$op=$_GET['op'];
@@ -95,7 +96,7 @@ if (isset($_POST['enviar'])){
 	}
 	$id=0;
 }
-
+*/
 ?>
 
 <!--////////////////////////////////////////////////////////////////////////////-->
@@ -110,7 +111,7 @@ include('../config/verifica_login.php');
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="shortcut icon" href="../imagens/icone.png" />
-    <title>Contrato - Veículo</title>
+    <title>Contrato - Pessoa</title>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -119,7 +120,6 @@ include('../config/verifica_login.php');
 
     <link rel="stylesheet" type="text/css" href="../css/style.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.12/jquery.mask.min.js"></script>
-
     <style>
         .form-group input {
             border-radius: 2rem;
@@ -137,7 +137,7 @@ include('../config/verifica_login.php');
 
 <body style="background: #007bff;
 	background: linear-gradient(to left, #5A8BB7, #2D9AAD);">
-    <script type="text/javascript" src="../javascript/veiculo.js"></script>
+    <!-- <script type="text/javascript" src="../javascript/veiculo.js"></script>-->
     <!--NAVBAR-->
     <nav class="navbar navbar-expand-sm bg-info navbar-light fixed-top">
         <a class="navbar-brand" href="#"><img src="../imagens/icone.png" width="30px">Á definir</a>
@@ -188,7 +188,7 @@ include('../config/verifica_login.php');
         <div class="col-sm-12 col-md-11 col-lg-11 mx-auto">
             <div class="card card-padrao my-5">
                 <div class="card-body">
-                    <h5 class="card-title text-center">Sobre a veículo:</h5>
+                    <h5 class="card-title text-center">O contrato:</h5>
                     <form action="#" method="post" class="form-padrao">
                         <p class="feedback"><?php
 				if (isset($_SESSION['msg'])) {
