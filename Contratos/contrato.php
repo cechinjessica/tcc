@@ -1,6 +1,6 @@
 <?php
 session_start();
-require '../config/conexao.php';
+require 'config/conexao.php';
 
 
 //PARA COLOCAR AS INFORMAÇÕES DO BD NOS CAMPOS
@@ -102,7 +102,7 @@ if (isset($_POST['enviar'])){
 <!--////////////////////////////////////////////////////////////////////////////-->
 
 <?php
-include('../config/verifica_login.php');
+include('config/verifica_login.php');
 ?>
 <!DOCTYPE html>
 <html>
@@ -110,7 +110,7 @@ include('../config/verifica_login.php');
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="shortcut icon" href="../imagens/icone.png" />
+    <link rel="shortcut icon" href="imagens/icone.png" />
     <title>Contrato - Pessoa</title>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
@@ -140,7 +140,7 @@ include('../config/verifica_login.php');
     <!-- <script type="text/javascript" src="../javascript/veiculo.js"></script>-->
     <!--NAVBAR-->
     <nav class="navbar navbar-expand-sm bg-info navbar-light fixed-top">
-        <a class="navbar-brand" href="#"><img src="../imagens/icone.png" width="30px">Á definir</a>
+        <a class="navbar-brand" href="#"><img src="imagens/icone.png" width="30px">Á definir</a>
         <a class="nav-text">Bem vindo(a) <?php echo $_SESSION['usuario']; ?></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
             <span class="navbar-toggler-icon"></span>
