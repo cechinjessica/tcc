@@ -186,7 +186,7 @@ include('../config/verifica_login.php');
 
     <div class="container-fluid fundo-card">
         <div class="col-sm-12 col-md-11 col-lg-11 mx-auto">
-            <div class="card card-padrao my-5">
+            <div class="card card-padrao my-5 justify-content-center">
                 <div class="card-body">
                     <h5 class="card-title text-center">Sobre a veículo:</h5>
                     <form action="#" method="post" class="form-padrao">

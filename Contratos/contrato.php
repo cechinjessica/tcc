@@ -136,7 +136,7 @@ include('config/verifica_login.php');
 </head>
 
 <body style="background: #007bff;
-	background: linear-gradient(to left, #5A8BB7, #2D9AAD);">
+                 background: linear-gradient(to left, #5A8BB7, #2D9AAD);">
     <!-- <script type="text/javascript" src="../javascript/veiculo.js"></script>-->
     <!--NAVBAR-->
     <nav class="navbar navbar-expand-sm bg-info navbar-light fixed-top">
@@ -190,18 +190,19 @@ include('config/verifica_login.php');
                 <div class="card-body">
                     <h5 class="card-title text-center">O contrato:</h5>
                     <form action="#" method="post" class="form-padrao">
-                        <p class="feedback"><?php
-				if (isset($_SESSION['msg'])) {
-					echo  $_SESSION['msg'];
-					unset ($_SESSION['msg']);
-				}
-				?></p>
+                        <p class="feedback" id="msg">
+                            <?php
+                                if (isset($_SESSION['msg'])) {
+                                    echo  $_SESSION['msg'];
+                                    unset ($_SESSION['msg']);
+                                }
+                                ?></p>
 
                         <div class="row">
                             <div class="form-group col-xl">
-                                <label for="nome">Modelo(Nome)</label>
-                                <input type="text" id="nome" class="form-control" name="nome" title="Ex.: Celta, Prisma, Corsa" value="<?php echo ($id!=0)?"$nome":'';?>">
-                                <p id="msg_nome" class="form-control-feedback"></p>
+                                <label for="vendedor">Vendedor</label>
+                                <input type="text" id="vendor" class="form-control" name="vededor" value="<?php echo ($id!=0)?"$vendedor":'';?>">
+                                <p id="msg_vendedor" class="form-control-feedback"></p>
                             </div>
 
                             <div class="form-group col-xl">
@@ -272,11 +273,11 @@ include('config/verifica_login.php');
                         <input type='hidden' name='op' value="<?php echo ($id!=0)?"$op":'';?>">
 
                         <?php
-							$txtbtn="Incluir";
-							if (isset($op)){
-								$txtbtn=($op=='A')?'Atualizar':'Excluir';
-							}
-							?>
+                            $txtbtn="Incluir";
+                            if (isset($op)){
+                                $txtbtn=($op=='A')?'Atualizar':'Excluir';
+                            }
+                            ?>
                         <input class="btn btn-md btn-primary btn-block text-uppercase" type="submit" name="enviar" value="<?php echo $txtbtn?>" id="salvar">
                     </form>
                 </div>
