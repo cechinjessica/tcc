@@ -30,6 +30,10 @@ if (isset($_GET['id'])){
 	$numeroempresa = $row[18];
 	$nomeempresa = $row[19];
 
+    $tipoempresapu = "";
+    $tipoempresapr = "";
+
+
 	if($tipopessoa == "f"){
 		$pessoaf = "checked";
 		$pessoaj = "";
@@ -387,7 +391,7 @@ include('../config/verifica_login.php');
                             </div>
 
                             <div class="form-group col-xl">
-                                <label for="endereco">Endereco</label><label for="endereco" class="representante"> do representante</label>
+                                <label for="endereco">Endereço</label><label for="endereco" class="representante"> do representante</label>
                                 <input type="text" id="endereco" class="form-control" name="endereco" value="<?php echo ($id!=0)?"$endereco":'';?>">
                                 <p id="msg_endereco" class="form-control-feedback "></p>
                             </div>

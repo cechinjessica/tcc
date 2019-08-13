@@ -201,71 +201,15 @@ include('config/verifica_login.php');
                         <div class="row">
                             <div class="form-group col-xl">
                                 <label for="vendedor">Vendedor</label>
-                                <input type="text" id="vendor" class="form-control" name="vededor" value="<?php echo ($id!=0)?"$vendedor":'';?>">
+                                <input type="text" id="vendor" class="form-control" name="vededor" value="">
                                 <p id="msg_vendedor" class="form-control-feedback"></p>
                             </div>
 
                             <div class="form-group col-xl">
-                                <label for="marca">Marca</label>
-                                <input type="text" id="marca" class="form-control" name="marca" title="Ex.: Chevrolet, Volkswagen, Ford " value="<?php echo ($id!=0)?"$marca":'';?>">
-                                <p id="msg_marca" class="form-control-feedback"></p>
+                                <label for="comprador">Comprador</label>
+                                <input type="text" id="comprador" class="form-control" name="comprador" value="">
+                                <p id="msg_comprador" class="form-control-feedback"></p>
                             </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="form-group col-xl">
-                                <label for="ano">Ano</label>
-                                <input type="text" id="ano" class="form-control" name="ano" title="Ex.: 2010, 2000, 2019" value="<?php echo ($id!=0)?"$ano":'';?>">
-                                <p id="msg_ano" class="form-control-feedback"></p>
-                            </div>
-
-                            <div class="form-group col-xl">
-                                <label for="modelo">Modelo(Ano)</label>
-                                <input type="text" id="modelo" class="form-control" name="modelo" value="<?php echo ($id!=0)?"$modelo":'';?>">
-                                <p id="msg_modelo" class="form-control-feedback "></p>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="form-group col-xl">
-                                <label for="chassi">Chassi</label>
-                                <input type="text" id="chassi" class="form-control" maxlength="17" name="chassi" value="<?php echo ($id!=0)?"$chassi":'';?>">
-                                <p id="msg_chassi" class="form-control-feedback "></p>
-                            </div>
-
-                            <div class="form-group col-xl">
-                                <label for="cor">Cor</label>
-                                <input type="text" id="cor" class="form-control" name="cor" title="Ex.: Vermelho, Rosa, Prata" value="<?php echo ($id!=0)?"$cor":'';?>">
-                                <p id="msg_cor" class="form-control-feedback "></p>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="form-group col-xl">
-                                <label for="placa">Placa</label>
-                                <input type="text" id="placa" class="form-control" maxlength="8" name="placa" title="XXX-0000" value="<?php echo ($id!=0)?"$placa":'';?>">
-                                <p id="msg_placa" class="form-control-feedback "></p>
-                            </div>
-
-                            <div class="form-group col-xl">
-                                <label for="renavam">Renavam</label>
-                                <input type="text" id="renavam" class="form-control" maxlength="11" name="renavam" value="<?php echo ($id!=0)?"$renavam":'';?>">
-                                <p id="msg_renavam" class="form-control-feedback "></p>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="form-group col-xl">
-                                <label for="proprietario">Proprietario</label>
-                                <input type="text" id="proprietario" class="form-control" name="proprietario" title="O veículo esta em nome de ..." value="<?php echo ($id!=0)?"$proprietario":'';?>">
-                                <p id="msg_proprietario" class="form-control-feedback "></p>
-                            </div>
-
-                            <div class="form-group col-xl">
-                                <label for="valor">Valor</label>
-                                <input type="text" id="valor" class="form-control" name="valor" title="Ex.: 10000,00" value="<?php echo ($id!=0)?"$valor":'';?>">
-                                <p id="msg_valor" class="form-control-feedback "></p>
-                            </div>
-
                         </div>
 
 

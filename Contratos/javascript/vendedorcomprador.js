@@ -13,10 +13,10 @@ $(document).ready(function () {
     $("#pessoaf").change(selecionarf);
     $("#pessoaj").change(selecionarj);
     if ($("#pessoaf").is(":checked")) {
-        selecionarf;
+        selecionarf();
     }
     if ($("#pessoaj").is(":checked")) {
-        selecionarj;
+        selecionarj();
     }
 
 
@@ -685,13 +685,13 @@ function cidadeempresafisico() {
     $("#cidadeempresa").addClass("certo");
     var a = true;
     $("#msg_cidadeempresa").text("");
-
     if ($("#cidadeempresa").val().trim() != "") {
         $("#msg_cidadeempresa").text("*Cidade da empresa inválido");
         $("#msg_cidadeempresa").css("color", "red");
         $("#cidadeempresa").addClass("erro");
         a = false;
     }
+    return a;
 }
 
 function numeroempresa() {
