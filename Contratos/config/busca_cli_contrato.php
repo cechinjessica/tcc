@@ -12,7 +12,7 @@ $sql.=" ORDER BY idpessoa";
 
 $result=mysqli_query($conexao,$sql);
 if (mysqli_affected_rows($conexao)>0) {
-    echo "<div class='table-responsive'>
+    echo "<div class='table-responsive' id='tabelapessoas'>
 	<table class='table table-hover table-light table-borderless table-sm'>
              <thead class='thead-dark'>
 			  <tr>

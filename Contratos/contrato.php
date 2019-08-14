@@ -248,7 +248,14 @@ include('config/verifica_login.php');
         }
 
         $(document).ready(function() {
+            $('#nome').keyup(function() {
+                showcli($('#nome').val());
+            })
             showcli('');
+            $('#txtcli').click(function() {
+                var id = $(this).attr("id");
+                alert(id);
+            });
         });
 
     </script>
@@ -314,8 +321,14 @@ include('config/verifica_login.php');
                     </button>
                 </div>
                 <div class="modal-body">
+                    <div class="row">
+                        <div class="form-group">
+                            <!--<label for="nome" style="display:inline;">Pesquisar</label>-->
+                            <input type='text' name='nome' id='nome' class="form-control" placeholder="Pesquisar uma pessoa" style="display:inline;" autofocus>
+                        </div>
+                    </div>
                     <div id="txtcli">
-                        Dados dos usuario....
+                        Dados das pessoas....
                     </div>
                 </div>
                 <div class="modal-footer">
