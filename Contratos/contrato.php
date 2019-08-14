@@ -2,26 +2,94 @@
 session_start();
 require 'config/conexao.php';
 
-
 //PARA COLOCAR AS INFORMAÇÕES DO BD NOS CAMPOS
-/*
 if (isset($_GET['id'])){
 	$id=$_GET['id'];
 	$op=$_GET['op'];
-	$sql = "SELECT idveiculo, nome, marca, modelo, ano, chassi, cor, placa, renavam, emnomede, valor FROM veiculo WHERE idveiculo='$id'";
+	$sql = "SELECT idpessoa, tipopessoa, nome, nacionalidade, profissao, estadocivil, rg, cpf, endereco, sexo, numero, cidade, cep, cnpj, enderecoempresa, cargoempresa, tipoempresa, cidadeempresa, numeroempresa, nomeempresa FROM pessoa WHERE idpessoa='$id'";
 	$res=mysqli_query($conexao,$sql);
 	$row=mysqli_fetch_row($res);
 	$id= $row[0];
-	$nome = $row[1];
-	$marca = $row[2];
-	$modelo = $row[3];
-	$ano = $row[4];
-	$chassi = $row[5];
-	$cor = $row[6];
-	$placa = $row[7];
-	$renavam = $row[8];
-	$proprietario = $row[9];
-	$valor = $row[10];
+	$tipopessoa = $row[1];
+	$nome = $row[2];
+	$nacionalidade = $row[3];
+	$profissao = $row[4];
+	$ecivil = $row[5];
+	$rg = $row[6];
+	$cpf = $row[7];
+	$endereco = $row[8];
+	$sexo = $row[9];
+	$numero = $row[10];
+	$cidade = $row[11];
+	$cep = $row[12];
+	$cnpjempresa = $row[13];
+	$enderecoempresa = $row[14];
+	$cargoempresa = $row[15];
+	$tipoempresa = $row[16];
+	$cidadeempresa = $row[17];
+	$numeroempresa = $row[18];
+	$nomeempresa = $row[19];
+
+    $tipoempresapu = "";
+    $tipoempresapr = "";
+
+
+	if($tipopessoa == "f"){
+		$pessoaf = "checked";
+		$pessoaj = "";
+	}else if($tipopessoa == "j"){
+		$pessoaf = "";
+		$pessoaj = "checked";
+	}
+
+	if($ecivil == "solteiro"){
+		$solteiro = "checked";
+		$casado = "";
+		$divorciado = "";
+		$viuvo = "";
+		$separado = "";
+	}else if ($ecivil == "casado"){
+		$solteiro = "";
+		$casado = "checked";
+		$divorciado = "";
+		$viuvo = "";
+		$separado = "";
+	}else if($ecivil == "divorciado"){
+		$solteiro = "";
+		$casado = "";
+		$divorciado = "checked";
+		$viuvo = "";
+		$separado = "";
+	}else if($ecivil == "viuvo"){
+		$solteiro = "";
+		$casado = "";
+		$divorciado = "";
+		$viuvo = "checked";
+		$separado = "";
+	}else if($ecivil == "separado"){
+		$solteiro = "";
+		$casado = "";
+		$divorciado = "";
+		$viuvo = "";
+		$separado = "checked";
+	}
+
+	if($sexo == "m"){
+		$sexom = "checked";
+		$sexof = "";
+	}else if ($sexo == "f"){
+		$sexom = "";
+		$sexof = "checked";
+	}
+
+	if ($tipoempresa == "pu"){
+		$tipoempresapu = "checked";
+		$tipoempresapr = "";
+	}else if ($tipoempresa == "pr"){
+		$tipoempresapu = "";
+		$tipoempresapr = "checked";
+	}
+
 } else{
 	$id=0;
 }
@@ -29,74 +97,97 @@ if (isset($_GET['id'])){
 
 //PARA PEGAR OS DADOS DOS CAMPOS
 if (isset($_POST['enviar'])){
+	//$id= $_POST['pessoa'];
+	$tipopessoa = $_POST['pessoa'];
 	$nome = $_POST['nome'];
-	$marca  = $_POST['marca'];
-	$modelo = $_POST['modelo'];
-	$ano = $_POST['ano'];
-	$chassi = $_POST['chassi'];
-	$cor = $_POST['cor'];
-	$placa = $_POST['placa'];
-	$renavam = $_POST['renavam'];
-	$proprietario = $_POST['proprietario'];
-	$valor = $_POST['valor'];
+	$nacionalidade = $_POST['nacionalidade'];
+	$profissao = $_POST['profissao'];
+	$ecivil = $_POST['ecivil'];
+	$rg = $_POST['rg'];
+	$cpf = $_POST['cpf'];
+	$endereco = $_POST['endereco'];
+	$sexo = $_POST['sexo'];
+	$numero = $_POST['numero'];
+	$cidade = $_POST['cidade'];
+	$cep = $_POST['cep'];
+	$cnpjempresa = $_POST['cnpjempresa'];
+	$enderecoempresa = $_POST['enderecoempresa'];
+	$cargoempresa = $_POST['cargoempresa'];
+	$tipoempresa = $_POST['tipoempresa'];
+	$cidadeempresa = $_POST['cidadeempresa'];
+	$numeroempresa = $_POST['numeroempresa'];
+	$nomeempresa = $_POST['nomeempresa'];
 	$op=$_POST['op'];
 
-	//PARA ATUALIZAR, HAVERÁ ID POIS HÁ UM VEICULO
+	//PARA ATUALIZAR, HAVERÁ ID POIS HÁ UMA PESSOA
 	if ($id != 0) {
 		if ($op == 'A') {
-			$sql="UPDATE veiculo SET nome ='$nome', marca ='$marca', modelo ='$modelo', ano ='$ano', chassi='$chassi', cor='$cor', placa ='$placa', renavam='$renavam', emnomede ='$proprietario', valor ='$valor' where idveiculo ='$id'";
+
+            if($tipopessoa == "j"){
+			$sql="UPDATE pessoa SET tipopessoa='$tipopessoa', nome ='$nome', nacionalidade ='$nacionalidade', profissao ='$profissao', estadocivil ='$ecivil', rg='$rg', cpf='$cpf', endereco ='$endereco', sexo='$sexo', numero ='$numero', cidade ='$cidade', cep ='$cep', cnpj ='$cnpjempresa', enderecoempresa ='$enderecoempresa', cargoempresa ='$cargoempresa', tipoempresa ='$tipoempresa', cidadeempresa ='$cidadeempresa', numeroempresa ='$numeroempresa', nomeempresa ='$nomeempresa' where idpessoa ='$id'";
+            }else if($tipopessoa == "f"){
+			$sql="UPDATE pessoa SET tipopessoa='$tipopessoa', nome ='$nome', nacionalidade ='$nacionalidade', profissao ='$profissao', estadocivil ='$ecivil', rg='$rg', cpf='$cpf', endereco ='$endereco', sexo='$sexo', numero ='$numero', cidade ='$cidade', cep ='$cep' where idpessoa ='$id'";
+            }
+
+			echo $sql;
 
 			$res = mysqli_query($conexao,$sql);
 			if (mysqli_error($conexao)) {
 				$_SESSION['msg'] = "<p class='alert alert-danger' role='alert'>Erro na atualização de $nome</p>";
-				header('Location:cadastro_veiculo.php');
+				header('Location:cadastros/cadastro_pessoa.php');
 			} else {
 				$_SESSION['msg'] = "<p class='alert alert-success' role='alert'>$nome atualizado com sucesso!</p>";
-				header('Location:cadastro_veiculo.php');
+				header('Location:cadastros/cadastro_pessoa.php');
 			}
 			mysqli_close($conexao);
 
 		} else if($op == "D") { //PARA EXCLUIR
-			$sql="DELETE FROM veiculo WHERE idveiculo='$id'";
+			$sql="DELETE FROM pessoa WHERE idpessoa='$id'";
 			echo $sql;
 			$res = mysqli_query($conexao,$sql);
 			if (mysqli_affected_rows($conexao)=='1') {
 				$_SESSION['msg'] = "<p class='alert alert-success' role='alert'>$nome excluído com sucesso!</p>";
-				header('Location:cadastro_veiculo.php');
+				header('Location:cadastros/cadastro_pessoa.php');
 			} else {
 				$_SESSION['msg'] = "p class='alert alert-danger' role='alert'>Erro na exclusão de $nome</p>";
-                header('Location:cadastro_veiculo.php');
+                header('Location:cadastros/cadastro_veiculo.php');
 			}
 			mysqli_close($conexao);
 		}
 
-	}else{//SE FOR == 0 ENTÃO O VEICULO AINDA NÃO ESTÁ CADASTRADO
+	}else{//SE FOR == 0 ENTÃO A PESSOA AINDA NÃO ESTÁ CADASTRADA
 		//INCLUSÃO
-		$sql = "SELECT * FROM veiculo WHERE placa='$placa'";
+		$sql = "SELECT * FROM pessoa WHERE cpf='$cpf'";
 		mysqli_query($conexao,$sql);
 
 		if (mysqli_affected_rows($conexao)!=0) {
 			mysqli_close($conexao);
-			$_SESSION['msg'] = "p class='alert alert-danger' role='alert'>$placa já foi cadastrada</p>";
-			header('Location:cadastro_veiculo.php');
+			$_SESSION['msg'] = "p class='alert alert-danger' role='alert'>$cpf já foi cadastrado</p>";
+			header('Location:cadastros/cadastro_pessoa.php');
 
 		}else {
-			$sql = "INSERT INTO veiculo (nome, marca, modelo, ano, chassi, cor, placa, renavam, emnomede, valor) VALUES ('$nome', '$marca', '$modelo', '$ano', '$chassi', '$cor', '$placa', '$renavam', '$proprietario', '$valor')";
+             if($tipopessoa == "j"){
+			$sql = "INSERT INTO pessoa (tipopessoa, nome, nacionalidade, profissao, estadocivil, rg, cpf, endereco, sexo, numero, cidade, cep, cnpj, enderecoempresa, cargoempresa, tipoempresa, cidadeempresa, numeroempresa, nomeempresa) VALUES ('$tipopessoa', '$nome', '$nacionalidade', '$profissao', '$ecivil', '$rg', '$cpf', '$endereco', '$sexo', '$numero', '$cidade', '$cep', '$cnpjempresa', '$enderecoempresa', '$cargoempresa', '$tipoempresa', '$cidadeempresa', '$numeroempresa', '$nomeempresa')";
+             } else if($tipopessoa == "f"){
+                 $sql = "INSERT INTO pessoa (tipopessoa, nome, nacionalidade, profissao, estadocivil, rg, cpf, endereco, sexo, numero, cidade, cep) VALUES ('$tipopessoa', '$nome', '$nacionalidade', '$profissao', '$ecivil', '$rg', '$cpf', '$endereco', '$sexo', '$numero', '$cidade', '$cep')";
+             }
 			mysqli_query($conexao,$sql);
 
 			if (mysqli_affected_rows($conexao) =='1') {
 				$_SESSION['msg'] = "<p class='alert alert-success' role='alert'>$nome inserido com sucesso!</p>";
-				header('Location:cadastro_veiculo.php');
+				header('Location:cadastros/cadastro_pessoa.php');
 			} else {
 				$_SESSION['msg'] ="<p class='alert alert-danger' role='alert'>Erro: ".mysqli_error($conexao)."<p>";
-				header('Location:cadastro_veiculo.php');
+				header('Location:cadastros/cadastro_pessoa.php');
 			}
 			mysqli_close($conexao);
 		}
 	}
 	$id=0;
 }
-*/
+
+?>
+
 ?>
 
 <!--////////////////////////////////////////////////////////////////////////////-->
@@ -111,14 +202,14 @@ include('config/verifica_login.php');
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="shortcut icon" href="imagens/icone.png" />
-    <title>Contrato - Pessoa</title>
+    <title>Contrato</title>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
-    <link rel="stylesheet" type="text/css" href="../css/style.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.12/jquery.mask.min.js"></script>
     <style>
         .form-group input {
@@ -127,17 +218,46 @@ include('config/verifica_login.php');
             width: auto;
         }
 
-        .form-check-input {
-            margin: 1px;
+    </style>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script>
+        function showcli(nm) {
+            str = nm;
+            //COM JQUERY
+            //POST
+            /*$.post("busca_cli.php", {
+            	q: str;
+            	//op: 'teste'
+            }, function(data, status) {
+            	if (status == 'success') {
+            		$('#txtcli').html(data);
+            	} else {
+            		$('#txtcli').html("Erro na consulta de dados");
+            	}
+            });*/
+
+            ///GET
+            $.get("config/busca_cli_contrato.php?q=" + str, function(data, status) {
+                if (status == 'success') {
+                    $('#txtcli').html(data);
+                } else {
+                    $('#txtcli').html("Erro na consulta de dados");
+                }
+            });
+
         }
 
-    </style>
+        $(document).ready(function() {
+            showcli('');
+        });
+
+    </script>
 
 </head>
 
 <body style="background: #007bff;
                  background: linear-gradient(to left, #5A8BB7, #2D9AAD);">
-    <!-- <script type="text/javascript" src="../javascript/veiculo.js"></script>-->
+    <script type="text/javascript" src="javascript/vendedorcomprador.js"></script>
     <!--NAVBAR-->
     <nav class="navbar navbar-expand-sm bg-info navbar-light fixed-top">
         <a class="navbar-brand" href="#"><img src="imagens/icone.png" width="30px">Á definir</a>
@@ -183,6 +303,225 @@ include('config/verifica_login.php');
         </div>
     </nav>
     <!--</NAVBAR-->
+    <!--MODAL VENDEDOR Buscar-->
+    <div class="modal fade" id="modalVendedor" tabindex="-1" role="dialog" aria-labelledby="modalVendedor" aria-hidden="true">
+        <div class="modal-dialog modal-xl" role="document" style="max-width: 100%;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="TituloVendedor">Encontrar vendedor</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div id="txtcli">
+                        Dados dos usuario....
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary">Selecionar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--MODAL VENDEDOR Buscar-->
+    <!--MODAL VENDEDOR Cadastrar-->
+    <div class="modal fade" id="modalVendedorCadastrar" tabindex="-1" role="dialog" aria-labelledby="modalVendedorCadastrar" aria-hidden="true">
+        <div class="modal-dialog modal-xl" role="document" style="max-width: 100%;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="TituloVendedor">Cadastrar vendedor</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="#" method="post" class="form-padrao">
+                        <p class="feedback"><?php
+				if (isset($_SESSION['msg'])) {
+					echo  $_SESSION['msg'];
+					unset ($_SESSION['msg']);
+				}
+				?></p>
+                        <div class="form-group">
+                            <label for="pessoa">Tipo de pessoa</label>
+                            <div class="form-check-inline">
+                                <input type="radio" class="form-check-input" name="pessoa" value="f" id="pessoaf" <?php echo ($id!=0)?"$pessoaf":'';?>>Pessoa física
+                            </div>
+                            <div class="form-check-inline">
+                                <input type="radio" class="form-check-input" name="pessoa" value="j" id="pessoaj" <?php echo ($id!=0)?"$pessoaj":'';?>>Pessoa jurídica
+                            </div>
+                            <p id="msg_pessoa" class="form-control feedback"></p>
+                        </div>
+
+                        <div class="row">
+                            <div class="form-group col-xl">
+                                <label for="nome">Nome completo</label><label for="nome" class="representante"> do representante</label>
+                                <input type="text" id="nome" class="form-control" name="nome" value="<?php echo ($id!=0)?"$nome":'';?>">
+                                <p id="msg_nome" class="form-control-feedback"></p>
+                            </div>
+
+                            <div class="form-group col-xl">
+                                <label for="nacionalidade">Nacionalidade</label><label for="nacionalidade" class="representante"> do representante</label>
+                                <input type="text" id="nacionalidade" class="form-control" name="nacionalidade" value="<?php echo ($id!=0)?"$nacionalidade":'';?>">
+                                <p id="msg_nacionalidade" class="form-control feedback"></p>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="form-group col-xl">
+                                <label for="profissao">Profissão</label><label for="profissao" class="representante"> do representante</label>
+                                <input type="text" id="profissao" class="form-control" name="profissao" value="<?php echo ($id!=0)?"$profissao":'';?>">
+                                <p id="msg_profissao" class="form-control feedback"></p>
+                            </div>
+
+                            <div class="form-group col-xl">
+                                <label for="rg">RG</label><label for="rg" class="representante"> do representante</label>
+                                <input type="text" id="rg" class="form-control" name="rg" value="<?php echo ($id!=0)?"$rg":'';?>">
+                                <p id="msg_rg" class="form-control-feedback "></p>
+                            </div>
+                        </div>
+
+                        <div class="form-group" id="ecivil">
+                            <label for="ecivil">Estado cívil</label>
+                            <label for="ecivil" class="representante"> do representante</label>
+                            <div class="form-check-inline">
+                                <input type="radio" class="form-check-input" name="ecivil" value="solteiro" id="solteiro" <?php echo ($id!=0)?"$solteiro":'';?>>Solteiro(a)
+                            </div>
+                            <div class="form-check-inline">
+                                <input type="radio" class="form-check-input" name="ecivil" value="casado" id="casado" <?php echo ($id!=0)?"$casado":'';?>>Casado(a)
+                            </div>
+                            <div class="form-check-inline">
+                                <input type="radio" class="form-check-input" name="ecivil" value="divorciado" id="divorciado" <?php echo ($id!=0)?"$divorciado":'';?>>Divorciado(a)
+                            </div>
+                            <div class="form-check-inline">
+                                <input type="radio" class="form-check-input" name="ecivil" value="viuvo" id="viuvo" <?php echo ($id!=0)?"$viuvo":'';?>>Viúvo(a)
+                            </div>
+                            <div class="form-check-inline">
+                                <input type="radio" class="form-check-input" name="ecivil" value="separado" id="separado" <?php echo ($id!=0)?"$separado":'';?>>Separado(a)
+                            </div>
+                            <p id="msg_ecivil" class="form-control feedback"></p>
+                        </div>
+
+                        <div class="row">
+                            <div class="form-group col-xl">
+                                <label for="cpf">CPF</label><label for="cpf" class="representante"> do representante</label>
+                                <input type="text" id="cpf" class="form-control" name="cpf" value="<?php echo ($id!=0)?"$cpf":'';?>">
+                                <p id="msg_cpf" class="form-control-feedback "></p>
+                            </div>
+
+                            <div class="form-group col-xl">
+                                <label for="endereco">Endereço</label><label for="endereco" class="representante"> do representante</label>
+                                <input type="text" id="endereco" class="form-control" name="endereco" value="<?php echo ($id!=0)?"$endereco":'';?>">
+                                <p id="msg_endereco" class="form-control-feedback "></p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-xl">
+                                <label for="numero">Número</label><label for="numero" class="representante"> do representante</label>
+                                <input type="text" id="numero" class="form-control" name="numero" value="<?php echo ($id!=0)?"$numero":'';?>">
+                                <p id="msg_numero" class="form-control-feedback "></p>
+                            </div>
+
+                            <div class="form-group col-xl">
+                                <label for="cidade">Cidade</label><label for="cidade" class="representante"> do representante</label>
+                                <input type="text" id="cidade" class="form-control" name="cidade" value="<?php echo ($id!=0)?"$cidade":'';?>">
+                                <p id="msg_cidade" class="form-control-feedback "></p>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="form-group col-xl">
+                                <label for="cep">CEP</label><label for="cep" class="representante"> do representante</label>
+                                <input type="text" id="cep" class="form-control" name="cep" value="<?php echo ($id!=0)?"$cep":'';?>">
+                                <p id="msg_cep" class="form-control-feedback "></p>
+                            </div>
+
+                            <div class="form-group col-xl">
+                                <label for="sexo">Sexo</label><label for="cep" class="representante"> do representante</label>
+                                <div class="form-check-inline">
+                                    <input type="radio" class="form-check-input" name="sexo" value="f" id="sexof" <?php echo ($id!=0)?"$sexof":'';?>>Feminino
+                                </div>
+                                <div class="form-check-inline">
+                                    <input type="radio" class="form-check-input" name="sexo" value="m" id="sexom" <?php echo ($id!=0)?"$sexom":'';?>>Masculino
+                                </div>
+                                <p id="msg_sexo" class="form-control feedback"></p>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="form-group col-xl" id="gnomeempresa">
+                                <label for="nomeempresa">Nome</label><label for="nomeempresa" class="representante"> da empresa</label>
+                                <input type="text" id="nomeempresa" class="form-control" name="nomeempresa" value="<?php echo ($id!=0)?"$nomeempresa":'';?>">
+                                <p id="msg_nomeempresa" class="form-control-feedback "></p>
+                            </div>
+
+                            <div class="form-group col-xl" id="gcnpj">
+                                <label for="cnpj">CNPJ</label><label for="cnpj" class="representante"> da empresa</label>
+                                <input type="text" id="cnpj" class="form-control" name="cnpjempresa" value="<?php echo ($id!=0)?"$cnpjempresa":'';?>">
+                                <p id="msg_cnpj" class="form-control-feedback "></p>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="form-group col-xl" id="gtipoempresa">
+                                <label for="tipoempresa">Tipo</label>
+                                <label for="tipoempresa" class="representante"> da empresa</label>
+                                <div class="form-check-inline">
+                                    <input type="radio" class="form-check-input" name="tipoempresa" value="pu" id="tipoempresapu" <?php echo ($id!=0)?"$tipoempresapu":'';?>>Pública
+                                </div>
+                                <div class="form-check-inline">
+                                    <input type="radio" class="form-check-input" name="tipoempresa" value="pr" id="tipoempresapr" <?php echo ($id!=0)?"$tipoempresapr":'';?>>Privada
+                                </div>
+                                <p id="msg_tipoempresa" class="form-control feedback"></p>
+                            </div>
+
+                            <div class="form-group col-xl" id="gcargoempresa">
+                                <label for="cargo">Cargo</label><label for="cargo" class="representante"> do representante</label>
+                                <input type="text" id="cargoempresa" class="form-control" name="cargoempresa" value="<?php echo ($id!=0)?"$cargoempresa":'';?>">
+                                <p id="msg_cargoempresa" class="form-control-feedback "></p>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="form-group col-xl" id="genderecoempresa">
+                                <label for="enderecoempresa">Endereço</label><label for="enderecoempresa" class="representante"> da empresa</label>
+                                <input type="text" id="enderecoempresa" class="form-control" name="enderecoempresa" value="<?php echo ($id!=0)?"$enderecoempresa":'';?>">
+                                <p id="msg_enderecoempresa" class="form-control-feedback "></p>
+                            </div>
+
+                            <div class="form-group col-xl" id="gcidadeempresa">
+                                <label for="cidadeempresa">Cidade</label><label for="cidadeempresa" class="representante"> da empresa</label>
+                                <input type="text" id="cidadeempresa" class="form-control" name="cidadeempresa" value="<?php echo ($id!=0)?"$cidadeempresa":'';?>">
+                                <p id="msg_cidadeempresa" class="form-control-feedback "></p>
+                            </div>
+                        </div>
+
+                        <div class="form-group" id="gnumeroempresa">
+                            <label for="numeroempresa">Número</label><label for="numeroempresa" class="representante"> da empresa</label>
+                            <input type="text" id="numeroempresa" class="form-control" name="numeroempresa" value="<?php echo ($id!=0)?"$numeroempresa":'';?>">
+                            <p id="msg_numeroempresa" class="form-control-feedback "></p>
+                        </div>
+
+                        <input type='hidden' name='id' id='codigo' value="<?php echo ($id!=0)?"$id":'0';?>">
+                        <input type='hidden' name='op' value="<?php echo ($id!=0)?"$op":'';?>">
+
+                        <?php
+							$txtbtn="Incluir";
+							if (isset($op)){
+								$txtbtn=($op=='A')?'Atualizar':'Excluir';
+							}
+							?>
+                        <input class="btn btn-md btn-primary btn-block text-uppercase" type="submit" name="enviar" value="<?php echo $txtbtn?>" id="salvar">
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary">Selecionar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--MODAL VENDEDOR Cadastrar -->
 
     <div class="container-fluid fundo-card">
         <div class="col-sm-12 col-md-11 col-lg-11 mx-auto">
@@ -202,15 +541,25 @@ include('config/verifica_login.php');
                             <div class="form-group col-xl">
                                 <label for="vendedor">Vendedor</label>
                                 <input type="text" id="vendor" class="form-control" name="vededor" value="">
+                                <i class="material-icons" style="font-size: 24px;" data-toggle="modal" data-target="#modalVendedor">
+                                    search
+                                </i>
+                                <i class="material-icons" style="font-size: 24px;" data-toggle="modal" data-target="#modalVendedorCadastrar">
+                                    edit
+                                </i>
                                 <p id="msg_vendedor" class="form-control-feedback"></p>
                             </div>
-
-                            <div class="form-group col-xl">
-                                <label for="comprador">Comprador</label>
-                                <input type="text" id="comprador" class="form-control" name="comprador" value="">
-                                <p id="msg_comprador" class="form-control-feedback"></p>
-                            </div>
                         </div>
+
+
+                        <div class="form-group col-xl">
+                            <label for="comprador">Comprador</label>
+                            <input type="text" id="comprador" class="form-control" name="comprador" value="">
+                            <p id="msg_comprador" class="form-control-feedback"></p>
+
+                        </div>
+
+
 
 
                         <input type='hidden' name='id' id='codigo' value="<?php echo ($id!=0)?"$id":'0';?>">
@@ -222,7 +571,7 @@ include('config/verifica_login.php');
                                 $txtbtn=($op=='A')?'Atualizar':'Excluir';
                             }
                             ?>
-                        <input class="btn btn-md btn-primary btn-block text-uppercase" type="submit" name="enviar" value="<?php echo $txtbtn?>" id="salvar">
+                        <input class="btn btn-md btn-primary btn-block text-uppercase" type="submit" name="enviarcontrato" value="<?php echo $txtbtn?>" id="salvar">
                     </form>
                 </div>
             </div>
