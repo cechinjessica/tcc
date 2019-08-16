@@ -12,8 +12,8 @@ $sql.=" ORDER BY idpessoa";
 
 $result=mysqli_query($conexao,$sql);
 if (mysqli_affected_rows($conexao)>0) {
-    echo "<div class='table-responsive' id='tabelapessoas'>
-	<table class='table table-hover table-light table-borderless table-sm'>
+    echo "<div class='table-responsive'>
+	<table class='table table-hover table-light table-borderless table-sm' >
              <thead class='thead-dark'>
 			  <tr>
                 <th scope='col'>Código</th>
@@ -43,26 +43,26 @@ if (mysqli_affected_rows($conexao)>0) {
     {
         echo " <tbody class='table-striped'>";
         echo " <tr>";
-        echo "<th scope='row'>".$row[0]."</td>";
-        echo "<td>".$row[1]."</td>";
-        echo "<td>".$row[2]."</td>";
-        echo "<td>".$row[3]."</td>";
-        echo "<td>".$row[4]."</td>";
-        echo "<td>".$row[5]."</td>";
-        echo "<td>".$row[6]."</td>";
-        echo "<td>".$row[7]."</td>";
-        echo "<td>".$row[9]."</td>";
-        echo "<td>".$row[8]."</td>";
-        echo "<td>".$row[10]."</td>";
-        echo "<td>".$row[11]."</td>";
-        echo "<td>".$row[12]."</td>";
-        echo "<td>".$row[19]."</td>";
-        echo "<td>".$row[13]."</td>";
-        echo "<td>".$row[14]."</td>";
-        echo "<td>".$row[15]."</td>";
-        echo "<td>".$row[16]."</td>";
-        echo "<td>".$row[17]."</td>";
-        echo "<td>".$row[18]."</td>";
+        echo "<th scope='row' id=".$row[0]." onclick='getid(this.id)' >".$row[0]."</td>";
+        echo "<td id=".$row[0]." onclick='getid(this.id)' >".$row[1]."</td>";
+        echo "<td id=".$row[0]." onclick='getid(this.id)' >".$row[2]."</td>";
+        echo "<td id=".$row[0]." onclick='getid(this.id)' >".$row[3]."</td>";
+        echo "<td id=".$row[0]." onclick='getid(this.id)' >".$row[4]."</td>";
+        echo "<td id=".$row[0]." onclick='getid(this.id)' >".$row[5]."</td>";
+        echo "<td id=".$row[0]." onclick='getid(this.id)' >".$row[6]."</td>";
+        echo "<td id=".$row[0]." onclick='getid(this.id)' >".$row[7]."</td>";
+        echo "<td id=".$row[0]." onclick='getid(this.id)' >".$row[9]."</td>";
+        echo "<td id=".$row[0]." onclick='getid(this.id)' >".$row[8]."</td>";
+        echo "<td id=".$row[0]." onclick='getid(this.id)' >".$row[10]."</td>";
+        echo "<td id=".$row[0]." onclick='getid(this.id)' >".$row[11]."</td>";
+        echo "<td id=".$row[0]." onclick='getid(this.id)' >".$row[12]."</td>";
+        echo "<td id=".$row[0]." onclick='getid(this.id)' >".$row[19]."</td>";
+        echo "<td id=".$row[0]." onclick='getid(this.id)' >".$row[13]."</td>";
+        echo "<td id=".$row[0]." onclick='getid(this.id)' >".$row[14]."</td>";
+        echo "<td id=".$row[0]." onclick='getid(this.id)' >".$row[15]."</td>";
+        echo "<td id=".$row[0]." onclick='getid(this.id)' >".$row[16]."</td>";
+        echo "<td id=".$row[0]." onclick='getid(this.id)' >".$row[17]."</td>";
+        echo "<td id=".$row[0]." onclick='getid(this.id)' >".$row[18]."</td>";
         echo "<td> <a href=cadastros/vendedor.php?id=".$row[0]."&op=A".">Editar".  "|" ."<a href=cadastros/vendedor.php?id=".$row[0]. "&op=D". ">Apagar" . "</td>";
 		echo " </tr>";
     }   echo " </tbody>";

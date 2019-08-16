@@ -184,7 +184,8 @@ function nome() {
     var a = true;
     $("#msg_nome").text("");
 
-    if ($("#nome").val().trim() == "" || $("#nome").val().trim().indexOf(" ") == -1) {
+    var nome = $("#nome").val();
+    if (nome.trim() == "" || nome.trim().indexOf(" ") == -1) {
         $("#msg_nome").text("*Nome inválido");
         $("#msg_nome").css("color", "red");
         $("#nome").addClass("erro");
