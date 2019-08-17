@@ -1,68 +1,63 @@
 <?php
 session_start();
 require 'config/conexao.php';
+include('config/verifica_login.php');
 
-
-//PARA PEGAR OS DADOS DOS CAMPOS
+//PARA PEGAR OS DADOS DOS CAMPOS DO VENDEDOR/COMPRADOR
 $id=0;
 if (isset($_POST['enviarpessoa'])){
-	$tipopessoa = $_POST['pessoa'];
-	$nome = $_POST['nome'];
-	$nacionalidade = $_POST['nacionalidade'];
-	$profissao = $_POST['profissao'];
-	$ecivil = $_POST['ecivil'];
-	$rg = $_POST['rg'];
-	$cpf = $_POST['cpf'];
-	$endereco = $_POST['endereco'];
-	$sexo = $_POST['sexo'];
-	$numero = $_POST['numero'];
-	$cidade = $_POST['cidade'];
-	$cep = $_POST['cep'];
-	$cnpjempresa = $_POST['cnpjempresa'];
-	$enderecoempresa = $_POST['enderecoempresa'];
-	$cargoempresa = $_POST['cargoempresa'];
-	$tipoempresa = $_POST['tipoempresa'];
-	$cidadeempresa = $_POST['cidadeempresa'];
-	$numeroempresa = $_POST['numeroempresa'];
-	$nomeempresa = $_POST['nomeempresa'];
+    $tipopessoa = $_POST['pessoa'];
+    $nome = $_POST['nome'];
+    $nacionalidade = $_POST['nacionalidade'];
+    $profissao = $_POST['profissao'];
+    $ecivil = $_POST['ecivil'];
+    $rg = $_POST['rg'];
+    $cpf = $_POST['cpf'];
+    $endereco = $_POST['endereco'];
+    $sexo = $_POST['sexo'];
+    $numero = $_POST['numero'];
+    $cidade = $_POST['cidade'];
+    $cep = $_POST['cep'];
+    $cnpjempresa = $_POST['cnpjempresa'];
+    $enderecoempresa = $_POST['enderecoempresa'];
+    $cargoempresa = $_POST['cargoempresa'];
+    $tipoempresa = $_POST['tipoempresa'];
+    $cidadeempresa = $_POST['cidadeempresa'];
+    $numeroempresa = $_POST['numeroempresa'];
+    $nomeempresa = $_POST['nomeempresa'];
 
-    	//PARA INCLUIR
-		$sql = "SELECT * FROM pessoa WHERE cpf='$cpf'";
-		mysqli_query($conexao,$sql);
+    //PARA INCLUIR
+    $sql = "SELECT * FROM pessoa WHERE cpf='$cpf'";
+    mysqli_query($conexao,$sql);
 
-		if (mysqli_affected_rows($conexao)!=0) {
-			mysqli_close($conexao);
-			$_SESSION['msgvendedor'] = "p class='alert alert-danger' role='alert'>$cpf já foi cadastrado</p>";
-               header("Location:contrato.php");
+    if (mysqli_affected_rows($conexao)!=0) {
+        mysqli_close($conexao);
+        $_SESSION['msgvendedor'] = "p class='alert alert-danger' role='alert'>$cpf já foi cadastrado</p>";
+        header("Location:contrato.php");
 
-		}else {
-             if($tipopessoa == "j"){
-			     $sql = "INSERT INTO pessoa (tipopessoa, nome, nacionalidade, profissao, estadocivil, rg, cpf, endereco, sexo, numero, cidade, cep, cnpj, enderecoempresa, cargoempresa, tipoempresa, cidadeempresa, numeroempresa, nomeempresa) VALUES ('$tipopessoa', '$nome', '$nacionalidade', '$profissao', '$ecivil', '$rg', '$cpf', '$endereco', '$sexo', '$numero', '$cidade', '$cep', '$cnpjempresa', '$enderecoempresa', '$cargoempresa', '$tipoempresa', '$cidadeempresa', '$numeroempresa', '$nomeempresa')";
-             } else if($tipopessoa == "f"){
-                 $sql = "INSERT INTO pessoa (tipopessoa, nome, nacionalidade, profissao, estadocivil, rg, cpf, endereco, sexo, numero, cidade, cep) VALUES ('$tipopessoa', '$nome', '$nacionalidade', '$profissao', '$ecivil', '$rg', '$cpf', '$endereco', '$sexo', '$numero', '$cidade', '$cep')";
-             }
-			mysqli_query($conexao,$sql);
+    }else {
+        if($tipopessoa == "j"){
+            $sql = "INSERT INTO pessoa (tipopessoa, nome, nacionalidade, profissao, estadocivil, rg, cpf, endereco, sexo, numero, cidade, cep, cnpj, enderecoempresa, cargoempresa, tipoempresa, cidadeempresa, numeroempresa, nomeempresa) VALUES ('$tipopessoa', '$nome', '$nacionalidade', '$profissao', '$ecivil', '$rg', '$cpf', '$endereco', '$sexo', '$numero', '$cidade', '$cep', '$cnpjempresa', '$enderecoempresa', '$cargoempresa', '$tipoempresa', '$cidadeempresa', '$numeroempresa', '$nomeempresa')";
+        } else if($tipopessoa == "f"){
+            $sql = "INSERT INTO pessoa (tipopessoa, nome, nacionalidade, profissao, estadocivil, rg, cpf, endereco, sexo, numero, cidade, cep) VALUES ('$tipopessoa', '$nome', '$nacionalidade', '$profissao', '$ecivil', '$rg', '$cpf', '$endereco', '$sexo', '$numero', '$cidade', '$cep')";
+        }
+        mysqli_query($conexao,$sql);
 
-			if (mysqli_affected_rows($conexao) =='1') {
-				$_SESSION['msgvendedor'] = "<p class='alert alert-success' role='alert'>$nome inserido com sucesso!</p>";
-                header("Location:contrato.php");
-			} else {
-				$_SESSION['msgvendedor'] ="<p class='alert alert-danger' role='alert'>Erro: ".mysqli_error($conexao)."<p>";
-                   header("Location:contrato.php");
-			}
-			mysqli_close($conexao);
-		}
+        if (mysqli_affected_rows($conexao) =='1') {
+            $_SESSION['msgvendedor'] = "<p class='alert alert-success' role='alert'>$nome inserido com sucesso!</p>";
+            header("Location:contrato.php");
+        } else {
+            $_SESSION['msgvendedor'] ="<p class='alert alert-danger' role='alert'>Erro: ".mysqli_error($conexao)."<p>";
+            header("Location:contrato.php");
+        }
+        mysqli_close($conexao);
+    }
 
 }
 ?>
 
-?>
 
-<!--////////////////////////////////////////////////////////////////////////////-->
 
-<?php
-include('config/verifica_login.php');
-?>
 <!DOCTYPE html>
 <html>
 
@@ -89,21 +84,8 @@ include('config/verifica_login.php');
     </style>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <script>
-        function showcli(nm) {
+        function showvend(nm) {
             str = nm;
-            //COM JQUERY
-            //POST
-            /*$.post("busca_cli.php", {
-            	q: str;
-            	//op: 'teste'
-            }, function(data, status) {
-            	if (status == 'success') {
-            		$('#txtcli').html(data);
-            	} else {
-            		$('#txtcli').html("Erro na consulta de dados");
-            	}
-            });*/
-
             ///GET
             $.get("config/busca_cli_contrato.php?q=" + str, function(data, status) {
                 if (status == 'success') {
@@ -115,12 +97,29 @@ include('config/verifica_login.php');
 
         }
 
+        function showcomp(nm) {
+            str = nm;
+            ///GET
+            $.get("config/busca_cli_contrato_comp.php?q=" + str, function(data, status) {
+                if (status == 'success') {
+                    $('#txtclicomp').html(data);
+                } else {
+                    $('#txtclicomp').html("Erro na consulta de dados");
+                }
+            });
+
+        }
+
         $(document).ready(function() {
             $('#nomepesq').keyup(function() {
-                showcli($('#nomepesq').val());
-            })
-            showcli('');
+                showvend($('#nomepesq').val());
 
+            })
+            $('#nomepesqc').keyup(function() {
+                showcomp($('#nomepesqc').val());
+            })
+            showcomp('');
+            showvend('');
         });
 
     </script>
@@ -204,12 +203,40 @@ include('config/verifica_login.php');
         </div>
     </div>
     <!--MODAL VENDEDOR Buscar-->
+    <!--MODAL COMPRADOR Buscar-->
+    <div class="modal fade" id="modalComprador" tabindex="-1" role="dialog" aria-labelledby="modalComprador" aria-hidden="true">
+        <div class="modal-dialog modal-xl" role="document" style="max-width: 100%;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="TituloComprador">Encontrar comprador</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="form-group">
+                            <!--<label for="nome" style="display:inline;">Pesquisar</label>-->
+                            <input type='text' name='nomepesqc' id='nomepesqc' class="form-control" placeholder="Pesquisar uma pessoa" style="display:inline;" autofocus>
+                        </div>
+                    </div>
+                    <div id="txtclicomp">
+                        Dados das pessoas....
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary">Selecionar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--MODAL COMPRADOR Buscar-->
     <!--MODAL VENDEDOR Cadastrar-->
     <div class="modal fade" id="modalVendedorCadastrar" tabindex="-1" role="dialog" aria-labelledby="modalVendedorCadastrar" aria-hidden="true">
         <div class="modal-dialog modal-xl" role="document" style="max-width: 95%;">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="TituloVendedor">Cadastrar vendedor</h5>
+                    <h5 class="modal-title" id="TituloVendedor">Cadastrar pessoa</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -406,11 +433,11 @@ include('config/verifica_login.php');
                                 }
                                 ?></p>
                         <p class="feedback"><?php
-				if (isset($_SESSION['msgvendedor'])) {
-					echo  $_SESSION['msgvendedor'];
-					unset ($_SESSION['msgvendedor']);
-				}
-				?></p>
+                                if (isset($_SESSION['msgvendedor'])) {
+                                    echo  $_SESSION['msgvendedor'];
+                                    unset ($_SESSION['msgvendedor']);
+                                }
+                                ?></p>
 
                         <div class="row">
                             <div class="form-group col-xl">
@@ -430,9 +457,9 @@ include('config/verifica_login.php');
                             <div class="form-group col-xl">
                                 <!--falta colcocar o cpf e nome-->
                                 <label for="cpf">CPF do vendedor</label>
-                                <input type="text" id="cpfvreadonly" class="form-control" value="O cpf de quem vc clicou" readonly>
+                                <input type="text" id="cpfvreadonly" class="form-control" value="<?php echo ($id!=0)?"$nomevend":'';?>" readonly>
                                 <label for="nome">Nome do vendedor</label>
-                                <input type="text" id="nomevreadonly" class="form-control" value="O nome de quem vc clicou" readonly>
+                                <input type="text" id="nomevreadonly" class="form-control" value="<?php echo ($id!=0)?"$nomevend":'';?>" readonly>
                             </div>
                         </div>
 
@@ -440,8 +467,23 @@ include('config/verifica_login.php');
                         <div class="form-group col-xl">
                             <label for="comprador">Comprador</label>
                             <input type="text" id="comprador" class="form-control" name="comprador" value="">
+                            <i class="material-icons" style="font-size: 24px;" data-toggle="modal" data-target="#modalComprador">
+                                search
+                            </i>
+                            <i class="material-icons" style="font-size: 24px;" data-toggle="modal" data-target="#modalVendedorCadastrar">
+                                edit
+                            </i>
                             <p id="msg_comprador" class="form-control-feedback"></p>
+                        </div>
 
+                        <div class="row">
+                            <div class="form-group col-xl">
+                                <!--falta colcocar o cpf e nome-->
+                                <label for="cpf">CPF do comprador</label>
+                                <input type="text" id="cpfvreadonly" class="form-control" value="<?php echo ($id!=0)?"$nomecomp":'';?>" readonly>
+                                <label for="nome">Nome do comprador</label>
+                                <input type="text" id="nomevreadonly" class="form-control" value="<?php echo ($id!=0)?"$nomecomp":'';?>" readonly>
+                            </div>
                         </div>
 
 
@@ -449,6 +491,8 @@ include('config/verifica_login.php');
 
                         <input type='hidden' name='id' id='codigo' value="<?php echo ($id!=0)?"$id":'0';?>">
                         <input type='hidden' name='op' value="<?php echo ($id!=0)?"$op":'';?>">
+                        <input type='hidden' name='idvend' id='idvend' value="">
+                        <input type='hidden' name='idcomp' id='idcomp' value="">
 
                         <?php
                             $txtbtn="Incluir";
