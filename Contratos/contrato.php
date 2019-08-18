@@ -110,16 +110,33 @@ if (isset($_POST['enviarpessoa'])){
 
         }
 
+        function showvei(nm) {
+            str = nm;
+            ///GET
+            $.get("config/busca_vei_contrato.php?q=" + str, function(data, status) {
+                if (status == 'success') {
+                    $('#txtvei').html(data);
+                } else {
+                    $('#txtvei').html("Erro na consulta de dados");
+                }
+            });
+
+        }
+
         $(document).ready(function() {
             $('#nomepesq').keyup(function() {
                 showvend($('#nomepesq').val());
-
             })
             $('#nomepesqc').keyup(function() {
                 showcomp($('#nomepesqc').val());
             })
+
+            $('#nomepesqv').keyup(function() {
+                showvei($('#nomepesqv').val());
+            })
             showcomp('');
             showvend('');
+            showvei('');
         });
 
     </script>
@@ -177,7 +194,7 @@ if (isset($_POST['enviarpessoa'])){
     <!--</NAVBAR-->
     <!--MODAL VENDEDOR Buscar-->
     <div class="modal fade" id="modalVendedor" tabindex="-1" role="dialog" aria-labelledby="modalVendedor" aria-hidden="true">
-        <div class="modal-dialog modal-xl" role="document" style="max-width: 100%;">
+        <div class="modal-dialog modal-xl" role="document" style="max-width: 90%;">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="TituloVendedor">Encontrar vendedor</h5>
@@ -205,7 +222,7 @@ if (isset($_POST['enviarpessoa'])){
     <!--MODAL VENDEDOR Buscar-->
     <!--MODAL COMPRADOR Buscar-->
     <div class="modal fade" id="modalComprador" tabindex="-1" role="dialog" aria-labelledby="modalComprador" aria-hidden="true">
-        <div class="modal-dialog modal-xl" role="document" style="max-width: 100%;">
+        <div class="modal-dialog modal-xl" role="document" style="max-width: 90%;">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="TituloComprador">Encontrar comprador</h5>
@@ -231,7 +248,7 @@ if (isset($_POST['enviarpessoa'])){
         </div>
     </div>
     <!--MODAL COMPRADOR Buscar-->
-    <!--MODAL VENDEDOR Cadastrar-->
+    <!--MODAL VENDEDOR/COMPRADOR Cadastrar-->
     <div class="modal fade" id="modalVendedorCadastrar" tabindex="-1" role="dialog" aria-labelledby="modalVendedorCadastrar" aria-hidden="true">
         <div class="modal-dialog modal-xl" role="document" style="max-width: 95%;">
             <div class="modal-content">
@@ -416,10 +433,37 @@ if (isset($_POST['enviarpessoa'])){
             </div>
         </div>
     </div>
+    <!--MODAL VENDEDOR/COMPRADOR Cadastrar -->
+    <!--MODAL VEICULO Buscar-->
+    <div class="modal fade" id="modalVeiculo" tabindex="-1" role="dialog" aria-labelledby="modalVeiculo" aria-hidden="true">
+        <div class="modal-dialog modal-xl" role="document" style="max-width: 90%;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="TituloVeiculo">Encontrar veículo</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="form-group">
+                            <!--<label for="nome" style="display:inline;">Pesquisar</label>-->
+                            <input type='text' name='nomepesqv' id='nomepesqv' class="form-control" placeholder="Pesquisar uma placa" style="display:inline;" autofocus>
+                        </div>
+                    </div>
+                    <div id="txtvei">
+                        Dados dos veiculos....
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary">Selecionar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--MODAL VEICULO Buscar-->
 
-    <!--MODAL VENDEDOR Cadastrar -->
-
-    <div class="container-fluid fundo-card">
+    <div class="container fundo-card">
         <div class="col-sm-12 col-md-11 col-lg-11 mx-auto">
             <div class="card card-padrao my-5">
                 <div class="card-body">
@@ -440,7 +484,7 @@ if (isset($_POST['enviarpessoa'])){
                                 ?></p>
 
                         <div class="row">
-                            <div class="form-group col-xl">
+                            <div class="form-group col-md">
                                 <label for="vendedor">Vendedor</label>
                                 <input type="text" id="vendor" class="form-control" name="vededor" value="">
                                 <i class="material-icons" style="font-size: 24px;" data-toggle="modal" data-target="#modalVendedor">
@@ -451,38 +495,45 @@ if (isset($_POST['enviarpessoa'])){
                                 </i>
                                 <p id="msg_vendedor" class="form-control-feedback"></p>
                             </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="form-group col-xl">
-                                <!--falta colcocar o cpf e nome-->
-                                <label for="cpf">CPF do vendedor</label>
-                                <input type="text" id="cpfvreadonly" class="form-control" value="<?php echo ($id!=0)?"$nomevend":'';?>" readonly>
-                                <label for="nome">Nome do vendedor</label>
-                                <input type="text" id="nomevreadonly" class="form-control" value="<?php echo ($id!=0)?"$nomevend":'';?>" readonly>
+                            <div class="form-group col-md">
+                                <label for="cpfvreadonly">CPF</label>
+                                <input type="text" id="cpfvreadonly" class="form-control" placeholder="CPF do vendedor" value="<?php echo ($id!=0)?"$cpfvend":'';?>" readonly>
                             </div>
                         </div>
 
-
-                        <div class="form-group col-xl">
-                            <label for="comprador">Comprador</label>
-                            <input type="text" id="comprador" class="form-control" name="comprador" value="">
-                            <i class="material-icons" style="font-size: 24px;" data-toggle="modal" data-target="#modalComprador">
-                                search
-                            </i>
-                            <i class="material-icons" style="font-size: 24px;" data-toggle="modal" data-target="#modalVendedorCadastrar">
-                                edit
-                            </i>
-                            <p id="msg_comprador" class="form-control-feedback"></p>
+                        <div class="row">
+                            <div class="form-group col-md">
+                                <label for="comprador">Comprador</label>
+                                <input type="text" id="comprador" class="form-control" name="comprador" value="">
+                                <i class="material-icons" style="font-size: 24px;" data-toggle="modal" data-target="#modalComprador">
+                                    search
+                                </i>
+                                <i class="material-icons" style="font-size: 24px;" data-toggle="modal" data-target="#modalVendedorCadastrar">
+                                    edit
+                                </i>
+                                <p id="msg_comprador" class="form-control-feedback"></p>
+                            </div>
+                            <div class="form-group col-md">
+                                <label for="cpfcreadonly">CPF</label>
+                                <input type="text" id="cpfcreadonly" class="form-control" placeholder="CPF do comprador" value="<?php echo ($id!=0)?"$cpfcomp":'';?>" readonly>
+                            </div>
                         </div>
 
                         <div class="row">
-                            <div class="form-group col-xl">
-                                <!--falta colcocar o cpf e nome-->
-                                <label for="cpf">CPF do comprador</label>
-                                <input type="text" id="cpfvreadonly" class="form-control" value="<?php echo ($id!=0)?"$nomecomp":'';?>" readonly>
-                                <label for="nome">Nome do comprador</label>
-                                <input type="text" id="nomevreadonly" class="form-control" value="<?php echo ($id!=0)?"$nomecomp":'';?>" readonly>
+                            <div class="form-group col-md">
+                                <label for="veiculo">Veículo</label>
+                                <input type="text" id="veiculo" class="form-control" name="veiculo" value="">
+                                <i class="material-icons" style="font-size: 24px;" data-toggle="modal" data-target="#modalVeiculo">
+                                    search
+                                </i>
+                                <i class="material-icons" style="font-size: 24px;" data-toggle="modal" data-target="#modalVeiculoCadastrar">
+                                    edit
+                                </i>
+                                <p id="msg_veiculo" class="form-control-feedback"></p>
+                            </div>
+                            <div class="form-group col-md">
+                                <label for="placareadonly">Placa</label>
+                                <input type="text" id="placareadonly" class="form-control" placeholder="Placa do veículo" value="<?php echo ($id!=0)?"$placa":'';?>" readonly>
                             </div>
                         </div>
 
@@ -493,6 +544,7 @@ if (isset($_POST['enviarpessoa'])){
                         <input type='hidden' name='op' value="<?php echo ($id!=0)?"$op":'';?>">
                         <input type='hidden' name='idvend' id='idvend' value="">
                         <input type='hidden' name='idcomp' id='idcomp' value="">
+                        <input type='hidden' name='idvei' id='idvei' value="">
 
                         <?php
                             $txtbtn="Incluir";
@@ -505,9 +557,8 @@ if (isset($_POST['enviarpessoa'])){
                 </div>
             </div>
         </div>
+
     </div>
-
-
 
 
 

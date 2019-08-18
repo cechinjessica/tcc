@@ -13,8 +13,8 @@ $sql.=" ORDER BY idpessoa";
 $result=mysqli_query($conexao,$sql);
 if (mysqli_affected_rows($conexao)>0) {
     echo "<div class='table-responsive'>
-	<table class='table table-hover table-light table-borderless table-sm' >
-             <thead class='thead-dark'>
+	<table class='table table-hover table-light table-sm' >
+             <thead>
 			  <tr>
                 <th scope='col'>Código</th>
                 <th scope='col'>Tipo de pessoa</th>
