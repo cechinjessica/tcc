@@ -4,23 +4,33 @@ $(document).ready(function () {
 
 
 
-function getid(idtd, nometd, cpftd) {
+function getid(idtd, cpftd, nometd) {
     var id = idtd;
-    var nome = nometd;
     var cpf = cpftd;
+    var nome = nometd.replace("+", " ");
+    while (nome.indexOf("+") != -1) {
+        nome = nome.replace("+", " ");
+    }
     $("#idvend").val(id);
-    $("#cpfvreadonly").val(cpftd);
-    $("#nomevreadonly").val(nometd);
+    $("#cpfvreadonly").val(cpf);
+    $("#vendedor").val(nome);
 
     // var hv = $("#idvend").attr("value");
     //alert(hv);
 }
 
-function getidcomp(idtd, cpftd) {
+function getidcomp(idtd, cpftd, nometd) {
     var id = idtd;
     var cpf = cpftd;
+    var nome = nometd.replace("+", " ");
+    while (nome.indexOf("+") != -1) {
+        nome = nome.replace("+", " ");
+    }
+
     $("#idcomp").val(id);
     $("#cpfcreadonly").val(cpftd);
+    $("#comprador").val(nome);
+
     // var hv = $("#idvend").attr("value");
     //alert(hv);
 }

@@ -15,7 +15,7 @@ if (mysqli_affected_rows($conexao)>0) {
     echo "<div class='table-responsive'>
         <table class='table table-hover table-light table-sm' >
                  <thead>
-                  <tr>
+                  <tr >
                     <th scope='col'>Código</th>
                     <th scope='col'>Tipo de pessoa</th>
                     <th scope='col'>Nome Completo</th>
@@ -41,27 +41,27 @@ if (mysqli_affected_rows($conexao)>0) {
                 </thead>";
     while ($row=mysqli_fetch_row($result))
     {
-
+        $nome = str_replace(' ', '+', $row[2]);
         echo " <tbody class='table-striped'>";
-        echo " <tr>";
-        echo "<th scope='row' id=".$row[0]." onclick=getidcomp(".$row[0].",'".$row[7]."') >".$row[0]."</td>";
-        echo "<td id=".$row[0]." onclick=getidcomp(".$row[0].",'".$row[7]."')>".$row[1]."</td>";
-        echo "<td id=".$row[0]." onclick=getidcomp(".$row[0].",'".$row[7]."')>".$row[2]."</td>";
-        echo "<td id=".$row[0]." onclick=getidcomp(".$row[0].",'".$row[7]."')>".$row[3]."</td>";
-        echo "<td id=".$row[0]." onclick=getidcomp(".$row[0].",'".$row[7]."')>".$row[4]."</td>";
-        echo "<td id=".$row[0]." onclick=getidcomp(".$row[0].",'".$row[7]."')>".$row[5]."</td>";
-        echo "<td id=".$row[0]." onclick=getidcomp(".$row[0].",'".$row[7]."')>".$row[6]."</td>";
-        echo "<td id=".$row[0]." onclick=getidcomp(".$row[0].",'".$row[7]."')>".$row[7]."</td>";
-        echo "<td id=".$row[0]." onclick=getidcomp(".$row[0].",'".$row[7]."')>".$row[9]."</td>";
-        echo "<td id=".$row[0]." onclick=getidcomp(".$row[0].",'".$row[7]."')>".$row[8]."</td>";
-        echo "<td id=".$row[0]." onclick=getidcomp(".$row[0].",'".$row[7]."')>".$row[10]."</td>";
-        echo "<td id=".$row[0]." onclick=getidcomp(".$row[0].",'".$row[7]."')>".$row[11]."</td>";
-        echo "<td id=".$row[0]." onclick=getidcomp(".$row[0].",'".$row[7]."')>".$row[12]."</td>";
-        echo "<td id=".$row[0]." onclick=getidcomp(".$row[0].",'".$row[7]."')>".$row[19]."</td>";
-        echo "<td id=".$row[0]." onclick=getidcomp(".$row[0].",'".$row[7]."')>".$row[13]."</td>";
-        echo "<td id=".$row[0]." onclick=getidcomp(".$row[0].",'".$row[7]."')>".$row[14]."</td>";
-        echo "<td id=".$row[0]." onclick=getidcomp(".$row[0].",'".$row[7]."')>".$row[15]."</td>";
-        echo "<td id=".$row[0]." onclick=getidcomp(".$row[0].",'".$row[7]."')>".$row[16]."</td>";
-        echo "<td id=".$row[0]." onclick=getidcomp(".$row[0].",'".$row[7]."')>".$row[17]."</td>";
-        echo "<td id=".$row[0]." onclick=getidcomp(".$row[0].",'".$row[7]."')>".$row[18]."</td>";
+        echo " <tr id='linha'>";
+        echo "<th scope='row' id=".$row[0]." onclick=getidcomp(".$row[0].",'".$row[7]."','".$nome."')>".$row[0]."</td>";
+        echo "<td id=".$row[0]." onclick=getidcomp(".$row[0].",'".$row[7]."','".$nome."') >".$row[1]."</td>";
+        echo "<td id=".$row[0]." onclick=getidcomp(".$row[0].",'".$row[7]."','".$nome."') >".$row[2]."</td>";
+        echo "<td id=".$row[0]." onclick=getidcomp(".$row[0].",'".$row[7]."','".$nome."') >".$row[3]."</td>";
+        echo "<td id=".$row[0]." onclick=getidcomp(".$row[0].",'".$row[7]."','".$nome."') >".$row[4]."</td>";
+        echo "<td id=".$row[0]." onclick=getidcomp(".$row[0].",'".$row[7]."','".$nome."') >".$row[5]."</td>";
+        echo "<td id=".$row[0]." onclick=getidcomp(".$row[0].",'".$row[7]."','".$nome."') >".$row[6]."</td>";
+        echo "<td id=".$row[0]." onclick=getidcomp(".$row[0].",'".$row[7]."','".$nome."') >".$row[7]."</td>";
+        echo "<td id=".$row[0]." onclick=getidcomp(".$row[0].",'".$row[7]."','".$nome."') >".$row[9]."</td>";
+        echo "<td id=".$row[0]." onclick=getidcomp(".$row[0].",'".$row[7]."','".$nome."') >".$row[8]."</td>";
+        echo "<td id=".$row[0]." onclick=getidcomp(".$row[0].",'".$row[7]."','".$nome."') >".$row[10]."</td>";
+        echo "<td id=".$row[0]." onclick=getidcomp(".$row[0].",'".$row[7]."','".$nome."') >".$row[11]."</td>";
+        echo "<td id=".$row[0]." onclick=getidcomp(".$row[0].",'".$row[7]."','".$nome."') >".$row[12]."</td>";
+        echo "<td id=".$row[0]." onclick=getidcomp(".$row[0].",'".$row[7]."','".$nome."') >".$row[19]."</td>";
+        echo "<td id=".$row[0]." onclick=getidcomp(".$row[0].",'".$row[7]."','".$nome."') >".$row[13]."</td>";
+        echo "<td id=".$row[0]." onclick=getidcomp(".$row[0].",'".$row[7]."','".$nome."') >".$row[14]."</td>";
+        echo "<td id=".$row[0]." onclick=getidcomp(".$row[0].",'".$row[7]."','".$nome."') >".$row[15]."</td>";
+        echo "<td id=".$row[0]." onclick=getidcomp(".$row[0].",'".$row[7]."','".$nome."') >".$row[16]."</td>";
+        echo "<td id=".$row[0]." onclick=getidcomp(".$row[0].",'".$row[7]."','".$nome."') >".$row[17]."</td>";
+        echo "<td id=".$row[0]." onclick=getidcomp(".$row[0].",'".$row[7]."','".$nome."') >".$row[18]."</td>";
         echo "<td> <a href=cadastros/vendedor.php?id=".$row[0]."&op=A".">Editar". "|" ."<a href=cadastros/vendedor.php?id=".$row[0]. "&op=D" . ">Apagar" . "</td>" ; echo " </tr>" ; } echo " </tbody>" ; echo "</table></div>" ; } mysqli_close($conexao); ?>

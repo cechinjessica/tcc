@@ -486,7 +486,7 @@ if (isset($_POST['enviarpessoa'])){
                         <div class="row">
                             <div class="form-group col-md">
                                 <label for="vendedor">Vendedor</label>
-                                <input type="text" id="vendor" class="form-control" name="vededor" value="">
+                                <input type="text" id="vendedor" class="form-control" name="vededor" value="">
                                 <i class="material-icons" style="font-size: 24px;" data-toggle="modal" data-target="#modalVendedor">
                                     search
                                 </i>
