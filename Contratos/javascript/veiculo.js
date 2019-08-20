@@ -2,6 +2,7 @@ $(document).ready(function () {
     //MASCARAS
     $("#ano").mask("0000");
     $("#modelo").mask("0000");
+    $("#cor").mask("SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS");
     $("#valor").mask("###0.00", {
         reverse: true
     });

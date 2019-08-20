@@ -15,6 +15,8 @@ function getid(idtd, cpftd, nometd) {
     $("#cpfvreadonly").val(cpf);
     $("#vendedor").val(nome);
 
+    $('#modalVendedor').modal('hide');
+
     // var hv = $("#idvend").attr("value");
     //alert(hv);
 }
@@ -31,16 +33,22 @@ function getidcomp(idtd, cpftd, nometd) {
     $("#cpfcreadonly").val(cpftd);
     $("#comprador").val(nome);
 
+    $('#modalComprador').modal('hide');
+
     // var hv = $("#idvend").attr("value");
     //alert(hv);
 }
 
-function getidvei(idtd, placatd) {
+function getidvei(idtd, nometd, placatd) {
     var id = idtd;
+    var nome = nometd;
     var placa = placatd;
+
     $("#idvei").val(id);
     $("#placareadonly").val(placa);
+    $("#veiculo").val(nome);
 
+    $('#modalVeiculo').modal('hide');
     // var hv = $("#placareadonly").attr("value");
     // alert(hv);
 }
