@@ -463,8 +463,8 @@ if (isset($_POST['enviarpessoa'])){
     </div>
     <!--MODAL VEICULO Buscar-->
 
-    <div class="container fundo-card">
-        <div class="col-sm-12 col-md-11 col-lg-11 mx-auto">
+    <div class="container fundo-card col-md-11 col-lg-12">
+        <div class="col-sm-12 col-md-12 col-lg-11 mx-auto">
             <div class="card card-padrao my-5">
                 <div class="card-body">
                     <h5 class="card-title text-center">O contrato:</h5>
@@ -485,12 +485,12 @@ if (isset($_POST['enviarpessoa'])){
 
                         <div class="row">
                             <div class="form-group col-md">
-                                <label for="vendedor">Vendedor</label>
-                                <input type="text" id="vendedor" class="form-control" name="vededor" value="">
-                                <i class="material-icons" style="font-size: 24px;" data-toggle="modal" data-target="#modalVendedor">
+                                <label for="vendedor" class="col-lg-4 col-sm-12 m-0">Vendedor</label>
+                                <input type="text" id="vendedor" class="form-control col-lg-5" name="vededor" value="">
+                                <i class="material-icons " style="font-size: 24px;" data-toggle="modal" data-target="#modalVendedor">
                                     search
                                 </i>
-                                <i class="material-icons" style="font-size: 24px;" data-toggle="modal" data-target="#modalVendedorCadastrar">
+                                <i class="material-icons " style="font-size: 24px;" data-toggle="modal" data-target="#modalVendedorCadastrar">
                                     edit
                                 </i>
                                 <p id="msg_vendedor" class="form-control-feedback"></p>
@@ -503,8 +503,8 @@ if (isset($_POST['enviarpessoa'])){
 
                         <div class="row">
                             <div class="form-group col-md">
-                                <label for="comprador">Comprador</label>
-                                <input type="text" id="comprador" class="form-control" name="comprador" value="">
+                                <label for="comprador" class="col-lg-4 col-sm-12 m-0 ">Comprador</label>
+                                <input type="text" id="comprador" class="form-control col-lg-5 m-0" name="comprador" value="">
                                 <i class="material-icons" style="font-size: 24px;" data-toggle="modal" data-target="#modalComprador">
                                     search
                                 </i>
@@ -521,8 +521,8 @@ if (isset($_POST['enviarpessoa'])){
 
                         <div class="row">
                             <div class="form-group col-md">
-                                <label for="veiculo">Veículo</label>
-                                <input type="text" id="veiculo" class="form-control" name="veiculo" value="">
+                                <label for="veiculo" class="col-lg-4 col-sm-12 m-0 ">Veículo</label>
+                                <input type="text" id="veiculo" class="form-control col-lg-5 m-0" name="veiculo" value="">
                                 <i class="material-icons" style="font-size: 24px;" data-toggle="modal" data-target="#modalVeiculo">
                                     search
                                 </i>
@@ -532,12 +532,66 @@ if (isset($_POST['enviarpessoa'])){
                                 <p id="msg_veiculo" class="form-control-feedback"></p>
                             </div>
                             <div class="form-group col-md">
-                                <label for="placareadonly">Placa</label>
-                                <input type="text" id="placareadonly" class="form-control" placeholder="Placa do veículo" value="<?php echo ($id!=0)?"$placa":'';?>" readonly>
+                                <label for="placareadonly" class="col-lg-4 col-sm-12 m-0">Placa</label>
+                                <input type="text" id="placareadonly" class="form-control col-lg-5 m-0" placeholder="Placa do veículo" value="<?php echo ($id!=0)?"$placa":'';?>" readonly>
                             </div>
                         </div>
 
 
+                        <div class="form-group col-md">
+                            <label for="dpagamento" class="col-lg-4 col-sm-12 m-0">Dia de Pagamento</label>
+                            <input type="text" id="dpagamento" class="form-control col-lg-5 m-0" name="dpagamento" value="">
+
+                            <label for="valortotal" class="col-lg-4 col-sm-12 m-0">Valor Total</label>
+                            <input type="text" id="valortotal" class="form-control col-lg-5 m-0" name="valortotal" value="">
+
+                            <label for="numparecelas" class="col-lg-4 col-sm-12 m-0">Quantidade de Parcelas</label>
+                            <input type="text" id="numparecelas" class="form-control col-lg-5 m-0" name="numparecelas" value="">
+
+                            <label for="vparcela" class="col-lg-4 col-sm-12 m-0">Valor das Parcelas</label>
+                            <input type="text" id="vparcela" class="form-control col-lg-5 m-0" name="vparcela" value="">
+
+                            <label for="juro" class="col-lg-4 col-sm-12 m-0">Juros</label>
+                            <input type="text" id="juro" class="form-control col-lg-5 m-0" name="juro" value="">
+
+                            <label for="foro" class="col-lg-4 col-sm-12 m-0">Foro</label>
+                            <input type="text" id="foro" class="form-control col-lg-5 m-0" name="foro" value="">
+
+                            <label for="dcriacao">Data Criação</label>
+                            <input type="text" id="dcriacao" class="form-control" name="dcriacao" value="">
+
+
+
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-xl">
+                                <label for="ntestemunha1" class="col-lg-5 col-xl-4 col-sm-12 m-0 ">Nome Completo da Testemunha 1</label>
+                                <input type="text" id="ntestemunha1" class="form-control col-xl-4 col-lg-5 m-0" name="ntestemunha1" value="">
+
+                                <label for="rgtestemunha1" class="col-lg-5 col-xl-3 col-sm-12 m-0 ">RG da Testemunha 1</label>
+                                <input type="text" id="rgtestemunha1" class="form-control col-xl-4 col-lg-5 m-0" name="rgtestemunha1" value="">
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="form-group col-xl">
+                                <label for="ntestemunha2" class="col-lg-5 col-xl-4 col-sm-12 m-0 ">Nome Completo da Testemunha 2</label>
+                                <input type="text" id="ntestemunha2" class="form-control col-xl-4 col-lg-5 m-0" name="ntestemunha2" value="">
+
+                                <label for="rgtestemunha2" class="col-lg-5 col-xl-3 col-sm-12 m-0 ">RG da Testemunha 2</label>
+                                <input type="text" id="rgtestemunha2" class="form-control col-xl-4 col-lg-5 m-0" name="rgtestemunha2" value="">
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="form-group col-md">
+                                <label for="lassinatura" class="col-lg-3 col-sm-12 m-0 ">Local de Assinatura</label>
+                                <input type="text" id="lassinatura" class="form-control p-0 col-lg-4 m-0" name="lassinatura" value="">
+
+                                <label for="dassinatura" class="col-lg-3 col-sm-12 m-0 ">Data de Assinatura</label>
+                                <input type="text" id="dassinatura" class="form-control p-0 col-lg-4 m-0" name="dassinatura" value="">
+                            </div>
+                        </div>
 
 
                         <input type='hidden' name='id' id='codigo' value="<?php echo ($id!=0)?"$id":'0';?>">
@@ -545,6 +599,7 @@ if (isset($_POST['enviarpessoa'])){
                         <input type='hidden' name='idvend' id='idvend' value="">
                         <input type='hidden' name='idcomp' id='idcomp' value="">
                         <input type='hidden' name='idvei' id='idvei' value="">
+                        <input type='hidden' name='idlogin' id='idlogin' value="">
 
                         <?php
                             $txtbtn="Incluir";
