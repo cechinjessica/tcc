@@ -3,8 +3,100 @@ session_start();
 require 'config/conexao.php';
 include('config/verifica_login.php');
 
+//PARA COLOCAR AS INFORMAÇÕES DO BD NOS CAMPOS CONTRATO
+
+if (isset($_GET['id'])){
+    $id=$_GET['id'];
+    $op=$_GET['op'];
+    $sql = "SELECT idveiculo, nome, marca, modelo, ano, chassi, cor, placa, renavam, emnomede, valor FROM veiculo WHERE idveiculo='$id'";
+    $res=mysqli_query($conexao,$sql);
+    $row=mysqli_fetch_row($res);
+    $id= $row[0];
+    $nome = $row[1];
+    $marca = $row[2];
+    $modelo = $row[3];
+    $ano = $row[4];
+    $chassi = $row[5];
+    $cor = $row[6];
+    $placa = $row[7];
+    $renavam = $row[8];
+    $proprietario = $row[9];
+    $valor = $row[10];
+} else{
+    $id=0;
+}
+
+
+//PARA PEGAR OS DADOS DOS CAMPOS
+if (isset($_POST['enviarcontrato'])){
+    $valortotal = $_POST['valortotal'];
+    $numeroparcelas  = $_POST['numeroparcelas'];
+    $valorparcela = $_POST['valorparcela'];
+    $dpagamento = $_POST['dpagamento'];
+    $juro = $_POST['juro'];
+    $foro = $_POST['foro'];
+    $lassinatura = $_POST['lassinatura'];
+    $dassinatura = $_POST['dassinatura'];
+    $datacriacao = $_POST['datacriacao'];
+    $ntestemunha1 = $_POST['ntestemunha1'];
+    $rgtestemunha1 = $_POST['rgtestemunha1'];
+    $ntestemunha2 = $_POST['ntestemunha2'];
+    $rgtestemunha2 = $_POST['rgtestemunha2'];
+    $idvend = $_POST['idvend'];
+    $idcomp = $_POST['idcomp'];
+    $idvei = $_POST['idvei'];
+    $idlogin = $_POST['idlogin'];
+    $op=$_POST['op'];
+
+    //PARA ATUALIZAR, HAVERÁ ID POIS HÁ UM VEICULO
+    if ($id != 0) {
+        if ($op == 'A') {
+            $sql="UPDATE veiculo SET nome ='$nome', marca ='$marca', modelo ='$modelo', ano ='$ano', chassi='$chassi', cor='$cor', placa ='$placa', renavam='$renavam', emnomede ='$proprietario', valor ='$valor' where idveiculo ='$id'";
+
+            $res = mysqli_query($conexao,$sql);
+            if (mysqli_error($conexao)) {
+                $_SESSION['msg'] = "<p class='alert alert-danger' role='alert'>Erro na atualização de $nome</p>";
+                header('Location:cadastro_veiculo.php');
+            } else {
+                $_SESSION['msg'] = "<p class='alert alert-success' role='alert'>$nome atualizado com sucesso!</p>";
+                header('Location:cadastro_veiculo.php');
+            }
+            mysqli_close($conexao);
+
+        } else if($op == "D") { //PARA EXCLUIR
+            $sql="DELETE FROM veiculo WHERE idveiculo='$id'";
+            echo $sql;
+            $res = mysqli_query($conexao,$sql);
+            if (mysqli_affected_rows($conexao)=='1') {
+                $_SESSION['msg'] = "<p class='alert alert-success' role='alert'>$nome excluído com sucesso!</p>";
+                header('Location:cadastro_veiculo.php');
+            } else {
+                $_SESSION['msg'] = "p class='alert alert-danger' role='alert'>Erro na exclusão de $nome</p>";
+                header('Location:cadastro_veiculo.php');
+            }
+            mysqli_close($conexao);
+        }
+
+    }else{//SE FOR == 0 ENTÃO O VEICULO AINDA NÃO ESTÁ CADASTRADO
+        //INCLUSÃO
+        $sql = "INSERT INTO contrato (ValorTotal, NumeroParcelas, ValorParcela, DataPagamento, Juros, Foro, LocalAss, DataAss, DataCriacao, NomeTestemunha1, RGTestemunha1, NomeTestemunha2, RGTestemunha2, Pessoa_IdVendedor,Pessoa_IdComprador, Veiculo_IdVeiculo, Login_IdUsuario) VALUES ('$valortotal' ,'$numeroparcelas' ,'$valorparcela', '$dpagamento', '$juro' ,'$foro' ,'$lassinatura' ,'$dassinatura',(now()), '$ntestemunha1' ,'$rgtestemunha1' ,'$ntestemunha2' ,'$rgtestemunha2' ,'$idvend', '$idcomp' ,'$idvei','$idlogin' )";
+        mysqli_query($conexao,$sql);
+
+        if (mysqli_affected_rows($conexao) =='1') {
+            $_SESSION['msg'] = "<p class='alert alert-success' role='alert'>Contrato inserido com sucesso!</p>";
+            header('Location:contrato.php');
+        } else {
+            $_SESSION['msg'] ="<p class='alert alert-danger' role='alert'>Erro: ".mysqli_error($conexao)."<p>";
+            header('Location:contrato.php');
+        }
+        mysqli_close($conexao);
+
+    }
+    $id=0;
+}
+
+
 //PARA PEGAR OS DADOS DOS CAMPOS DO VENDEDOR/COMPRADOR
-$id=0;
 if (isset($_POST['enviarpessoa'])){
     $tipopessoa = $_POST['pessoa'];
     $nome = $_POST['nome'];
@@ -463,7 +555,7 @@ if (isset($_POST['enviarpessoa'])){
     </div>
     <!--MODAL VEICULO Buscar-->
 
-    <div class="container fundo-card col-md-11 col-lg-12">
+    <div class="container fundo-card col-md-11 col-lg-12 ">
         <div class="col-sm-12 col-md-12 col-lg-11 mx-auto">
             <div class="card card-padrao my-5">
                 <div class="card-body">
@@ -532,8 +624,8 @@ if (isset($_POST['enviarpessoa'])){
                                 <p id="msg_veiculo" class="form-control-feedback"></p>
                             </div>
                             <div class="form-group col-md">
-                                <label for="placareadonly" class="col-lg-4 col-sm-12 m-0">Placa</label>
-                                <input type="text" id="placareadonly" class="form-control col-lg-5 m-0" placeholder="Placa do veículo" value="<?php echo ($id!=0)?"$placa":'';?>" readonly>
+                                <label for="placareadonly">Placa</label>
+                                <input type="text" id="placareadonly" class="form-control" placeholder="Placa do veículo" value="<?php echo ($id!=0)?"$placa":'';?>" readonly>
                             </div>
                         </div>
 
@@ -545,11 +637,11 @@ if (isset($_POST['enviarpessoa'])){
                             <label for="valortotal" class="col-lg-4 col-sm-12 m-0">Valor Total</label>
                             <input type="text" id="valortotal" class="form-control col-lg-5 m-0" name="valortotal" value="">
 
-                            <label for="numparecelas" class="col-lg-4 col-sm-12 m-0">Quantidade de Parcelas</label>
-                            <input type="text" id="numparecelas" class="form-control col-lg-5 m-0" name="numparecelas" value="">
+                            <label for="numeroparcelas" class="col-lg-4 col-sm-12 m-0">Quantidade de Parcelas</label>
+                            <input type="text" id="numeroparcelas" class="form-control col-lg-5 m-0" name="numeroparcelas" value="">
 
                             <label for="vparcela" class="col-lg-4 col-sm-12 m-0">Valor das Parcelas</label>
-                            <input type="text" id="vparcela" class="form-control col-lg-5 m-0" name="vparcela" value="">
+                            <input type="text" id="valorparcela" class="form-control col-lg-5 m-0" name="valorparcela" value="">
 
                             <label for="juro" class="col-lg-4 col-sm-12 m-0">Juros</label>
                             <input type="text" id="juro" class="form-control col-lg-5 m-0" name="juro" value="">
@@ -558,7 +650,7 @@ if (isset($_POST['enviarpessoa'])){
                             <input type="text" id="foro" class="form-control col-lg-5 m-0" name="foro" value="">
 
                             <label for="dcriacao">Data Criação</label>
-                            <input type="text" id="dcriacao" class="form-control" name="dcriacao" value="">
+                            <input type="text" id="datacriacao" class="form-control" name="datacriacao" value="">
 
 
 
@@ -599,7 +691,8 @@ if (isset($_POST['enviarpessoa'])){
                         <input type='hidden' name='idvend' id='idvend' value="">
                         <input type='hidden' name='idcomp' id='idcomp' value="">
                         <input type='hidden' name='idvei' id='idvei' value="">
-                        <input type='hidden' name='idlogin' id='idlogin' value="">
+                        <input type='hidden' name='idlogin' id='idlogin' value="<?php echo $_SESSION['usuario']; ?>">
+
 
                         <?php
                             $txtbtn="Incluir";

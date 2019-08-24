@@ -1,7 +1,12 @@
 $(document).ready(function () {
-
+    dcriacao();
 })
 
+function dcriacao() {
+    var agora = new Date().toLocaleString()
+    $("#datacriacao").val(agora);
+    alert(agora);
+}
 
 
 function getid(idtd, cpftd, nometd) {
