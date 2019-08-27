@@ -11,22 +11,27 @@ if(!isset($_POST['usuario']) || !isset($_POST['senha'])) {
 $usuario =  $_POST['usuario'];
 $senha =  $_POST['senha'];
 
-$query = "select idusuario, usuario from login where usuario = '$usuario' and senha ='$senha'";
-echo $query;
+$sql = "SELECT IdUsuario, Usuario, Nome, Email FROM login WHERE usuario = '$usuario' AND senha ='$senha'";
 
-$result = mysqli_query($conexao, $query);
-//var_dump($result);
+$res=mysqli_query($conexao,$sql);
+$row=mysqli_fetch_row($res);
+$idusuario= $row[0];
+$usuario = $row[1];
+$nome = $row[2];
+$email = $row[3];
 
-$row = mysqli_num_rows($result);
-
-if($row == 1) {
+if (mysqli_affected_rows($conexao) != '0') {
+	$_SESSION['idusuario'] = $idusuario;
 	$_SESSION['usuario'] = $usuario;
+	$_SESSION['nome'] = $nome;
+	$_SESSION['email'] = $email;
 	header('Location: ../cadastros/cadastro_pessoa.php');
 	exit();
-} else {
+}else{
 	$_SESSION['nao_autenticado'] = true;
 	header('Location: ../index.php');
 	exit();
 }
+
 
 ?>

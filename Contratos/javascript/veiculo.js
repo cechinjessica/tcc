@@ -7,7 +7,7 @@ $(document).ready(function () {
         reverse: true
     });
 
-    $("#salvar").click(function (e) {
+    $("#salvarveiculo").click(function (e) {
         if (!nome()) {
             e.preventDefault();
         }
@@ -43,19 +43,19 @@ $(document).ready(function () {
 })
 
 function nome() {
-    if ($("#nome").hasClass("erro")) {
-        $("#nome").removeClass("erro");
-    } else if ($("#nome").hasClass("certo")) {
-        $("#nome").removeClass("certo");
+    if ($("#nomevei").hasClass("erro")) {
+        $("#nomevei").removeClass("erro");
+    } else if ($("#nomevei").hasClass("certo")) {
+        $("#nomevei").removeClass("certo");
     }
-    $("#nome").addClass("certo");
+    $("#nomevei").addClass("certo");
     var a = true;
-    $("#msg_nome").text("");
-
-    if ($("#nome").val().trim() == "") {
-        $("#msg_nome").text("*Nome inválido");
-        $("#msg_nome").css("color", "red");
-        $("#nome").addClass("erro");
+    $("#msg_nomevei").text("");
+    alert($("#nomevei").val().trim());
+    if ($("#nomevei").val().trim() == "") {
+        $("#msg_nomevei").text("*Nome inválido");
+        $("#msg_nomevei").css("color", "red");
+        $("#nomevei").addClass("erro");
         a = false;
     }
     return a;
@@ -228,19 +228,19 @@ function proprietario() {
 }
 
 function valor() {
-    if ($("#valor").hasClass("erro")) {
-        $("#valor").removeClass("erro");
-    } else if ($("#valor").hasClass("certo")) {
-        $("#valor").removeClass("certo");
+    if ($("#valorvei").hasClass("erro")) {
+        $("#valorvei").removeClass("erro");
+    } else if ($("#valorvei").hasClass("certo")) {
+        $("#valorvei").removeClass("certo");
     }
-    $("#valor").addClass("certo");
+    $("#valorvei").addClass("certo");
     var a = true;
-    $("#msg_valor").text("");
+    $("#msg_valorvei").text("");
 
-    if ($("#valor").val().trim() == "") {
-        $("#msg_valor").text("*Valor inválido");
-        $("#msg_valor").css("color", "red");
-        $("#valor").addClass("erro");
+    if ($("#valorvei").val().trim() == "") {
+        $("#msg_valorvei").text("*Valor inválido");
+        $("#msg_valorvei").css("color", "red");
+        $("#valorvei").addClass("erro");
         a = false;
     }
     return a;

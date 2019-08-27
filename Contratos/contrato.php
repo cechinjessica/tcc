@@ -1,10 +1,11 @@
 <?php
 session_start();
 require 'config/conexao.php';
-include('config/verifica_login.php');
+require 'config/verifica_login.php';
 
 //PARA COLOCAR AS INFORMAÇÕES DO BD NOS CAMPOS CONTRATO
-
+////////////////////////////Contrato
+/*
 if (isset($_GET['id'])){
     $id=$_GET['id'];
     $op=$_GET['op'];
@@ -22,10 +23,9 @@ if (isset($_GET['id'])){
     $renavam = $row[8];
     $proprietario = $row[9];
     $valor = $row[10];
-} else{
+} else{*/
     $id=0;
-}
-
+/*}*/
 
 //PARA PEGAR OS DADOS DOS CAMPOS
 if (isset($_POST['enviarcontrato'])){
@@ -48,17 +48,17 @@ if (isset($_POST['enviarcontrato'])){
     $idlogin = $_POST['idlogin'];
     $op=$_POST['op'];
 
-    //PARA ATUALIZAR, HAVERÁ ID POIS HÁ UM VEICULO
+    //PARA ATUALIZAR, HAVERÁ ID POIS HÁ UM contrato
     if ($id != 0) {
         if ($op == 'A') {
-            $sql="UPDATE veiculo SET nome ='$nome', marca ='$marca', modelo ='$modelo', ano ='$ano', chassi='$chassi', cor='$cor', placa ='$placa', renavam='$renavam', emnomede ='$proprietario', valor ='$valor' where idveiculo ='$id'";
+            $sql="UPDATE veiculo SET vei ='$nomevei', marca ='$marca', modelo ='$modelo', ano ='$ano', chassi='$chassi', cor='$cor', placa ='$placa', renavam='$renavam', emnomede ='$proprietario', valor ='$valorvei' where idveiculo ='$id'";
 
             $res = mysqli_query($conexao,$sql);
             if (mysqli_error($conexao)) {
-                $_SESSION['msg'] = "<p class='alert alert-danger' role='alert'>Erro na atualização de $nome</p>";
+                $_SESSION['msg'] = "<p class='alert alert-danger' role='alert'>Erro na atualização de $nomevei</p>";
                 header('Location:cadastro_veiculo.php');
             } else {
-                $_SESSION['msg'] = "<p class='alert alert-success' role='alert'>$nome atualizado com sucesso!</p>";
+                $_SESSION['msg'] = "<p class='alert alert-success' role='alert'>$nomevei atualizado com sucesso!</p>";
                 header('Location:cadastro_veiculo.php');
             }
             mysqli_close($conexao);
@@ -68,10 +68,10 @@ if (isset($_POST['enviarcontrato'])){
             echo $sql;
             $res = mysqli_query($conexao,$sql);
             if (mysqli_affected_rows($conexao)=='1') {
-                $_SESSION['msg'] = "<p class='alert alert-success' role='alert'>$nome excluído com sucesso!</p>";
+                $_SESSION['msg'] = "<p class='alert alert-success' role='alert'>$nomevei excluído com sucesso!</p>";
                 header('Location:cadastro_veiculo.php');
             } else {
-                $_SESSION['msg'] = "p class='alert alert-danger' role='alert'>Erro na exclusão de $nome</p>";
+                $_SESSION['msg'] = "p class='alert alert-danger' role='alert'>Erro na exclusão de $nomevei</p>";
                 header('Location:cadastro_veiculo.php');
             }
             mysqli_close($conexao);
@@ -79,7 +79,9 @@ if (isset($_POST['enviarcontrato'])){
 
     }else{//SE FOR == 0 ENTÃO O VEICULO AINDA NÃO ESTÁ CADASTRADO
         //INCLUSÃO
-        $sql = "INSERT INTO contrato (ValorTotal, NumeroParcelas, ValorParcela, DataPagamento, Juros, Foro, LocalAss, DataAss, DataCriacao, NomeTestemunha1, RGTestemunha1, NomeTestemunha2, RGTestemunha2, Pessoa_IdVendedor,Pessoa_IdComprador, Veiculo_IdVeiculo, Login_IdUsuario) VALUES ('$valortotal' ,'$numeroparcelas' ,'$valorparcela', '$dpagamento', '$juro' ,'$foro' ,'$lassinatura' ,'$dassinatura',(now()), '$ntestemunha1' ,'$rgtestemunha1' ,'$ntestemunha2' ,'$rgtestemunha2' ,'$idvend', '$idcomp' ,'$idvei','$idlogin' )";
+
+        $sql = "INSERT INTO contrato (ValorTotal, NumeroParcelas, ValorParcela, DataPagamento, Juros, Foro, LocalAss, DataAss, DataCriacao, NomeTestemunha1, RGTestemunha1, NomeTestemunha2, RGTestemunha2, Pessoa_IdVendedor,Pessoa_IdComprador, Veiculo_IdVeiculo, Login_IdUsuario) VALUES ('$valortotal' ,'$numeroparcelas' ,'$valorparcela', '$dpagamento', '$juro' ,'$foro' ,'$lassinatura' ,'$dassinatura',(now()), '$ntestemunha1' ,'$rgtestemunha1' ,'$ntestemunha2' ,'$rgtestemunha2' ,'$idvend', '$idcomp' ,'$idvei','$idlogin')";
+        //falta id login
         mysqli_query($conexao,$sql);
 
         if (mysqli_affected_rows($conexao) =='1') {
@@ -146,6 +148,46 @@ if (isset($_POST['enviarpessoa'])){
     }
 
 }
+
+//Veiculo
+//PARA PEGAR OS DADOS DOS CAMPOS
+if (isset($_POST['enviarveiculo'])){
+    $nomevei = $_POST['nomevei'];
+    $marca  = $_POST['marca'];
+    $modelo = $_POST['modelo'];
+    $ano = $_POST['ano'];
+    $chassi = $_POST['chassi'];
+    $cor = $_POST['cor'];
+    $placa = $_POST['placa'];
+    $renavam = $_POST['renavam'];
+    $proprietario = $_POST['proprietario'];
+    $valorvei = $_POST['valorvei'];
+    $op=$_POST['op'];
+
+    //PARA ATUALIZAR, HAVERÁ ID POIS HÁ UM VEICULO
+    $sql = "SELECT * FROM veiculo WHERE placa='$placa'";
+    mysqli_query($conexao,$sql);
+
+    if (mysqli_affected_rows($conexao)!=0) {
+        mysqli_close($conexao);
+        $_SESSION['msg'] = "p class='alert alert-danger' role='alert'>$placa já foi cadastrada</p>";
+        header('Location:cadastro_veiculo.php');
+
+    }else {
+        $sql = "INSERT INTO veiculo (nome, marca, modelo, ano, chassi, cor, placa, renavam, emnomede, valor) VALUES ('$nomevei', '$marca', '$modelo', '$ano', '$chassi', '$cor', '$placa', '$renavam', '$proprietario', '$valorvei')";
+        mysqli_query($conexao,$sql);
+
+        if (mysqli_affected_rows($conexao) =='1') {
+            $_SESSION['msg'] = "<p class='alert alert-success' role='alert'>$nomevei inserido com sucesso!</p>";
+            header('Location:cadastro_veiculo.php');
+        } else {
+            $_SESSION['msg'] ="<p class='alert alert-danger' role='alert'>Erro: ".mysqli_error($conexao)."<p>";
+            header('Location:cadastro_veiculo.php');
+        }
+        mysqli_close($conexao);
+    }
+}
+
 ?>
 
 
@@ -342,6 +384,7 @@ if (isset($_POST['enviarpessoa'])){
     <!--MODAL COMPRADOR Buscar-->
     <!--MODAL VENDEDOR/COMPRADOR Cadastrar-->
     <div class="modal fade" id="modalVendedorCadastrar" tabindex="-1" role="dialog" aria-labelledby="modalVendedorCadastrar" aria-hidden="true">
+        <script type="text/javascript" src="javascript/vendedorcomprador.js"></script>
         <div class="modal-dialog modal-xl" role="document" style="max-width: 95%;">
             <div class="modal-content">
                 <div class="modal-header">
@@ -554,8 +597,118 @@ if (isset($_POST['enviarpessoa'])){
         </div>
     </div>
     <!--MODAL VEICULO Buscar-->
+    <!--MODAL VEICULO Cadastrar-->
+    <div class="modal fade" id="modalVeiculoCadastrar" tabindex="-1" role="dialog" aria-labelledby="modalVeiculoCadastrar" aria-hidden="true">
+        <script type="text/javascript" src="javascript/veiculo.js"></script>
+        <div class="modal-dialog modal-xl" role="document" style="max-width: 90%;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="TituloVeiculo">Cadastrar veículo</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="#" method="post" class="form-padrao">
+                        <p class="feedback"><?php
+                                if (isset($_SESSION['msg'])) {
+                                    echo  $_SESSION['msg'];
+                                    unset ($_SESSION['msg']);
+                                }
+                                ?></p>
 
-    <div class="container fundo-card col-md-11 col-lg-12 ">
+                        <div class="row">
+                            <div class="form-group col-xl">
+                                <label for="nomevei">Modelo(Nome)</label>
+                                <input type="text" id="nomevei" class="form-control" name="nomevei" title="Ex.: Celta, Prisma, Corsa" value="<?php echo ($id!=0)?"$nomevei":'';?>">
+                                <p id="msg_nomevei" class="form-control-feedback"></p>
+                            </div>
+
+                            <div class="form-group col-xl">
+                                <label for="marca">Marca</label>
+                                <input type="text" id="marca" class="form-control" name="marca" title="Ex.: Chevrolet, Volkswagen, Ford " value="<?php echo ($id!=0)?"$marca":'';?>">
+                                <p id="msg_marca" class="form-control-feedback"></p>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="form-group col-xl">
+                                <label for="ano">Ano</label>
+                                <input type="text" id="ano" class="form-control" name="ano" title="Ex.: 2010, 2000, 2019" value="<?php echo ($id!=0)?"$ano":'';?>">
+                                <p id="msg_ano" class="form-control-feedback"></p>
+                            </div>
+
+                            <div class="form-group col-xl">
+                                <label for="modelo">Modelo(Ano)</label>
+                                <input type="text" id="modelo" class="form-control" name="modelo" value="<?php echo ($id!=0)?"$modelo":'';?>">
+                                <p id="msg_modelo" class="form-control-feedback "></p>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="form-group col-xl">
+                                <label for="chassi">Chassi</label>
+                                <input type="text" id="chassi" class="form-control" maxlength="17" name="chassi" value="<?php echo ($id!=0)?"$chassi":'';?>">
+                                <p id="msg_chassi" class="form-control-feedback "></p>
+                            </div>
+
+                            <div class="form-group col-xl">
+                                <label for="cor">Cor</label>
+                                <input type="text" id="cor" class="form-control" name="cor" title="Ex.: Vermelho, Rosa, Prata" value="<?php echo ($id!=0)?"$cor":'';?>">
+                                <p id="msg_cor" class="form-control-feedback "></p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-xl">
+                                <label for="placa">Placa</label>
+                                <input type="text" id="placa" class="form-control" maxlength="8" name="placa" title="XXX-0000" value="<?php echo ($id!=0)?"$placa":'';?>">
+                                <p id="msg_placa" class="form-control-feedback "></p>
+                            </div>
+
+                            <div class="form-group col-xl">
+                                <label for="renavam">Renavam</label>
+                                <input type="text" id="renavam" class="form-control" maxlength="11" name="renavam" value="<?php echo ($id!=0)?"$renavam":'';?>">
+                                <p id="msg_renavam" class="form-control-feedback "></p>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="form-group col-xl">
+                                <label for="proprietario">Proprietario</label>
+                                <input type="text" id="proprietario" class="form-control" name="proprietario" title="O veículo esta em nome de ..." value="<?php echo ($id!=0)?"$proprietario":'';?>">
+                                <p id="msg_proprietario" class="form-control-feedback "></p>
+                            </div>
+
+                            <div class="form-group col-xl">
+                                <label for="valorvei">Valor</label>
+                                <input type="text" id="valorvei" class="form-control" name="valorvei" title="Ex.: 10000,00" value="<?php echo ($id!=0)?"$valorvei":'';?>">
+                                <p id="msg_valorvei" class="form-control-feedback "></p>
+                            </div>
+
+                        </div>
+
+
+                        <input type='hidden' name='id' id='codigo' value="<?php echo ($id!=0)?"$id":'0';?>">
+                        <input type='hidden' name='op' value="<?php echo ($id!=0)?"$op":'';?>">
+
+                        <?php
+                            $txtbtn="Incluir";
+                            if (isset($op)){
+                                $txtbtn=($op=='A')?'Atualizar':'Excluir';
+                            }
+                            ?>
+                        <input class="btn btn-md btn-primary btn-block text-uppercase" type="submit" name="enviarveiculo" value="<?php echo $txtbtn?>" id="salvarveiculo">
+                    </form>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary">Selecionar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--MODAL VEICULO Cadastrar-->
+
+    <div class="container fundo-card col-md-11 col-lg-12 col-sm-12">
         <div class="col-sm-12 col-md-12 col-lg-11 mx-auto">
             <div class="card card-padrao my-5">
                 <div class="card-body">
@@ -563,10 +716,10 @@ if (isset($_POST['enviarpessoa'])){
                     <form action="#" method="post" class="form-padrao">
                         <p class="feedback" id="msg">
                             <?php
-                                if (isset($_SESSION['msg'])) {
-                                    echo  $_SESSION['msg'];
-                                    unset ($_SESSION['msg']);
-                                }
+    if (isset($_SESSION['msg'])) {
+        echo  $_SESSION['msg'];
+        unset ($_SESSION['msg']);
+    }
                                 ?></p>
                         <p class="feedback"><?php
                                 if (isset($_SESSION['msgvendedor'])) {
@@ -578,7 +731,7 @@ if (isset($_POST['enviarpessoa'])){
                         <div class="row">
                             <div class="form-group col-md">
                                 <label for="vendedor" class="col-lg-4 col-sm-12 m-0">Vendedor</label>
-                                <input type="text" id="vendedor" class="form-control col-lg-5" name="vededor" value="">
+                                <input type="text" id="vendedor" class="form-control col-lg-5" name="vededor" value="" readonly>
                                 <i class="material-icons " style="font-size: 24px;" data-toggle="modal" data-target="#modalVendedor">
                                     search
                                 </i>
@@ -596,7 +749,7 @@ if (isset($_POST['enviarpessoa'])){
                         <div class="row">
                             <div class="form-group col-md">
                                 <label for="comprador" class="col-lg-4 col-sm-12 m-0 ">Comprador</label>
-                                <input type="text" id="comprador" class="form-control col-lg-5 m-0" name="comprador" value="">
+                                <input type="text" id="comprador" class="form-control col-lg-5 m-0" name="comprador" value="" readonly>
                                 <i class="material-icons" style="font-size: 24px;" data-toggle="modal" data-target="#modalComprador">
                                     search
                                 </i>
@@ -614,7 +767,7 @@ if (isset($_POST['enviarpessoa'])){
                         <div class="row">
                             <div class="form-group col-md">
                                 <label for="veiculo" class="col-lg-4 col-sm-12 m-0 ">Veículo</label>
-                                <input type="text" id="veiculo" class="form-control col-lg-5 m-0" name="veiculo" value="">
+                                <input type="text" id="veiculo" class="form-control col-lg-5 m-0" name="veiculo" value="" readonly>
                                 <i class="material-icons" style="font-size: 24px;" data-toggle="modal" data-target="#modalVeiculo">
                                     search
                                 </i>
@@ -651,9 +804,6 @@ if (isset($_POST['enviarpessoa'])){
 
                             <label for="dcriacao">Data Criação</label>
                             <input type="text" id="datacriacao" class="form-control" name="datacriacao" value="">
-
-
-
                         </div>
                         <div class="row">
                             <div class="form-group col-xl">
@@ -681,7 +831,7 @@ if (isset($_POST['enviarpessoa'])){
                                 <input type="text" id="lassinatura" class="form-control p-0 col-lg-4 m-0" name="lassinatura" value="">
 
                                 <label for="dassinatura" class="col-lg-3 col-sm-12 m-0 ">Data de Assinatura</label>
-                                <input type="text" id="dassinatura" class="form-control p-0 col-lg-4 m-0" name="dassinatura" value="">
+                                <input type="date" id="dassinatura" class="form-control p-0 col-lg-4 m-0" name="dassinatura" value="">
                             </div>
                         </div>
 
@@ -691,7 +841,7 @@ if (isset($_POST['enviarpessoa'])){
                         <input type='hidden' name='idvend' id='idvend' value="">
                         <input type='hidden' name='idcomp' id='idcomp' value="">
                         <input type='hidden' name='idvei' id='idvei' value="">
-                        <input type='hidden' name='idlogin' id='idlogin' value="<?php echo $_SESSION['usuario']; ?>">
+                        <input type='hidden' name='idlogin' id='idlogin' value="<?php echo $_SESSION['idusuario']; ?>">
 
 
                         <?php
@@ -700,7 +850,7 @@ if (isset($_POST['enviarpessoa'])){
                                 $txtbtn=($op=='A')?'Atualizar':'Excluir';
                             }
                             ?>
-                        <input class="btn btn-md btn-primary btn-block text-uppercase" type="submit" name="enviarcontrato" value="<?php echo $txtbtn?>" id="salvar">
+                        <input class="btn btn-md btn-primary btn-block text-uppercase" type="submit" name="enviarcontrato" value="<?php echo $txtbtn?>" id="salvarcontrato">
                     </form>
                 </div>
             </div>

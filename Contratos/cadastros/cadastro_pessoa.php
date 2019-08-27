@@ -58,7 +58,7 @@
     <!--NAVBAR-->
     <nav class="navbar navbar-expand-sm bg-info navbar-light fixed-top">
         <a class="navbar-brand" href="#"><img src="../imagens/icone.png" width="30px">Á definir</a>
-        <a class="nav-text">Bem vindo(a) <?php echo $_SESSION['usuario']; ?></a>
+        <a class="nav-text">Bem vindo(a) <?php echo $_SESSION['nome']; ?></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
             <span class="navbar-toggler-icon"></span>
         </button>

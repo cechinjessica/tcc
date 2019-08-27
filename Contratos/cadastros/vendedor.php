@@ -1,6 +1,7 @@
 <?php
 session_start();
 require '../config/conexao.php';
+require '../config/verifica_login.php';
 
 //PARA COLOCAR AS INFORMAÇÕES DO BD NOS CAMPOS
 if (isset($_GET['id'])){
@@ -189,9 +190,6 @@ if (isset($_POST['enviar'])){
 
 <!--////////////////////////////////////////////////////////////////////////////-->
 
-<?php
-include('../config/verifica_login.php');
-?>
 <!DOCTYPE html>
 <html>
 
@@ -266,7 +264,7 @@ include('../config/verifica_login.php');
 	background: linear-gradient(to left, #5A8BB7, #2D9AAD);">
     <script type="text/javascript" src="../javascript/vendedorcomprador.js"></script>
     <!--NAVBAR-->
-    <nav class="navbar navbar-expand-sm bg-info navbar-light fixed-top">
+    <nav class="navbar navbar-expand-sm bg-info navbar-light fixed-top shadow-sm">
         <a class="navbar-brand" href="#"><img src="../imagens/icone.png" width="30px">Á definir</a>
         <a class="nav-text">Bem vindo(a) <?php echo $_SESSION['usuario']; ?></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">

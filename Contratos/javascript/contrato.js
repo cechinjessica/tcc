@@ -1,11 +1,36 @@
 $(document).ready(function () {
     dcriacao();
+    $("#salvarcontrato").click(function (e) {
+        if (!vendedor()) {
+            e.preventDefault();
+        }
+
+    });
 })
+
+function vendedor() {
+    if ($("#vendedor").hasClass("erro")) {
+        $("#vendedor").removeClass("erro");
+    } else if ($("#vendedor").hasClass("certo")) {
+        $("#vendedor").removeClass("certo");
+    }
+    $("#vendedor").addClass("certo");
+    var a = true;
+    $("#msg_vendedor").text("");
+
+    if ($("#vendedor").val() == "") {
+        $("#msg_vendedor").text("*Vendedor inválido");
+        $("#msg_vendedor").css("color", "red");
+        $("#vendedor").addClass("erro");
+        a = false;
+    }
+    return a;
+}
+
 
 function dcriacao() {
     var agora = new Date().toLocaleString()
     $("#datacriacao").val(agora);
-    alert(agora);
 }
 
 
@@ -21,9 +46,6 @@ function getid(idtd, cpftd, nometd) {
     $("#vendedor").val(nome);
 
     $('#modalVendedor').modal('hide');
-
-    // var hv = $("#idvend").attr("value");
-    //alert(hv);
 }
 
 function getidcomp(idtd, cpftd, nometd) {
@@ -39,9 +61,6 @@ function getidcomp(idtd, cpftd, nometd) {
     $("#comprador").val(nome);
 
     $('#modalComprador').modal('hide');
-
-    // var hv = $("#idvend").attr("value");
-    //alert(hv);
 }
 
 function getidvei(idtd, nometd, placatd) {
@@ -54,6 +73,5 @@ function getidvei(idtd, nometd, placatd) {
     $("#veiculo").val(nome);
 
     $('#modalVeiculo').modal('hide');
-    // var hv = $("#placareadonly").attr("value");
-    // alert(hv);
+
 }
