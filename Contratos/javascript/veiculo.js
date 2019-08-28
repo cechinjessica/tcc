@@ -3,9 +3,10 @@ $(document).ready(function () {
     $("#ano").mask("0000");
     $("#modelo").mask("0000");
     $("#cor").mask("SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS");
-    $("#valor").mask("###0.00", {
+    $("#valorvei").mask("###0.00", {
         reverse: true
     });
+
 
     $("#salvarveiculo").click(function (e) {
         if (!nome()) {
@@ -51,7 +52,6 @@ function nome() {
     $("#nomevei").addClass("certo");
     var a = true;
     $("#msg_nomevei").text("");
-    alert($("#nomevei").val().trim());
     if ($("#nomevei").val().trim() == "") {
         $("#msg_nomevei").text("*Nome inválido");
         $("#msg_nomevei").css("color", "red");

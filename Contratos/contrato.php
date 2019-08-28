@@ -49,6 +49,7 @@ if (isset($_POST['enviarcontrato'])){
     $op=$_POST['op'];
 
     //PARA ATUALIZAR, HAVERÁ ID POIS HÁ UM contrato
+    /*
     if ($id != 0) {
         if ($op == 'A') {
             $sql="UPDATE veiculo SET vei ='$nomevei', marca ='$marca', modelo ='$modelo', ano ='$ano', chassi='$chassi', cor='$cor', placa ='$placa', renavam='$renavam', emnomede ='$proprietario', valor ='$valorvei' where idveiculo ='$id'";
@@ -77,7 +78,8 @@ if (isset($_POST['enviarcontrato'])){
             mysqli_close($conexao);
         }
 
-    }else{//SE FOR == 0 ENTÃO O VEICULO AINDA NÃO ESTÁ CADASTRADO
+    }else{*/
+    //SE FOR == 0 ENTÃO O VEICULO AINDA NÃO ESTÁ CADASTRADO
         //INCLUSÃO
 
         $sql = "INSERT INTO contrato (ValorTotal, NumeroParcelas, ValorParcela, DataPagamento, Juros, Foro, LocalAss, DataAss, DataCriacao, NomeTestemunha1, RGTestemunha1, NomeTestemunha2, RGTestemunha2, Pessoa_IdVendedor,Pessoa_IdComprador, Veiculo_IdVeiculo, Login_IdUsuario) VALUES ('$valortotal' ,'$numeroparcelas' ,'$valorparcela', '$dpagamento', '$juro' ,'$foro' ,'$lassinatura' ,'$dassinatura',(now()), '$ntestemunha1' ,'$rgtestemunha1' ,'$ntestemunha2' ,'$rgtestemunha2' ,'$idvend', '$idcomp' ,'$idvei','$idlogin')";
@@ -95,7 +97,7 @@ if (isset($_POST['enviarcontrato'])){
 
     }
     $id=0;
-}
+/*}*/
 
 
 //PARA PEGAR OS DADOS DOS CAMPOS DO VENDEDOR/COMPRADOR
@@ -164,6 +166,7 @@ if (isset($_POST['enviarveiculo'])){
     $valorvei = $_POST['valorvei'];
     $op=$_POST['op'];
 
+
     //PARA ATUALIZAR, HAVERÁ ID POIS HÁ UM VEICULO
     $sql = "SELECT * FROM veiculo WHERE placa='$placa'";
     mysqli_query($conexao,$sql);
@@ -171,7 +174,7 @@ if (isset($_POST['enviarveiculo'])){
     if (mysqli_affected_rows($conexao)!=0) {
         mysqli_close($conexao);
         $_SESSION['msg'] = "p class='alert alert-danger' role='alert'>$placa já foi cadastrada</p>";
-        header('Location:cadastro_veiculo.php');
+        header('Location:contrato.php');
 
     }else {
         $sql = "INSERT INTO veiculo (nome, marca, modelo, ano, chassi, cor, placa, renavam, emnomede, valor) VALUES ('$nomevei', '$marca', '$modelo', '$ano', '$chassi', '$cor', '$placa', '$renavam', '$proprietario', '$valorvei')";
@@ -179,10 +182,10 @@ if (isset($_POST['enviarveiculo'])){
 
         if (mysqli_affected_rows($conexao) =='1') {
             $_SESSION['msg'] = "<p class='alert alert-success' role='alert'>$nomevei inserido com sucesso!</p>";
-            header('Location:cadastro_veiculo.php');
+            header('Location:contrato.php');
         } else {
             $_SESSION['msg'] ="<p class='alert alert-danger' role='alert'>Erro: ".mysqli_error($conexao)."<p>";
-            header('Location:cadastro_veiculo.php');
+            header('Location:contrato.php');
         }
         mysqli_close($conexao);
     }
@@ -785,22 +788,28 @@ if (isset($_POST['enviarveiculo'])){
 
                         <div class="form-group col-md">
                             <label for="dpagamento" class="col-lg-4 col-sm-12 m-0">Dia de Pagamento</label>
-                            <input type="text" id="dpagamento" class="form-control col-lg-5 m-0" name="dpagamento" value="">
+                            <input type="text" id="dpagamento" class="form-control col-lg-5 m-0" name="dpagamento" value="" placeholder="Ex. 15" title="Todo dia X de cada mês">
+                            <p id="msg_dpagamento" class="form-control-feedback"></p>
 
                             <label for="valortotal" class="col-lg-4 col-sm-12 m-0">Valor Total</label>
                             <input type="text" id="valortotal" class="form-control col-lg-5 m-0" name="valortotal" value="">
+                            <p id="msg_valortotal" class="form-control-feedback"></p>
 
                             <label for="numeroparcelas" class="col-lg-4 col-sm-12 m-0">Quantidade de Parcelas</label>
                             <input type="text" id="numeroparcelas" class="form-control col-lg-5 m-0" name="numeroparcelas" value="">
+                            <p id="msg_numeroparcelas" class="form-control-feedback"></p>
 
                             <label for="vparcela" class="col-lg-4 col-sm-12 m-0">Valor das Parcelas</label>
                             <input type="text" id="valorparcela" class="form-control col-lg-5 m-0" name="valorparcela" value="">
+                            <p id="msg_vparcela" class="form-control-feedback"></p>
 
                             <label for="juro" class="col-lg-4 col-sm-12 m-0">Juros</label>
                             <input type="text" id="juro" class="form-control col-lg-5 m-0" name="juro" value="">
+                            <p id="msg_juro" class="form-control-feedback"></p>
 
                             <label for="foro" class="col-lg-4 col-sm-12 m-0">Foro</label>
                             <input type="text" id="foro" class="form-control col-lg-5 m-0" name="foro" value="">
+                            <p id="msg_foro" class="form-control-feedback"></p>
 
                             <label for="dcriacao">Data Criação</label>
                             <input type="text" id="datacriacao" class="form-control" name="datacriacao" value="">

@@ -1,7 +1,11 @@
 $(document).ready(function () {
     //MASCARAS
-    $("#cnpj").mask("00.000.000/0000-00");
-    $("#cpf").mask("000.000.000-00");
+    $('cnpj').mask('00.000.000/0000-00', {
+        reverse: true
+    });
+    $('#cpf').mask('000.000.000-00', {
+        reverse: true
+    });
     $("#rg").mask("0000000000");
     $("#cep").mask("00000-000");
     $("#numero").mask("000000");
