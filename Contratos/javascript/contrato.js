@@ -1,4 +1,6 @@
 $(document).ready(function () {
+    setdcriacao();
+
     $("#dpagamento").mask("00");
     $("#valortotal").mask("###0.00", {
         reverse: true
@@ -8,7 +10,18 @@ $(document).ready(function () {
         reverse: true
     });
 
-    dcriacao();
+    $("#numeroparcelas").focusout(function (e) {
+        if ($("#valortotal").val() != "" & $("#numeroparcelas").val() != "") {
+            gerarparcela();
+        }
+    });
+
+    $("#valortotal").focusout(function (e) {
+        if ($("#valortotal").val() != "" & $("#numeroparcelas").val() != "") {
+            gerarparcela();
+        }
+    });
+
     $("#salvarcontrato").click(function (e) {
         if (!vendedor()) {
             e.preventDefault();
@@ -28,7 +41,16 @@ $(document).ready(function () {
         if (!numeroparcelas()) {
             e.preventDefault();
         }
-        if (!vprcela()) {
+        if (!valorparcela()) {
+            e.preventDefault();
+        }
+        if (!juro()) {
+            e.preventDefault();
+        }
+        if (!foro()) {
+            e.preventDefault();
+        }
+        if (!datacriacao()) {
             e.preventDefault();
         }
     });
@@ -149,26 +171,111 @@ function numeroparcelas() {
     return a;
 }
 
-function vparcela() {
-    if ($("#vparcela").hasClass("erro")) {
-        $("#vparcela").removeClass("erro");
-    } else if ($("#vparcela").hasClass("certo")) {
-        $("#vparcela").removeClass("certo");
+function valorparcela() {
+    if ($("#valorparcela").hasClass("erro")) {
+        $("#valorparcela").removeClass("erro");
+    } else if ($("#valorparcela").hasClass("certo")) {
+        $("#valorparcela").removeClass("certo");
     }
-    $("#vparcela").addClass("certo");
+    $("#valorparcela").addClass("certo");
     var a = true;
-    $("#msg_vparcela").text("");
+    $("#msg_valorparcela").text("");
 
-    if ($("#vparcela").val() == "") {
-        $("#msg_vparcela").text("*Valor inválido");
-        $("#msg_vparcela").css("color", "red");
-        $("#vparcela").addClass("erro");
+    if ($("#valorparcela").val() == "") {
+        $("#msg_valorparcela").text("*Valor inválido");
+        $("#msg_valorparcela").css("color", "red");
+        $("#valorparcela").addClass("erro");
         a = false;
     }
     return a;
 }
 
-function dcriacao() {
+function gerarparcela() {
+    var total = parseFloat($("#valortotal").val());
+    var numero = parseInt($("#numeroparcelas").val());
+    var parcela = parseFloat(total / numero);
+    $("#valorparcela").val(Math.ceil(parcela));
+}
+
+function juro() {
+    if ($("input[name='juro']").hasClass("erro")) {
+        $("input[name='juro']").removeClass("erro");
+    } else if ($("input[name='juro']").hasClass("certo")) {
+        $("input[name='juro']").removeClass("certo");
+    }
+    $("input[name='juro']").addClass("certo");
+    var a = true;
+    $("#msg_juro").text("");
+
+    if (!$("input[name='juro']").is(':checked')) {
+        $("#msg_juro").text("*Juro inválido");
+        $("#msg_juro").css("color", "red");
+        $("input[name='juro']").addClass("erro");
+        a = false;
+    }
+    return a;
+}
+
+function foro() {
+    if ($("#foro").hasClass("erro")) {
+        $("#foro").removeClass("erro");
+    } else if ($("#foro").hasClass("certo")) {
+        $("#foro").removeClass("certo");
+    }
+    $("#foro").addClass("certo");
+    var a = true;
+    $("#msg_foro").text("");
+
+    if ($("#foro").val() == "") {
+        $("#msg_foro").text("*Foro inválido");
+        $("#msg_foro").css("color", "red");
+        $("#foro").addClass("erro");
+        a = false;
+    }
+    return a;
+}
+
+function datacriacao() {
+    if ($("#datacriacao").hasClass("erro")) {
+        $("#datacriacao").removeClass("erro");
+    } else if ($("#datacriacao").hasClass("certo")) {
+        $("#datacriacao").removeClass("certo");
+    }
+    $("#datacriacao").addClass("certo");
+    var a = true;
+    $("#msg_datacriacao").text("");
+
+    if ($("#datacriacao").val() == "") {
+        $("#msg_datacriacao").text("*Data inválida");
+        $("#msg_datacriacao").css("color", "red");
+        $("#datacriacao").addClass("erro");
+        a = false;
+    }
+    return a;
+}
+
+function ntestemunha1() {
+    if ($("#ntestemunha1").hasClass("erro")) {
+        $("#ntestemunha1").removeClass("erro");
+    } else if ($("#ntestemunha1").hasClass("certo")) {
+        $("#ntestemunha1").removeClass("certo");
+    }
+    $("#ntestemunha1").addClass("certo");
+    var a = true;
+    $("#msg_ntestemunha1").text("");
+
+    if ($("#ntestemunha1").val() == "") {
+        $("#msg_ntestemunha1").text("*Nome inválido");
+        $("#msg_ntestemunha1").css("color", "red");
+        $("#ntestemunha1").addClass("erro");
+        a = false;
+    }
+    return a;
+}
+
+
+
+function setdcriacao() {
     var agora = new Date().toLocaleString()
     $("#datacriacao").val(agora);
 }
@@ -203,14 +310,16 @@ function getidcomp(idtd, cpftd, nometd) {
     $('#modalComprador').modal('hide');
 }
 
-function getidvei(idtd, nometd, placatd) {
+function getidvei(idtd, nometd, placatd, vtotaltd) {
     var id = idtd;
     var nome = nometd;
     var placa = placatd;
+    var vtotal = vtotaltd;
 
     $("#idvei").val(id);
     $("#placareadonly").val(placa);
     $("#veiculo").val(nome);
+    $("#valortotal").val(vtotal);
 
     $('#modalVeiculo').modal('hide');
 

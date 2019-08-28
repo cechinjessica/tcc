@@ -24,7 +24,7 @@ if (isset($_GET['id'])){
     $proprietario = $row[9];
     $valor = $row[10];
 } else{*/
-    $id=0;
+$id=0;
 /*}*/
 
 //PARA PEGAR OS DADOS DOS CAMPOS
@@ -80,23 +80,23 @@ if (isset($_POST['enviarcontrato'])){
 
     }else{*/
     //SE FOR == 0 ENTÃO O VEICULO AINDA NÃO ESTÁ CADASTRADO
-        //INCLUSÃO
+    //INCLUSÃO
 
-        $sql = "INSERT INTO contrato (ValorTotal, NumeroParcelas, ValorParcela, DataPagamento, Juros, Foro, LocalAss, DataAss, DataCriacao, NomeTestemunha1, RGTestemunha1, NomeTestemunha2, RGTestemunha2, Pessoa_IdVendedor,Pessoa_IdComprador, Veiculo_IdVeiculo, Login_IdUsuario) VALUES ('$valortotal' ,'$numeroparcelas' ,'$valorparcela', '$dpagamento', '$juro' ,'$foro' ,'$lassinatura' ,'$dassinatura',(now()), '$ntestemunha1' ,'$rgtestemunha1' ,'$ntestemunha2' ,'$rgtestemunha2' ,'$idvend', '$idcomp' ,'$idvei','$idlogin')";
-        //falta id login
-        mysqli_query($conexao,$sql);
+    $sql = "INSERT INTO contrato (ValorTotal, NumeroParcelas, ValorParcela, DataPagamento, Juros, Foro, LocalAss, DataAss, DataCriacao, NomeTestemunha1, RGTestemunha1, NomeTestemunha2, RGTestemunha2, Pessoa_IdVendedor,Pessoa_IdComprador, Veiculo_IdVeiculo, Login_IdUsuario) VALUES ('$valortotal' ,'$numeroparcelas' ,'$valorparcela', '$dpagamento', '$juro' ,'$foro' ,'$lassinatura' ,'$dassinatura',(now()), '$ntestemunha1' ,'$rgtestemunha1' ,'$ntestemunha2' ,'$rgtestemunha2' ,'$idvend', '$idcomp' ,'$idvei','$idlogin')";
+    //falta id login
+    mysqli_query($conexao,$sql);
 
-        if (mysqli_affected_rows($conexao) =='1') {
-            $_SESSION['msg'] = "<p class='alert alert-success' role='alert'>Contrato inserido com sucesso!</p>";
-            header('Location:contrato.php');
-        } else {
-            $_SESSION['msg'] ="<p class='alert alert-danger' role='alert'>Erro: ".mysqli_error($conexao)."<p>";
-            header('Location:contrato.php');
-        }
-        mysqli_close($conexao);
-
+    if (mysqli_affected_rows($conexao) =='1') {
+        $_SESSION['msg'] = "<p class='alert alert-success' role='alert'>Contrato inserido com sucesso!</p>";
+        header('Location:contrato.php');
+    } else {
+        $_SESSION['msg'] ="<p class='alert alert-danger' role='alert'>Erro: ".mysqli_error($conexao)."<p>";
+        header('Location:contrato.php');
     }
-    $id=0;
+    mysqli_close($conexao);
+
+}
+$id=0;
 /*}*/
 
 
@@ -792,7 +792,7 @@ if (isset($_POST['enviarveiculo'])){
                             <p id="msg_dpagamento" class="form-control-feedback"></p>
 
                             <label for="valortotal" class="col-lg-4 col-sm-12 m-0">Valor Total</label>
-                            <input type="text" id="valortotal" class="form-control col-lg-5 m-0" name="valortotal" value="">
+                            <input type="text" id="valortotal" class="form-control col-lg-5 m-0" name="valortotal" value="" readonly>
                             <p id="msg_valortotal" class="form-control-feedback"></p>
 
                             <label for="numeroparcelas" class="col-lg-4 col-sm-12 m-0">Quantidade de Parcelas</label>
@@ -800,19 +800,32 @@ if (isset($_POST['enviarveiculo'])){
                             <p id="msg_numeroparcelas" class="form-control-feedback"></p>
 
                             <label for="vparcela" class="col-lg-4 col-sm-12 m-0">Valor das Parcelas</label>
-                            <input type="text" id="valorparcela" class="form-control col-lg-5 m-0" name="valorparcela" value="">
-                            <p id="msg_vparcela" class="form-control-feedback"></p>
+                            <input type="text" id="valorparcela" class="form-control col-lg-5 m-0" name="valorparcela" value="" readonly>
+                            <p id="msg_valorparcela" class="form-control-feedback"></p>
 
                             <label for="juro" class="col-lg-4 col-sm-12 m-0">Juros</label>
-                            <input type="text" id="juro" class="form-control col-lg-5 m-0" name="juro" value="">
+                            <div class="form-check-inline">
+                                <input type="radio" id="juro05" class="form-check-input" name="juro" value="0.5% ao mês">0.5% ao mês
+                            </div>
+                            <div class="form-check-inline">
+                                <input type="radio" id="juro1" class="form-check-input" name="juro" value="1% ao mês">1% ao mês
+                            </div>
+                            <div class="form-check-inline">
+                                <input type="radio" id="juro15" class="form-check-input" name="juro" value="1.5% ao mês">1.5% ao mês
+                            </div>
+                            <div class="form-check-inline">
+                                <input type="radio" id="juro2" class="form-check-input" name="juro" value="2% ao mês">2% ao mês
+                            </div>
+                            <label class="form-text text-muted">A porcentagem de juros é cobrada sob o valor incial.</label>
                             <p id="msg_juro" class="form-control-feedback"></p>
 
                             <label for="foro" class="col-lg-4 col-sm-12 m-0">Foro</label>
                             <input type="text" id="foro" class="form-control col-lg-5 m-0" name="foro" value="">
                             <p id="msg_foro" class="form-control-feedback"></p>
 
-                            <label for="dcriacao">Data Criação</label>
+                            <label for="datacriacao">Data Criação</label>
                             <input type="text" id="datacriacao" class="form-control" name="datacriacao" value="">
+                            <p id="msg_datacriacao" class="form-control-feedback"></p>
                         </div>
                         <div class="row">
                             <div class="form-group col-xl">
