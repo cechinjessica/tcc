@@ -54,9 +54,10 @@
     </script>
 </head>
 
-<body>
+<body style="background: #007bff;
+                 background: linear-gradient(to left, #5A8BB7, #2D9AAD);">
     <!--NAVBAR-->
-    <nav class="navbar navbar-expand-sm bg-info navbar-light fixed-top">
+    <nav class="navbar navbar-expand-sm bg-info navbar-light sticky-top">
         <a class="navbar-brand" href="#"><img src="../imagens/icone.png" width="30px">Á definir</a>
         <a class="nav-text">Bem vindo(a) <?php echo $_SESSION['nome']; ?></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">

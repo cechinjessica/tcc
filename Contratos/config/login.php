@@ -25,7 +25,7 @@ if (mysqli_affected_rows($conexao) != '0') {
 	$_SESSION['usuario'] = $usuario;
 	$_SESSION['nome'] = $nome;
 	$_SESSION['email'] = $email;
-	header('Location: ../cadastros/cadastro_pessoa.php');
+	header('Location: ../contrato.php');
 	exit();
 }else{
 	$_SESSION['nao_autenticado'] = true;

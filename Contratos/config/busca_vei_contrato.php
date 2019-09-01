@@ -32,7 +32,7 @@ if (mysqli_affected_rows($conexao)>0) {
             </thead>";
     while ($row=mysqli_fetch_row($result))
     {
-        echo " <tbody class='table-striped'>";
+        echo " <tbody>";
         echo " <tr>";
         echo "<th scope='row' id=".$row[0]." onclick=getidvei(".$row[0].",'".$row[1]."','".$row[7]."','".$row[10]."') >".$row[0]."</td>";
         echo "<td id=".$row[0]." onclick=getidvei(".$row[0].",'".$row[1]."','".$row[7]."','".$row[10]."') >".$row[1]."</td>";
