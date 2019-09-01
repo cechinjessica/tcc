@@ -5,7 +5,6 @@ $(document).ready(function () {
     $("#valortotal").mask("###0.00", {
         reverse: true
     });
-    $("#numeroparcelas").mask("00");
     $("#vparcela").mask("###0.00", {
         reverse: true
     });
@@ -21,6 +20,8 @@ $(document).ready(function () {
             gerarparcela();
         }
     });
+    $("#rgtestemunha1").mask("0000000000");
+    $("#rgtestemunha2").mask("0000000000");
 
     $("#salvarcontrato").click(function (e) {
         if (!vendedor()) {
@@ -53,6 +54,25 @@ $(document).ready(function () {
         if (!datacriacao()) {
             e.preventDefault();
         }
+        if (!ntestemunha1()) {
+            e.preventDefault();
+        }
+        if (!rgtestemunha1()) {
+            e.preventDefault();
+        }
+        if (!ntestemunha2()) {
+            e.preventDefault();
+        }
+        if (!rgtestemunha2()) {
+            e.preventDefault();
+        }
+        if (!lassinatura()) {
+            e.preventDefault();
+        }
+        if (!dassinatura()) {
+            e.preventDefault();
+        }
+
     });
 })
 
@@ -264,7 +284,8 @@ function ntestemunha1() {
     var a = true;
     $("#msg_ntestemunha1").text("");
 
-    if ($("#ntestemunha1").val() == "") {
+    var nome = $("#ntestemunha1").val();
+    if (nome.trim() == "" || nome.trim().indexOf(" ") == -1) {
         $("#msg_ntestemunha1").text("*Nome inválido");
         $("#msg_ntestemunha1").css("color", "red");
         $("#ntestemunha1").addClass("erro");
@@ -272,6 +293,112 @@ function ntestemunha1() {
     }
     return a;
 }
+
+function rgtestemunha1() {
+    if ($("#rgtestemunha1").hasClass("erro")) {
+        $("#rgtestemunha1").removeClass("erro");
+    } else if ($("#rgtestemunha1").hasClass("certo")) {
+        $("#rgtestemunha1").removeClass("certo");
+    }
+    $("#rgtestemunha1").addClass("certo");
+    var a = true;
+    $("#msg_rgtestemunha1").text("");
+
+    if ($("#rgtestemunha1").val().trim() == "") {
+        $("#msg_rgtestemunha1").text("*RG inválido");
+        $("#msg_rgtestemunha1").css("color", "red");
+        $("#rgtestemunha1").addClass("erro");
+        a = false;
+    }
+    return a;
+}
+
+function ntestemunha2() {
+    if ($("#ntestemunha2").hasClass("erro")) {
+        $("#ntestemunha2").removeClass("erro");
+    } else if ($("#ntestemunha2").hasClass("certo")) {
+        $("#ntestemunha2").removeClass("certo");
+    }
+    $("#ntestemunha2").addClass("certo");
+    var a = true;
+    $("#msg_ntestemunha2").text("");
+
+    var nome = $("#ntestemunha2").val();
+    if (nome.trim() == "" || nome.trim().indexOf(" ") == -1) {
+        $("#msg_ntestemunha2").text("*Nome inválido");
+        $("#msg_ntestemunha2").css("color", "red");
+        $("#ntestemunha2").addClass("erro");
+        a = false;
+    }
+    return a;
+}
+
+function rgtestemunha2() {
+    if ($("#rgtestemunha2").hasClass("erro")) {
+        $("#rgtestemunha2").removeClass("erro");
+    } else if ($("#rgtestemunha2").hasClass("certo")) {
+        $("#rgtestemunha2").removeClass("certo");
+    }
+    $("#rgtestemunha2").addClass("certo");
+    var a = true;
+    $("#msg_rgtestemunha2").text("");
+
+    if ($("#rgtestemunha2").val().trim() == "") {
+        $("#msg_rgtestemunha2").text("*RG inválido");
+        $("#msg_rgtestemunha2").css("color", "red");
+        $("#rgtestemunha2").addClass("erro");
+        a = false;
+    }
+    return a;
+}
+
+function lassinatura() {
+    if ($("#lassinatura").hasClass("erro")) {
+        $("#lassinatura").removeClass("erro");
+    } else if ($("#lassinatura").hasClass("certo")) {
+        $("#lassinatura").removeClass("certo");
+    }
+    $("#lassinatura").addClass("certo");
+    var a = true;
+    $("#msg_lassinatura").text("");
+
+    if ($("#lassinatura").val() == "") {
+        $("#msg_lassinatura").text("*Local inválido");
+        $("#msg_lassinatura").css("color", "red");
+        $("#lassinatura").addClass("erro");
+        a = false;
+    }
+    return a;
+}
+
+function dassinatura() {
+    if ($("#dassinatura").hasClass("erro")) {
+        $("#dassinatura").removeClass("erro");
+    } else if ($("#dassinatura").hasClass("certo")) {
+        $("#dassinatura").removeClass("certo");
+    }
+    $("#dassinatura").addClass("certo");
+    var a = true;
+    $("#msg_dassinatura").text("");
+
+
+    var hoje = new Date();
+    hoje.setHours(0, 0, 0, 0);
+    var input = $("#dassinatura").val()
+    var data = new Date(input);
+    data.setHours(0, 0, 0, 0);
+    data.setDate(data.getDate() + 1);
+
+    if (data.valueOf() < hoje.valueOf()) {
+        $("#msg_dassinatura").text("*Data inválida");
+        $("#msg_dassinatura").css("color", "red");
+        $("#dassinatura").addClass("erro");
+        a = false;
+    }
+
+    return a;
+}
+
 
 
 

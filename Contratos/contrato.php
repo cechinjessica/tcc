@@ -831,9 +831,11 @@ if (isset($_POST['enviarveiculo'])){
                             <div class="form-group col-xl">
                                 <label for="ntestemunha1" class="col-lg-5 col-xl-4 col-sm-12 m-0 ">Nome Completo da Testemunha 1</label>
                                 <input type="text" id="ntestemunha1" class="form-control col-xl-4 col-lg-5 m-0" name="ntestemunha1" value="">
+                                <p id="msg_ntestemunha1" class="form-control-feedback"></p>
 
                                 <label for="rgtestemunha1" class="col-lg-5 col-xl-3 col-sm-12 m-0 ">RG da Testemunha 1</label>
                                 <input type="text" id="rgtestemunha1" class="form-control col-xl-4 col-lg-5 m-0" name="rgtestemunha1" value="">
+                                <p id="msg_rgtestemunha1" class="form-control-feedback"></p>
                             </div>
                         </div>
 
@@ -841,19 +843,23 @@ if (isset($_POST['enviarveiculo'])){
                             <div class="form-group col-xl">
                                 <label for="ntestemunha2" class="col-lg-5 col-xl-4 col-sm-12 m-0 ">Nome Completo da Testemunha 2</label>
                                 <input type="text" id="ntestemunha2" class="form-control col-xl-4 col-lg-5 m-0" name="ntestemunha2" value="">
+                                <p id="msg_ntestemunha2" class="form-control-feedback"></p>
 
                                 <label for="rgtestemunha2" class="col-lg-5 col-xl-3 col-sm-12 m-0 ">RG da Testemunha 2</label>
                                 <input type="text" id="rgtestemunha2" class="form-control col-xl-4 col-lg-5 m-0" name="rgtestemunha2" value="">
+                                <p id="msg_rgtestemunha2" class="form-control-feedback"></p>
                             </div>
                         </div>
 
                         <div class="row">
                             <div class="form-group col-md">
-                                <label for="lassinatura" class="col-lg-3 col-sm-12 m-0 ">Local de Assinatura</label>
+                                <label for="lassinatura" class="col-lg-3 col-sm-12 m-0 ">Cidade para Assinatura</label>
                                 <input type="text" id="lassinatura" class="form-control p-0 col-lg-4 m-0" name="lassinatura" value="">
+                                <p id="msg_lassinatura" class="form-control-feedback"></p>
 
                                 <label for="dassinatura" class="col-lg-3 col-sm-12 m-0 ">Data de Assinatura</label>
                                 <input type="date" id="dassinatura" class="form-control p-0 col-lg-4 m-0" name="dassinatura" value="">
+                                <p id="msg_dassinatura" class="form-control-feedback"></p>
                             </div>
                         </div>
 
