@@ -65,13 +65,7 @@
         <div class="collapse navbar-collapse" id="collapsibleNavbar">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Link</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Link</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Link</a>
+                    <a class="nav-link" href="../contrato.php">Criar contrato</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
@@ -80,17 +74,15 @@
                     <div class="dropdown-menu">
                         <a class="dropdown-item" href="vendedor.php">Pessoa</a>
                         <a class="dropdown-item" href="veiculo.php">Veículo</a>
-                        <a class="dropdown-item" href="#">Link 3</a>
                     </div>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
-                        Relatórios
+                        Ver cadastros
                     </a>
                     <div class="dropdown-menu">
                         <a class="dropdown-item" href="cadastro_pessoa.php">Pessoa</a>
                         <a class="dropdown-item" href="cadastro_veiculo.php">Veículo</a>
-                        <a class="dropdown-item" href="#">Link 3</a>
                     </div>
                 </li>
                 <li class="nav-item">

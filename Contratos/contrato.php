@@ -287,43 +287,35 @@ if (isset($_POST['enviarveiculo'])){
     <!--NAVBAR-->
     <nav class="navbar navbar-expand-sm bg-info navbar-light fixed-top">
         <a class="navbar-brand" href="#"><img src="imagens/icone.png" width="30px">Á definir</a>
-        <a class="nav-text">Bem vindo(a) <?php echo $_SESSION['usuario']; ?></a>
+        <a class="nav-text">Bem vindo(a) <?php echo $_SESSION['nome']; ?></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="collapsibleNavbar">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Link</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Link</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Link</a>
+                    <a class="nav-link" href="contrato.php">Criar contrato</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
                         Cadastrar
                     </a>
                     <div class="dropdown-menu">
-                        <a class="dropdown-item" href="vendedor.php">Pessoa</a>
-                        <a class="dropdown-item" href="veiculo.php">Veículo</a>
-                        <a class="dropdown-item" href="#">Link 3</a>
+                        <a class="dropdown-item" href="cadastros/vendedor.php">Pessoa</a>
+                        <a class="dropdown-item" href="cadastros/veiculo.php">Veículo</a>
                     </div>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
-                        Relatórios
+                        Ver cadastros
                     </a>
                     <div class="dropdown-menu">
-                        <a class="dropdown-item" href="cadastro_pessoa.php">Pessoa</a>
-                        <a class="dropdown-item" href="cadastro_veiculo.php">Veículo</a>
-                        <a class="dropdown-item" href="#">Link 3</a>
+                        <a class="dropdown-item" href="cadastros/cadastro_pessoa.php">Pessoa</a>
+                        <a class="dropdown-item" href="cadastros/cadastro_veiculo.php">Veículo</a>
                     </div>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="../config/logout.php">Logout</a>
+                    <a class="nav-link" href="config/logout.php">Logout</a>
                 </li>
             </ul>
         </div>
@@ -852,13 +844,13 @@ if (isset($_POST['enviarveiculo'])){
                         </div>
 
                         <div class="row">
-                            <div class="form-group col-md">
+                            <div class="form-group col-xl">
                                 <label for="lassinatura" class="col-lg-3 col-sm-12 m-0 ">Cidade para Assinatura</label>
-                                <input type="text" id="lassinatura" class="form-control p-0 col-lg-4 m-0" name="lassinatura" value="">
+                                <input type="text" id="lassinatura" class="form-control col-xl-4 col-lg-5 m-0" name="lassinatura" value="">
                                 <p id="msg_lassinatura" class="form-control-feedback"></p>
 
                                 <label for="dassinatura" class="col-lg-3 col-sm-12 m-0 ">Data de Assinatura</label>
-                                <input type="date" id="dassinatura" class="form-control p-0 col-lg-4 m-0" name="dassinatura" value="">
+                                <input type="date" id="dassinatura" class="form-control col-xl-4 col-lg-5 m-0" name="dassinatura" value="">
                                 <p id="msg_dassinatura" class="form-control-feedback"></p>
                             </div>
                         </div>

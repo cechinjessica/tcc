@@ -1,6 +1,13 @@
 <?php
 session_start();
 
-unset($_SESSION['usuario']);
-header("Location: ../index.php");
+if(session_destroy()){
+    $_SESSION = array();
+    unset($_SESSION['usuario']);
+    unset($_SESSION['email']);
+    unset($_SESSION['nome']);
+    unset($_SESSION['idusuario']);
+    header("Location: ../index.php");
+}
+
 ?>
