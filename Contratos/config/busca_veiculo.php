@@ -13,8 +13,8 @@ $sql.=" ORDER BY idveiculo";
 $result=mysqli_query($conexao,$sql);
 if (mysqli_affected_rows($conexao)>0) {
     echo "<div class='table-responsive'>
-	<table class='table table-hover table-light table-borderless table-sm'>
-             <thead class='thead-dark'>
+	<table class='table table-hover table-light table-sm'>
+             <thead>
 			  <tr>
                 <th scope='col'>Código</th>
                 <th scope='col'>Nome</th>
@@ -32,7 +32,7 @@ if (mysqli_affected_rows($conexao)>0) {
             </thead>";
     while ($row=mysqli_fetch_row($result))
     {
-        echo " <tbody class='table-striped'>";
+        echo " <tbody>";
         echo " <tr>";
         echo "<th scope='row'>".$row[0]."</td>";
         echo "<td>".$row[1]."</td>";
@@ -45,7 +45,7 @@ if (mysqli_affected_rows($conexao)>0) {
         echo "<td>".$row[9]."</td>";
         echo "<td>".$row[8]."</td>";
         echo "<td>".$row[10]."</td>";
-        echo "<td> <a href=veiculo.php?id=".$row[0]."&op=A".">Editar".  "|" ."<a href=veiculo.php?id=".$row[0]. "&op=D". ">Apagar" . "</td>";
+        echo "<td> <a href=veiculo.php?id=".$row[0]."&op=A><button type='button' class='btn btn-info btn-sm w-100'>Atualizar</button></a><a href=veiculo.php?id=".$row[0]. "&op=D><button type='button' class='btn btn-danger btn-sm w-100'>Deletar</button></a></td>";
 		echo " </tr>";
     }   echo " </tbody>";
     echo "</table></div>";

@@ -1,7 +1,7 @@
 <?php
 session_start();
 require 'config/conexao.php';
-require 'config/verifica_login.php';
+require 'verifica_login.php';
 
 //PARA COLOCAR AS INFORMAÇÕES DO BD NOS CAMPOS CONTRATO
 ////////////////////////////Contrato
@@ -285,39 +285,41 @@ if (isset($_POST['enviarveiculo'])){
     <script type="text/javascript" src="javascript/contrato.js"></script>
     <script type="text/javascript" src="javascript/vendedorcomprador.js"></script>
     <!--NAVBAR-->
-    <nav class="navbar navbar-expand-sm bg-info navbar-light fixed-top">
-        <a class="navbar-brand" href="#"><img src="imagens/icone.png" width="30px">Á definir</a>
-        <a class="nav-text">Bem vindo(a) <?php echo $_SESSION['nome']; ?></a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="collapsibleNavbar">
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link" href="contrato.php">Criar contrato</a>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
-                        Cadastrar
-                    </a>
-                    <div class="dropdown-menu">
-                        <a class="dropdown-item" href="cadastros/vendedor.php">Pessoa</a>
-                        <a class="dropdown-item" href="cadastros/veiculo.php">Veículo</a>
-                    </div>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
-                        Ver cadastros
-                    </a>
-                    <div class="dropdown-menu">
-                        <a class="dropdown-item" href="cadastros/cadastro_pessoa.php">Pessoa</a>
-                        <a class="dropdown-item" href="cadastros/cadastro_veiculo.php">Veículo</a>
-                    </div>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="config/logout.php">Logout</a>
-                </li>
-            </ul>
+    <nav class="navbar navbar-expand-sm bg-info navbar-light sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="#"><img src="imagens/icone.png" width="30px">Á definir</a>
+            <a class="nav-text d-sm-none d-md-block">Bem vindo(a) <?php echo $_SESSION['nome']; ?></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="collapsibleNavbar">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="contrato.php">Criar contrato</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                            Cadastrar
+                        </a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="cadastros/vendedor.php">Pessoa</a>
+                            <a class="dropdown-item" href="cadastros/veiculo.php">Veículo</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                            Ver cadastros
+                        </a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="cadastros/cadastro_pessoa.php">Pessoa</a>
+                            <a class="dropdown-item" href="cadastros/cadastro_veiculo.php">Veículo</a>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="config/logout.php">Logout</a>
+                    </li>
+                </ul>
+            </div>
         </div>
     </nav>
     <!--</NAVBAR-->
