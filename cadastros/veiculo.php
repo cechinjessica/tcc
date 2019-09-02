@@ -44,7 +44,7 @@ if (isset($_POST['enviarveiculo'])){
     //PARA ATUALIZAR, HAVERÁ ID POIS HÁ UM VEICULO
     if ($id != 0) {
         if ($op == 'A') {
-            $sql="UPDATE veiculo SET vei ='$nomevei', marca ='$marca', modelo ='$modelo', ano ='$ano', chassi='$chassi', cor='$cor', placa ='$placa', renavam='$renavam', emnomede ='$proprietario', valor ='$valorvei' where idveiculo ='$id'";
+            $sql="UPDATE veiculo SET Nome ='$nomevei', Marca ='$marca', Modelo ='$modelo', Ano ='$ano', Chassi='$chassi', Cor='$cor', Placa ='$placa', Renavam='$renavam', EmNomeDe ='$proprietario', Valor ='$valorvei' where IdVeiculo ='$id'";
 
             $res = mysqli_query($conexao,$sql);
             if (mysqli_error($conexao)) {

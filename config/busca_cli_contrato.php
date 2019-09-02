@@ -16,23 +16,23 @@ if (mysqli_affected_rows($conexao)>0) {
 	<table class='table table-hover table-light table-sm' >
              <thead>
 			  <tr>
-                <th scope='col'>Código</th>
-                <th scope='col'>Pessoa</th>
-                <th scope='col'>Nome</th>
-                <th scope='col'>Origem</th>
-                <th scope='col'>Profissão</th>
-                <th scope='col'>Est. Cívil</th>
-                <th scope='col'>RG</th>
-                <th scope='col'>CPF</th>
-				<th scope='col'>Sexo</th>
-                <th scope='col'>Endereço</th>
-                <th scope='col'>Número</th>
-                <th scope='col'>Cidade</th>
-				<th scope='col'>Empresa</th>
-                <th scope='col'>CNPJ</th>
-                <th scope='col'>Cargo</th>
-                <th scope='col'>Cidade</th>
-                <th scope='col'>Operação</th>
+                <th scope='col' style='white-space: nowrap; text-align:center;'>Código</th>
+                <th scope='col' style='white-space: nowrap; text-align:center;'>Pessoa</th>
+                <th scope='col' style='white-space: nowrap; text-align:center;'>Nome</th>
+                <th scope='col' style='white-space: nowrap; text-align:center;'>Origem</th>
+                <th scope='col' style='white-space: nowrap; text-align:center;'>Profissão</th>
+                <th scope='col' style='white-space: nowrap; text-align:center;'>Est. Cívil</th>
+                <th scope='col' style='white-space: nowrap; text-align:center;'>RG</th>
+                <th scope='col' style='white-space: nowrap; text-align:center;'>CPF</th>
+				<th scope='col' style='white-space: nowrap; text-align:center;'>Sexo</th>
+                <th scope='col' style='white-space: nowrap; text-align:center;'>Endereço</th>
+                <th scope='col' style='white-space: nowrap; text-align:center;'>Número</th>
+                <th scope='col' style='white-space: nowrap; text-align:center;'>Cidade</th>
+				<th scope='col' style='white-space: nowrap; text-align:center;'>Empresa</th>
+                <th scope='col' style='white-space: nowrap; text-align:center;'>CNPJ</th>
+                <th scope='col' style='white-space: nowrap; text-align:center;'>Cargo</th>
+                <th scope='col' style='white-space: nowrap; text-align:center;'>Cidade</th>
+                <th scope='col' style='white-space: nowrap; text-align:center;'>Operação</th>
 			 <tr>
             </thead>";
    while ($row=mysqli_fetch_row($result))
@@ -50,22 +50,22 @@ if (mysqli_affected_rows($conexao)>0) {
       }
       echo " <tbody>";
       echo " <tr>";
-      echo "<th scope='row' id=".$row[0]." onclick=getid(".$row[0].",'".$row[7]."','".$nome."') >".$row[0]."</td>";
-      echo "<td id=".$row[0]." onclick=getid(".$row[0].",'".$row[7]."','".$nome."') >".$pessoa."</td>";
-      echo "<td id=".$row[0]." onclick=getid(".$row[0].",'".$row[7]."','".$nome."') >".$row[2]."</td>";
-      echo "<td id=".$row[0]." onclick=getid(".$row[0].",'".$row[7]."','".$nome."') >".$row[3]."</td>";
-      echo "<td id=".$row[0]." onclick=getid(".$row[0].",'".$row[7]."','".$nome."') >".$row[4]."</td>";
-      echo "<td id=".$row[0]." onclick=getid(".$row[0].",'".$row[7]."','".$nome."') >".$row[5]."</td>";
-      echo "<td id=".$row[0]." onclick=getid(".$row[0].",'".$row[7]."','".$nome."') >".$row[6]."</td>";
-      echo "<td id=".$row[0]." onclick=getid(".$row[0].",'".$row[7]."','".$nome."') >".$row[7]."</td>";
-      echo "<td id=".$row[0]." onclick=getid(".$row[0].",'".$row[7]."','".$nome."') >".$sexo."</td>";
-      echo "<td id=".$row[0]." onclick=getid(".$row[0].",'".$row[7]."','".$nome."') >".$row[8]."</td>";
-      echo "<td id=".$row[0]." onclick=getid(".$row[0].",'".$row[7]."','".$nome."') >".$row[10]."</td>";
-      echo "<td id=".$row[0]." onclick=getid(".$row[0].",'".$row[7]."','".$nome."') >".$row[11]."</td>";
-      echo "<td id=".$row[0]." onclick=getid(".$row[0].",'".$row[7]."','".$nome."') >".$row[19]."</td>";
-      echo "<td id=".$row[0]." onclick=getid(".$row[0].",'".$row[7]."','".$nome."') >".$row[13]."</td>";
-      echo "<td id=".$row[0]." onclick=getid(".$row[0].",'".$row[7]."','".$nome."') >".$row[15]."</td>";
-      echo "<td id=".$row[0]." onclick=getid(".$row[0].",'".$row[7]."','".$nome."') >".$row[17]."</td>";
+      echo "<th scope='row' id=".$row[0]." onclick=getid(".$row[0].",'".$row[7]."','".$nome."') style='white-space: nowrap;' >".$row[0]."</td>";
+      echo "<td id=".$row[0]." onclick=getid(".$row[0].",'".$row[7]."','".$nome."') style='white-space: nowrap;' >".$pessoa."</td>";
+      echo "<td id=".$row[0]." onclick=getid(".$row[0].",'".$row[7]."','".$nome."') style='white-space: nowrap;' >".$row[2]."</td>";
+      echo "<td id=".$row[0]." onclick=getid(".$row[0].",'".$row[7]."','".$nome."') style='white-space: nowrap;' >".$row[3]."</td>";
+      echo "<td id=".$row[0]." onclick=getid(".$row[0].",'".$row[7]."','".$nome."') style='white-space: nowrap;' >".$row[4]."</td>";
+      echo "<td id=".$row[0]." onclick=getid(".$row[0].",'".$row[7]."','".$nome."') style='white-space: nowrap;' >".$row[5]."</td>";
+      echo "<td id=".$row[0]." onclick=getid(".$row[0].",'".$row[7]."','".$nome."') style='white-space: nowrap;' >".$row[6]."</td>";
+      echo "<td id=".$row[0]." onclick=getid(".$row[0].",'".$row[7]."','".$nome."') style='white-space: nowrap;' >".$row[7]."</td>";
+      echo "<td id=".$row[0]." onclick=getid(".$row[0].",'".$row[7]."','".$nome."') style='white-space: nowrap;' >".$sexo."</td>";
+      echo "<td id=".$row[0]." onclick=getid(".$row[0].",'".$row[7]."','".$nome."' style='white-space: nowrap;') >".$row[8]."</td>";
+      echo "<td id=".$row[0]." onclick=getid(".$row[0].",'".$row[7]."','".$nome."') style='white-space: nowrap;' >".$row[10]."</td>";
+      echo "<td id=".$row[0]." onclick=getid(".$row[0].",'".$row[7]."','".$nome."') style='white-space: nowrap;' >".$row[11]."</td>";
+      echo "<td id=".$row[0]." onclick=getid(".$row[0].",'".$row[7]."','".$nome."') style='white-space: nowrap;' >".$row[19]."</td>";
+      echo "<td id=".$row[0]." onclick=getid(".$row[0].",'".$row[7]."','".$nome."') style='white-space: nowrap;' >".$row[13]."</td>";
+      echo "<td id=".$row[0]." onclick=getid(".$row[0].",'".$row[7]."','".$nome."') style='white-space: nowrap;' >".$row[15]."</td>";
+      echo "<td id=".$row[0]." onclick=getid(".$row[0].",'".$row[7]."','".$nome."') style='white-space: nowrap;' >".$row[17]."</td>";
       echo "<td> <a href=cadastros/vendedor.php?id=".$row[0]."&op=A"."><button type='button' class='btn btn-info btn-sm w-100'>Atualizar</button></a><a href=cadastros/vendedor.php?id=".$row[0]. "&op=D" . "><button type='button' class='btn btn-danger btn-sm w-100'>Deletar</button></a>" . "</td>" ;
       echo " </tr>" ;
    } echo " </tbody>" ;

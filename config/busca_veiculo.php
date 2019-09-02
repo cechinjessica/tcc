@@ -16,35 +16,35 @@ if (mysqli_affected_rows($conexao)>0) {
 	<table class='table table-hover table-light table-sm'>
              <thead>
 			  <tr>
-                <th scope='col'>Código</th>
-                <th scope='col'>Nome</th>
-                <th scope='col'>Marca</th>
-                <th scope='col'>Modelo</th>
-                <th scope='col'>Ano</th>
-                <th scope='col'>Chassi</th>
-                <th scope='col'>Cor</th>
-                <th scope='col'>Placa</th>
-				<th scope='col'>Renavam</th>
-                <th scope='col'>Proprietário</th>
-                <th scope='col'>Valor</th>
-                <th scope='col'>Operação</th>
+                <th scope='col' style='white-space: nowrap; text-align:center;'>Código</th>
+                <th scope='col' style='white-space: nowrap; text-align:center;'>Nome</th>
+                <th scope='col' style='white-space: nowrap; text-align:center;'>Marca</th>
+                <th scope='col' style='white-space: nowrap; text-align:center;'>Modelo</th>
+                <th scope='col' style='white-space: nowrap; text-align:center;'>Ano</th>
+                <th scope='col' style='white-space: nowrap; text-align:center;'>Chassi</th>
+                <th scope='col' style='white-space: nowrap; text-align:center;'>Cor</th>
+                <th scope='col' style='white-space: nowrap; text-align:center;'>Placa</th>
+				<th scope='col' style='white-space: nowrap; text-align:center;'>Renavam</th>
+                <th scope='col' style='white-space: nowrap; text-align:center;'>Proprietário</th>
+                <th scope='col' style='white-space: nowrap; text-align:center;'>Valor</th>
+                <th scope='col' style='white-space: nowrap; text-align:center;'>Operação</th>
 			 <tr>
             </thead>";
     while ($row=mysqli_fetch_row($result))
     {
         echo " <tbody>";
         echo " <tr>";
-        echo "<th scope='row'>".$row[0]."</td>";
-        echo "<td>".$row[1]."</td>";
-        echo "<td>".$row[2]."</td>";
-        echo "<td>".$row[3]."</td>";
-        echo "<td>".$row[4]."</td>";
-        echo "<td>".$row[5]."</td>";
-        echo "<td>".$row[6]."</td>";
-        echo "<td>".$row[7]."</td>";
-        echo "<td>".$row[9]."</td>";
-        echo "<td>".$row[8]."</td>";
-        echo "<td>".$row[10]."</td>";
+        echo "<th scope='row' style='white-space: nowrap;'>".$row[0]."</td>";
+        echo "<td style='white-space: nowrap;'>".$row[1]."</td>";
+        echo "<td style='white-space: nowrap;'>".$row[2]."</td>";
+        echo "<td style='white-space: nowrap;'>".$row[3]."</td>";
+        echo "<td style='white-space: nowrap;'>".$row[4]."</td>";
+        echo "<td style='white-space: nowrap;'>".$row[5]."</td>";
+        echo "<td style='white-space: nowrap;'>".$row[6]."</td>";
+        echo "<td style='white-space: nowrap;'>".$row[7]."</td>";
+        echo "<td style='white-space: nowrap;'>".$row[9]."</td>";
+        echo "<td style='white-space: nowrap;'>".$row[8]."</td>";
+        echo "<td style='white-space: nowrap;'>".$row[10]."</td>";
         echo "<td> <a href=veiculo.php?id=".$row[0]."&op=A><button type='button' class='btn btn-info btn-sm w-100'>Atualizar</button></a><a href=veiculo.php?id=".$row[0]. "&op=D><button type='button' class='btn btn-danger btn-sm w-100'>Deletar</button></a></td>";
 		echo " </tr>";
     }   echo " </tbody>";
