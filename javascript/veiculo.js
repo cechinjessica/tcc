@@ -6,7 +6,9 @@ $(document).ready(function () {
     $("#valorvei").mask("###0.00", {
         reverse: true
     });
-
+    $("#placa").mask("AAAA-AAAA", {
+        reverse: true
+    });
 
     $("#salvarveiculo").click(function (e) {
         if (!nome()) {

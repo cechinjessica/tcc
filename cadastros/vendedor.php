@@ -291,8 +291,11 @@ if (isset($_POST['enviar'])){
                     <div class="dropdown-menu">
                         <a class="dropdown-item" href="cadastro_pessoa.php">Pessoa</a>
                         <a class="dropdown-item" href="cadastro_veiculo.php">Veículo</a>
+                        <a class="dropdown-item" href="cadastro_contrato.php">Contrato</a>
                     </div>
                 </li>
+            </ul>
+            <ul class="navbar-nav flex-row ml-md-auto d-md-flex">
                 <li class="nav-item">
                     <a class="nav-link" href="../config/logout.php">Logout</a>
                 </li>

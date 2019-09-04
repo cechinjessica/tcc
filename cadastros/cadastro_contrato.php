@@ -1,13 +1,15 @@
 <!DOCTYPE html>
-<?php session_start(); ?>
+<?php session_start();
+include('../config/verifica_login.php');
+?>
 
 <html>
 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="shortcut icon" href="imagens/icone.png" />
-    <title>Contrato - Pessoas</title>
+    <link rel="shortcut icon" href="../imagens/icone.png" />
+    <title>Contrato - Contratos</title>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -15,43 +17,6 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
     <link rel="stylesheet" type="text/css" href="../css/style.css">
-    <?php include('../config/verifica_login.php');
-	?>
-    <script>
-        function showcli(nm) {
-            str = nm;
-            //COM JQUERY
-            //POST
-            /*$.post("busca_cli.php", {
-            	q: str;
-            	//op: 'teste'
-            }, function(data, status) {
-            	if (status == 'success') {
-            		$('#txtcli').html(data);
-            	} else {
-            		$('#txtcli').html("Erro na consulta de dados");
-            	}
-            });*/
-
-            ///GET
-            $.get("../config/busca_cli.php?q=" + str, function(data, status) {
-                if (status == 'success') {
-                    $('#txtcli').html(data);
-                } else {
-                    $('#txtcli').html("Erro na consulta de dados");
-                }
-            });
-
-        }
-
-        $(document).ready(function() {
-            $('#nome').keyup(function() {
-                showcli($('#nome').val());
-            })
-            showcli('');
-        });
-
-    </script>
 </head>
 
 <body style="background: #007bff;
@@ -87,6 +52,7 @@
                         <a class="dropdown-item" href="cadastro_contrato.php">Contrato</a>
                     </div>
                 </li>
+
             </ul>
             <ul class="navbar-nav flex-row ml-md-auto d-md-flex">
                 <li class="nav-item">
@@ -100,28 +66,17 @@
         <div class="col-sm-12 col-md-12 col-lg-11 mx-auto">
             <div class="card card-padrao my-5">
                 <div class="card-body">
-                    <h5 class="card-title text-center">Pessoas Cadastradas</h5>
+                    <h5 class="card-title text-center">Contratos Cadastrados</h5>
                     <?php
-						if (isset($_SESSION['msg'])) {
-						echo  $_SESSION['msg'];
-            			unset ($_SESSION['msg']);
-						}
-    				?>
+                        if (isset($_SESSION['msg'])) {
+                            echo  $_SESSION['msg'];
+                            unset ($_SESSION['msg']);
+                        }
+                        ?>
 
-                    <form>
-                        <div class="row">
-                            <div class="form-group">
-                                <!--<label for="nome" style="display:inline;">Pesquisar</label>-->
-                                <input type='text' name='nome' id='nome' class="form-control" placeholder="Pesquisar uma pessoa" style="display:inline;" autofocus>
-                            </div>
-                        </div>
-                    </form>
 
-                    <div id="txtcli">
-                        Dados dos usuario....
-                    </div>
                     <div class="form-padrao">
-                        <center><a href="vendedor.php"><button class="btn btn-outline-info text-uppercase btn-inline col-sm-9 col-md-5 col-lg-5">Cadastrar uma Pessoa</button></a>
+                        <center><a href="../contrato.php"><button class="btn btn-outline-info text-uppercase btn-inline col-sm-9 col-md-5 col-lg-5">Cadastrar um Contrato</button></a>
                         </center>
                     </div>
                 </div>

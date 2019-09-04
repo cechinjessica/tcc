@@ -6,7 +6,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="shortcut icon" href="imagens/icone.png" />
+    <link rel="shortcut icon" href="../imagens/icone.png" />
     <title>Contrato - Pessoas</title>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
@@ -84,8 +84,11 @@
                     <div class="dropdown-menu">
                         <a class="dropdown-item" href="cadastro_pessoa.php">Pessoa</a>
                         <a class="dropdown-item" href="cadastro_veiculo.php">Veículo</a>
+                        <a class="dropdown-item" href="cadastro_contrato.php">Contrato</a>
                     </div>
                 </li>
+            </ul>
+            <ul class="navbar-nav flex-row ml-md-auto d-md-flex">
                 <li class="nav-item">
                     <a class="nav-link" href="../config/logout.php">Logout</a>
                 </li>
@@ -119,7 +122,6 @@
                     </div>
                     <div class="form-padrao">
                         <center><a href="veiculo.php"><button class="btn btn-outline-info text-uppercase btn-inline col-sm-9 col-md-5 col-lg-5">Cadastrar um Veiculo</button></a>
-                            <a href="#"><button class="btn btn-outline-info text-uppercase btn-inline col-sm-9 col-md-5 col-lg-5">Voltar</button></a>
                         </center>
                     </div>
                 </div>

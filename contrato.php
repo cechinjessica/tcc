@@ -340,13 +340,18 @@ if (isset($_POST['enviarveiculo'])){
                         <div class="dropdown-menu">
                             <a class="dropdown-item" href="cadastros/cadastro_pessoa.php">Pessoa</a>
                             <a class="dropdown-item" href="cadastros/cadastro_veiculo.php">Veículo</a>
+                            <a class="dropdown-item" href="cadastros/cadastro_contrato.php">Contrato</a>
                         </div>
                     </li>
+                </ul>
+                <ul class="navbar-nav flex-row ml-md-auto d-md-flex">
                     <li class="nav-item">
                         <a class="nav-link" href="config/logout.php">Logout</a>
                     </li>
                 </ul>
+
             </div>
+
         </div>
     </nav>
     <!--</NAVBAR-->
