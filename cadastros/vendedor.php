@@ -282,6 +282,7 @@ if (isset($_POST['enviar'])){
                     <div class="dropdown-menu">
                         <a class="dropdown-item" href="vendedor.php">Pessoa</a>
                         <a class="dropdown-item" href="veiculo.php">Veículo</a>
+                        <a class="dropdown-item" href="cadastro_contrato.php">Contrato</a>
                     </div>
                 </li>
                 <li class="nav-item dropdown">
