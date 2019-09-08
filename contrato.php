@@ -80,12 +80,12 @@ if (isset($_POST['enviarcontrato'])){
     //PARA ATUALIZAR, HAVERÁ ID POIS HÁ UM contrato
     if ($id != 0) {
         if ($op == 'A') {
-            $sql="UPDATE contrato SET ValorTotal ='$valortotal', NumeroParcelas ='$dpagamento', ValorParcela ='$valorparcela', DataPagamento='$chassi', Juros='$juro', Foro ='$foro', LocalAss=' $lassinatura', DataAss ='$dassinatura', DataCriacao ='$datacriacao', NomeTestemunha1='$ntestemunha1', RGTestemunha1='$rgtestemunha1', NomeTestemunha2='$ntestemunha2', RGTestemunha2='$rgtestemunha2', Pessoa_IdVendedor='$idvend', Pessoa_IdComprador=' $idcomp',Veiculo_IdVeiculo='$idvei', Login_IdUsuario='$idlogin' WHERE IdContrato ='$id'";
+            $sql="UPDATE contrato SET ValorTotal ='$valortotal', NumeroParcelas ='$numeroparcelas', ValorParcela ='$valorparcela', DataPagamento='$dpagamento', Juros='$juro', Foro ='$foro', LocalAss=' $lassinatura', DataAss ='$dassinatura', DataCriacao =STR_TO_DATE( '$datacriacao', '%d/%m/%Y %H:%i:%s'), NomeTestemunha1='$ntestemunha1', RGTestemunha1='$rgtestemunha1', NomeTestemunha2='$ntestemunha2', RGTestemunha2='$rgtestemunha2', Pessoa_IdVendedor='$idvend', Pessoa_IdComprador=' $idcomp',Veiculo_IdVeiculo='$idvei', Login_IdUsuario='$idlogin' WHERE IdContrato ='$id'";
 
             $res = mysqli_query($conexao,$sql);
             if (mysqli_error($conexao)) {
                 $_SESSION['msg'] = "<p class='alert alert-danger' role='alert'>Erro na atualização do contrato</p>";
-                header('Location:contrato.php');
+                header('Location:cadastros/cadastro_contrato.php');
             } else {
                 $_SESSION['msg'] = "<p class='alert alert-success' role='alert'>contrato atualizado com sucesso!</p>";
                 header('Location:contrato.php');
@@ -110,7 +110,7 @@ if (isset($_POST['enviarcontrato'])){
         //SE FOR == 0 ENTÃO O VEICULO AINDA NÃO ESTÁ CADASTRADO
         //INCLUSÃO
         $sql = "INSERT INTO contrato (ValorTotal, NumeroParcelas, ValorParcela, DataPagamento, Juros, Foro, LocalAss, DataAss, DataCriacao, NomeTestemunha1, RGTestemunha1, NomeTestemunha2, RGTestemunha2, Pessoa_IdVendedor,Pessoa_IdComprador, Veiculo_IdVeiculo, Login_IdUsuario) VALUES ('$valortotal' ,'$numeroparcelas' ,'$valorparcela', '$dpagamento', '$juro' ,'$foro' ,'$lassinatura' ,'$dassinatura',(now()), '$ntestemunha1' ,'$rgtestemunha1' ,'$ntestemunha2' ,'$rgtestemunha2' ,'$idvend', '$idcomp' ,'$idvei','$idlogin')";
-        //falta id login
+
         mysqli_query($conexao,$sql);
 
         if (mysqli_affected_rows($conexao) =='1') {

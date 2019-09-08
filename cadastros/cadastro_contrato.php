@@ -68,9 +68,8 @@ include('../config/verifica_login.php');
                 <div class="card-body">
                     <h5 class="card-title text-center">Contratos Cadastrados</h5>
                     <?php
-                        if (isset($_SESSION['msg'])) {
-                            echo  $_SESSION['msg'];
-                            unset ($_SESSION['msg']);
+                        if (isset($_SESSION['echo'])) {
+                            echo  $_SESSION['echo'];
                         }
                         ?>
 
@@ -78,6 +77,8 @@ include('../config/verifica_login.php');
                     <div class="form-padrao">
                         <center><a href="../contrato.php"><button class="btn btn-outline-info text-uppercase btn-inline col-sm-9 col-md-5 col-lg-5">Cadastrar um Contrato</button></a>
                         </center>
+
+                        <a href=../contrato.php?id=2&op=A> <button type='button' class='btn btn-info btn-sm w-100'>Atualizar</button></a>
                     </div>
                 </div>
             </div>
