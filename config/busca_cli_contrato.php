@@ -38,34 +38,49 @@ if (mysqli_affected_rows($conexao)>0) {
    while ($row=mysqli_fetch_row($result))
    {
       $nome = str_replace(' ', '+', $row[2]);
+
       if($row[1] == "f"){
          $pessoa = "Física";
       }else{
          $pessoa = "Jurídica";
       }
+
       if($row[9] == "f"){
          $sexo = "Feminino";
       }else{
          $sexo = "Masculino";
       }
+
+       if($row[5]=="separado"){
+      $estcivil="Separado(a)";
+    }else if($row[5]=="casado"){
+      $estcivil="Casado(a)";
+    }else if($row[5]=="solteiro"){
+      $estcivil="Solteiro(a)";
+    }else if($row[5]=="divorciado"){
+      $estcivil="Divorciado(a)";
+    }else if($row[5]=="viuvo"){
+      $estcivil="Viúvo(a)";
+    }
+
       echo " <tbody>";
       echo " <tr>";
-      echo "<th scope='row' id=".$row[0]." onclick=getid(".$row[0].",'".$row[7]."','".$nome."') style='white-space: nowrap; text-align:center;' >".$row[0]."</td>";
-      echo "<td id=".$row[0]." onclick=getid(".$row[0].",'".$row[7]."','".$nome."') style='white-space: nowrap; text-align:center;' >".$pessoa."</td>";
-      echo "<td id=".$row[0]." onclick=getid(".$row[0].",'".$row[7]."','".$nome."') style='white-space: nowrap; text-align:center;' >".$row[2]."</td>";
-      echo "<td id=".$row[0]." onclick=getid(".$row[0].",'".$row[7]."','".$nome."') style='white-space: nowrap; text-align:center;' >".$row[3]."</td>";
-      echo "<td id=".$row[0]." onclick=getid(".$row[0].",'".$row[7]."','".$nome."') style='white-space: nowrap; text-align:center;' >".$row[4]."</td>";
-      echo "<td id=".$row[0]." onclick=getid(".$row[0].",'".$row[7]."','".$nome."') style='white-space: nowrap; text-align:center;' >".$row[5]."</td>";
-      echo "<td id=".$row[0]." onclick=getid(".$row[0].",'".$row[7]."','".$nome."') style='white-space: nowrap; text-align:center;' >".$row[6]."</td>";
-      echo "<td id=".$row[0]." onclick=getid(".$row[0].",'".$row[7]."','".$nome."') style='white-space: nowrap; text-align:center;' >".$row[7]."</td>";
-      echo "<td id=".$row[0]." onclick=getid(".$row[0].",'".$row[7]."','".$nome."') style='white-space: nowrap; text-align:center;' >".$sexo."</td>";
-      echo "<td id=".$row[0]." onclick=getid(".$row[0].",'".$row[7]."','".$nome."') style='white-space: nowrap; text-align:center;' >".$row[8]."</td>";
-      echo "<td id=".$row[0]." onclick=getid(".$row[0].",'".$row[7]."','".$nome."') style='white-space: nowrap; text-align:center;' >".$row[10]."</td>";
-      echo "<td id=".$row[0]." onclick=getid(".$row[0].",'".$row[7]."','".$nome."') style='white-space: nowrap; text-align:center;' >".$row[11]."</td>";
-      echo "<td id=".$row[0]." onclick=getid(".$row[0].",'".$row[7]."','".$nome."') style='white-space: nowrap; text-align:center;' >".$row[19]."</td>";
-      echo "<td id=".$row[0]." onclick=getid(".$row[0].",'".$row[7]."','".$nome."') style='white-space: nowrap; text-align:center;' >".$row[13]."</td>";
-      echo "<td id=".$row[0]." onclick=getid(".$row[0].",'".$row[7]."','".$nome."') style='white-space: nowrap; text-align:center;' >".$row[15]."</td>";
-      echo "<td id=".$row[0]." onclick=getid(".$row[0].",'".$row[7]."','".$nome."') style='white-space: nowrap; text-align:center;' >".$row[17]."</td>";
+      echo "<th scope='row' id=".$row[0]." onclick=getid(".$row[0].",'".$row[7]."','".$nome."') style='white-space: nowrap; ' >".$row[0]."</td>";
+      echo "<td id=".$row[0]." onclick=getid(".$row[0].",'".$row[7]."','".$nome."') style='white-space: nowrap; ' >".$pessoa."</td>";
+      echo "<td id=".$row[0]." onclick=getid(".$row[0].",'".$row[7]."','".$nome."') style='white-space: nowrap; ' >".$row[2]."</td>";
+      echo "<td id=".$row[0]." onclick=getid(".$row[0].",'".$row[7]."','".$nome."') style='white-space: nowrap; ' >".$row[3]."</td>";
+      echo "<td id=".$row[0]." onclick=getid(".$row[0].",'".$row[7]."','".$nome."') style='white-space: nowrap; ' >".$row[4]."</td>";
+      echo "<td id=".$row[0]." onclick=getid(".$row[0].",'".$row[7]."','".$nome."') style='white-space: nowrap; ' >".$estcivil."</td>";
+      echo "<td id=".$row[0]." onclick=getid(".$row[0].",'".$row[7]."','".$nome."') style='white-space: nowrap; ' >".$row[6]."</td>";
+      echo "<td id=".$row[0]." onclick=getid(".$row[0].",'".$row[7]."','".$nome."') style='white-space: nowrap; ' >".$row[7]."</td>";
+      echo "<td id=".$row[0]." onclick=getid(".$row[0].",'".$row[7]."','".$nome."') style='white-space: nowrap; ' >".$sexo."</td>";
+      echo "<td id=".$row[0]." onclick=getid(".$row[0].",'".$row[7]."','".$nome."') style='white-space: nowrap; ' >".$row[8]."</td>";
+      echo "<td id=".$row[0]." onclick=getid(".$row[0].",'".$row[7]."','".$nome."') style='white-space: nowrap; ' >".$row[10]."</td>";
+      echo "<td id=".$row[0]." onclick=getid(".$row[0].",'".$row[7]."','".$nome."') style='white-space: nowrap; ' >".$row[11]."</td>";
+      echo "<td id=".$row[0]." onclick=getid(".$row[0].",'".$row[7]."','".$nome."') style='white-space: nowrap; ' >".$row[19]."</td>";
+      echo "<td id=".$row[0]." onclick=getid(".$row[0].",'".$row[7]."','".$nome."') style='white-space: nowrap; ' >".$row[13]."</td>";
+      echo "<td id=".$row[0]." onclick=getid(".$row[0].",'".$row[7]."','".$nome."') style='white-space: nowrap; ' >".$row[15]."</td>";
+      echo "<td id=".$row[0]." onclick=getid(".$row[0].",'".$row[7]."','".$nome."') style='white-space: nowrap; ' >".$row[17]."</td>";
       echo "<td> <a href=cadastros/vendedor.php?id=".$row[0]."&op=A"."><button type='button' class='btn btn-info btn-sm w-100'>Atualizar</button></a><a href=cadastros/vendedor.php?id=".$row[0]. "&op=D" . "><button type='button' class='btn btn-danger btn-sm w-100'>Deletar</button></a>" . "</td>" ;
       echo " </tr>" ;
    } echo " </tbody>" ;

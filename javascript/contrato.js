@@ -86,7 +86,7 @@ function vendedor() {
     var a = true;
     $("#msg_vendedor").text("");
 
-    if ($("#vendedor").val() == "") {
+    if ($("#vendedor").val() == "" || $("#vendedor").val() == $("#comprador").val()) {
         $("#msg_vendedor").text("*Vendedor inválido");
         $("#msg_vendedor").css("color", "red");
         $("#vendedor").addClass("erro");
@@ -105,7 +105,7 @@ function comprador() {
     var a = true;
     $("#msg_comprador").text("");
 
-    if ($("#comprador").val() == "") {
+    if ($("#comprador").val() == "" || $("#vendedor").val() == $("#comprador").val()) {
         $("#msg_comprador").text("*Comprador inválido");
         $("#msg_comprador").css("color", "red");
         $("#comprador").addClass("erro");
@@ -439,9 +439,13 @@ function getidcomp(idtd, cpftd, nometd) {
 
 function getidvei(idtd, nometd, placatd, vtotaltd) {
     var id = idtd;
-    var nome = nometd;
     var placa = placatd;
     var vtotal = vtotaltd;
+
+    var nome = nometd.replace("+", " ");
+    while (nome.indexOf("+") != -1) {
+        nome = nome.replace("+", " ");
+    }
 
     $("#idvei").val(id);
     $("#placareadonly").val(placa);

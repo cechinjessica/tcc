@@ -8,7 +8,11 @@ require 'verifica_login.php';
 if (isset($_GET['id'])){
     $id=$_GET['id'];
     $op=$_GET['op'];
-    $sql = "SELECT * FROM contrato WHERE IdContrato='$id'";
+    $sql = "SELECT c.*, p.nome, p.cpf, pp.nome, pp.cpf, v.nome, v.placa FROM contrato c
+    inner join pessoa p on p.idpessoa = c.pessoa_idvendedor
+    inner join pessoa pp on pp.idpessoa = c.pessoa_idcomprador
+    inner join veiculo v on v.idveiculo = c.veiculo_idveiculo
+    WHERE IdContrato='$id'";
     $res=mysqli_query($conexao,$sql);
     $row=mysqli_fetch_row($res);
     $id= $row[0];
@@ -29,6 +33,12 @@ if (isset($_GET['id'])){
     $idcomp = $row[15];
     $idvei = $row[16];
     $idlogin = $row[17];
+    $nomevend = $row[18];
+    $cpfvend = $row[19];
+    $nomecomp = $row[20];
+    $cpfcomp = $row[21];
+    $nomevei = $row[22];
+    $placavei = $row[23];
 
     if ($juro == "0.5% ao mês"){
         $juro05="checked";
@@ -377,9 +387,6 @@ if (isset($_POST['enviarveiculo'])){
                         Dados das pessoas....
                     </div>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary">Selecionar</button>
-                </div>
             </div>
         </div>
     </div>
@@ -404,9 +411,6 @@ if (isset($_POST['enviarveiculo'])){
                     <div id="txtclicomp">
                         Dados das pessoas....
                     </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary">Selecionar</button>
                 </div>
             </div>
         </div>
@@ -592,9 +596,6 @@ if (isset($_POST['enviarveiculo'])){
                         <input class="btn btn-md btn-primary btn-block text-uppercase" type="submit" name="enviarpessoa" value="Incluir" id="salvar">
                     </form>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary">Selecionar</button>
-                </div>
             </div>
         </div>
     </div>
@@ -619,9 +620,6 @@ if (isset($_POST['enviarveiculo'])){
                     <div id="txtvei">
                         Dados dos veiculos....
                     </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary">Selecionar</button>
                 </div>
             </div>
         </div>
@@ -729,9 +727,6 @@ if (isset($_POST['enviarveiculo'])){
                             ?>
                         <input class="btn btn-md btn-primary btn-block text-uppercase" type="submit" name="enviarveiculo" value="<?php echo $txtbtn?>" id="salvarveiculo">
                     </form>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-primary">Selecionar</button>
-                    </div>
                 </div>
             </div>
         </div>
@@ -761,7 +756,7 @@ if (isset($_POST['enviarveiculo'])){
                         <div class="row">
                             <div class="form-group col-md">
                                 <label for="vendedor" class="col-lg-4 col-sm-12 m-0">Vendedor</label>
-                                <input type="text" id="vendedor" class="form-control col-lg-5" name="vededor" value="" readonly>
+                                <input type="text" id="vendedor" class="form-control col-lg-5" name="vededor" value="<?php echo ($id!=0)?"$nomevend":''?>" readonly>
                                 <i class="material-icons " style="font-size: 24px;" data-toggle="modal" data-target="#modalVendedor">
                                     search
                                 </i>
@@ -772,14 +767,15 @@ if (isset($_POST['enviarveiculo'])){
                             </div>
                             <div class="form-group col-md">
                                 <label for="cpfvreadonly">CPF</label>
-                                <input type="text" id="cpfvreadonly" class="form-control" placeholder="CPF do vendedor" value="<?php echo ($id!=0)?"$idvend":'';?>" readonly>
+                                <input type="text" id="cpfvreadonly" class="form-control" placeholder="CPF do vendedor" value="<?php echo ($id!=0)?"$cpfvend":''?>" readonly>
+
                             </div>
                         </div>
 
                         <div class="row">
                             <div class="form-group col-md">
                                 <label for="comprador" class="col-lg-4 col-sm-12 m-0 ">Comprador</label>
-                                <input type="text" id="comprador" class="form-control col-lg-5 m-0" name="comprador" value="" readonly>
+                                <input type="text" id="comprador" class="form-control col-lg-5 m-0" name="comprador" value="<?php echo ($id!=0)?"$nomecomp":'';?>" readonly>
                                 <i class="material-icons" style="font-size: 24px;" data-toggle="modal" data-target="#modalComprador">
                                     search
                                 </i>
@@ -790,14 +786,14 @@ if (isset($_POST['enviarveiculo'])){
                             </div>
                             <div class="form-group col-md">
                                 <label for="cpfcreadonly">CPF</label>
-                                <input type="text" id="cpfcreadonly" class="form-control" placeholder="CPF do comprador" value="<?php echo ($id!=0)?"$idcomp":'';?>" readonly>
+                                <input type="text" id="cpfcreadonly" class="form-control" placeholder="CPF do comprador" value="<?php echo ($id!=0)?"$cpfcomp":'';?>" readonly>
                             </div>
                         </div>
 
                         <div class="row">
                             <div class="form-group col-md">
                                 <label for="veiculo" class="col-lg-4 col-sm-12 m-0 ">Veículo</label>
-                                <input type="text" id="veiculo" class="form-control col-lg-5 m-0" name="veiculo" value="" readonly>
+                                <input type="text" id="veiculo" class="form-control col-lg-5 m-0" name="veiculo" value="<?php echo ($id!=0)?"$nomevei":'';?>" readonly>
                                 <i class="material-icons" style="font-size: 24px;" data-toggle="modal" data-target="#modalVeiculo">
                                     search
                                 </i>
@@ -808,7 +804,7 @@ if (isset($_POST['enviarveiculo'])){
                             </div>
                             <div class="form-group col-md">
                                 <label for="placareadonly">Placa</label>
-                                <input type="text" id="placareadonly" class="form-control" placeholder="Placa do veículo" value="<?php echo ($id!=0)?"$idvei":'';?>" readonly>
+                                <input type="text" id="placareadonly" class="form-control" placeholder="Placa do veículo" value="<?php echo ($id!=0)?"$placavei":'';?>" readonly>
                             </div>
                         </div>
 

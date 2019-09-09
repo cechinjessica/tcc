@@ -69,7 +69,7 @@ if (mysqli_affected_rows($conexao)>0) {
     }else if($row[5]=="divorciado"){
       $estcivil="Divorciado(a)";
     }else if($row[5]=="viuvo"){
-      $estcivil="Viuvo(a)";
+      $estcivil="Viúvo(a)";
     }
 
 

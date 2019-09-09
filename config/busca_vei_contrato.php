@@ -32,19 +32,21 @@ if (mysqli_affected_rows($conexao)>0) {
             </thead>";
     while ($row=mysqli_fetch_row($result))
     {
+
+        $nome = str_replace(' ', '+', $row[1]);
         echo " <tbody>";
         echo " <tr>";
-        echo "<th scope='row' id=".$row[0]." onclick=getidvei(".$row[0].",'".$row[1]."','".$row[7]."','".$row[10]."') style='white-space: nowrap; text-align:center;'>".$row[0]."</td>";
-        echo "<td id=".$row[0]." onclick=getidvei(".$row[0].",'".$row[1]."','".$row[7]."','".$row[10]."') style='white-space: nowrap; text-align:center;'>".$row[1]."</td>";
-        echo "<td id=".$row[0]." onclick=getidvei(".$row[0].",'".$row[1]."','".$row[7]."','".$row[10]."') style='white-space: nowrap; text-align:center;'>".$row[2]."</td>";
-        echo "<td id=".$row[0]." onclick=getidvei(".$row[0].",'".$row[1]."','".$row[7]."','".$row[10]."') style='white-space: nowrap; text-align:center;'>".$row[3]."</td>";
-        echo "<td id=".$row[0]." onclick=getidvei(".$row[0].",'".$row[1]."','".$row[7]."','".$row[10]."') style='white-space: nowrap; text-align:center;'>".$row[4]."</td>";
-        echo "<td id=".$row[0]." onclick=getidvei(".$row[0].",'".$row[1]."','".$row[7]."','".$row[10]."') style='white-space: nowrap; text-align:center;'>".$row[5]."</td>";
-        echo "<td id=".$row[0]." onclick=getidvei(".$row[0].",'".$row[1]."','".$row[7]."','".$row[10]."') style='white-space: nowrap; text-align:center;'>".$row[6]."</td>";
-        echo "<td id=".$row[0]." onclick=getidvei(".$row[0].",'".$row[1]."','".$row[7]."','".$row[10]."') style='white-space: nowrap; text-align:center;'>".$row[7]."</td>";
-        echo "<td id=".$row[0]." onclick=getidvei(".$row[0].",'".$row[1]."','".$row[7]."','".$row[10]."') style='white-space: nowrap; text-align:center;'>".$row[9]."</td>";
-        echo "<td id=".$row[0]." onclick=getidvei(".$row[0].",'".$row[1]."','".$row[7]."','".$row[10]."') style='white-space: nowrap; text-align:center;'>".$row[8]."</td>";
-        echo "<td id=".$row[0]." onclick=getidvei(".$row[0].",'".$row[1]."','".$row[7]."','".$row[10]."') style='white-space: nowrap; text-align:center;'>".$row[10]."</td>";
+        echo "<th scope='row' id=".$row[0]." onclick=getidvei(".$row[0].",'".$nome."','".$row[7]."','".$row[10]."') style='white-space: nowrap; text-align:center;'>".$row[0]."</td>";
+        echo "<td id=".$row[0]." onclick=getidvei(".$row[0].",'".$nome."','".$row[7]."','".$row[10]."') style='white-space: nowrap; text-align:center;'>".$row[1]."</td>";
+        echo "<td id=".$row[0]." onclick=getidvei(".$row[0].",'".$nome."','".$row[7]."','".$row[10]."') style='white-space: nowrap; text-align:center;'>".$row[2]."</td>";
+        echo "<td id=".$row[0]." onclick=getidvei(".$row[0].",'".$nome."','".$row[7]."','".$row[10]."') style='white-space: nowrap; text-align:center;'>".$row[3]."</td>";
+        echo "<td id=".$row[0]." onclick=getidvei(".$row[0].",'".$nome."','".$row[7]."','".$row[10]."') style='white-space: nowrap; text-align:center;'>".$row[4]."</td>";
+        echo "<td id=".$row[0]." onclick=getidvei(".$row[0].",'".$nome."','".$row[7]."','".$row[10]."') style='white-space: nowrap; text-align:center;'>".$row[5]."</td>";
+        echo "<td id=".$row[0]." onclick=getidvei(".$row[0].",'".$nome."','".$row[7]."','".$row[10]."') style='white-space: nowrap; text-align:center;'>".$row[6]."</td>";
+        echo "<td id=".$row[0]." onclick=getidvei(".$row[0].",'".$nome."','".$row[7]."','".$row[10]."') style='white-space: nowrap; text-align:center;'>".$row[7]."</td>";
+        echo "<td id=".$row[0]." onclick=getidvei(".$row[0].",'".$nome."','".$row[7]."','".$row[10]."') style='white-space: nowrap; text-align:center;'>".$row[9]."</td>";
+        echo "<td id=".$row[0]." onclick=getidvei(".$row[0].",'".$nome."','".$row[7]."','".$row[10]."') style='white-space: nowrap; text-align:center;'>".$row[8]."</td>";
+        echo "<td id=".$row[0]." onclick=getidvei(".$row[0].",'".$nome."','".$row[7]."','".$row[10]."') style='white-space: nowrap; text-align:center;'>".$row[10]."</td>";
          echo "<td> <a href=cadastros/veiculo.php?id=".$row[0]."&op=A"."><button type='button' class='btn btn-info btn-sm w-100'>Atualizar</button></a><a href=cadastros/veiculo.php?id=".$row[0]. "&op=D" . "><button type='button' class='btn btn-danger btn-sm w-100'>Deletar</button></a>" . "</td>" ;
 		echo " </tr>";
     }   echo " </tbody>";

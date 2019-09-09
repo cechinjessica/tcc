@@ -17,6 +17,39 @@ include('../config/verifica_login.php');
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
     <link rel="stylesheet" type="text/css" href="../css/style.css">
+    <script>
+        function showcontrato(nm) {
+            str = nm;
+            //COM JQUERY
+            //POST
+            /*$.post("busca_cli.php", {
+            	q: str;
+            	//op: 'teste'
+            }, function(data, status) {
+            	if (status == 'success') {
+            		$('#txtcli').html(data);
+            	} else {
+            		$('#txtcli').html("Erro na consulta de dados");
+            	}
+            });*/
+
+            ///GET
+            $.get("../config/busca_contrato.php?q=" + str, function(data, status) {
+                if (status == 'success') {
+                    $('#txtcontrato').html(data);
+                } else {
+                    $('#txtcontrato').html("Erro na consulta de dados");
+                }
+            });
+
+        }
+
+        $(document).ready(function() {
+            showcontrato('');
+        });
+
+    </script>
+
 </head>
 
 <body style="background: #007bff;
@@ -77,8 +110,11 @@ include('../config/verifica_login.php');
                     <div class="form-padrao">
                         <center><a href="../contrato.php"><button class="btn btn-outline-info text-uppercase btn-inline col-sm-9 col-md-5 col-lg-5">Cadastrar um Contrato</button></a>
                         </center>
+                        <div id="txtcontrato">
+                            Contratos..
+                        </div>
 
-                        <a href=../contrato.php?id=2&op=A> <button type='button' class='btn btn-info btn-sm w-100'>Atualizar</button></a>
+                        <a href=../contrato.php?id=4&op=A> <button type='button' class='btn btn-info btn-sm w-100'>Atualizar</button></a>
                     </div>
                 </div>
             </div>
