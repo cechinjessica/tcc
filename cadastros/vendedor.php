@@ -282,7 +282,6 @@ if (isset($_POST['enviar'])){
                     <div class="dropdown-menu">
                         <a class="dropdown-item" href="vendedor.php">Pessoa</a>
                         <a class="dropdown-item" href="veiculo.php">Veículo</a>
-                        <a class="dropdown-item" href="cadastro_contrato.php">Contrato</a>
                     </div>
                 </li>
                 <li class="nav-item dropdown">
@@ -319,10 +318,10 @@ if (isset($_POST['enviar'])){
                         <div class="form-group">
                             <label for="pessoa">Tipo de pessoa</label>
                             <div class="form-check-inline">
-                                <input type="radio" class="form-check-input" name="pessoa" value="f" id="pessoaf" <?php echo ($id!=0)?"$pessoaf":'';?>>Pessoa física
+                                <input type="radio" class="form-check-input was-validated" name="pessoa" value="f" id="pessoaf" <?php echo ($id!=0)?"$pessoaf":'';?>>Pessoa física
                             </div>
                             <div class="form-check-inline">
-                                <input type="radio" class="form-check-input" name="pessoa" value="j" id="pessoaj" <?php echo ($id!=0)?"$pessoaj":'';?>>Pessoa jurídica
+                                <input type="radio" class="form-check-input was-validated" name="pessoa" value="j" id="pessoaj" <?php echo ($id!=0)?"$pessoaj":'';?>>Pessoa jurídica
                             </div>
                             <p id="msg_pessoa" class="form-control feedback"></p>
                         </div>

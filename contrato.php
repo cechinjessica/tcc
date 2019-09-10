@@ -95,20 +95,20 @@ if (isset($_POST['enviarcontrato'])){
             $res = mysqli_query($conexao,$sql);
             if (mysqli_error($conexao)) {
                 $_SESSION['msg'] = "<p class='alert alert-danger' role='alert'>Erro na atualização do contrato</p>";
-                header('Location:cadastros/cadastro_contrato.php');
+                header('Location:contrato.php');
             } else {
                 $_SESSION['msg'] = "<p class='alert alert-success' role='alert'>contrato atualizado com sucesso!</p>";
-                header('Location:contrato.php');
+                header('Location:cadastros/cadastro_contrato.php');
             }
             mysqli_close($conexao);
 
         } else if($op == "D") { //PARA EXCLUIR
-            $sql="DELETE FROM veiculo WHERE IdContrato='$id'";
+            $sql="DELETE FROM contrato WHERE IdContrato='$id'";
             echo $sql;
             $res = mysqli_query($conexao,$sql);
             if (mysqli_affected_rows($conexao)=='1') {
                 $_SESSION['msg'] = "<p class='alert alert-success' role='alert'>Contrato excluído com sucesso!</p>";
-                header('Location:contrato.php');
+                header('Location:cadastros/cadastro_contrato.php');
             } else {
                 $_SESSION['msg'] = "p class='alert alert-danger' role='alert'>Erro na exclusão do contrato</p>";
                 header('Location:contrato.php');
@@ -125,7 +125,7 @@ if (isset($_POST['enviarcontrato'])){
 
         if (mysqli_affected_rows($conexao) =='1') {
             $_SESSION['msg'] = "<p class='alert alert-success' role='alert'>Contrato inserido com sucesso!</p>";
-            header('Location:contrato.php');
+            header('Location:cadastros/cadastro_contrato.php');
         } else {
             $_SESSION['msg'] ="<p class='alert alert-danger' role='alert'>Erro: ".mysqli_error($conexao)."<p>";
             header('Location:contrato.php');

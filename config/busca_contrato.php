@@ -1,14 +1,14 @@
 <?php
 require 'conexao.php';
-$sql = "SELECT p.nome, pp.nome, v.nome, c.valortotal, c.datacriacao FROM contrato c
+$sql = "SELECT p.nome, pp.nome, v.nome, c.valortotal, c.datacriacao, c.idcontrato, v.placa FROM contrato c
 inner join pessoa p on c.pessoa_idcomprador = p.idpessoa
 inner join pessoa pp on c.pessoa_idvendedor = pp.idpessoa
 inner join veiculo v on c.veiculo_idveiculo = v.idveiculo";
 
-$idcontrato=$_GET['q']; //recupera o parâmetro passado na visualização
-if ($idcontrato!='') {
-    if ($idcontrato!='') {
-        $sql.=" WHERE UPPER(idcontrato) LIKE UPPER('%$idcontrato%')";
+$vei=$_GET['q']; //recupera o parâmetro passado na visualização
+if ($vei!='') {
+    if ($vei!='') {
+        $sql.=" WHERE UPPER(v.placa) LIKE UPPER('%$vei%')";
     }
 }
 $sql.=" ORDER BY idcontrato ASC";
@@ -16,17 +16,28 @@ $sql.=" ORDER BY idcontrato ASC";
 $result=mysqli_query($conexao,$sql);
 
 if (mysqli_affected_rows($conexao)>0) {
+    echo "<div class='card-deck'>";
     while ($row=mysqli_fetch_row($result))
     {
-        echo "<div class='card' style='width:18rem;'>";
-        echo "<div class='card-header'><h5>$row[2]</h5></div>";
-        echo "<div class='card-body'><div class='card-text'><p>Comprador: $row[0]</br>";
-        echo "Vendedor: $row[1] </p>";
-        echo "R$$row[3]";
-        echo "$row[4]";
-        echo "</div></div></div>s";
+        $ano = substr($row[4],0,4);
+        $mes = substr($row[4],5,2);
+        $dia = substr($row[4],8,2);
+        $hora = substr($row[4], 11,5);
+        $dt = $dia."/".$mes."/".$ano;
+
+        echo "<div class='custom-control custom-control-inline my-3'>";
+        echo "<div class='card border-primary' style='width:18rem;'>";
+        echo "<div class='card-header border-primary bg-transparent'><h5>$row[2] $row[6]</h5></div>";
+        echo "<div class='card-body bg-transparent'><div class='card-text'>";
+        echo "<p>Vendedor: $row[1]</p>";
+        echo "<p>Comprador: $row[0]</p>";
+        echo "<p class='text-success'>R$$row[3]</p> ";
+        echo "<p> $dt $hora</p>";
+        echo "<a href=../contrato.php?id=$row[5]&op=A class='card-link text-info'>Atualizar</a><a href=../contrato.php?id=$row[5]&op=D class='card-link text-danger'>Deletar</a>";
+        echo "</div></div></div></div>";
 
     }
+    echo "</div>";
 }
 mysqli_close($conexao);
 

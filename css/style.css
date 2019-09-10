@@ -73,3 +73,7 @@
 .clicado {
     background-color: aqua;
 }
+
+.card-contrato:hover {
+    margin-right: 15px;
+}

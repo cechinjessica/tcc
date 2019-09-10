@@ -18,20 +18,8 @@ include('../config/verifica_login.php');
 
     <link rel="stylesheet" type="text/css" href="../css/style.css">
     <script>
-        function showcontrato(nm) {
-            str = nm;
-            //COM JQUERY
-            //POST
-            /*$.post("busca_cli.php", {
-            	q: str;
-            	//op: 'teste'
-            }, function(data, status) {
-            	if (status == 'success') {
-            		$('#txtcli').html(data);
-            	} else {
-            		$('#txtcli').html("Erro na consulta de dados");
-            	}
-            });*/
+        function showcontrato(vei) {
+            str = vei;
 
             ///GET
             $.get("../config/busca_contrato.php?q=" + str, function(data, status) {
@@ -45,6 +33,9 @@ include('../config/verifica_login.php');
         }
 
         $(document).ready(function() {
+            $('#vei').keyup(function() {
+                showcontrato($('#vei').val());
+            })
             showcontrato('');
         });
 
@@ -56,7 +47,7 @@ include('../config/verifica_login.php');
                  background: linear-gradient(to left, #5A8BB7, #2D9AAD);">
     <!--NAVBAR-->
     <nav class="navbar navbar-expand-sm bg-info navbar-light sticky-top">
-        <a class="navbar-brand" href="#"><img src="../imagens/icone.png" width="30px">Á definir</a>
+        <a class="navbar-brand " href="#"><img src="../imagens/icone.png" width="30px">Á definir</a>
         <a class="nav-text">Bem vindo(a) <?php echo $_SESSION['nome']; ?></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
             <span class="navbar-toggler-icon"></span>
@@ -108,13 +99,18 @@ include('../config/verifica_login.php');
 
 
                     <div class="form-padrao">
-                        <center><a href="../contrato.php"><button class="btn btn-outline-info text-uppercase btn-inline col-sm-9 col-md-5 col-lg-5">Cadastrar um Contrato</button></a>
-                        </center>
+                        <form>
+                            <div class="row">
+                                <div class="form-group">
+                                    <input type='text' name='vei' id='vei' class="form-control" placeholder="Pesquisar uma placa" style="display:inline;" autofocus>
+                                </div>
+                            </div>
+                        </form>
                         <div id="txtcontrato">
                             Contratos..
                         </div>
-
-                        <a href=../contrato.php?id=4&op=A> <button type='button' class='btn btn-info btn-sm w-100'>Atualizar</button></a>
+                        <center><a href="../contrato.php"><button class="btn btn-outline-info text-uppercase btn-inline col-sm-9 col-md-5 col-lg-5">Cadastrar um Contrato</button></a>
+                        </center>
                     </div>
                 </div>
             </div>

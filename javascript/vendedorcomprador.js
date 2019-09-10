@@ -180,58 +180,49 @@ function selecionarj() {
 }
 
 function nome() {
-    if ($("#nome").hasClass("erro")) {
-        $("#nome").removeClass("erro");
-    } else if ($("#nome").hasClass("certo")) {
-        $("#nome").removeClass("certo");
+    if ($("#nome").hasClass("is-invalid")) {
+        $("#nome").removeClass("is-invalid");
+    } else if ($("#nome").hasClass("is-valid")) {
+        $("#nome").removeClass("is-valid");
     }
-    $("#nome").addClass("certo");
+    $("#nome").addClass("is-valid");
     var a = true;
-    $("#msg_nome").text("");
 
     var nome = $("#nome").val();
     if (nome.trim() == "" || nome.trim().indexOf(" ") == -1) {
-        $("#msg_nome").text("*Nome inválido");
-        $("#msg_nome").css("color", "red");
-        $("#nome").addClass("erro");
+        $("#nome").addClass("is-invalid");
         a = false;
     }
     return a;
 }
 
 function nacionalidade() {
-    if ($("#nacionalidade").hasClass("erro")) {
-        $("#nacionalidade").removeClass("erro");
-    } else if ($("#nacionalidade").hasClass("certo")) {
-        $("#nacionalidade").removeClass("certo");
+    if ($("#nacionalidade").hasClass("is-invalid")) {
+        $("#nacionalidade").removeClass("is-invalid");
+    } else if ($("#nacionalidade").hasClass("is-valid")) {
+        $("#nacionalidade").removeClass("is-valid");
     }
-    $("#nacionalidade").addClass("certo");
+    $("#nacionalidade").addClass("is-valid");
     var a = true;
-    $("#msg_nacionalidade").text("");
 
     if ($("#nacionalidade").val() == "") {
-        $("#msg_nacionalidade").text("*Nacionalidade inválida");
-        $("#msg_nacionalidade").css("color", "red");
-        $("#nacionalidade").addClass("erro");
+        $("#nacionalidade").addClass("is-invalid");
         a = false;
     }
     return a;
 }
 
 function profissao() {
-    if ($("#profissao").hasClass("erro")) {
-        $("#profissao").removeClass("erro");
-    } else if ($("#profissao").hasClass("certo")) {
-        $("#profissao").removeClass("certo");
+    if ($("#profissao").hasClass("is-invalid")) {
+        $("#profissao").removeClass("is-invalid");
+    } else if ($("#profissao").hasClass("is-valid")) {
+        $("#profissao").removeClass("is-valid");
     }
-    $("#profissao").addClass("certo");
+    $("#profissao").addClass("is-valid");
     var a = true;
-    $("#msg_profissao").text("");
 
     if ($("#profissao").val() == "") {
-        $("#msg_profissao").text("*Profissão inválida");
-        $("#msg_profissao").css("color", "red");
-        $("#profissao").addClass("erro");
+        $("#profissao").addClass("is-invalid");
         a = false;
     }
     return a;
@@ -257,33 +248,29 @@ function estadocivil() {
 }
 
 function rg() {
-    if ($("#rg").hasClass("erro")) {
-        $("#rg").removeClass("erro");
-    } else if ($("#rg").hasClass("certo")) {
-        $("#rg").removeClass("certo");
+    if ($("#rg").hasClass("is-invalid")) {
+        $("#rg").removeClass("is-invalid");
+    } else if ($("#rg").hasClass("is-valid")) {
+        $("#rg").removeClass("is-valid");
     }
-    $("#rg").addClass("certo");
+    $("#rg").addClass("is-valid");
     var a = true;
-    $("#msg_rg").text("");
 
     if ($("#rg").val().length < 10) {
-        $("#msg_rg").text("*RG inválido");
-        $("#msg_rg").css("color", "red");
-        $("#rg").addClass("erro");
+        $("#rg").addClass("is-invalid");
         a = false;
     }
     return a;
 }
 
 function cpf() {
-    if ($("#cpf").hasClass("erro")) {
-        $("#cpf").removeClass("erro");
-    } else if ($("#cpf").hasClass("certo")) {
-        $("#cpf").removeClass("certo");
+    if ($("#cpf").hasClass("is-invalid")) {
+        $("#cpf").removeClass("is-invalid");
+    } else if ($("#cpf").hasClass("is-valid")) {
+        $("#cpf").removeClass("is-valid");
     }
-    $("#cpf").addClass("certo");
+    $("#cpf").addClass("is-valid");
     var a = true;
-    $("#msg_cpf").text("");
 
     var cpf = $("#cpf").val();
     while (cpf.indexOf(".") != -1 || cpf.indexOf("-") != -1) {
@@ -292,9 +279,7 @@ function cpf() {
     }
 
     if (cpf.length != 11 || isNaN(cpf)) {
-        $("#msg_cpf").text("*CPF inválido");
-        $("#msg_cpf").css("color", "red");
-        $("#cpf").addClass("erro");
+        $("#cpf").addClass("is-invalid");
         a = false;
     } else {
 
@@ -317,9 +302,7 @@ function cpf() {
         }
 
         if (J != cpfA[9]) {
-            $("#msg_cpf").text("*CPF inválido");
-            $("#msg_cpf").css("color", "red");
-            $("#cpf").addClass("erro");
+            $("#cpf").addClass("is-invalid");
             a = false;
             return false;
         }
@@ -341,9 +324,7 @@ function cpf() {
         }
         //alert(k);
         if (k != cpfA[10]) {
-            $("#msg_cpf").text("*CPF inválido");
-            $("#msg_cpf").css("color", "red");
-            $("#cpf").addClass("erro");
+            $("#cpf").addClass("is-invalid");
             a = false;
             return false;
         }
@@ -353,19 +334,16 @@ function cpf() {
 }
 
 function endereco() {
-    if ($("#endereco").hasClass("erro")) {
-        $("#endereco").removeClass("erro");
-    } else if ($("#endereco").hasClass("certo")) {
-        $("#endereco").removeClass("certo");
+    if ($("#endereco").hasClass("is-invalid")) {
+        $("#endereco").removeClass("is-invalid");
+    } else if ($("#endereco").hasClass("is-valid")) {
+        $("#endereco").removeClass("is-valid");
     }
-    $("#endereco").addClass("certo");
+    $("#endereco").addClass("is-valid");
     var a = true;
-    $("#msg_endereco").text("");
 
     if ($("#endereco").val().trim() == "" || $("#endereco").val().trim().indexOf(" ") == -1) {
-        $("#msg_endereco").text("*Endereço inválido");
-        $("#msg_endereco").css("color", "red");
-        $("#endereco").addClass("erro");
+        $("#endereco").addClass("is-invalid");
         a = false;
     }
     return a;
@@ -392,57 +370,48 @@ function pessoa() {
 }
 
 function numero() {
-    if ($("#numero").hasClass("erro")) {
-        $("#numero").removeClass("erro");
-    } else if ($("#numero").hasClass("certo")) {
-        $("#numero").removeClass("certo");
+    if ($("#numero").hasClass("is-invalid")) {
+        $("#numero").removeClass("is-invalid");
+    } else if ($("#numero").hasClass("is-valid")) {
+        $("#numero").removeClass("is-valid");
     }
-    $("#numero").addClass("certo");
+    $("#numero").addClass("is-valid");
     var a = true;
-    $("#msg_numero").text("");
 
     if ($("#numero").val().trim() == "") {
-        $("#msg_numero").text("*Número inválido");
-        $("#msg_numero").css("color", "red");
-        $("#numero").addClass("erro");
+        $("#numero").addClass("is-invalid");
         a = false;
     }
     return a;
 }
 
 function cidade() {
-    if ($("#cidade").hasClass("erro")) {
-        $("#cidade").removeClass("erro");
-    } else if ($("#cidade").hasClass("certo")) {
-        $("#cidade").removeClass("certo");
+    if ($("#cidade").hasClass("is-invalid")) {
+        $("#cidade").removeClass("is-invalid");
+    } else if ($("#cidade").hasClass("is-valid")) {
+        $("#cidade").removeClass("is-valid");
     }
-    $("#cidade").addClass("certo");
+    $("#cidade").addClass("is-valid");
     var a = true;
-    $("#msg_cidade").text("");
 
     if ($("#cidade").val().trim() == "") {
-        $("#msg_cidade").text("*Cidade inválido");
-        $("#msg_cidade").css("color", "red");
-        $("#cidade").addClass("erro");
+        $("#cidade").addClass("is-invalid");
         a = false;
     }
     return a;
 }
 
 function cep() {
-    if ($("#cep").hasClass("erro")) {
-        $("#cep").removeClass("erro");
-    } else if ($("#cep").hasClass("certo")) {
-        $("#cep").removeClass("certo");
+    if ($("#cep").hasClass("is-invalid")) {
+        $("#cep").removeClass("is-invalid");
+    } else if ($("#cep").hasClass("is-valid")) {
+        $("#cep").removeClass("is-valid");
     }
-    $("#cep").addClass("certo");
+    $("#cep").addClass("is-valid");
     var a = true;
-    $("#msg_cep").text("");
 
     if ($("#cep").val() < 8) {
-        $("#msg_cep").text("*CEP inválido");
-        $("#msg_cep").css("color", "red");
-        $("#cep").addClass("erro");
+        $("#cep").addClass("is-invalid");
         a = false;
     }
     return a;
@@ -468,38 +437,32 @@ function sexo() {
 }
 
 function nomeempresa() {
-    if ($("#nomeempresa").hasClass("erro")) {
-        $("#nomeempresa").removeClass("erro");
-    } else if ($("#nomeempresa").hasClass("certo")) {
-        $("#nomeempresa").removeClass("certo");
+    if ($("#nomeempresa").hasClass("is-invalid")) {
+        $("#nomeempresa").removeClass("is-invalid");
+    } else if ($("#nomeempresa").hasClass("is-valid")) {
+        $("#nomeempresa").removeClass("is-valid");
     }
-    $("#nomeempresa").addClass("certo");
+    $("#nomeempresa").addClass("is-valid");
     var a = true;
-    $("#msg_nomeempresa").text("");
 
     if ($("#nomeempresa").val().trim() == "" || $("#nomeempresa").val().trim().indexOf(" ") == -1) {
-        $("#msg_nomeempresa").text("*Nome da empresa inválido");
-        $("#msg_nomeempresa").css("color", "red");
-        $("#nomeempresa").addClass("erro");
+        $("#nomeempresa").addClass("is-invalid");
         a = false;
     }
     return a;
 }
 
 function nomeempresafisico() {
-    if ($("#nomeempresa").hasClass("erro")) {
-        $("#nomeempresa").removeClass("erro");
-    } else if ($("#nomeempresa").hasClass("certo")) {
-        $("#nomeempresa").removeClass("certo");
+    if ($("#nomeempresa").hasClass("is-invalid")) {
+        $("#nomeempresa").removeClass("is-invalid");
+    } else if ($("#nomeempresa").hasClass("is-valid")) {
+        $("#nomeempresa").removeClass("is-valid");
     }
-    $("#nomeempresa").addClass("certo");
+    $("#nomeempresa").addClass("is-valid");
     var a = true;
-    $("#msg_nomeempresa").text("");
 
     if ($("#nomeempresa").val() != "") {
-        $("#msg_nomeempresa").text("*Nome da empresa inválido");
-        $("#msg_nomeempresa").css("color", "red");
-        $("#nomeempresa").addClass("erro");
+        $("#nomeempresa").addClass("is-invalid");
         a = false;
     }
     return a;
@@ -507,88 +470,77 @@ function nomeempresafisico() {
 
 
 function cnpj() {
-    if ($("#cnpj").hasClass("erro")) {
-        $("#cnpj").removeClass("erro");
-    } else if ($("#cnpj").hasClass("certo")) {
-        $("#cnpj").removeClass("certo");
+    if ($("#cnpj").hasClass("is-invalid")) {
+        $("#cnpj").removeClass("is-invalid");
+    } else if ($("#cnpj").hasClass("is-valid")) {
+        $("#cnpj").removeClass("is-valid");
     }
-    $("#cnpj").addClass("certo");
+    $("#cnpj").addClass("is-valid");
     var a = true;
-    $("#msg_cnpj").text("");
+
     if ($("#cnpj").val().length < 14) {
-        $("#msg_cnpj").text("*CNPJ inválido");
-        $("#msg_cnpj").css("color", "red");
-        $("#cnpj").addClass("erro");
+        $("#cnpj").addClass("is-invalid");
         a = false;
     }
     return a;
 }
 
 function cnpjfisico() {
-    if ($("#cnpj").hasClass("erro")) {
-        $("#cnpj").removeClass("erro");
-    } else if ($("#cnpj").hasClass("certo")) {
-        $("#cnpj").removeClass("certo");
+    if ($("#cnpj").hasClass("is-invalid")) {
+        $("#cnpj").removeClass("is-invalid");
+    } else if ($("#cnpj").hasClass("is-valid")) {
+        $("#cnpj").removeClass("is-valid");
     }
-    $("#cnpj").addClass("certo");
+    $("#cnpj").addClass("is-valid");
     var a = true;
-    $("#msg_cnpj").text("");
+
     if ($("#cnpj").val() != "") {
-        $("#msg_cnpj").text("*CNPJ inválido");
-        $("#msg_cnpj").css("color", "red");
-        $("#cnpj").addClass("erro");
+        $("#cnpj").addClass("is-invalid");
         a = false;
     }
     return a;
 }
 
 function enderecoempresa() {
-    if ($("#enderecoempresa").hasClass("erro")) {
-        $("#enderecoempresa").removeClass("erro");
-    } else if ($("#enderecoempresa").hasClass("certo")) {
-        $("#enderecoempresa").removeClass("certo");
+    if ($("#enderecoempresa").hasClass("is-invalid")) {
+        $("#enderecoempresa").removeClass("is-invalid");
+    } else if ($("#enderecoempresa").hasClass("is-valid")) {
+        $("#enderecoempresa").removeClass("is-valid");
     }
-    $("#enderecoempresa").addClass("certo");
+    $("#enderecoempresa").addClass("is-valid");
     var a = true;
-    $("#msg_enderecoempresa").text("");
 
     if ($("#enderecoempresa").val().trim() == "" || $("#enderecoempresa").val().trim().indexOf(" ") == -1) {
-        $("#msg_enderecoempresa").text("*Endereço da empresa inválido");
-        $("#msg_enderecoempresa").css("color", "red");
-        $("#enderecoempresa").addClass("erro");
+        $("#enderecoempresa").addClass("is-invalid");
         a = false;
     }
     return a;
 }
 
 function enderecoempresafisico() {
-    if ($("#enderecoempresa").hasClass("erro")) {
-        $("#enderecoempresa").removeClass("erro");
-    } else if ($("#enderecoempresa").hasClass("certo")) {
-        $("#enderecoempresa").removeClass("certo");
+    if ($("#enderecoempresa").hasClass("is-invalid")) {
+        $("#enderecoempresa").removeClass("is-invalid");
+    } else if ($("#enderecoempresa").hasClass("is-valid")) {
+        $("#enderecoempresa").removeClass("is-valid");
     }
-    $("#enderecoempresa").addClass("certo");
+    $("#enderecoempresa").addClass("is-valid");
     var a = true;
-    $("#msg_enderecoempresa").text("");
 
     if ($("#enderecoempresa").val() != "") {
-        $("#msg_enderecoempresa").text("*Endereço da empresa inválido");
-        $("#msg_enderecoempresa").css("color", "red");
-        $("#enderecoempresa").addClass("erro");
+        $("#enderecoempresa").addClass("is-invalid");
         a = false;
     }
     return a;
 }
 
 function cargoempresa() {
-    if ($("#cargoempresa").hasClass("erro")) {
-        $("#cargoempresa").removeClass("erro");
-    } else if ($("#cargoempresa").hasClass("certo")) {
-        $("#cargoempresa").removeClass("certo");
+    if ($("#cargoempresa").hasClass("is-invalid")) {
+        $("#cargoempresa").removeClass("is-invalid");
+    } else if ($("#cargoempresa").hasClass("is-valid")) {
+        $("#cargoempresa").removeClass("is-valid");
     }
-    $("#cargoempresa").addClass("certo");
+    $("#cargoempresa").addClass("is-valid");
     var a = true;
-    $("#msg_cargoempresa").text("");
 
     var cargoempresa = $("#cargoempresa").val();
     if ($("#cargoempresa") == undefined) {
@@ -598,28 +550,23 @@ function cargoempresa() {
     }
 
     if (cargoempresa.trim() == "") {
-        $("#msg_cargoempresa").text("*Cargo da empresa inválido");
-        $("#msg_cargoempresa").css("color", "red");
-        $("#cargoempresa").addClass("erro");
+        $("#cargoempresa").addClass("is-invalid");
         a = false;
     }
     return a;
 }
 
 function cargoempresafisico() {
-    if ($("#cargoempresa").hasClass("erro")) {
-        $("#cargoempresa").removeClass("erro");
-    } else if ($("#cargoempresa").hasClass("certo")) {
-        $("#cargoempresa").removeClass("certo");
+    if ($("#cargoempresa").hasClass("is-invalid")) {
+        $("#cargoempresa").removeClass("is-invalid");
+    } else if ($("#cargoempresa").hasClass("is-valid")) {
+        $("#cargoempresa").removeClass("is-valid");
     }
-    $("#cargoempresa").addClass("certo");
+    $("#cargoempresa").addClass("is-valid");
     var a = true;
-    $("#msg_cargoempresa").text("");
 
     if ($("#cargoempresa").val() != "") {
-        $("#msg_cargoempresa").text("*Cargo da empresa inválido");
-        $("#msg_cargoempresa").css("color", "red");
-        $("#cargoempresa").addClass("erro");
+        $("#cargoempresa").addClass("is-invalid");
         a = false;
     }
     return a;
@@ -664,75 +611,64 @@ function tipoempresafisico() {
 }
 
 function cidadeempresa() {
-    if ($("#cidadeempresa").hasClass("erro")) {
-        $("#cidadeempresa").removeClass("erro");
-    } else if ($("#cidadeempresa").hasClass("certo")) {
-        $("#cidadeempresa").removeClass("certo");
+    if ($("#cidadeempresa").hasClass("is-invalid")) {
+        $("#cidadeempresa").removeClass("is-invalid");
+    } else if ($("#cidadeempresa").hasClass("is-valid")) {
+        $("#cidadeempresa").removeClass("is-valid");
     }
-    $("#cidadeempresa").addClass("certo");
+    $("#cidadeempresa").addClass("is-valid");
     var a = true;
-    $("#msg_cidadeempresa").text("");
 
     if ($("#cidadeempresa").val().trim() == "") {
-        $("#msg_cidadeempresa").text("*Cidade da empresa inválido");
-        $("#msg_cidadeempresa").css("color", "red");
-        $("#cidadeempresa").addClass("erro");
+        $("#cidadeempresa").addClass("is-invalid");
         a = false;
     }
     return a;
 }
 
 function cidadeempresafisico() {
-    if ($("#cidadeempresa").hasClass("erro")) {
-        $("#cidadeempresa").removeClass("erro");
-    } else if ($("#cidadeempresa").hasClass("certo")) {
-        $("#cidadeempresa").removeClass("certo");
+    if ($("#cidadeempresa").hasClass("is-invalid")) {
+        $("#cidadeempresa").removeClass("is-invalid");
+    } else if ($("#cidadeempresa").hasClass("is-valid")) {
+        $("#cidadeempresa").removeClass("is-valid");
     }
-    $("#cidadeempresa").addClass("certo");
+    $("#cidadeempresa").addClass("is-valid");
     var a = true;
-    $("#msg_cidadeempresa").text("");
+
     if ($("#cidadeempresa").val().trim() != "") {
-        $("#msg_cidadeempresa").text("*Cidade da empresa inválido");
-        $("#msg_cidadeempresa").css("color", "red");
-        $("#cidadeempresa").addClass("erro");
+        $("#cidadeempresa").addClass("is-invalid");
         a = false;
     }
     return a;
 }
 
 function numeroempresa() {
-    if ($("#numeroempresa").hasClass("erro")) {
-        $("#numeroempresa").removeClass("erro");
-    } else if ($("#numeroempresa").hasClass("certo")) {
-        $("#numeroempresa").removeClass("certo");
+    if ($("#numeroempresa").hasClass("is-invalid")) {
+        $("#numeroempresa").removeClass("is-invalid");
+    } else if ($("#numeroempresa").hasClass("is-valid")) {
+        $("#numeroempresa").removeClass("is-valid");
     }
-    $("#numeroempresa").addClass("certo");
+    $("#numeroempresa").addClass("is-valid");
     var a = true;
-    $("#msg_numeroempresa").text("");
 
     if ($("#numeroempresa").val().trim() == "") {
-        $("#msg_numeroempresa").text("*Número da empresa inválido");
-        $("#msg_numeroempresa").css("color", "red");
-        $("#numeroempresa").addClass("erro");
+        $("#numeroempresa").addClass("is-invalid");
         a = false;
     }
     return a;
 }
 
 function numeroempresafisico() {
-    if ($("#numeroempresa").hasClass("erro")) {
-        $("#numeroempresa").removeClass("erro");
-    } else if ($("#numeroempresa").hasClass("certo")) {
-        $("#numeroempresa").removeClass("certo");
+    if ($("#numeroempresa").hasClass("is-invalid")) {
+        $("#numeroempresa").removeClass("is-invalid");
+    } else if ($("#numeroempresa").hasClass("is-valid")) {
+        $("#numeroempresa").removeClass("is-valid");
     }
-    $("#numeroempresa").addClass("certo");
+    $("#numeroempresa").addClass("is-valid");
     var a = true;
-    $("#msg_numeroempresa").text("");
 
     if ($("#numeroempresa").val() != "") {
-        $("#msg_numeroempresa").text("*Número da empresa inválido");
-        $("#msg_numeroempresa").css("color", "red");
-        $("#numeroempresa").addClass("erro");
+        $("#numeroempresa").addClass("is-invalid");
         a = false;
     }
     return a;
