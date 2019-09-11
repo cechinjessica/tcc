@@ -91,13 +91,6 @@ include('../config/verifica_login.php');
             <div class="card card-padrao my-5">
                 <div class="card-body">
                     <h5 class="card-title text-center">Contratos Cadastrados</h5>
-                    <?php
-                        if (isset($_SESSION['echo'])) {
-                            echo  $_SESSION['echo'];
-                        }
-                        ?>
-
-
                     <div class="form-padrao">
                         <form>
                             <div class="row">
