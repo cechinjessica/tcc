@@ -189,7 +189,7 @@ if (isset($_POST['enviarpessoa'])){
 
 }
 
-//Veiculo
+//Veiculof
 //PARA PEGAR OS DADOS DOS CAMPOS
 if (isset($_POST['enviarveiculo'])){
     $nomevei = $_POST['nomevei'];
