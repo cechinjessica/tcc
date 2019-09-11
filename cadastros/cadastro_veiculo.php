@@ -113,7 +113,7 @@
                         <div class="row">
                             <div class="form-group">
                                 <!--<label for="nome" style="display:inline;">Pesquisar</label>-->
-                                <input type='text' name='nome' id='nome' class="form-control" placeholder="Pesquisar um veículo" style="display:inline;" autofocus>
+                                <input type='text' name='nome' id='nome' class="form-control" placeholder="Pesquisar uma placa" style="display:inline;" autofocus>
                             </div>
                         </div>
                     </form>

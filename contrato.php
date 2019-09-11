@@ -121,6 +121,7 @@ if (isset($_POST['enviarcontrato'])){
         //INCLUSÃO
         $sql = "INSERT INTO contrato (ValorTotal, NumeroParcelas, ValorParcela, DataPagamento, Juros, Foro, LocalAss, DataAss, DataCriacao, NomeTestemunha1, RGTestemunha1, NomeTestemunha2, RGTestemunha2, Pessoa_IdVendedor,Pessoa_IdComprador, Veiculo_IdVeiculo, Login_IdUsuario) VALUES ('$valortotal' ,'$numeroparcelas' ,'$valorparcela', '$dpagamento', '$juro' ,'$foro' ,'$lassinatura' ,'$dassinatura',(now()), '$ntestemunha1' ,'$rgtestemunha1' ,'$ntestemunha2' ,'$rgtestemunha2' ,'$idvend', '$idcomp' ,'$idvei','$idlogin')";
 
+        $_SESSION['echo'] = $sql;
         mysqli_query($conexao,$sql);
 
         if (mysqli_affected_rows($conexao) =='1') {
