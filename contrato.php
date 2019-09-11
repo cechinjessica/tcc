@@ -439,20 +439,17 @@ if (isset($_POST['enviarveiculo'])){
                             <div class="form-check-inline">
                                 <input type="radio" class="form-check-input" name="pessoa" value="j" id="pessoaj">Pessoa jurídica
                             </div>
-                            <p id="msg_pessoa" class="form-control feedback"></p>
                         </div>
 
                         <div class="row">
                             <div class="form-group col-xl">
                                 <label for="nome">Nome completo</label><label for="nome" class="representante"> do representante</label>
                                 <input type="text" id="nome" class="form-control" name="nome">
-                                <p id="msg_nome" class="form-control-feedback"></p>
                             </div>
 
                             <div class="form-group col-xl">
                                 <label for="nacionalidade">Nacionalidade</label><label for="nacionalidade" class="representante"> do representante</label>
                                 <input type="text" id="nacionalidade" class="form-control" name="nacionalidade">
-                                <p id="msg_nacionalidade" class="form-control feedback"></p>
                             </div>
                         </div>
 
@@ -460,13 +457,11 @@ if (isset($_POST['enviarveiculo'])){
                             <div class="form-group col-xl">
                                 <label for="profissao">Profissão</label><label for="profissao" class="representante"> do representante</label>
                                 <input type="text" id="profissao" class="form-control" name="profissao">
-                                <p id="msg_profissao" class="form-control feedback"></p>
                             </div>
 
                             <div class="form-group col-xl">
                                 <label for="rg">RG</label><label for="rg" class="representante"> do representante</label>
                                 <input type="text" id="rg" class="form-control" name="rg">
-                                <p id="msg_rg" class="form-control-feedback "></p>
                             </div>
                         </div>
 
@@ -495,26 +490,22 @@ if (isset($_POST['enviarveiculo'])){
                             <div class="form-group col-xl">
                                 <label for="cpf">CPF</label><label for="cpf" class="representante"> do representante</label>
                                 <input type="text" id="cpf" class="form-control" name="cpf">
-                                <p id="msg_cpf" class="form-control-feedback "></p>
                             </div>
 
                             <div class="form-group col-xl">
                                 <label for="endereco">Endereço</label><label for="endereco" class="representante"> do representante</label>
                                 <input type="text" id="endereco" class="form-control" name="endereco">
-                                <p id="msg_endereco" class="form-control-feedback "></p>
                             </div>
                         </div>
                         <div class="row">
                             <div class="form-group col-xl">
                                 <label for="numero">Número</label><label for="numero" class="representante"> do representante</label>
                                 <input type="text" id="numero" class="form-control" name="numero">
-                                <p id="msg_numero" class="form-control-feedback "></p>
                             </div>
 
                             <div class="form-group col-xl">
                                 <label for="cidade">Cidade</label><label for="cidade" class="representante"> do representante</label>
                                 <input type="text" id="cidade" class="form-control" name="cidade">
-                                <p id="msg_cidade" class="form-control-feedback "></p>
                             </div>
                         </div>
 
@@ -522,7 +513,6 @@ if (isset($_POST['enviarveiculo'])){
                             <div class="form-group col-xl">
                                 <label for="cep">CEP</label><label for="cep" class="representante"> do representante</label>
                                 <input type="text" id="cep" class="form-control" name="cep">
-                                <p id="msg_cep" class="form-control-feedback "></p>
                             </div>
 
                             <div class="form-group col-xl">
@@ -533,7 +523,6 @@ if (isset($_POST['enviarveiculo'])){
                                 <div class="form-check-inline">
                                     <input type="radio" class="form-check-input" name="sexo" value="m" id="sexom">Masculino
                                 </div>
-                                <p id="msg_sexo" class="form-control feedback"></p>
                             </div>
                         </div>
 
@@ -541,13 +530,11 @@ if (isset($_POST['enviarveiculo'])){
                             <div class="form-group col-xl" id="gnomeempresa">
                                 <label for="nomeempresa">Nome</label><label for="nomeempresa" class="representante"> da empresa</label>
                                 <input type="text" id="nomeempresa" class="form-control" name="nomeempresa">
-                                <p id="msg_nomeempresa" class="form-control-feedback "></p>
                             </div>
 
                             <div class="form-group col-xl" id="gcnpj">
                                 <label for="cnpj">CNPJ</label><label for="cnpj" class="representante"> da empresa</label>
                                 <input type="text" id="cnpj" class="form-control" name="cnpjempresa">
-                                <p id="msg_cnpj" class="form-control-feedback "></p>
                             </div>
                         </div>
 
@@ -567,7 +554,6 @@ if (isset($_POST['enviarveiculo'])){
                             <div class="form-group col-xl" id="gcargoempresa">
                                 <label for="cargo">Cargo</label><label for="cargo" class="representante"> do representante</label>
                                 <input type="text" id="cargoempresa" class="form-control" name="cargoempresa">
-                                <p id="msg_cargoempresa" class="form-control-feedback "></p>
                             </div>
                         </div>
 
@@ -575,20 +561,17 @@ if (isset($_POST['enviarveiculo'])){
                             <div class="form-group col-xl" id="genderecoempresa">
                                 <label for="enderecoempresa">Endereço</label><label for="enderecoempresa" class="representante"> da empresa</label>
                                 <input type="text" id="enderecoempresa" class="form-control" name="enderecoempresa">
-                                <p id="msg_enderecoempresa" class="form-control-feedback "></p>
                             </div>
 
                             <div class="form-group col-xl" id="gcidadeempresa">
                                 <label for="cidadeempresa">Cidade</label><label for="cidadeempresa" class="representante"> da empresa</label>
                                 <input type="text" id="cidadeempresa" class="form-control" name="cidadeempresa">
-                                <p id="msg_cidadeempresa" class="form-control-feedback "></p>
                             </div>
                         </div>
 
                         <div class="form-group" id="gnumeroempresa">
                             <label for="numeroempresa">Número</label><label for="numeroempresa" class="representante"> da empresa</label>
                             <input type="text" id="numeroempresa" class="form-control" name="numeroempresa">
-                            <p id="msg_numeroempresa" class="form-control-feedback "></p>
                         </div>
 
                         <input type='hidden' name='id' id='codigo' value="<?php echo ($id!=0)?"$id":'0';?>">
@@ -650,13 +633,11 @@ if (isset($_POST['enviarveiculo'])){
                             <div class="form-group col-xl">
                                 <label for="nomevei">Modelo(Nome)</label>
                                 <input type="text" id="nomevei" class="form-control" name="nomevei" title="Ex.: Celta, Prisma, Corsa" value="<?php echo ($id!=0)?"$nomevei":'';?>">
-                                <p id="msg_nomevei" class="form-control-feedback"></p>
                             </div>
 
                             <div class="form-group col-xl">
                                 <label for="marca">Marca</label>
                                 <input type="text" id="marca" class="form-control" name="marca" title="Ex.: Chevrolet, Volkswagen, Ford " value="<?php echo ($id!=0)?"$marca":'';?>">
-                                <p id="msg_marca" class="form-control-feedback"></p>
                             </div>
                         </div>
 
@@ -664,13 +645,11 @@ if (isset($_POST['enviarveiculo'])){
                             <div class="form-group col-xl">
                                 <label for="ano">Ano</label>
                                 <input type="text" id="ano" class="form-control" name="ano" title="Ex.: 2010, 2000, 2019" value="<?php echo ($id!=0)?"$ano":'';?>">
-                                <p id="msg_ano" class="form-control-feedback"></p>
                             </div>
 
                             <div class="form-group col-xl">
                                 <label for="modelo">Modelo(Ano)</label>
                                 <input type="text" id="modelo" class="form-control" name="modelo" value="<?php echo ($id!=0)?"$modelo":'';?>">
-                                <p id="msg_modelo" class="form-control-feedback "></p>
                             </div>
                         </div>
 
@@ -678,26 +657,22 @@ if (isset($_POST['enviarveiculo'])){
                             <div class="form-group col-xl">
                                 <label for="chassi">Chassi</label>
                                 <input type="text" id="chassi" class="form-control" maxlength="17" name="chassi" value="<?php echo ($id!=0)?"$chassi":'';?>">
-                                <p id="msg_chassi" class="form-control-feedback "></p>
                             </div>
 
                             <div class="form-group col-xl">
                                 <label for="cor">Cor</label>
                                 <input type="text" id="cor" class="form-control" name="cor" title="Ex.: Vermelho, Rosa, Prata" value="<?php echo ($id!=0)?"$cor":'';?>">
-                                <p id="msg_cor" class="form-control-feedback "></p>
                             </div>
                         </div>
                         <div class="row">
                             <div class="form-group col-xl">
                                 <label for="placa">Placa</label>
                                 <input type="text" id="placa" class="form-control" maxlength="8" name="placa" title="XXX-0000" value="<?php echo ($id!=0)?"$placa":'';?>">
-                                <p id="msg_placa" class="form-control-feedback "></p>
                             </div>
 
                             <div class="form-group col-xl">
                                 <label for="renavam">Renavam</label>
                                 <input type="text" id="renavam" class="form-control" maxlength="11" name="renavam" value="<?php echo ($id!=0)?"$renavam":'';?>">
-                                <p id="msg_renavam" class="form-control-feedback "></p>
                             </div>
                         </div>
 
@@ -705,13 +680,11 @@ if (isset($_POST['enviarveiculo'])){
                             <div class="form-group col-xl">
                                 <label for="proprietario">Proprietario</label>
                                 <input type="text" id="proprietario" class="form-control" name="proprietario" title="O veículo esta em nome de ..." value="<?php echo ($id!=0)?"$proprietario":'';?>">
-                                <p id="msg_proprietario" class="form-control-feedback "></p>
                             </div>
 
                             <div class="form-group col-xl">
                                 <label for="valorvei">Valor</label>
                                 <input type="text" id="valorvei" class="form-control" name="valorvei" title="Ex.: 10000,00" value="<?php echo ($id!=0)?"$valorvei":'';?>">
-                                <p id="msg_valorvei" class="form-control-feedback "></p>
                             </div>
 
                         </div>
@@ -764,7 +737,6 @@ if (isset($_POST['enviarveiculo'])){
                                 <i class="material-icons " style="font-size: 24px;" data-toggle="modal" data-target="#modalVendedorCadastrar">
                                     edit
                                 </i>
-                                <p id="msg_vendedor" class="form-control-feedback"></p>
                             </div>
                             <div class="form-group col-md">
                                 <label for="cpfvreadonly">CPF</label>
@@ -783,7 +755,6 @@ if (isset($_POST['enviarveiculo'])){
                                 <i class="material-icons" style="font-size: 24px;" data-toggle="modal" data-target="#modalVendedorCadastrar">
                                     edit
                                 </i>
-                                <p id="msg_comprador" class="form-control-feedback"></p>
                             </div>
                             <div class="form-group col-md">
                                 <label for="cpfcreadonly">CPF</label>
@@ -801,7 +772,6 @@ if (isset($_POST['enviarveiculo'])){
                                 <i class="material-icons" style="font-size: 24px;" data-toggle="modal" data-target="#modalVeiculoCadastrar">
                                     edit
                                 </i>
-                                <p id="msg_veiculo" class="form-control-feedback"></p>
                             </div>
                             <div class="form-group col-md">
                                 <label for="placareadonly">Placa</label>
@@ -813,19 +783,15 @@ if (isset($_POST['enviarveiculo'])){
                         <div class="form-group col-md">
                             <label for="dpagamento" class="col-lg-4 col-sm-12 m-0">Dia de Pagamento</label>
                             <input type="text" id="dpagamento" class="form-control col-lg-5 m-0" name="dpagamento" value="<?php echo ($id!=0)?"$dpagamento":'';?>" placeholder="Ex. 15" title="Todo dia X de cada mês">
-                            <p id="msg_dpagamento" class="form-control-feedback"></p>
 
                             <label for="valortotal" class="col-lg-4 col-sm-12 m-0">Valor Total</label>
                             <input type="text" id="valortotal" class="form-control col-lg-5 m-0" name="valortotal" value="<?php echo ($id!=0)?"$valortotal":'';?>" readonly>
-                            <p id="msg_valortotal" class="form-control-feedback"></p>
 
                             <label for="numeroparcelas" class="col-lg-4 col-sm-12 m-0">Quantidade de Parcelas</label>
                             <input type="text" id="numeroparcelas" class="form-control col-lg-5 m-0" name="numeroparcelas" value="<?php echo ($id!=0)?"$numeroparcelas":'';?>">
-                            <p id="msg_numeroparcelas" class="form-control-feedback"></p>
 
                             <label for="vparcela" class="col-lg-4 col-sm-12 m-0">Valor das Parcelas</label>
                             <input type="text" id="valorparcela" class="form-control col-lg-5 m-0" name="valorparcela" value="<?php echo ($id!=0)?"$valorparcela":'';?>" readonly>
-                            <p id="msg_valorparcela" class="form-control-feedback"></p>
 
                             <label for="juro" class="col-lg-4 col-sm-12 m-0">Juros</label>
                             <div class="form-check-inline">
@@ -845,21 +811,17 @@ if (isset($_POST['enviarveiculo'])){
 
                             <label for="foro" class="col-lg-4 col-sm-12 m-0">Foro</label>
                             <input type="text" id="foro" class="form-control col-lg-5 m-0" name="foro" value="<?php echo ($id!=0)?"$foro":'';?>">
-                            <p id="msg_foro" class="form-control-feedback"></p>
 
                             <label for="datacriacao">Data Criação</label>
                             <input type="text" id="datacriacao" class="form-control" name="datacriacao" value="<?php echo ($id!=0)?"$datacriacao":'';?>">
-                            <p id="msg_datacriacao" class="form-control-feedback"></p>
                         </div>
                         <div class="row">
                             <div class="form-group col-xl">
                                 <label for="ntestemunha1" class="col-lg-5 col-xl-4 col-sm-12 m-0 ">Nome Completo da Testemunha 1</label>
                                 <input type="text" id="ntestemunha1" class="form-control col-xl-4 col-lg-5 m-0" name="ntestemunha1" value="<?php echo ($id!=0)?"$ntestemunha1":'';?>">
-                                <p id="msg_ntestemunha1" class="form-control-feedback"></p>
 
                                 <label for="rgtestemunha1" class="col-lg-5 col-xl-3 col-sm-12 m-0 ">RG da Testemunha 1</label>
                                 <input type="text" id="rgtestemunha1" class="form-control col-xl-4 col-lg-5 m-0" name="rgtestemunha1" value="<?php echo ($id!=0)?"$rgtestemunha1":'';?>">
-                                <p id="msg_rgtestemunha1" class="form-control-feedback"></p>
                             </div>
                         </div>
 
@@ -867,11 +829,9 @@ if (isset($_POST['enviarveiculo'])){
                             <div class="form-group col-xl">
                                 <label for="ntestemunha2" class="col-lg-5 col-xl-4 col-sm-12 m-0 ">Nome Completo da Testemunha 2</label>
                                 <input type="text" id="ntestemunha2" class="form-control col-xl-4 col-lg-5 m-0" name="ntestemunha2" value="<?php echo ($id!=0)?"$ntestemunha2":'';?>">
-                                <p id="msg_ntestemunha2" class="form-control-feedback"></p>
 
                                 <label for="rgtestemunha2" class="col-lg-5 col-xl-3 col-sm-12 m-0 ">RG da Testemunha 2</label>
                                 <input type="text" id="rgtestemunha2" class="form-control col-xl-4 col-lg-5 m-0" name="rgtestemunha2" value="<?php echo ($id!=0)?"$rgtestemunha2":'';?>">
-                                <p id="msg_rgtestemunha2" class="form-control-feedback"></p>
                             </div>
                         </div>
 
@@ -879,11 +839,9 @@ if (isset($_POST['enviarveiculo'])){
                             <div class="form-group col-xl">
                                 <label for="lassinatura" class="col-lg-3 col-sm-12 m-0 ">Cidade para Assinatura</label>
                                 <input type="text" id="lassinatura" class="form-control col-xl-4 col-lg-5 m-0" name="lassinatura" value="<?php echo ($id!=0)?"$lassinatura":'';?>">
-                                <p id="msg_lassinatura" class="form-control-feedback"></p>
 
                                 <label for="dassinatura" class="col-lg-3 col-sm-12 m-0 ">Data de Assinatura</label>
                                 <input type="date" id="dassinatura" class="form-control col-xl-4 col-lg-5 m-0" name="dassinatura" value="<?php echo ($id!=0)?"$dassinatura":'';?>">
-                                <p id="msg_dassinatura" class="form-control-feedback"></p>
                             </div>
                         </div>
 

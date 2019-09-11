@@ -46,37 +46,32 @@ $(document).ready(function () {
 })
 
 function nome() {
-    if ($("#nomevei").hasClass("erro")) {
-        $("#nomevei").removeClass("erro");
-    } else if ($("#nomevei").hasClass("certo")) {
-        $("#nomevei").removeClass("certo");
+    if ($("#nomevei").hasClass("is-invalid")) {
+        $("#nomevei").removeClass("is-invalid");
+    } else if ($("#nomevei").hasClass("is-valid")) {
+        $("#nomevei").removeClass("is-valid");
     }
-    $("#nomevei").addClass("certo");
+    $("#nomevei").addClass("is-valid");
     var a = true;
-    $("#msg_nomevei").text("");
+
     if ($("#nomevei").val().trim() == "") {
-        $("#msg_nomevei").text("*Nome inválido");
-        $("#msg_nomevei").css("color", "red");
-        $("#nomevei").addClass("erro");
+        $("#nomevei").addClass("is-invalid");
         a = false;
     }
     return a;
 }
 
 function marca() {
-    if ($("#marca").hasClass("erro")) {
-        $("#marca").removeClass("erro");
-    } else if ($("#marca").hasClass("certo")) {
-        $("#marca").removeClass("certo");
+    if ($("#marca").hasClass("is-invalid")) {
+        $("#marca").removeClass("is-invalid");
+    } else if ($("#marca").hasClass("is-valid")) {
+        $("#marca").removeClass("is-valid");
     }
-    $("#marca").addClass("certo");
+    $("#marca").addClass("is-valid");
     var a = true;
-    $("#msg_marca").text("");
 
     if ($("#marca").val().trim() == "") {
-        $("#msg_marca").text("*Marca inválida");
-        $("#msg_marca").css("color", "red");
-        $("#marca").addClass("erro");
+        $("#marca").addClass("is-invalid");
         a = false;
     }
     return a;
@@ -84,47 +79,39 @@ function marca() {
 
 
 function ano() {
-    if ($("#ano").hasClass("erro")) {
-        $("#ano").removeClass("erro");
-    } else if ($("#ano").hasClass("certo")) {
-        $("#ano").removeClass("certo");
+    if ($("#ano").hasClass("is-invalid")) {
+        $("#ano").removeClass("is-invalid");
+    } else if ($("#ano").hasClass("is-valid")) {
+        $("#ano").removeClass("is-valid");
     }
-    $("#ano").addClass("certo");
+    $("#ano").addClass("is-valid");
     var a = true;
-    $("#msg_ano").text("");
 
     if ($("#ano").val() == "" || $("#ano").val().length > 4) {
-        $("#msg_ano").text("*Ano inválido");
-        $("#msg_ano").css("color", "red");
-        $("#ano").addClass("erro");
+        $("#ano").addClass("is-invalid");
         a = false;
     }
     return a;
 }
 
 function modelo() {
-    if ($("#modelo").hasClass("erro")) {
-        $("#modelo").removeClass("erro");
-    } else if ($("#modelo").hasClass("certo")) {
-        $("#modelo").removeClass("certo");
+    if ($("#modelo").hasClass("is-invalid")) {
+        $("#modelo").removeClass("is-invalid");
+    } else if ($("#modelo").hasClass("is-valid")) {
+        $("#modelo").removeClass("is-valid");
     }
-    $("#modelo").addClass("certo");
+    $("#modelo").addClass("is-valid");
     var a = true;
-    $("#msg_modelo").text("");
 
     var ano = parseInt($("#ano").val());
     var modelo = parseInt($("#modelo").val());
 
     if (modelo == "" || modelo.length > 4) {
-        $("#msg_modelo").text("*Modelo inválido");
-        $("#msg_modelo").css("color", "red");
-        $("#modelo").addClass("erro");
+        $("#modelo").addClass("is-invalid");
         return a = false;
     }
     if (!(modelo == ano - 1 | modelo == ano + 1 | modelo == ano)) {
-        $("#msg_modelo").text("*Modelo inválido");
-        $("#msg_modelo").css("color", "red");
-        $("#modelo").addClass("erro");
+        $("#modelo").addClass("is-invalid");
         a = false;
     }
 
@@ -132,38 +119,32 @@ function modelo() {
 }
 
 function chassi() {
-    if ($("#chassi").hasClass("erro")) {
-        $("#chassi").removeClass("erro");
-    } else if ($("#chassi").hasClass("certo")) {
-        $("#chassi").removeClass("certo");
+    if ($("#chassi").hasClass("is-invalid")) {
+        $("#chassi").removeClass("is-invalid");
+    } else if ($("#chassi").hasClass("is-valid")) {
+        $("#chassi").removeClass("is-valid");
     }
-    $("#chassi").addClass("certo");
+    $("#chassi").addClass("is-valid");
     var a = true;
-    $("#msg_chassi").text("");
 
     if ($("#chassi").val().trim() == "" || $("#chassi").val().length > 17) {
-        $("#msg_chassi").text("*Chassi inválido");
-        $("#msg_chassi").css("color", "red");
-        $("#chassi").addClass("erro");
+        $("#chassi").addClass("is-invalid");
         a = false;
     }
     return a;
 }
 
 function cor() {
-    if ($("#cor").hasClass("erro")) {
-        $("#cor").removeClass("erro");
-    } else if ($("#cor").hasClass("certo")) {
-        $("#cor").removeClass("certo");
+    if ($("#cor").hasClass("is-invalid")) {
+        $("#cor").removeClass("is-invalid");
+    } else if ($("#cor").hasClass("is-valid")) {
+        $("#cor").removeClass("is-valid");
     }
-    $("#cor").addClass("certo");
+    $("#cor").addClass("is-valid");
     var a = true;
-    $("#msg_cor").text("");
 
     if ($("#cor").val().trim() == "") {
-        $("#msg_cor").text("*Cor inválida");
-        $("#msg_cor").css("color", "red");
-        $("#cor").addClass("erro");
+        $("#cor").addClass("is-invalid");
         a = false;
     }
     return a;
@@ -171,19 +152,16 @@ function cor() {
 
 
 function placa() {
-    if ($("#placa").hasClass("erro")) {
-        $("#placa").removeClass("erro");
-    } else if ($("#placa").hasClass("certo")) {
-        $("#placa").removeClass("certo");
+    if ($("#placa").hasClass("is-invalid")) {
+        $("#placa").removeClass("is-invalid");
+    } else if ($("#placa").hasClass("is-valid")) {
+        $("#placa").removeClass("is-valid");
     }
-    $("#placa").addClass("certo");
+    $("#placa").addClass("is-valid");
     var a = true;
-    $("#msg_placa").text("");
 
     if ($("#placa").val().trim() == "" || $("#placa").val().length > 8) {
-        $("#msg_placa").text("*Placa inválida");
-        $("#msg_placa").css("color", "red");
-        $("#placa").addClass("erro");
+        $("#placa").addClass("is-invalid");
         a = false;
     }
     return a;
@@ -191,19 +169,16 @@ function placa() {
 
 
 function renavam() {
-    if ($("#renavam").hasClass("erro")) {
-        $("#renavam").removeClass("erro");
-    } else if ($("#renavam").hasClass("certo")) {
-        $("#renavam").removeClass("certo");
+    if ($("#renavam").hasClass("is-invalid")) {
+        $("#renavam").removeClass("is-invalid");
+    } else if ($("#renavam").hasClass("is-valid")) {
+        $("#renavam").removeClass("is-valid");
     }
-    $("#renavam").addClass("certo");
+    $("#renavam").addClass("is-valid");
     var a = true;
-    $("#msg_renavam").text("");
 
     if ($("#renavam").val().trim() == "" || $("#renavam").val().length > 11) {
-        $("#msg_renavam").text("*Renavam inválida");
-        $("#msg_renavam").css("color", "red");
-        $("#renavam").addClass("erro");
+        $("#renavam").addClass("is-invalid");
         a = false;
     }
     return a;
@@ -211,38 +186,32 @@ function renavam() {
 
 
 function proprietario() {
-    if ($("#proprietario").hasClass("erro")) {
-        $("#proprietario").removeClass("erro");
-    } else if ($("#proprietario").hasClass("certo")) {
-        $("#proprietario").removeClass("certo");
+    if ($("#proprietario").hasClass("is-invalid")) {
+        $("#proprietario").removeClass("is-invalid");
+    } else if ($("#proprietario").hasClass("is-valid")) {
+        $("#proprietario").removeClass("is-valid");
     }
-    $("#proprietario").addClass("certo");
+    $("#proprietario").addClass("is-valid");
     var a = true;
-    $("#msg_proprietario").text("");
 
     if ($("#proprietario").val().trim() == "" || $("#proprietario").val().trim().indexOf(" ") == -1) {
-        $("#msg_proprietario").text("*Proprietário inválido");
-        $("#msg_proprietario").css("color", "red");
-        $("#proprietario").addClass("erro");
+        $("#proprietario").addClass("is-invalid");
         a = false;
     }
     return a;
 }
 
 function valor() {
-    if ($("#valorvei").hasClass("erro")) {
-        $("#valorvei").removeClass("erro");
-    } else if ($("#valorvei").hasClass("certo")) {
-        $("#valorvei").removeClass("certo");
+    if ($("#valorvei").hasClass("is-invalid")) {
+        $("#valorvei").removeClass("is-invalid");
+    } else if ($("#valorvei").hasClass("is-valid")) {
+        $("#valorvei").removeClass("is-valid");
     }
-    $("#valorvei").addClass("certo");
+    $("#valorvei").addClass("is-valid");
     var a = true;
-    $("#msg_valorvei").text("");
 
     if ($("#valorvei").val().trim() == "") {
-        $("#msg_valorvei").text("*Valor inválido");
-        $("#msg_valorvei").css("color", "red");
-        $("#valorvei").addClass("erro");
+        $("#valorvei").addClass("is-invalid");
         a = false;
     }
     return a;
