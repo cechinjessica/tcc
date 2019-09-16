@@ -11,6 +11,8 @@ $(document).ready(function () {
     $("#numero").mask("000000");
     $("#numeroempresa").mask("000000");
     $("#nacionalidade").mask("SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS");
+    $("#uf").mask("SS");
+    $("#ufempresa").mask("SS");
 
 
     $("#pessoaf").click(selecionarf);
@@ -63,7 +65,9 @@ $(document).ready(function () {
             if (!sexo()) {
                 e.preventDefault();
             }
-
+            if (!uf()) {
+                e.preventDefault();
+            }
             if (!nomeempresafisico()) {
                 e.preventDefault();
             }
@@ -83,6 +87,9 @@ $(document).ready(function () {
                 e.preventDefault();
             }
             if (!numeroempresafisico()) {
+                e.preventDefault();
+            }
+            if (!ufempresafisico()) {
                 e.preventDefault();
             }
         } else if ($("#pessoaj").is(":checked")) {
@@ -122,6 +129,9 @@ $(document).ready(function () {
             if (!sexo()) {
                 e.preventDefault();
             }
+            if (!uf()) {
+                e.preventDefault();
+            }
             if (!nomeempresa()) {
                 e.preventDefault();
             }
@@ -143,6 +153,9 @@ $(document).ready(function () {
             if (!numeroempresa()) {
                 e.preventDefault();
             }
+            if (!ufempresa()) {
+                e.preventDefault();
+            }
         } else {
             $("#msg_pessoa").text("*Selecione o tipo de pessoa");
             $("#msg_pessoa").css("color", "red");
@@ -162,6 +175,7 @@ function selecionarf() {
     $("#gtipoempresa").css("display", "none");
     $("#gcidadeempresa").css("display", "none");
     $("#gnumeroempresa").css("display", "none");
+    $("#gufempresa").css("display", "none");
 
 
 }
@@ -175,6 +189,7 @@ function selecionarj() {
     $("#gtipoempresa").css("display", "inline");
     $("#gcidadeempresa").css("display", "inline");
     $("#gnumeroempresa").css("display", "inline");
+    $("#gufempresa").css("display", "inline");
 
 
 }
@@ -669,6 +684,70 @@ function numeroempresafisico() {
 
     if ($("#numeroempresa").val() != "") {
         $("#numeroempresa").addClass("is-invalid");
+        a = false;
+    }
+    return a;
+}
+
+function ufempresa() {
+    if ($("#ufempresa").hasClass("is-invalid")) {
+        $("#ufempresa").removeClass("is-invalid");
+    } else if ($("#ufempresa").hasClass("is-valid")) {
+        $("#ufempresa").removeClass("is-valid");
+    }
+    $("#ufempresa").addClass("is-valid");
+    var a = true;
+
+    if ($("#ufempresa").val().length != 2) {
+        $("#ufempresa").addClass("is-invalid");
+        a = false;
+    }
+    return a;
+}
+
+function ufempresafisico() {
+    if ($("#ufempresa").hasClass("is-invalid")) {
+        $("#ufempresa").removeClass("is-invalid");
+    } else if ($("#ufempresa").hasClass("is-valid")) {
+        $("#ufempresa").removeClass("is-valid");
+    }
+    $("#ufempresa").addClass("is-valid");
+    var a = true;
+
+    if ($("#ufempresa").val() != "") {
+        $("#ufempresa").addClass("is-invalid");
+        a = false;
+    }
+    return a;
+}
+
+function uf() {
+    if ($("#uf").hasClass("is-invalid")) {
+        $("#uf").removeClass("is-invalid");
+    } else if ($("#uf").hasClass("is-valid")) {
+        $("#uf").removeClass("is-valid");
+    }
+    $("#uf").addClass("is-valid");
+    var a = true;
+
+    if ($("#uf").val().length != 2) {
+        $("#uf").addClass("is-invalid");
+        a = false;
+    }
+    return a;
+}
+
+function uffisico() {
+    if ($("#uf").hasClass("is-invalid")) {
+        $("#uf").removeClass("is-invalid");
+    } else if ($("#uf").hasClass("is-valid")) {
+        $("#uf").removeClass("is-valid");
+    }
+    $("#uf").addClass("is-valid");
+    var a = true;
+
+    if ($("#uf").val() != "") {
+        $("#uf").addClass("is-invalid");
         a = false;
     }
     return a;

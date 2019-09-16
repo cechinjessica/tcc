@@ -5,185 +5,190 @@ require '../config/verifica_login.php';
 
 //PARA COLOCAR AS INFORMAÇÕES DO BD NOS CAMPOS
 if (isset($_GET['id'])){
-	$id=$_GET['id'];
-	$op=$_GET['op'];
-	$sql = "SELECT idpessoa, tipopessoa, nome, nacionalidade, profissao, estadocivil, rg, cpf, endereco, sexo, numero, cidade, cep, cnpj, enderecoempresa, cargoempresa, tipoempresa, cidadeempresa, numeroempresa, nomeempresa FROM pessoa WHERE idpessoa='$id'";
-	$res=mysqli_query($conexao,$sql);
-	$row=mysqli_fetch_row($res);
-	$id= $row[0];
-	$tipopessoa = $row[1];
-	$nome = $row[2];
-	$nacionalidade = $row[3];
-	$profissao = $row[4];
-	$ecivil = $row[5];
-	$rg = $row[6];
-	$cpf = $row[7];
-	$endereco = $row[8];
-	$sexo = $row[9];
-	$numero = $row[10];
-	$cidade = $row[11];
-	$cep = $row[12];
-	$cnpjempresa = $row[13];
-	$enderecoempresa = $row[14];
-	$cargoempresa = $row[15];
-	$tipoempresa = $row[16];
-	$cidadeempresa = $row[17];
-	$numeroempresa = $row[18];
-	$nomeempresa = $row[19];
+    $id=$_GET['id'];
+    $op=$_GET['op'];
+    $sql = "SELECT idpessoa, tipopessoa, nome, nacionalidade, profissao, estadocivil, rg, cpf, endereco, sexo, numero, cidade, cep, cnpj, enderecoempresa, cargoempresa, tipoempresa, cidadeempresa, numeroempresa, nomeempresa, uf, ufempresa FROM pessoa WHERE idpessoa='$id'";
+    $res=mysqli_query($conexao,$sql);
+    $row=mysqli_fetch_row($res);
+    $id= $row[0];
+    $tipopessoa = $row[1];
+    $nome = $row[2];
+    $nacionalidade = $row[3];
+    $profissao = $row[4];
+    $ecivil = $row[5];
+    $rg = $row[6];
+    $cpf = $row[7];
+    $endereco = $row[8];
+    $sexo = $row[9];
+    $numero = $row[10];
+    $cidade = $row[11];
+    $cep = $row[12];
+    $cnpjempresa = $row[13];
+    $enderecoempresa = $row[14];
+    $cargoempresa = $row[15];
+    $tipoempresa = $row[16];
+    $cidadeempresa = $row[17];
+    $numeroempresa = $row[18];
+    $nomeempresa = $row[19];
+    $uf = $row[20];
+    $ufempresa = $row[21];
 
     $tipoempresapu = "";
     $tipoempresapr = "";
 
 
-	if($tipopessoa == "f"){
-		$pessoaf = "checked";
-		$pessoaj = "";
-	}else if($tipopessoa == "j"){
-		$pessoaf = "";
-		$pessoaj = "checked";
-	}
+    if($tipopessoa == "f"){
+        $pessoaf = "checked";
+        $pessoaj = "";
+    }else if($tipopessoa == "j"){
+        $pessoaf = "";
+        $pessoaj = "checked";
+    }
 
-	if($ecivil == "solteiro"){
-		$solteiro = "checked";
-		$casado = "";
-		$divorciado = "";
-		$viuvo = "";
-		$separado = "";
-	}else if ($ecivil == "casado"){
-		$solteiro = "";
-		$casado = "checked";
-		$divorciado = "";
-		$viuvo = "";
-		$separado = "";
-	}else if($ecivil == "divorciado"){
-		$solteiro = "";
-		$casado = "";
-		$divorciado = "checked";
-		$viuvo = "";
-		$separado = "";
-	}else if($ecivil == "viuvo"){
-		$solteiro = "";
-		$casado = "";
-		$divorciado = "";
-		$viuvo = "checked";
-		$separado = "";
-	}else if($ecivil == "separado"){
-		$solteiro = "";
-		$casado = "";
-		$divorciado = "";
-		$viuvo = "";
-		$separado = "checked";
-	}
+    if($ecivil == "solteiro"){
+        $solteiro = "checked";
+        $casado = "";
+        $divorciado = "";
+        $viuvo = "";
+        $separado = "";
+    }else if ($ecivil == "casado"){
+        $solteiro = "";
+        $casado = "checked";
+        $divorciado = "";
+        $viuvo = "";
+        $separado = "";
+    }else if($ecivil == "divorciado"){
+        $solteiro = "";
+        $casado = "";
+        $divorciado = "checked";
+        $viuvo = "";
+        $separado = "";
+    }else if($ecivil == "viuvo"){
+        $solteiro = "";
+        $casado = "";
+        $divorciado = "";
+        $viuvo = "checked";
+        $separado = "";
+    }else if($ecivil == "separado"){
+        $solteiro = "";
+        $casado = "";
+        $divorciado = "";
+        $viuvo = "";
+        $separado = "checked";
+    }
 
-	if($sexo == "m"){
-		$sexom = "checked";
-		$sexof = "";
-	}else if ($sexo == "f"){
-		$sexom = "";
-		$sexof = "checked";
-	}
+    if($sexo == "m"){
+        $sexom = "checked";
+        $sexof = "";
+    }else if ($sexo == "f"){
+        $sexom = "";
+        $sexof = "checked";
+    }
 
-	if ($tipoempresa == "pu"){
-		$tipoempresapu = "checked";
-		$tipoempresapr = "";
-	}else if ($tipoempresa == "pr"){
-		$tipoempresapu = "";
-		$tipoempresapr = "checked";
-	}
+    if ($tipoempresa == "pu"){
+        $tipoempresapu = "checked";
+        $tipoempresapr = "";
+    }else if ($tipoempresa == "pr"){
+        $tipoempresapu = "";
+        $tipoempresapr = "checked";
+    }
 
 } else{
-	$id=0;
+    $id=0;
 }
 
 
 //PARA PEGAR OS DADOS DOS CAMPOS
 if (isset($_POST['enviar'])){
-	//$id= $_POST['pessoa'];
-	$tipopessoa = $_POST['pessoa'];
-	$nome = $_POST['nome'];
-	$nacionalidade = $_POST['nacionalidade'];
-	$profissao = $_POST['profissao'];
-	$ecivil = $_POST['ecivil'];
-	$rg = $_POST['rg'];
-	$cpf = $_POST['cpf'];
-	$endereco = $_POST['endereco'];
-	$sexo = $_POST['sexo'];
-	$numero = $_POST['numero'];
-	$cidade = $_POST['cidade'];
-	$cep = $_POST['cep'];
-	$cnpjempresa = $_POST['cnpjempresa'];
-	$enderecoempresa = $_POST['enderecoempresa'];
-	$cargoempresa = $_POST['cargoempresa'];
-	$tipoempresa = $_POST['tipoempresa'];
-	$cidadeempresa = $_POST['cidadeempresa'];
-	$numeroempresa = $_POST['numeroempresa'];
-	$nomeempresa = $_POST['nomeempresa'];
-	$op=$_POST['op'];
+    $tipopessoa = $_POST['pessoa'];
+    $nome = $_POST['nome'];
+    $nacionalidade = $_POST['nacionalidade'];
+    $profissao = $_POST['profissao'];
+    $ecivil = $_POST['ecivil'];
+    $rg = $_POST['rg'];
+    $cpf = $_POST['cpf'];
+    $endereco = $_POST['endereco'];
+    $sexo = $_POST['sexo'];
+    $numero = $_POST['numero'];
+    $cidade = $_POST['cidade'];
+    $cep = $_POST['cep'];
+    $cnpjempresa = $_POST['cnpjempresa'];
+    $enderecoempresa = $_POST['enderecoempresa'];
+    $cargoempresa = $_POST['cargoempresa'];
+    $tipoempresa = $_POST['tipoempresa'];
+    $cidadeempresa = $_POST['cidadeempresa'];
+    $numeroempresa = $_POST['numeroempresa'];
+    $nomeempresa = $_POST['nomeempresa'];
+    $uf = $_POST['uf'];
+    $ufempresa = $_POST['ufempresa'];
+    $op=$_POST['op'];
 
-	//PARA ATUALIZAR, HAVERÁ ID POIS HÁ UMA PESSOA
-	if ($id != 0) {
-		if ($op == 'A') {
+
+    //PARA ATUALIZAR, HAVERÁ ID POIS HÁ UMA PESSOA
+    if ($id != 0) {
+        if ($op == 'A') {
 
             if($tipopessoa == "j"){
-			$sql="UPDATE pessoa SET tipopessoa='$tipopessoa', nome ='$nome', nacionalidade ='$nacionalidade', profissao ='$profissao', estadocivil ='$ecivil', rg='$rg', cpf='$cpf', endereco ='$endereco', sexo='$sexo', numero ='$numero', cidade ='$cidade', cep ='$cep', cnpj ='$cnpjempresa', enderecoempresa ='$enderecoempresa', cargoempresa ='$cargoempresa', tipoempresa ='$tipoempresa', cidadeempresa ='$cidadeempresa', numeroempresa ='$numeroempresa', nomeempresa ='$nomeempresa' where idpessoa ='$id'";
+                $sql="UPDATE pessoa SET tipopessoa='$tipopessoa', nome ='$nome', nacionalidade =LCASE('$nacionalidade'), profissao ='$profissao', estadocivil ='$ecivil', rg='$rg', cpf='$cpf', endereco ='$endereco', sexo='$sexo', numero ='$numero', cidade ='$cidade', cep ='$cep', cnpj ='$cnpjempresa', enderecoempresa ='$enderecoempresa', cargoempresa ='$cargoempresa', tipoempresa ='$tipoempresa', cidadeempresa ='$cidadeempresa', numeroempresa ='$numeroempresa', nomeempresa ='$nomeempresa', uf=UCASE('$uf'), ufempresa=UCASE('$ufempresa') where idpessoa ='$id'";
+
             }else if($tipopessoa == "f"){
-			$sql="UPDATE pessoa SET tipopessoa='$tipopessoa', nome ='$nome', nacionalidade ='$nacionalidade', profissao ='$profissao', estadocivil ='$ecivil', rg='$rg', cpf='$cpf', endereco ='$endereco', sexo='$sexo', numero ='$numero', cidade ='$cidade', cep ='$cep' where idpessoa ='$id'";
+                $sql="UPDATE pessoa SET tipopessoa='$tipopessoa', nome ='$nome', nacionalidade =LCASE('$nacionalidade'), profissao ='$profissao', estadocivil ='$ecivil', rg='$rg', cpf='$cpf', endereco ='$endereco', sexo='$sexo', numero ='$numero', cidade ='$cidade', cep ='$cep', uf=UCASE('$uf') where idpessoa ='$id'";
             }
 
-			echo $sql;
+            echo $sql;
 
-			$res = mysqli_query($conexao,$sql);
-			if (mysqli_error($conexao)) {
-				$_SESSION['msg'] = "<p class='alert alert-danger' role='alert'>Erro na atualização de $nome</p>";
-				header('Location:cadastro_pessoa.php');
-			} else {
-				$_SESSION['msg'] = "<p class='alert alert-success' role='alert'>$nome atualizado com sucesso!</p>";
-				header('Location:cadastro_pessoa.php');
-			}
-			mysqli_close($conexao);
+            $res = mysqli_query($conexao,$sql);
+            if (mysqli_error($conexao)) {
+                $_SESSION['msg'] = "<p class='alert alert-danger' role='alert'>Erro na atualização de $nome</p>";
+                header('Location:cadastro_pessoa.php');
+            } else {
+                $_SESSION['msg'] = "<p class='alert alert-success' role='alert'>$nome atualizado com sucesso!</p>";
+                header('Location:cadastro_pessoa.php');
+            }
+            mysqli_close($conexao);
 
-		} else if($op == "D") { //PARA EXCLUIR
-			$sql="DELETE FROM pessoa WHERE idpessoa='$id'";
-			echo $sql;
-			$res = mysqli_query($conexao,$sql);
-			if (mysqli_affected_rows($conexao)=='1') {
-				$_SESSION['msg'] = "<p class='alert alert-success' role='alert'>$nome excluído com sucesso!</p>";
-				header('Location:cadastro_pessoa.php');
-			} else {
-				$_SESSION['msg'] = "p class='alert alert-danger' role='alert'>Erro na exclusão de $nome</p>";
-			}
-			mysqli_close($conexao);
-		}
+        } else if($op == "D") { //PARA EXCLUIR
+            $sql="DELETE FROM pessoa WHERE idpessoa='$id'";
+            echo $sql;
+            $res = mysqli_query($conexao,$sql);
+            if (mysqli_affected_rows($conexao)=='1') {
+                $_SESSION['msg'] = "<p class='alert alert-success' role='alert'>$nome excluído com sucesso!</p>";
+                header('Location:cadastro_pessoa.php');
+            } else {
+                $_SESSION['msg'] = "p class='alert alert-danger' role='alert'>Erro na exclusão de $nome</p>";
+            }
+            mysqli_close($conexao);
+        }
 
-	}else{//SE FOR == 0 ENTÃO A PESSOA AINDA NÃO ESTÁ CADASTRADA
-		//INCLUSÃO
-		$sql = "SELECT * FROM pessoa WHERE cpf='$cpf'";
-		mysqli_query($conexao,$sql);
+    }else{//SE FOR == 0 ENTÃO A PESSOA AINDA NÃO ESTÁ CADASTRADA
+        //INCLUSÃO
+        $sql = "SELECT * FROM pessoa WHERE cpf='$cpf'";
+        mysqli_query($conexao,$sql);
 
-		if (mysqli_affected_rows($conexao)!=0) {
-			mysqli_close($conexao);
-			$_SESSION['msg'] = "p class='alert alert-danger' role='alert'>$cpf já foi cadastrado</p>";
-			header('Location:cadastro_pessoa.php');
+        if (mysqli_affected_rows($conexao)!=0) {
+            mysqli_close($conexao);
+            $_SESSION['msg'] = "p class='alert alert-danger' role='alert'>$cpf já foi cadastrado</p>";
+            header('Location:cadastro_pessoa.php');
 
-		}else {
-             if($tipopessoa == "j"){
-			$sql = "INSERT INTO pessoa (tipopessoa, nome, nacionalidade, profissao, estadocivil, rg, cpf, endereco, sexo, numero, cidade, cep, cnpj, enderecoempresa, cargoempresa, tipoempresa, cidadeempresa, numeroempresa, nomeempresa) VALUES ('$tipopessoa', '$nome', '$nacionalidade', '$profissao', '$ecivil', '$rg', '$cpf', '$endereco', '$sexo', '$numero', '$cidade', '$cep', '$cnpjempresa', '$enderecoempresa', '$cargoempresa', '$tipoempresa', '$cidadeempresa', '$numeroempresa', '$nomeempresa')";
-             } else if($tipopessoa == "f"){
-                 $sql = "INSERT INTO pessoa (tipopessoa, nome, nacionalidade, profissao, estadocivil, rg, cpf, endereco, sexo, numero, cidade, cep) VALUES ('$tipopessoa', '$nome', '$nacionalidade', '$profissao', '$ecivil', '$rg', '$cpf', '$endereco', '$sexo', '$numero', '$cidade', '$cep')";
-             }
-			mysqli_query($conexao,$sql);
+        }else {
+            if($tipopessoa == "j"){
+                $sql = "INSERT INTO pessoa (tipopessoa, nome, nacionalidade, profissao, estadocivil, rg, cpf, endereco, sexo, numero, cidade, cep, cnpj, enderecoempresa, cargoempresa, tipoempresa, cidadeempresa, numeroempresa, nomeempresa, uf, ufempresa) VALUES ('$tipopessoa', '$nome', LCASE('$nacionalidade'), '$profissao', '$ecivil', '$rg', '$cpf', '$endereco', '$sexo', '$numero', '$cidade', '$cep', '$cnpjempresa', '$enderecoempresa', '$cargoempresa', '$tipoempresa', '$cidadeempresa', '$numeroempresa', '$nomeempresa',UCASE('$uf'),UCASE('$ufempresa')";
+            } else if($tipopessoa == "f"){
+                $sql = "INSERT INTO pessoa (tipopessoa, nome, nacionalidade, profissao, estadocivil, rg, cpf, endereco, sexo, numero, cidade, cep, uf) VALUES ('$tipopessoa', '$nome', LCASE('$nacionalidade'), '$profissao', '$ecivil', '$rg', '$cpf', '$endereco', '$sexo', '$numero', '$cidade', '$cep', UCASE('$uf'))";
+            }
+            mysqli_query($conexao,$sql);
 
-			if (mysqli_affected_rows($conexao) =='1') {
-				$_SESSION['msg'] = "<p class='alert alert-success' role='alert'>$nome inserido com sucesso!</p>";
-				header('Location:cadastro_pessoa.php');
-			} else {
-				$_SESSION['msg'] ="<p class='alert alert-danger' role='alert'>Erro: ".mysqli_error($conexao)."<p>";
-				header('Location:cadastro_pessoa.php');
-			}
-			mysqli_close($conexao);
-		}
-	}
-	$id=0;
+            if (mysqli_affected_rows($conexao) =='1') {
+                $_SESSION['msg'] = "<p class='alert alert-success' role='alert'>$nome inserido com sucesso!</p>";
+                header('Location:cadastro_pessoa.php');
+            } else {
+                $_SESSION['msg'] ="<p class='alert alert-danger' role='alert'>Erro: ".mysqli_error($conexao)."<p>";
+                header('Location:cadastro_pessoa.php');
+            }
+            mysqli_close($conexao);
+        }
+    }
+    $id=0;
 }
 
 ?>
@@ -261,7 +266,7 @@ if (isset($_POST['enviar'])){
 </head>
 
 <body style="background: #007bff;
-	background: linear-gradient(to left, #5A8BB7, #2D9AAD);">
+                 background: linear-gradient(to left, #5A8BB7, #2D9AAD);">
     <script type="text/javascript" src="../javascript/vendedorcomprador.js"></script>
     <!--NAVBAR-->
     <nav class="navbar navbar-expand-sm bg-info navbar-light sticky-top">
@@ -310,11 +315,11 @@ if (isset($_POST['enviar'])){
                     <h5 class="card-title text-center">Sobre a pessoa:</h5>
                     <form action="#" method="post" class="form-padrao">
                         <p class="feedback"><?php
-				if (isset($_SESSION['msg'])) {
-					echo  $_SESSION['msg'];
-					unset ($_SESSION['msg']);
-				}
-				?></p>
+                                if (isset($_SESSION['msg'])) {
+                                    echo  $_SESSION['msg'];
+                                    unset ($_SESSION['msg']);
+                                }
+                                ?></p>
                         <div class="form-group">
                             <label for="pessoa">Tipo de pessoa</label>
                             <div class="form-check-inline">
@@ -384,8 +389,13 @@ if (isset($_POST['enviar'])){
 
                             <div class="form-group col-xl">
                                 <label for="endereco">Endereço</label><label for="endereco" class="representante"> do representante</label>
-                                <input type="text" id="endereco" class="form-control" name="endereco" value="<?php echo ($id!=0)?"$endereco":'';?>">
+                                <input type="text" id="endereco" class="form-control" name="endereco" title="Rua XXXXX, Bairro XXXX" value="<?php echo ($id!=0)?"$endereco":'';?>">
                                 <p id="msg_endereco" class="form-control-feedback "></p>
+                            </div>
+                            <div class="form-group col-xl">
+                                <label for="uf">UF</label><label for="uf" class="representante"> da empresa</label>
+                                <input type="text" id="uf" class="form-control col-md-2" name="uf" style="text-transform:uppercase" maxlength="2" value="<?php echo ($id!=0)?"$uf":'';?>">
+                                <p id="msg_uf" class="form-control-feedback "></p>
                             </div>
                         </div>
                         <div class="row">
@@ -458,7 +468,7 @@ if (isset($_POST['enviar'])){
                         <div class="row">
                             <div class="form-group col-xl" id="genderecoempresa">
                                 <label for="enderecoempresa">Endereço</label><label for="enderecoempresa" class="representante"> da empresa</label>
-                                <input type="text" id="enderecoempresa" class="form-control" name="enderecoempresa" value="<?php echo ($id!=0)?"$enderecoempresa":'';?>">
+                                <input type="text" id="enderecoempresa" class="form-control" title="Rua XXXX, Bairro XXXX" name="enderecoempresa" value="<?php echo ($id!=0)?"$enderecoempresa":'';?>">
                                 <p id="msg_enderecoempresa" class="form-control-feedback "></p>
                             </div>
 
@@ -468,22 +478,28 @@ if (isset($_POST['enviar'])){
                                 <p id="msg_cidadeempresa" class="form-control-feedback "></p>
                             </div>
                         </div>
-
-                        <div class="form-group" id="gnumeroempresa">
-                            <label for="numeroempresa">Número</label><label for="numeroempresa" class="representante"> da empresa</label>
-                            <input type="text" id="numeroempresa" class="form-control" name="numeroempresa" value="<?php echo ($id!=0)?"$numeroempresa":'';?>">
-                            <p id="msg_numeroempresa" class="form-control-feedback "></p>
+                        <div class="row">
+                            <div class="form-group col-xl" id="gufempresa">
+                                <label for="ufempresa">UF</label><label for="ufempresa" class="representante"> da empresa</label>
+                                <input type="text" id="ufempresa" class="form-control" name="ufempresa" style="text-transform:uppercase" maxlength="2" value="<?php echo ($id!=0)?"$ufempresa":'';?>">
+                                <p id="msg_ufempresa" class="form-control-feedback "></p>
+                            </div>
+                            <div class="form-group" id="gnumeroempresa">
+                                <label for="numeroempresa">Número</label><label for="numeroempresa" class="representante"> da empresa</label>
+                                <input type="text" id="numeroempresa" class="form-control" name="numeroempresa" value="<?php echo ($id!=0)?"$numeroempresa":'';?>">
+                                <p id="msg_numeroempresa" class="form-control-feedback "></p>
+                            </div>
                         </div>
 
                         <input type='hidden' name='id' id='codigo' value="<?php echo ($id!=0)?"$id":'0';?>">
                         <input type='hidden' name='op' value="<?php echo ($id!=0)?"$op":'';?>">
 
                         <?php
-							$txtbtn="Incluir";
-							if (isset($op)){
-								$txtbtn=($op=='A')?'Atualizar':'Excluir';
-							}
-							?>
+                            $txtbtn="Incluir";
+                            if (isset($op)){
+                                $txtbtn=($op=='A')?'Atualizar':'Excluir';
+                            }
+                            ?>
                         <input class="btn btn-md btn-primary btn-block text-uppercase" type="submit" name="enviar" value="<?php echo $txtbtn?>" id="salvar">
                     </form>
                 </div>
