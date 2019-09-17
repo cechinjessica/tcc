@@ -28,11 +28,27 @@ if (mysqli_affected_rows($conexao)>0) {
                 <th scope='col' style='white-space: nowrap; text-align:center;'>Proprietário</th>
                 <th scope='col' style='white-space: nowrap; text-align:center;'>Valor</th>
                 <th scope='col' style='white-space: nowrap; text-align:center;'>Estado</th>
+                <th scope='col' style='white-space: nowrap; text-align:center;'>Combustível</th>
                 <th scope='col' style='white-space: nowrap; text-align:center;'>Operação</th>
 			 <tr>
             </thead>";
     while ($row=mysqli_fetch_row($result))
     {
+
+        if($row[12] == "gasolina"){
+            $combustivel = "Gasolina";
+        }else if($row[12] == "etanol"){
+            $combustivel = "Etanol";
+        }else if($row[12] == "diesel"){
+            $combustivel = "Diesel";
+        }else if($row[12] == "gasnatural"){
+            $combustivel = "Gás natural";
+        }else if($row[12] == "eletrico"){
+            $combustivel = "Elétrico";
+        }else if($row[12] == "flex"){
+            $combustivel = "Flex";
+        }
+
         echo " <tbody>";
         echo " <tr>";
         echo "<th scope='row' style='white-space: nowrap; text-align:center;'>".$row[0]."</td>";
@@ -47,8 +63,9 @@ if (mysqli_affected_rows($conexao)>0) {
         echo "<td style='white-space: nowrap; text-align:center;'>".$row[9]."</td>";
         echo "<td style='white-space: nowrap; text-align:center;'>".$row[10]."</td>";
         echo "<td style='white-space: nowrap; text-align:center;'>".$row[11]."</td>";
+        echo "<td style='white-space: nowrap; text-align:center;'>".$combustivel."</td>";
         echo "<td> <a href=veiculo.php?id=".$row[0]."&op=A><button type='button' class='btn btn-info btn-sm w-100'>Atualizar</button></a><a href=veiculo.php?id=".$row[0]. "&op=D><button type='button' class='btn btn-danger btn-sm w-100'>Deletar</button></a></td>";
-		echo " </tr>";
+        echo " </tr>";
     }   echo " </tbody>";
     echo "</table></div>";
 }

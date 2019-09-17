@@ -137,6 +137,35 @@ $row = mysqli_fetch_assoc($result);
 $estado = ucfirst($row['Estado']);
 $html .= "<p align='justify'><b>As partes acima identificadas têm, entre si, justo e acertado o presente Contrato e Venda de Veículo ".$estado.", que se regerá pelas cláusulas seguintes e pelas condições descritas no presente.</b></p><br/>";
 
+$html .= "<p align='center'><b>DO OBJETO DO CONTRATO</b></p>";
+
+$nomevei = mb_strtoupper($row['Nome'], 'UTF-8');
+$cor = mb_strtoupper($row['Cor'], 'UTF-8');
+if($row['Combustivel'] == "gasolina"){
+            $combustivel = "GASOLINA";
+        }else if($row['Combustivel'] == "etanol"){
+            $combustivel = "ETANOL";
+        }else if($row['Combustivel'] == "diesel"){
+            $combustivel = "DIESEL";
+        }else if($row['Combustivel'] == "gasnatural"){
+            $combustivel = "GÁS NATURAL";
+        }else if($row['Combustivel'] == "eletrico"){
+            $combustivel = "ELÉTRICO";
+        }else if($row['Combustivel'] == "flex"){
+            $combustivel = "FLEX";
+        }
+
+$html .= "<p align='justify'><b>Cláusula 1ª.</b> O presente contrato tem como OBJETO, um ".$nomevei.", ANO MODELO ".$row['Ano']."/".$row['Modelo'].", PLACA ".$row['Placa'].", RENAVAM N. ".$row['Renavam'].", CHASSI ".$row['Chassi'].", COMBUSTÍVEL ".$combustivel.", COR ".$cor.", livre de qualquer ônus ou encargo.</p>";
+
+if($row['Estado'] == "usado"){
+	$html .= "<p align='justify'><b>Cláusula 2ª.</b> O veículo, objeto deste contrato é usado, apresentando desgaste natural decorrente do tempo, já visto e inspecionado pelo <b>COMPRADOR</b>, o qual tomou ciência de suas condições e estado de conservação.</p><br/>";
+}
+
+$html .= "<p align='center'><b>DAS RESPONSABILIDADES</b></p>";
+
+$html .= "<p align='justify'><b>Cláusula 3ª.</b> O <b>VENDEDOR</b> se responsabilizará pelo bom estado e perfeito funcionamento do veículo até a data de assinatura do presente contrato.</p>";
+
+
 
 
 

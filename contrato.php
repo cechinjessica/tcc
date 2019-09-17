@@ -206,6 +206,7 @@ if (isset($_POST['enviarveiculo'])){
 	$proprietario = $_POST['proprietario'];
 	$valorvei = $_POST['valorvei'];
 	$estado = $_POST['estado'];
+	$combustivel = $_POST['combustivel'];
 	$op=$_POST['op'];
 
 
@@ -219,7 +220,7 @@ if (isset($_POST['enviarveiculo'])){
 		header('Location:contrato.php');
 
 	}else {
-		$sql = "INSERT INTO veiculo (nome, marca, modelo, ano, chassi, cor, placa, renavam, emnomede, valor, estado) VALUES ('$nomevei', '$marca', '$modelo', '$ano', '$chassi', '$cor', UCASE('$placa'), '$renavam', '$proprietario', '$valorvei', '$estado')";
+		$sql = "INSERT INTO veiculo (nome, marca, modelo, ano, chassi, cor, placa, renavam, emnomede, valor, estado, combustivel) VALUES ('$nomevei', '$marca', '$modelo', '$ano', '$chassi', '$cor', UCASE('$placa'), '$renavam', '$proprietario', '$valorvei', '$estado', '$combustivel')";
 		mysqli_query($conexao,$sql);
 
 		if (mysqli_affected_rows($conexao) =='1') {
@@ -640,11 +641,11 @@ if (isset($_POST['enviarveiculo'])){
 				<div class="modal-body">
 					<form action="#" method="post" class="form-padrao">
 						<p class="feedback"><?php
-									if (isset($_SESSION['msg'])) {
-										echo  $_SESSION['msg'];
-										unset ($_SESSION['msg']);
-									}
-									?></p>
+								if (isset($_SESSION['msg'])) {
+									echo  $_SESSION['msg'];
+									unset ($_SESSION['msg']);
+								}
+								?></p>
 
 						<div class="row">
 							<div class="form-group col-xl">
@@ -716,6 +717,29 @@ if (isset($_POST['enviarveiculo'])){
 								</div>
 								<p id="msg_estado" class="form-control feedback"></p>
 							</div>
+
+							<div class="form-group col-xl">
+								<label for="combustivel">Combustível</label>
+								<div class="form-check-inline">
+									<input type="radio" class="form-check-input" name="combustivel" value="gasolina" id="gasolina" <?php echo ($id!=0)?"$gasolina":'';?>>Gasolina
+								</div>
+								<div class="form-check-inline">
+									<input type="radio" class="form-check-input" name="combustivel" value="etanol" id="etanol" <?php echo ($id!=0)?"$etanol":'';?>>Etanol
+								</div>
+								<div class="form-check-inline">
+									<input type="radio" class="form-check-input" name="combustivel" value="diesel" id="diesel" <?php echo ($id!=0)?"$diesel":'';?>>Diesel
+								</div>
+								<div class="form-check-inline">
+									<input type="radio" class="form-check-input" name="combustivel" value="gasnatural" id="gasnatural" <?php echo ($id!=0)?"$gasnatural":'';?>>Gás Natural
+								</div>
+								<div class="form-check-inline">
+									<input type="radio" class="form-check-input" name="combustivel" value="eletrico" id="eletrico" <?php echo ($id!=0)?"$eletrico":'';?>>Elétrico
+								</div>
+								<div class="form-check-inline">
+									<input type="radio" class="form-check-input" name="combustivel" value="flex" id="flex" <?php echo ($id!=0)?"$flex":'';?>>Flex
+								</div>
+								<p id="msg_combustivel" class="form-control feedback"></p>
+							</div>
 						</div>
 
 
@@ -723,11 +747,11 @@ if (isset($_POST['enviarveiculo'])){
 						<input type='hidden' name='op' value="<?php echo ($id!=0)?"$op":'';?>">
 
 						<?php
-								$txtbtn="Incluir";
-								if (isset($op)){
-									$txtbtn=($op=='A')?'Atualizar':'Excluir';
-								}
-								?>
+							$txtbtn="Incluir";
+							if (isset($op)){
+								$txtbtn=($op=='A')?'Atualizar':'Excluir';
+							}
+							?>
 						<input class="btn btn-md btn-primary btn-block text-uppercase" type="submit" name="enviarveiculo" value="<?php echo $txtbtn?>" id="salvarveiculo">
 					</form>
 				</div>
@@ -748,13 +772,13 @@ if (isset($_POST['enviarveiculo'])){
 		echo  $_SESSION['msg'];
 		unset ($_SESSION['msg']);
 	}
-									?></p>
+								?></p>
 						<p class="feedback"><?php
-									if (isset($_SESSION['msgvendedor'])) {
-										echo  $_SESSION['msgvendedor'];
-										unset ($_SESSION['msgvendedor']);
-									}
-									?></p>
+								if (isset($_SESSION['msgvendedor'])) {
+									echo  $_SESSION['msgvendedor'];
+									unset ($_SESSION['msgvendedor']);
+								}
+								?></p>
 
 						<div class="row">
 							<div class="form-group col-md">
@@ -884,11 +908,11 @@ if (isset($_POST['enviarveiculo'])){
 
 
 						<?php
-								$txtbtn="Incluir";
-								if (isset($op)){
-									$txtbtn=($op=='A')?'Atualizar':'Excluir';
-								}
-								?>
+							$txtbtn="Incluir";
+							if (isset($op)){
+								$txtbtn=($op=='A')?'Atualizar':'Excluir';
+							}
+							?>
 						<input class="btn btn-md btn-primary btn-block text-uppercase" type="submit" name="enviarcontrato" value="<?php echo $txtbtn?>" id="salvarcontrato">
 
 					</form>

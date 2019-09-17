@@ -7,7 +7,7 @@ require '../config/conexao.php';
 if (isset($_GET['id'])){
     $id=$_GET['id'];
     $op=$_GET['op'];
-    $sql = "SELECT idveiculo, nome, marca, modelo, ano, chassi, cor, placa, renavam, emnomede, valor, estado FROM veiculo WHERE idveiculo='$id'";
+    $sql = "SELECT idveiculo, nome, marca, modelo, ano, chassi, cor, placa, renavam, emnomede, valor, estado, combustivel FROM veiculo WHERE idveiculo='$id'";
     $res=mysqli_query($conexao,$sql);
     $row=mysqli_fetch_row($res);
     $id= $row[0];
@@ -21,7 +21,8 @@ if (isset($_GET['id'])){
     $renavam = $row[8];
     $proprietario = $row[9];
     $valorvei = $row[10];
-    $estado = $row[10];
+    $estado = $row[11];
+    $combustivel = $row[12];
 
     if($estado == "novo"){
         $novo = "checked";
@@ -29,6 +30,50 @@ if (isset($_GET['id'])){
     }else{
         $novo = "";
         $usado = "checked";
+    }
+
+    if($combustivel == "gasolina"){
+        $gasolina = "checked";
+        $etanol = "";
+        $diesel = "";
+        $gasnatural = "";
+        $eletrico = "";
+        $flex = "";
+    }else if($combustivel == "etanol"){
+        $gasolina = "";
+        $etanol = "checked";
+        $diesel = "";
+        $gasnatural = "";
+        $eletrico = "";
+        $flex = "";
+    }else if($combustivel == "diesel"){
+        $gasolina = "";
+        $etanol = "";
+        $diesel = "checked";
+        $gasnatural = "";
+        $eletrico = "";
+        $flex = "";
+    }else if($combustivel == "gasnatural"){
+        $gasolina = "";
+        $etanol = "";
+        $diesel = "";
+        $gasnatural = "checked";
+        $eletrico = "";
+        $flex = "";
+    }else if($combustivel == "eletrico"){
+        $gasolina = "";
+        $etanol = "";
+        $diesel = "";
+        $gasnatural = "";
+        $eletrico = "checked";
+        $flex = "";
+    }else if($combustivel == "flex"){
+        $gasolina = "";
+        $etanol = "";
+        $diesel = "";
+        $gasnatural = "";
+        $eletrico = "";
+        $flex = "checked";
     }
 
 } else{
@@ -49,13 +94,14 @@ if (isset($_POST['enviarveiculo'])){
     $proprietario = $_POST['proprietario'];
     $valorvei = $_POST['valorvei'];
     $estado = $_POST['estado'];
+    $combustivel = $_POST['combustivel'];
     $op=$_POST['op'];
 
 
     //PARA ATUALIZAR, HAVERÁ ID POIS HÁ UM VEICULO
     if ($id != 0) {
         if ($op == 'A') {
-            $sql="UPDATE veiculo SET Nome ='$nomevei', Marca ='$marca', Modelo ='$modelo', Ano ='$ano', Chassi='$chassi', Cor='$cor', Placa =UCASE('$placa'), Renavam='$renavam', EmNomeDe ='$proprietario', Valor ='$valorvei', Estado='$estado' where IdVeiculo ='$id'";
+            $sql="UPDATE veiculo SET Nome ='$nomevei', Marca ='$marca', Modelo ='$modelo', Ano ='$ano', Chassi='$chassi', Cor='$cor', Placa =UCASE('$placa'), Renavam='$renavam', EmNomeDe ='$proprietario', Valor ='$valorvei', Estado='$estado', Combustivel ='$combustivel' where IdVeiculo ='$id'";
 
             $res = mysqli_query($conexao,$sql);
             if (mysqli_error($conexao)) {
@@ -92,7 +138,7 @@ if (isset($_POST['enviarveiculo'])){
             header('Location:cadastro_veiculo.php');
 
         }else {
-            $sql = "INSERT INTO veiculo (nome, marca, modelo, ano, chassi, cor, placa, renavam, emnomede, valor, estado) VALUES ('$nomevei', '$marca', '$modelo', '$ano', '$chassi', '$cor', UCASE('$placa'), '$renavam', '$proprietario', '$valorvei', '$estado')";
+            $sql = "INSERT INTO veiculo (nome, marca, modelo, ano, chassi, cor, placa, renavam, emnomede, valor, estado, combustivel) VALUES ('$nomevei', '$marca', '$modelo', '$ano', '$chassi', '$cor', UCASE('$placa'), '$renavam', '$proprietario', '$valorvei', '$estado', '$combustivel')";
             mysqli_query($conexao,$sql);
 
             if (mysqli_affected_rows($conexao) =='1') {
@@ -282,6 +328,29 @@ include('../config/verifica_login.php');
                                     <input type="radio" class="form-check-input" name="estado" value="usado" id="usado" <?php echo ($id!=0)?"$usado":'';?>>Usado
                                 </div>
                                 <p id="msg_estado" class="form-control feedback"></p>
+                            </div>
+
+                            <div class="form-group col-xl">
+                                <label for="combustivel">Combustível</label>
+                                <div class="form-check-inline">
+                                    <input type="radio" class="form-check-input" name="combustivel" value="gasolina" id="gasolina" <?php echo ($id!=0)?"$gasolina":'';?>>Gasolina
+                                </div>
+                                <div class="form-check-inline">
+                                    <input type="radio" class="form-check-input" name="combustivel" value="etanol" id="etanol" <?php echo ($id!=0)?"$etanol":'';?>>Etanol
+                                </div>
+                                <div class="form-check-inline">
+                                    <input type="radio" class="form-check-input" name="combustivel" value="diesel" id="diesel" <?php echo ($id!=0)?"$diesel":'';?>>Diesel
+                                </div>
+                                <div class="form-check-inline">
+                                    <input type="radio" class="form-check-input" name="combustivel" value="gasnatural" id="gasnatural" <?php echo ($id!=0)?"$gasnatural":'';?>>Gás Natural
+                                </div>
+                                <div class="form-check-inline">
+                                    <input type="radio" class="form-check-input" name="combustivel" value="eletrico" id="eletrico" <?php echo ($id!=0)?"$eletrico":'';?>>Elétrico
+                                </div>
+                                <div class="form-check-inline">
+                                    <input type="radio" class="form-check-input" name="combustivel" value="flex" id="flex" <?php echo ($id!=0)?"$flex":'';?>>Flex
+                                </div>
+                                <p id="msg_combustivel" class="form-control feedback"></p>
                             </div>
                         </div>
 
