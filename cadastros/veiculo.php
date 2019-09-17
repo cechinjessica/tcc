@@ -7,7 +7,7 @@ require '../config/conexao.php';
 if (isset($_GET['id'])){
     $id=$_GET['id'];
     $op=$_GET['op'];
-    $sql = "SELECT idveiculo, nome, marca, modelo, ano, chassi, cor, placa, renavam, emnomede, valor FROM veiculo WHERE idveiculo='$id'";
+    $sql = "SELECT idveiculo, nome, marca, modelo, ano, chassi, cor, placa, renavam, emnomede, valor, estado FROM veiculo WHERE idveiculo='$id'";
     $res=mysqli_query($conexao,$sql);
     $row=mysqli_fetch_row($res);
     $id= $row[0];
@@ -21,6 +21,16 @@ if (isset($_GET['id'])){
     $renavam = $row[8];
     $proprietario = $row[9];
     $valorvei = $row[10];
+    $estado = $row[10];
+
+    if($estado == "novo"){
+        $novo = "checked";
+        $usado = "";
+    }else{
+        $novo = "";
+        $usado = "checked";
+    }
+
 } else{
     $id=0;
 }
@@ -38,13 +48,14 @@ if (isset($_POST['enviarveiculo'])){
     $renavam = $_POST['renavam'];
     $proprietario = $_POST['proprietario'];
     $valorvei = $_POST['valorvei'];
+    $estado = $_POST['estado'];
     $op=$_POST['op'];
 
 
     //PARA ATUALIZAR, HAVERÁ ID POIS HÁ UM VEICULO
     if ($id != 0) {
         if ($op == 'A') {
-            $sql="UPDATE veiculo SET Nome ='$nomevei', Marca ='$marca', Modelo ='$modelo', Ano ='$ano', Chassi='$chassi', Cor='$cor', Placa ='$placa', Renavam='$renavam', EmNomeDe ='$proprietario', Valor ='$valorvei' where IdVeiculo ='$id'";
+            $sql="UPDATE veiculo SET Nome ='$nomevei', Marca ='$marca', Modelo ='$modelo', Ano ='$ano', Chassi='$chassi', Cor='$cor', Placa =UCASE('$placa'), Renavam='$renavam', EmNomeDe ='$proprietario', Valor ='$valorvei', Estado='$estado' where IdVeiculo ='$id'";
 
             $res = mysqli_query($conexao,$sql);
             if (mysqli_error($conexao)) {
@@ -81,7 +92,7 @@ if (isset($_POST['enviarveiculo'])){
             header('Location:cadastro_veiculo.php');
 
         }else {
-            $sql = "INSERT INTO veiculo (nome, marca, modelo, ano, chassi, cor, placa, renavam, emnomede, valor) VALUES ('$nomevei', '$marca', '$modelo', '$ano', '$chassi', '$cor', '$placa', '$renavam', '$proprietario', '$valorvei')";
+            $sql = "INSERT INTO veiculo (nome, marca, modelo, ano, chassi, cor, placa, renavam, emnomede, valor, estado) VALUES ('$nomevei', '$marca', '$modelo', '$ano', '$chassi', '$cor', UCASE('$placa'), '$renavam', '$proprietario', '$valorvei', '$estado')";
             mysqli_query($conexao,$sql);
 
             if (mysqli_affected_rows($conexao) =='1') {
@@ -259,7 +270,19 @@ include('../config/verifica_login.php');
                                 <input type="text" id="valorvei" class="form-control" name="valorvei" title="Ex.: 10000,00" value="<?php echo ($id!=0)?"$valorvei":'';?>">
                                 <p id="msg_valorvei" class="form-control-feedback "></p>
                             </div>
+                        </div>
 
+                        <div class="row">
+                            <div class="form-group col-xl">
+                                <label for="estado">Estado</label>
+                                <div class="form-check-inline">
+                                    <input type="radio" class="form-check-input" name="estado" value="novo" id="novo" <?php echo ($id!=0)?"$novo":'';?>>Novo
+                                </div>
+                                <div class="form-check-inline">
+                                    <input type="radio" class="form-check-input" name="estado" value="usado" id="usado" <?php echo ($id!=0)?"$usado":'';?>>Usado
+                                </div>
+                                <p id="msg_estado" class="form-control feedback"></p>
+                            </div>
                         </div>
 
 

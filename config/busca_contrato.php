@@ -34,6 +34,7 @@ if (mysqli_affected_rows($conexao)>0) {
         echo "<p class='text-success'>R$$row[3]</p> ";
         echo "<p> $dt $hora</p>";
         echo "<a href=../contrato.php?id=$row[5]&op=A class='card-link text-info'>Atualizar</a><a href=../contrato.php?id=$row[5]&op=D class='card-link text-danger'>Deletar</a>";
+        echo "<center><a href=../config/pdfcontrato.php?id=$row[5]><button type='button' class='btn btn-outline-info btn-sm w-100'>Imprimir</button></a></center>";
         echo "</div></div></div></div>";
 
     }
