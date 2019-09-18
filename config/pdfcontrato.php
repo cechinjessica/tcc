@@ -127,7 +127,7 @@ while($row = mysqli_fetch_assoc($result)){
 	}
 }
 
-$sql = "SELECT v.* FROM contrato c
+$sql = "SELECT v.*, c.ValorTotal as ValorTotal FROM contrato c
 	inner join pessoa p on c.Pessoa_IdComprador = p.idpessoa
 	inner join pessoa pp on c.Pessoa_IdVendedor = pp.idpessoa
 	inner join veiculo v on c.Veiculo_IdVeiculo = v.idveiculo where c.idcontrato = $id";
@@ -162,8 +162,16 @@ if($row['Estado'] == "usado"){
 }
 
 $html .= "<p align='center'><b>DAS RESPONSABILIDADES</b></p>";
-
 $html .= "<p align='justify'><b>Cláusula 3ª.</b> O <b>VENDEDOR</b> se responsabilizará pelo bom estado e perfeito funcionamento do veículo até a data de assinatura do presente contrato.</p>";
+$html .= "<p align='justify'><b>Cláusula 4ª.</b> O <b>VENDEDOR</b> se responsabilizará pela entrega do veículo no local indicado pelo <b>COMPRADOR</b>, nas mesmas condições de quando foi inspecionado pelo <b>COMPRADOR</b>.</p><br/>";
+
+$html .= "<p align='center'><b>DA TRANSFERÊNCIA DA PROPRIEDADE DO VEÍCULO</b></p>";
+$html .= "<p align='justify'><b>Cláusula 5ª.</b>A transferência da propriedade do veículo será feita até o prazo máximo de 30 (trinta) dias a contar da data de assinatura deste contrato.</p><br/>";
+
+$html .= "<p align='center'><b>DO PREÇO</b></p>";
+$html .= "<p align='justify'><b>Cláusula 6ª.</b> O <b>COMPRADOR</b> pagará ao <b>VENDEDOR</b>, pela compra do veículo, objeto deste contrato, a quantia de R$ ".$row['ValorTotal']." conforme dados demonstrados abaixo:</p><br/>";
+
+
 
 
 
@@ -180,7 +188,7 @@ $html.="</body>
 //Criando a Instancia
 $dompdf = new DOMPDF();
 // Carrega seu HTML
-$dompdf->load_html( $html);
+$dompdf->load_html($html);
 $dompdf -> setPaper ( ' A4 ' , ' landscape ' );
 
 //Renderizar o html

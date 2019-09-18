@@ -42,6 +42,12 @@ $(document).ready(function () {
         if (!valor()) {
             e.preventDefault();
         }
+        if (!estado()) {
+            e.preventDefault();
+        }
+        if (!combustivel()) {
+            e.preventDefault();
+        }
     });
 })
 
@@ -212,6 +218,44 @@ function valor() {
 
     if ($("#valorvei").val().trim() == "") {
         $("#valorvei").addClass("is-invalid");
+        a = false;
+    }
+    return a;
+}
+
+function estado() {
+    if ($("input[name='estado']").hasClass("erro")) {
+        $("input[name='estado']").removeClass("erro");
+    } else if ($("input[name='estado']").hasClass("certo")) {
+        $("input[name='estado']").removeClass("certo");
+    }
+    $("input[name='estado']").addClass("certo");
+    var a = true;
+    $("#msg_estado").text("");
+
+    if (!$("input[name='estado']").is(':checked')) {
+        $("#msg_estado").text("*Estado inválido");
+        $("#msg_estado").css("color", "red");
+        $("input[name='estado']").addClass("erro");
+        a = false;
+    }
+    return a;
+}
+
+function combustivel() {
+    if ($("input[name='combustivel']").hasClass("erro")) {
+        $("input[name='combustivel']").removeClass("erro");
+    } else if ($("input[name='combustivel']").hasClass("certo")) {
+        $("input[name='combustivel']").removeClass("certo");
+    }
+    $("input[name='combustivel']").addClass("certo");
+    var a = true;
+    $("#msg_combustivel").text("");
+
+    if (!$("input[name='combustivel']").is(':checked')) {
+        $("#msg_combustivel").text("*Combustível inválido");
+        $("#msg_combustivel").css("color", "red");
+        $("input[name='combustivel']").addClass("erro");
         a = false;
     }
     return a;

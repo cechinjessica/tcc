@@ -8,18 +8,23 @@ $(document).ready(function () {
     $("#vparcela").mask("###0.00", {
         reverse: true
     });
+    $("#entrada").mask("###0.00", {
+        reverse: true
+    });
+
 
     $("#numeroparcelas").focusout(function (e) {
-        if ($("#valortotal").val() != "" & $("#numeroparcelas").val() != "") {
+        if ($("#valortotal").val() != "" & $("#numeroparcelas").val() != "" & $("#entrada").val() != "") {
             gerarparcela();
         }
     });
 
     $("#valortotal").focusout(function (e) {
-        if ($("#valortotal").val() != "" & $("#numeroparcelas").val() != "") {
+        if ($("#valortotal").val() != "" & $("#numeroparcelas").val() != "" & $("#entrada").val() != "") {
             gerarparcela();
         }
     });
+
     $("#rgtestemunha1").mask("0000000000");
     $("#rgtestemunha2").mask("0000000000");
 
@@ -70,6 +75,9 @@ $(document).ready(function () {
             e.preventDefault();
         }
         if (!dassinatura()) {
+            e.preventDefault();
+        }
+        if (!entrada()) {
             e.preventDefault();
         }
 
@@ -192,8 +200,11 @@ function valorparcela() {
 function gerarparcela() {
     var total = parseFloat($("#valortotal").val());
     var numero = parseInt($("#numeroparcelas").val());
-    var parcela = parseFloat(total / numero);
-    $("#valorparcela").val(Math.ceil(parcela));
+    var entrada = parseFloat($("#entrada").val());
+
+    var saldo = total - entrada;
+    var parcela = parseFloat(saldo / numero);
+    $("#valorparcela").val(parcela.toFixed(2));
 }
 
 function juro() {
@@ -349,6 +360,22 @@ function dassinatura() {
         a = false;
     }
 
+    return a;
+}
+
+function entrada() {
+    if ($("#entrada").hasClass("is-invalid")) {
+        $("#entrada").removeClass("is-invalid");
+    } else if ($("#entrada").hasClass("is-valid")) {
+        $("#entrada").removeClass("is-valid");
+    }
+    $("#entrada").addClass("is-valid");
+    var a = true;
+
+    if ($("#entrada").val() == "") {
+        $("#entrada").addClass("is-invalid");
+        a = false;
+    }
     return a;
 }
 

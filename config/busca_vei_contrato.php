@@ -29,11 +29,20 @@ if (mysqli_affected_rows($conexao)>0) {
                 <th scope='col'>Valor</th>
                 <th scope='col'>Estado</th>
                 <th scope='col'>Combustível</th>
+                <th scope='col' style='white-space: nowrap;'>Tem Contrato?</th>
                 <th scope='col'>Operação</th>
 			 <tr>
             </thead>";
     while ($row=mysqli_fetch_row($result))
     {
+        $check="";
+        $query = "SELECT * FROM veiculo v inner join contrato c on v.IdVeiculo = c.Veiculo_idVeiculo where v.IdVeiculo ='".$row[0]."'";
+        $result1=mysqli_query($conexao,$query);
+        if (mysqli_affected_rows($conexao) != '0') {
+            $check = "✓";
+        }
+
+
         if($row[12] == "gasolina"){
             $combustivel = "Gasolina";
         }else if($row[12] == "etanol"){
@@ -63,6 +72,7 @@ if (mysqli_affected_rows($conexao)>0) {
         echo "<td id=".$row[0]." onclick=getidvei(".$row[0].",'".$nome."','".$row[7]."','".$row[10]."') style='white-space: nowrap; text-align:center;'>".$row[10]."</td>";
         echo "<td id=".$row[0]." onclick=getidvei(".$row[0].",'".$nome."','".$row[7]."','".$row[10]."') style='white-space: nowrap; text-align:center;'>".$row[11]."</td>";
          echo "<td id=".$row[0]." onclick=getidvei(".$row[0].",'".$nome."','".$row[7]."','".$row[10]."') style='white-space: nowrap; text-align:center;'>".$combustivel."</td>";
+         echo "<td id=".$row[0]." onclick=getidvei(".$row[0].",'".$nome."','".$row[7]."','".$row[10]."') style='white-space: nowrap; text-align:center;'>".$check."</td>";
         echo "<td> <a href=cadastros/veiculo.php?id=".$row[0]."&op=A"."><button type='button' class='btn btn-info btn-sm w-100'>Atualizar</button></a><a href=cadastros/veiculo.php?id=".$row[0]. "&op=D" . "><button type='button' class='btn btn-danger btn-sm w-100'>Deletar</button></a>" . "</td>" ;
         echo " </tr>";
     }   echo " </tbody>";

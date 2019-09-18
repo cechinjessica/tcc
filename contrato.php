@@ -33,12 +33,13 @@ if (isset($_GET['id'])){
 	$idcomp = $row[15];
 	$idvei = $row[16];
 	$idlogin = $row[17];
-	$nomevend = $row[18];
-	$cpfvend = $row[19];
-	$nomecomp = $row[20];
-	$cpfcomp = $row[21];
-	$nomevei = $row[22];
-	$placavei = $row[23];
+	$entrada = $row[18];
+	$nomevend = $row[19];
+	$cpfvend = $row[20];
+	$nomecomp = $row[21];
+	$cpfcomp = $row[22];
+	$nomevei = $row[23];
+	$placavei = $row[24];
 
 	if ($juro == "0.5% ao mês"){
 		$juro05="checked";
@@ -85,12 +86,13 @@ if (isset($_POST['enviarcontrato'])){
 	$idcomp = $_POST['idcomp'];
 	$idvei = $_POST['idvei'];
 	$idlogin = $_POST['idlogin'];
+	$entrada = $_POST['entrada'];
 	$op=$_POST['op'];
 
 	//PARA ATUALIZAR, HAVERÁ ID POIS HÁ UM CONTRATO
 	if ($id != 0) {
 		if ($op == 'A') {
-			$sql="UPDATE contrato SET ValorTotal ='$valortotal', NumeroParcelas ='$numeroparcelas', ValorParcela ='$valorparcela', DataPagamento='$dpagamento', Juros='$juro', Foro ='$foro', LocalAss=' $lassinatura', DataAss ='$dassinatura', DataCriacao =STR_TO_DATE( '$datacriacao', '%d/%m/%Y %H:%i:%s'), NomeTestemunha1='$ntestemunha1', RGTestemunha1='$rgtestemunha1', NomeTestemunha2='$ntestemunha2', RGTestemunha2='$rgtestemunha2', Pessoa_IdVendedor='$idvend', Pessoa_IdComprador=' $idcomp',Veiculo_IdVeiculo='$idvei', Login_IdUsuario='$idlogin' WHERE IdContrato ='$id'";
+			$sql="UPDATE contrato SET ValorTotal ='$valortotal', NumeroParcelas ='$numeroparcelas', ValorParcela ='$valorparcela', DataPagamento='$dpagamento', Juros='$juro', Foro ='$foro', LocalAss=' $lassinatura', DataAss ='$dassinatura', DataCriacao =STR_TO_DATE( '$datacriacao', '%d/%m/%Y %H:%i:%s'), NomeTestemunha1='$ntestemunha1', RGTestemunha1='$rgtestemunha1', NomeTestemunha2='$ntestemunha2', RGTestemunha2='$rgtestemunha2', Pessoa_IdVendedor='$idvend', Pessoa_IdComprador=' $idcomp',Veiculo_IdVeiculo='$idvei', Login_IdUsuario='$idlogin', Entrada='$entrada' WHERE IdContrato ='$id'";
 
 			$res = mysqli_query($conexao,$sql);
 			if (mysqli_error($conexao)) {
@@ -119,7 +121,7 @@ if (isset($_POST['enviarcontrato'])){
 	}else{
 		//SE FOR == 0 ENTÃO O CONTRATO AINDA NÃO ESTÁ CADASTRADO
 		//INCLUSÃO
-		$sql = "INSERT INTO contrato (ValorTotal, NumeroParcelas, ValorParcela, DataPagamento, Juros, Foro, LocalAss, DataAss, DataCriacao, NomeTestemunha1, RGTestemunha1, NomeTestemunha2, RGTestemunha2, Pessoa_IdVendedor,Pessoa_IdComprador, Veiculo_IdVeiculo, Login_IdUsuario) VALUES ('$valortotal' ,'$numeroparcelas' ,'$valorparcela', '$dpagamento', '$juro' ,'$foro' ,'$lassinatura' ,'$dassinatura',(now()), '$ntestemunha1' ,'$rgtestemunha1' ,'$ntestemunha2' ,'$rgtestemunha2' ,'$idvend', '$idcomp' ,'$idvei','$idlogin')";
+		$sql = "INSERT INTO contrato (ValorTotal, NumeroParcelas, ValorParcela, DataPagamento, Juros, Foro, LocalAss, DataAss, DataCriacao, NomeTestemunha1, RGTestemunha1, NomeTestemunha2, RGTestemunha2, Pessoa_IdVendedor,Pessoa_IdComprador, Veiculo_IdVeiculo, Login_IdUsuario, Entrada) VALUES ('$valortotal' ,'$numeroparcelas' ,'$valorparcela', '$dpagamento', '$juro' ,'$foro' ,'$lassinatura' ,'$dassinatura',(now()), '$ntestemunha1' ,'$rgtestemunha1' ,'$ntestemunha2' ,'$rgtestemunha2' ,'$idvend', '$idcomp' ,'$idvei','$idlogin','$entrada')";
 
 		$_SESSION['echo'] = $sql;
 		mysqli_query($conexao,$sql);
@@ -839,6 +841,9 @@ if (isset($_POST['enviarveiculo'])){
 
 							<label for="valortotal" class="col-lg-4 col-sm-12 m-0">Valor Total</label>
 							<input type="text" id="valortotal" class="form-control col-lg-5 m-0" name="valortotal" value="<?php echo ($id!=0)?"$valortotal":'';?>" readonly>
+
+							<label for="entrada" class="col-lg-4 col-sm-12 m-0">Entrada</label>
+							<input type="text" id="entrada" class="form-control col-lg-5 m-0" name="entrada" title="Caso seja á vista digite 0 na entrada" value="<?php echo ($id!=0)?"$entrada":'';?>">
 
 							<label for="numeroparcelas" class="col-lg-4 col-sm-12 m-0">Quantidade de Parcelas</label>
 							<input type="text" id="numeroparcelas" class="form-control col-lg-5 m-0" name="numeroparcelas" value="<?php echo ($id!=0)?"$numeroparcelas":'';?>">

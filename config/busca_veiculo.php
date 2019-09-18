@@ -29,11 +29,20 @@ if (mysqli_affected_rows($conexao)>0) {
                 <th scope='col' style='white-space: nowrap; text-align:center;'>Valor</th>
                 <th scope='col' style='white-space: nowrap; text-align:center;'>Estado</th>
                 <th scope='col' style='white-space: nowrap; text-align:center;'>Combustível</th>
+                <th scope='col' style='white-space: nowrap; text-align:center;'>Tem Contrato?</th>
                 <th scope='col' style='white-space: nowrap; text-align:center;'>Operação</th>
 			 <tr>
             </thead>";
     while ($row=mysqli_fetch_row($result))
     {
+        $check="";
+        $query = "SELECT * FROM veiculo v inner join contrato c on v.IdVeiculo = c.Veiculo_idVeiculo where v.IdVeiculo ='".$row[0]."'";
+        $result1=mysqli_query($conexao,$query);
+        if (mysqli_affected_rows($conexao) != '0') {
+            $check = "✓";
+        }
+
+
 
         if($row[12] == "gasolina"){
             $combustivel = "Gasolina";
@@ -64,6 +73,7 @@ if (mysqli_affected_rows($conexao)>0) {
         echo "<td style='white-space: nowrap; text-align:center;'>".$row[10]."</td>";
         echo "<td style='white-space: nowrap; text-align:center;'>".$row[11]."</td>";
         echo "<td style='white-space: nowrap; text-align:center;'>".$combustivel."</td>";
+        echo "<td style='white-space: nowrap; text-align:center;'>".$check."</td>";
         echo "<td> <a href=veiculo.php?id=".$row[0]."&op=A><button type='button' class='btn btn-info btn-sm w-100'>Atualizar</button></a><a href=veiculo.php?id=".$row[0]. "&op=D><button type='button' class='btn btn-danger btn-sm w-100'>Deletar</button></a></td>";
         echo " </tr>";
     }   echo " </tbody>";
