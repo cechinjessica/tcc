@@ -1,6 +1,39 @@
 <!DOCTYPE html>
 <?php session_start();
 include('../config/verifica_login.php');
+require '../config/conexao.php';
+
+if (isset($_POST['enviararquivo'])){
+    $nomeEvento = $_POST['nome'];
+    $descricaoEvento = $_POST['descricao'];
+    $arquivo= $_FILES['arquivo']['tmp_name'];
+    $tamanho = $_FILES['arquivo']['size'];
+    $tipo = $_FILES['arquivo']['type'];
+    $nome = $_FILES['arquivo']['name'];
+
+    if ( $arquivo != "none" )
+    {
+        $fp = fopen($arquivo, "rb");
+        $conteudo = fread($fp, $tamanho);
+        $conteudo = addslashes($conteudo);
+        fclose($fp);
+
+        $sql = "INSERT INTO arquivos (nome,
+descricao,  tamanho, tipo, arquivo) VALUES ('$nomeEvento',
+'$descricaoEvento','$tamanho', '$tipo','$conteudo')";
+
+     $res=mysqli_query($conexao,$sql) or die("Algo deu errado ao inserir
+ o registro. Tente novamente.");
+        echo 'Registro inserido com sucesso!';
+        header('Location: cadastro_contrato.php');
+        if(mysqli_affected_rows($conexao) > 0)
+            print "A imagem foi salva na base de dados.";
+        else
+            print "Não foi possível salvar a imagem na base de dados.";
+    }
+    else
+        print "Não foi possível carregar a imagem.";
+}
 ?>
 
 <html>
@@ -91,13 +124,6 @@ include('../config/verifica_login.php');
             <div class="card card-padrao my-5">
                 <div class="card-body">
                     <h5 class="card-title text-center">Contratos Cadastrados</h5>
-                    <?php
-                        if (isset($_SESSION['echo'])) {
-                            echo  $_SESSION['echo'];
-                        }
-                        ?>
-
-
                     <div class="form-padrao">
                         <form>
                             <div class="row">
@@ -111,6 +137,64 @@ include('../config/verifica_login.php');
                         </div>
                         <center><a href="../contrato.php"><button class="btn btn-outline-info text-uppercase btn-inline col-sm-9 col-md-5 col-lg-5">Cadastrar um Contrato</button></a>
                         </center>
+
+                        <form enctype="multipart/form-data" action="#" method="post">
+                            <div><input name="nome" type="text" /></div>
+                            <div><input name="descricao" type="textarea" /></div>
+                            <input type="hidden" name="MAX_FILE_SIZE" value="99999999" />
+                            <div><input name="arquivo" type="file" /></div>
+                            <div><input type="submit" name="enviararquivo" value="Salvar" /></div>
+                        </form>
+                        <table border="1">
+                            <tr>
+                                <td align="center">
+                                    Código
+                                </td>
+                                <td align="center">
+                                    Evento
+                                </td>
+                                <td align="center">
+                                    Descrição
+                                </td>
+                                <td align="center">
+                                    Tipo
+                                </td>
+                                <td align="center">
+                                    Visualizar imagem
+                                </td>
+                                <td align="center">
+                                    Excluir imagem
+                                </td>
+                            </tr>
+                            <?php
+
+    $querySelecao = "SELECT codigo, nome, descricao,
+     tipo, arquivo FROM arquivos";
+    $resultado = mysqli_query($conexao,$querySelecao);
+
+    while ($aquivos = mysqli_fetch_array($resultado)) { ?>
+                            <td align="center">
+                                <?php echo $aquivos['codigo']; ?>
+                            </td>
+                            <td align="center">
+                                <?php echo $aquivos['nome']; ?>
+                            </td>
+                            <td align="center">
+                                <?php echo $aquivos['descricao']; ?>
+                            </td>
+                            <td align="center">
+                                <?php echo $aquivos['tipo']; ?>
+                            </td>
+                            <td align="center">
+                                <?php echo '<a href="ver_imagem.php?id='.$aquivos['codigo'].
+        '">Imagem '.$aquivos['codigo'].'</a>'; ?>
+                            </td>
+                            <td align="center">
+                                <?php echo '<a href="excluir_imagem.php?id='.$aquivos['codigo'].
+        '">Imagem '.$aquivos['codigo'].'</a>'; ?>
+                            </td>
+                            <?php } ?>
+                        </table>
                     </div>
                 </div>
             </div>

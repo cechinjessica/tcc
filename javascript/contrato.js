@@ -207,10 +207,20 @@ function gerarparcela() {
 	if (total == entrada) {
 		$("#numeroparcelas").val(0);
 		$("#valorparcela").val(0);
-	} else {
-		var saldo = total - entrada;
-		var parcela = parseFloat(saldo / numero);
-		$("#valorparcela").val(parcela.toFixed(2));
+
+	} else if (entrada > total) {
+		$("#entrada").addClass("is-invalid");
+
+	} else if (!isNaN(total) & !isNaN(numero)) {
+		if (isNaN(entrada)) {
+			var parcela = parseFloat(total / numero);
+			$("#valorparcela").val(parcela.toFixed(2));
+			$("#entrada").val(0);
+		} else {
+			var saldo = total - entrada;
+			var parcela = parseFloat(saldo / numero);
+			$("#valorparcela").val(parcela.toFixed(2));
+		}
 	}
 }
 
