@@ -2,13 +2,13 @@ $(document).ready(function () {
 	setdcriacao();
 
 	$("#dpagamento").mask("00");
-	$("#valortotal").mask("###0.00", {
+	$("#valortotal").mask("#.##0,00", {
 		reverse: true
 	});
-	$("#vparcela").mask("###0.00", {
+	$("#vparcela").mask("#.##0,00", {
 		reverse: true
 	});
-	$("#entrada").mask("###0.00", {
+	$("#entrada").mask("#.##0,00", {
 		reverse: true
 	});
 
@@ -200,9 +200,22 @@ function valorparcela() {
 }
 
 function gerarparcela() {
-	var total = parseFloat($("#valortotal").val());
+	var total = $("#valortotal").val();
 	var numero = parseInt($("#numeroparcelas").val());
-	var entrada = parseFloat($("#entrada").val());
+	var entrada = $("#entrada").val();
+
+	while (total.indexOf(".") != -1) {
+		total = total.replace(".", "");
+	}
+	total = total.replace(",", ".");
+	total = parseFloat(total);
+
+	while (entrada.indexOf(".") != -1) {
+		entrada = entrada.replace(".", "");
+	}
+	entrada = entrada.replace(",", ".");
+	entrada = parseFloat(entrada);
+
 
 	if (total == entrada) {
 		$("#numeroparcelas").val(0);

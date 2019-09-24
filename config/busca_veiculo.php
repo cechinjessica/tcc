@@ -58,6 +58,8 @@ if (mysqli_affected_rows($conexao)>0) {
             $combustivel = "Flex";
         }
 
+        $valor = str_replace ( "." ,",", $row[10]);
+
         echo " <tbody>";
         echo " <tr>";
         echo "<th scope='row' style='white-space: nowrap; text-align:center;'>".$row[0]."</td>";
@@ -70,7 +72,7 @@ if (mysqli_affected_rows($conexao)>0) {
         echo "<td style='white-space: nowrap; text-align:center;'>".$row[7]."</td>";
         echo "<td style='white-space: nowrap; text-align:center;'>".$row[8]."</td>";
         echo "<td style='white-space: nowrap; text-align:center;'>".$row[9]."</td>";
-        echo "<td style='white-space: nowrap; text-align:center;'>".$row[10]."</td>";
+        echo "<td style='white-space: nowrap; text-align:center;'>".$valor."</td>";
         echo "<td style='white-space: nowrap; text-align:center;'>".$row[11]."</td>";
         echo "<td style='white-space: nowrap; text-align:center;'>".$combustivel."</td>";
         echo "<td style='white-space: nowrap; text-align:center;'>".$check."</td>";

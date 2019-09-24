@@ -69,9 +69,9 @@ if (isset($_GET['id'])){
 
 //PARA PEGAR OS DADOS DOS CAMPOS
 if (isset($_POST['enviarcontrato'])){
-	$valortotal = $_POST['valortotal'];
+	$valortotal2 = $_POST['valortotal'];
 	$numeroparcelas  = $_POST['numeroparcelas'];
-	$valorparcela = $_POST['valorparcela'];
+	$valorparcela2 = $_POST['valorparcela'];
 	$dpagamento = $_POST['dpagamento'];
 	$juro = $_POST['juro'];
 	$foro = $_POST['foro'];
@@ -86,8 +86,17 @@ if (isset($_POST['enviarcontrato'])){
 	$idcomp = $_POST['idcomp'];
 	$idvei = $_POST['idvei'];
 	$idlogin = $_POST['idlogin'];
-	$entrada = $_POST['entrada'];
+	$entrada2 = $_POST['entrada'];
 	$op=$_POST['op'];
+
+  $valortotal1 = str_replace ( "." ,"", $valortotal2);
+  $valortotal = str_replace ( "," ,".", $valortotal1);
+
+  $valorparcela1 = str_replace ( "." ,"", $valorparcela2);
+  $valorparcela = str_replace ( "," ,".", $valorparcela1);
+
+  $entrada1 = str_replace ( "." ,"", $entrada2);
+  $entrada = str_replace ( "," ,".", $entrada1);
 
 	//PARA ATUALIZAR, HAVERÁ ID POIS HÁ UM CONTRATO
 	if ($id != 0) {
