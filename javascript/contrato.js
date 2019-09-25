@@ -5,7 +5,7 @@ $(document).ready(function () {
 	$("#valortotal").mask("#.##0,00", {
 		reverse: true
 	});
-	$("#vparcela").mask("#.##0,00", {
+	$("#valorparcela").mask("#.##0,00", {
 		reverse: true
 	});
 	$("#entrada").mask("#.##0,00", {

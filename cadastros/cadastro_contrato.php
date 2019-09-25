@@ -193,7 +193,7 @@ descricao,  tamanho, tipo, arquivo) VALUES ('$nomeEvento',
               <?php } ?>
             </table>
             -->
-            <a href="editar_contrato.php">(Editar contrato)</a>
+            <a href="../config/editar_contrato.php?id=1">(Editar contrato)</a>
           </div>
         </div>
       </div>

@@ -162,7 +162,6 @@ if($row['Combustivel'] == "gasolina"){
 $placa =$row['Placa'];
 
 $objeto= "<p align='justify'><b>Cláusula ".$clausula."ª.</b> O presente contrato tem como OBJETO, um ".$nomevei.", ANO MODELO ".$row['Ano']."/".$row['Modelo'].", PLACA ".$placa.", RENAVAM N. ".$row['Renavam'].", CHASSI ".$row['Chassi'].", COMBUSTÍVEL ".$combustivel.", COR ".$cor.", livre de qualquer ônus ou encargo.</p>";
-
 $clausula++;
 
 if($row['Estado'] == "usado"){
@@ -197,17 +196,21 @@ $row = mysqli_fetch_assoc($result);
 $entrada = $row['Entrada'];
 $total = $row['ValorTotal'];
 
+$total_format = number_format($row['ValorTotal'], 2, ',', '.');
+$entrada_format = number_format($row['Entrada'], 2, ',', '.');
+$parcela_format = number_format($row['ValorParcela'], 2, ',', '.');
+
 if($entrada == $total){
 
-	$preco = "<p align='justify'><b>Cláusula ".$clausula."ª.</b> O <b>COMPRADOR</b> pagará ao <b>VENDEDOR</b> pela compra do veículo, objeto deste contrato, a quantia de R$ ".$row['ValorTotal'].",à vista, que deverá ser quiatda até o dia ".$row['DataPagamento'].".</p><br/>";
+	$preco = "<p align='justify'><b>Cláusula ".$clausula."ª.</b> O <b>COMPRADOR</b> pagará ao <b>VENDEDOR</b> pela compra do veículo, objeto deste contrato, a quantia de R$ ".$total_format.",à vista, que deverá ser quiatda até o dia ".$row['DataPagamento'].".</p><br/>";
 	$clausula++;
 }else if($row['Entrada'] != 0 ){
 
-	$preco = "<p align='justify'><b>Cláusula ".$clausula."ª.</b> O <b>COMPRADOR</b> pagará ao <b>VENDEDOR</b> pela compra do veículo, objeto deste contrato, a quantia de R$ ".$row['ValorTotal'].", por meio de uma entrada de R$ ".$row['Entrada']." e mais ".$row['NumeroParcelas']." parcelas de R$ ".$row['ValorParcela'].", que serão pagas mensalmente, todos os dias ".$row['DataPagamento']." dos meses subsequentes.";
+	$preco = "<p align='justify'><b>Cláusula ".$clausula."ª.</b> O <b>COMPRADOR</b> pagará ao <b>VENDEDOR</b> pela compra do veículo, objeto deste contrato, a quantia de R$ ".$total_format.", por meio de uma entrada de R$ ".$entrada_format." e mais ".$row['NumeroParcelas']." parcelas de R$ ".$parcela_format.", que serão pagas mensalmente, todos os dias ".$row['DataPagamento']." dos meses subsequentes.";
 	$clausula++;
 }else{
 
-	$preco = "<p align='justify'><b>Cláusula ".$clausula."ª.</b> O <b>COMPRADOR</b> pagará ao <b>VENDEDOR</b> pela compra do veículo, objeto deste contrato, a quantia de R$ ".$row['ValorTotal'].", dividida em ".$row['NumeroParcelas']." parcelas mensais de ".$row['ValorParcela'].", a serem pagas até o dia ".$row['DataPagamento']." dos meses subsequentes.</p><br/>";
+	$preco = "<p align='justify'><b>Cláusula ".$clausula."ª.</b> O <b>COMPRADOR</b> pagará ao <b>VENDEDOR</b> pela compra do veículo, objeto deste contrato, a quantia de R$ ".$total_format.", dividida em ".$row['NumeroParcelas']." parcelas mensais de ".$parcela_format.", a serem pagas até o dia ".$row['DataPagamento']." dos meses subsequentes.</p><br/>";
 	$clausula++;
 
 }
@@ -260,7 +263,7 @@ $dompdf->render();
 $dompdf->stream(
 	"contrato_P".$placa."_ID".$id.".pdf",
 	array(
-		"Attachment" => true //Para realizar o download somente alterar para true
+		"Attachment" => false //Para realizar o download somente alterar para true
 	)
 );
 

@@ -58,7 +58,8 @@ if (mysqli_affected_rows($conexao)>0) {
             $combustivel = "Flex";
         }
 
-        $valor = str_replace ( "." ,",", $row[10]);
+       // $valor = str_replace ( "." ,",", $row[10]);
+        $valor = number_format($row[10], 2, ',', '.');
 
         echo " <tbody>";
         echo " <tr>";
