@@ -1,5 +1,8 @@
 <?php
+session_start();
 require 'conexao.php';
+include('../config/verifica_login.php');
+
 $sql = "SELECT c.* FROM contrato c
 inner join pessoa p on c.pessoa_idcomprador = p.idpessoa
 inner join pessoa pp on c.pessoa_idvendedor = pp.idpessoa
@@ -109,6 +112,8 @@ mysqli_close($conexao);
                         <div class="form-group">
                             <textarea class="form-control rounded-0" id="textarea1" rows="3"></textarea>
                         </div>
+
+                        <a href="pdfcontrato.php?id=<?php echo $id?>"><button type='button' class='btn btn-outline-info btn-sm w-100'>Imprimir</button></a>
                     </form>
                 </div>
             </div>

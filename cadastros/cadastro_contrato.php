@@ -111,7 +111,9 @@ descricao,  tamanho, tipo, arquivo) VALUES ('$nomeEvento',
             <a class="dropdown-item" href="cadastro_contrato.php">Contrato</a>
           </div>
         </li>
-
+        <li class="nav-item">
+          <a class="nav-link" href="../config/editar_contrato.php?id=1">(Editar contrato)</a>
+        </li>
       </ul>
       <ul class="navbar-nav flex-row ml-md-auto d-md-flex">
         <li class="nav-item">
@@ -140,60 +142,60 @@ descricao,  tamanho, tipo, arquivo) VALUES ('$nomeEvento',
             <center><a href="../contrato.php"><button class="btn btn-outline-info text-uppercase btn-inline col-sm-9 col-md-5 col-lg-5">Cadastrar um Contrato</button></a>
             </center>
             <!--PARA SALVAR ARQUIVOS NO BANCO (IDEIA PARA SALVAR O CONTRATO)
-            <form enctype="multipart/form-data" action="#" method="post">
-              <div><input name="nome" type="text" /></div>
-              <div><input name="descricao" type="textarea" /></div>
-              <input type="hidden" name="MAX_FILE_SIZE" value="99999999" />
-              <div><input name="arquivo" type="file" /></div>
-              <div><input type="submit" name="enviararquivo" value="Salvar" /></div>
-            </form>
-            <table border="1">
-              <tr>
-                <td align="center">
-                  Código
-                </td>
-                <td align="center">
-                  Evento
-                </td>
-                <td align="center">
-                  Descrição
-                </td>
-                <td align="center">
-                  Tipo
-                </td>
-                <td align="center">
-                  Visualizar
-                </td>
-              </tr>
-              <?php
+<form enctype="multipart/form-data" action="#" method="post">
+<div><input name="nome" type="text" /></div>
+<div><input name="descricao" type="textarea" /></div>
+<input type="hidden" name="MAX_FILE_SIZE" value="99999999" />
+<div><input name="arquivo" type="file" /></div>
+<div><input type="submit" name="enviararquivo" value="Salvar" /></div>
+</form>
+<table border="1">
+<tr>
+<td align="center">
+Código
+</td>
+<td align="center">
+Evento
+</td>
+<td align="center">
+Descrição
+</td>
+<td align="center">
+Tipo
+</td>
+<td align="center">
+Visualizar
+</td>
+</tr>
+<?php
 
-                $querySelecao = "SELECT codigo, nome, descricao,
+$querySelecao = "SELECT codigo, nome, descricao,
      tipo, arquivo FROM arquivos";
-                $resultado = mysqli_query($conexao,$querySelecao);
+$resultado = mysqli_query($conexao,$querySelecao);
 
-                while ($aquivos = mysqli_fetch_array($resultado)) { ?>
-              <tr>
-                <td align="center">
-                  <?php echo $aquivos['codigo']; ?>
-                </td>
-                <td align="center">
-                  <?php echo $aquivos['nome']; ?>
-                </td>
-                <td align="center">
-                  <?php echo $aquivos['descricao']; ?>
-                </td>
-                <td align="center">
-                  <?php echo $aquivos['tipo']; ?>
-                </td>
-                <td align="center">
-                  <?php echo '<a href="ver.php?id='.$aquivos['codigo'].
-                  '">Imagem '.$aquivos['codigo'].'</a>'; ?>
-                </td>
-              </tr>
-              <?php } ?>
-            </table>
-            -->
-            <a href="../config/editar_contrato.php?id=1">(Editar contrato)</a>
+while ($aquivos = mysqli_fetch_array($resultado)) { ?>
+<tr>
+<td align="center">
+<?php echo $aquivos['codigo']; ?>
+</td>
+<td align="center">
+<?php echo $aquivos['nome']; ?>
+</td>
+<td align="center">
+<?php echo $aquivos['descricao']; ?>
+</td>
+<td align="center">
+<?php echo $aquivos['tipo']; ?>
+</td>
+<td align="center">
+<?php echo '<a href="ver.php?id='.$aquivos['codigo'].
+  '">Imagem '.$aquivos['codigo'].'</a>'; ?>
+</td>
+</tr>
+<?php } ?>
+</table>
+-->
+
           </div>
         </div>
       </div>
