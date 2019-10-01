@@ -200,6 +200,10 @@ function valorparcela() {
 }
 
 function gerarparcela() {
+	if ($("#entrada").hasClass("is-invalid")) {
+		$("#entrada").removeClass("is-invalid");
+	}
+
 	var total = $("#valortotal").val();
 	var numero = parseInt($("#numeroparcelas").val());
 	var entrada = $("#entrada").val();
@@ -455,6 +459,10 @@ function getidvei(idtd, nometd, placatd, vtotaltd) {
 	var nome = nometd.replace("+", " ");
 	while (nome.indexOf("+") != -1) {
 		nome = nome.replace("+", " ");
+	}
+
+	while (vtotal.indexOf(".") != -1) {
+		vtotal = vtotal.replace(".", ",");
 	}
 
 	$("#idvei").val(id);

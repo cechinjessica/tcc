@@ -897,7 +897,7 @@ if (isset($_POST['enviarveiculo'])){
             <div class="row">
               <div class="form-group col-md">
                 <label for="foro" class="col-lg-4 col-sm-12 m-0">Foro</label>
-                <input type="text" id="foro" class="form-control col-lg-5 m-0" name="foro" value="<?php echo ($id!=0)?"$foro":'';?>">
+                <input type="text" id="foro" class="form-control col-lg-5 m-0" name="foro" placeholder="Cidade-UF" value="<?php echo ($id!=0)?"$foro":'';?>">
               </div>
 
               <div class="form-group col-md">
@@ -929,7 +929,7 @@ if (isset($_POST['enviarveiculo'])){
             <div class="row">
               <div class="form-group col-xl">
                 <label for="lassinatura" class="col-lg-3 col-sm-12 m-0 ">Cidade para Assinatura</label>
-                <input type="text" id="lassinatura" class="form-control col-xl-4 col-lg-5 m-0" name="lassinatura" value="<?php echo ($id!=0)?"$lassinatura":'';?>">
+                <input type="text" id="lassinatura" class="form-control col-xl-4 col-lg-5 m-0" name="lassinatura" placeholder="Cidade-UF" value="<?php echo ($id!=0)?"$lassinatura":'';?>">
 
                 <label for="dassinatura" class="col-lg-3 col-sm-12 m-0 ">Data de Assinatura</label>
                 <input type="date" id="dassinatura" class="form-control col-xl-4 col-lg-5 m-0" name="dassinatura" value="<?php echo ($id!=0)?"$dassinatura":'';?>">
