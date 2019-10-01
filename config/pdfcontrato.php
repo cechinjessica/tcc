@@ -17,54 +17,19 @@ if (isset($_GET['id'])){
 
 if (isset($_post['imprmir'])){
 
-	$clausula = 1;
-
 	$inicio = "<!DOCTYPE html><html><head><meta charset='utf-8'><style>font-family: sans-serif;</style></head><body style=' margin-top: 2cm; margin-right: 1cm; margin-bottom: 1cm; margin-left: 2cm; font: Arial;'><center>
 		<p><b>CONTRATO DE COMPRA E VENDA DE VEÍCULO</b></p><br/>
 		<p><b>IDENTIFICAÇÃO DAS PARTES CONTRATANTES</b></p></center><br/><br/>";
 	//PARA VENDEDOR///////////////////////////////////////////////////////////////////////////////
 	$titulovend = "<p align='justify'><b>VENDEDOR:";
 
-
 	//PARA COMPRADOR///////////////////////////////////////////////////////////////////////////////
 	$titulocomp = "<p align='justify'><b>COMPRADOR:";
 
-
-
-
 	$tituloobj = "<p align='center'><b>DO OBJETO DO CONTRATO</b></p>";
-
-	$nomevei = mb_strtoupper($row['Nome'], 'UTF-8');
-	$cor = mb_strtoupper($row['Cor'], 'UTF-8');
-	if($row['Combustivel'] == "gasolina"){
-		$combustivel = "GASOLINA";
-	}else if($row['Combustivel'] == "etanol"){
-		$combustivel = "ETANOL";
-	}else if($row['Combustivel'] == "diesel"){
-		$combustivel = "DIESEL";
-	}else if($row['Combustivel'] == "gasnatural"){
-		$combustivel = "GÁS NATURAL";
-	}else if($row['Combustivel'] == "eletrico"){
-		$combustivel = "ELÉTRICO";
-	}else if($row['Combustivel'] == "flex"){
-		$combustivel = "FLEX";
-	}
-
-	$placa =$row['Placa'];
-
-	$objeto= "<p align='justify'><b>Cláusula ".$clausula."ª.</b> O presente contrato tem como OBJETO, um ".$nomevei.", ANO MODELO ".$row['Ano']."/".$row['Modelo'].", PLACA ".$placa.", RENAVAM N. ".$row['Renavam'].", CHASSI ".$row['Chassi'].", COMBUSTÍVEL ".$combustivel.", COR ".$cor.", livre de qualquer ônus ou encargo.</p>";
-	$clausula++;
-
-	if($row['Estado'] == "usado"){
-		$objeto .= "<p align='justify'><b>Cláusula ".$clausula."ª.</b> O veículo, objeto deste contrato é usado, apresentando desgaste natural decorrente do tempo, já visto e inspecionado pelo <b>COMPRADOR</b>, o qual tomou ciência de suas condições e estado de conservação.</p><br/>";
-		$clausula++;
-	}
 
 	$tituloresp = "<p align='center'><b>DAS RESPONSABILIDADES</b></p>";
 
-	$responsabilidade1 = "<p align='justify'><b>Cláusula ".$clausula."ª.</b> O <b>VENDEDOR</b> se responsabilizará pelo bom estado e perfeito funcionamento do veículo até a data de assinatura do presente contrato.</p>";
-	$aclausula = $clausula;
-	$clausula++;
 
 	$responsabilidade2 = "<p align='justify'><b>Cláusula ".$clausula."ª.</b> O <b>VENDEDOR</b> se responsabilizará pela entrega do veículo no local indicado pelo <b>COMPRADOR</b>, nas mesmas condições de quando foi inspecionado pelo <b>COMPRADOR</b>.</p><br/>";
 	$clausula++;
@@ -143,7 +108,7 @@ if (isset($_post['imprmir'])){
 	//Criando a Instancia
 	$dompdf = new DOMPDF();
 	// Carrega seu HTML
-	$dompdf->load_html($inicio."".$titulovend."".$vendedor."".$titulocomp."".$comprador."".$fixo."".$tituloobj."".$objeto."".$tituloresp."".$responsabilidade1."".$responsabilidade2."".$titulotrans."".$transferencia."".$titulopre."".$preco."".$titulocond."".$condicao1."".$condicao2."".$titulorec."".$recisao1."".$recisao2."".$recisao3."".$tituloforo."".$foro."".$localass."".$assinaturas."".$fim);
+	$dompdf->load_html($inicio."".$titulovend."".$vendedor."".$titulocomp."".$comprador."".$fixo."".$tituloobj."".$objeto."".$objeto1."".$tituloresp."".$responsabilidade1."".$responsabilidade2."".$titulotrans."".$transferencia."".$titulopre."".$preco."".$titulocond."".$condicao1."".$condicao2."".$titulorec."".$recisao1."".$recisao2."".$recisao3."".$tituloforo."".$foro."".$localass."".$assinaturas."".$fim);
 	$dompdf -> setPaper ( ' A4 ' , ' landscape ' );
 
 	//Renderizar o html
@@ -240,7 +205,6 @@ if (isset($_post['imprmir'])){
 				<div class="card-body">
 					<h5 class="card-title text-center">Editar contrato:</h5>
 					<form action="#" method="post" class="form-padrao">
-						<!-- Default switch -->
 						<div class="custom-control custom-switch">
 							<input type="checkbox" class="custom-control-input" id="switch1">
 							<label class="custom-control-label" for="switch1">Cláusula</label>
@@ -301,11 +265,13 @@ if (isset($_post['imprmir'])){
 
 									$vendedor=" ".$nomeempresa."</b>, empresa ".$tipoempresa.", inscrita no CNPJ n. ".$row['CNPJ'].", localizada na ".$row['EnderecoEmpresa'].", n. ".$row['NumeroEmpresa'].", na cidade de ".$row['CidadeEmpresa']."-".$row['UFEmpresa'].", representada neste ato por ".$sua." ".$cargo." <b>".$nome."</b>, ".$nacionalidade.", ".$ecivil.$final.", ".$profissao.", inscrit".$final." no CPF sob n. ".$row['CPF'].", residente e domiciliad".$final." na ".$row['Endereco'].", n. ".$row['Numero'].", na cidade de ".$row['Cidade']."-".$row['UF'].", CEP: ".$row['CEP'].";</p><br/>";
 								}
+
+								$vendedor_vizualizacao = strip_tags($vendedor);
 							}
 							?>
 						<div class="form-group">
 							<label for="vendedor"><b>VENDEDOR</b></label>
-							<textarea class="form-control rounded-0" id="vendedor" rows="3" readonly><?php echo $vendedor ?></textarea>
+							<textarea class="form-control rounded-0" id="vendedor" rows="3" readonly><?php echo $vendedor_vizualizacao ?></textarea>
 						</div>
 						<!--//////////////////////////////////////////////////////////////////////////////////////////-->
 						<?php
@@ -361,14 +327,15 @@ if (isset($_post['imprmir'])){
 											$comprador=" ".$nomeempresa."</b>, empresa ".$tipoempresa.", inscrita no CNPJ n. ".$row['CNPJ'].", localizada na ".$row['EnderecoEmpresa'].", n. ".$row['NumeroEmpresa'].", na cidade de ".$row['CidadeEmpresa']."-".$row['UFEmpresa'].", representada neste ato por ".$sua." ".$cargo." <b>".$nomec."</b>, ".$nacionalidade.", ".$ecivil.$final.", ".$profissao.", inscrit".$final." no CPF sob n. ".$row['CPF'].", residente e domiciliad".$final." na ".$row['Endereco'].", n. ".$row['Numero'].", na cidade de ".$row['Cidade']."-".$row['UF'].", CEP: ".$row['CEP'].";</p><br/>";
 										}
 									}
+									$comprador_vizualizacao = strip_tags($comprador);
 
 							?>
 
 						<div class="form-group">
 							<label for="comprador"><b>COMPRADOR</b></label>
-							<textarea class="form-control rounded-0" id="comprador" rows="3" readonly><?php echo $comprador ?></textarea>
+							<textarea class="form-control rounded-0" id="comprador" rows="3" readonly><?php echo $comprador_vizualizacao ?></textarea>
 						</div>
-
+						<br />
 
 						<?php
 	$sql = "SELECT v.*, c.ValorTotal as ValorTotal FROM contrato c
@@ -380,16 +347,79 @@ if (isset($_post['imprmir'])){
 
 									$estado = ucfirst($row['Estado']);
 									$fixo = "<p align='justify'><b>As partes acima identificadas têm, entre si, justo e acertado o presente Contrato e Venda de Veículo ".$estado.", que se regerá pelas cláusulas seguintes e pelas condições descritas no presente.</b></p><br/>";
+
+									$fixo_vizualizacao = strip_tags($fixo);
+
 							?>
 						<div class="form-group">
-							<textarea class="form-control rounded-0" id="comprador" rows="3" readonly><?php echo $fixo ?></textarea>
+							<textarea class="form-control rounded-0" id="fixo" rows="3" readonly><?php echo $fixo_vizualizacao ?></textarea>
+						</div>
+
+						<?php
+
+	$clausula = 1;
+									$nomevei = mb_strtoupper($row['Nome'], 'UTF-8');
+									$cor = mb_strtoupper($row['Cor'], 'UTF-8');
+									if($row['Combustivel'] == "gasolina"){
+										$combustivel = "GASOLINA";
+									}else if($row['Combustivel'] == "etanol"){
+										$combustivel = "ETANOL";
+									}else if($row['Combustivel'] == "diesel"){
+										$combustivel = "DIESEL";
+									}else if($row['Combustivel'] == "gasnatural"){
+										$combustivel = "GÁS NATURAL";
+									}else if($row['Combustivel'] == "eletrico"){
+										$combustivel = "ELÉTRICO";
+									}else if($row['Combustivel'] == "flex"){
+										$combustivel = "FLEX";
+									}
+
+									$placa =$row['Placa'];
+
+									$objeto= "<p align='justify'><b>Cláusula ".$clausula."ª.</b> O presente contrato tem como OBJETO, um ".$nomevei.", ANO MODELO ".$row['Ano']."/".$row['Modelo'].", PLACA ".$placa.", RENAVAM N. ".$row['Renavam'].", CHASSI ".$row['Chassi'].", COMBUSTÍVEL ".$combustivel.", COR ".$cor.", livre de qualquer ônus ou encargo.</p>";
+									$clausula++;
+									$objeto_vizualizacao = strip_tags($objeto);
+
+							?>
+						<div class="form-group">
+							<label for="comprador"><b>DO OBJETO</b></label>
+							<textarea class="form-control rounded-0" id="objeto" rows="3" readonly><?php echo $objeto_vizualizacao ?></textarea>
+						</div>
+
+						<?php
+	$objeto1="";
+									if($row['Estado'] == "usado"){
+										$objeto1 = "<p align='justify'><b>Cláusula ".$clausula."ª.</b> O veículo, objeto deste contrato é usado, apresentando desgaste natural decorrente do tempo, já visto e inspecionado pelo <b>COMPRADOR</b>, o qual tomou ciência de suas condições e estado de conservação.</p><br />";
+										$clausula++;
+										$objeto1_vizualizacao = strip_tags($objeto1);
+										echo "<div class='form-group'>
+								<textarea class='form-control rounded-0' id='objeto1' rows='3' readonly>".$objeto1_vizualizacao."</textarea>
+				</div>";
+									}
+							?>
+
+						<?php
+
+							$responsabilidade1 = "<p align='justify'><b>Cláusula ".$clausula."ª.</b> O <b>VENDEDOR</b> se responsabilizará pelo bom estado e perfeito funcionamento do veículo até a data de assinatura do presente contrato.</p>";
+							$aclausula = $clausula;
+							$clausula++;
+							?>
+						<div class="form-group">
+
+							<label for="comprador"><b>DAS RESPONSABILIDADES</b></label>
+							<div class="custom-control custom-switch">
+								<input type="checkbox" class="custom-control-input" id="switch_responsabilidade1">
+								<label class="custom-control-label" for="switch_responsabilidade1">Utilizar</label>
+							</div>
+							<textarea class="form-control rounded-0" id="responsabilidade1" rows="3" readonly><?php echo $responsabilidade1 ?></textarea>
 						</div>
 
 
 
 
-
-
+						<!-- $comp = " este é o Comprador do carro";
+echo substr_replace($comp,"<b>Comprador</b>",strpos($comp,"Comprador"), 9);
+PARA COLOCAR TAGS B-->
 						<a href="pdfcontrato.php?id=<?php echo $id?>"><button type='submit' class='btn btn-outline-info btn-sm w-100' name='imprimir'>Imprimir</button></a>
 					</form>
 				</div>

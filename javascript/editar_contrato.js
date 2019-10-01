@@ -13,12 +13,19 @@ $(document).ready(function () {
   }
  });
 
- $("#switch1").change(function () {
-  if ($("#switch1").is(":checked")) {
-   $("#textarea1").prop("readonly", false);
+ if ($("#switch_responsabilidade1").is(":checked")) {
+  $("#responsabilidade1").prop("readonly", false);
+ } else {
+  $("#responsabilidade1").prop("readonly", true);
+ }
+
+ $("#switch_responsabilidade1").click(function () {
+  if ($("#switch_responsabilidade1").is(":checked")) {
+   $("#responsabilidade1").prop("readonly", false);
   } else {
-   $("#textarea1").prop("readonly", true);
+   $("#responsabilidade1").prop("readonly", true);
   }
  });
+
 
 })

@@ -51,7 +51,7 @@ session_start();
 									unset ($_SESSION['msg']);
 								}
 								?>
-                        <button class="btn btn-md btn-primary btn-block text-uppercase" type="submit" id="logar">Login</button>
+                        <button class="btn btn-md btn-primary btn-block text-uppercase mb-2" type="submit" id="logar">Login</button>
 
                     </form>
                     <div class="form-padrao">
