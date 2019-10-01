@@ -20,61 +20,22 @@ if (isset($_post['imprmir'])){
 	$inicio = "<!DOCTYPE html><html><head><meta charset='utf-8'><style>font-family: sans-serif;</style></head><body style=' margin-top: 2cm; margin-right: 1cm; margin-bottom: 1cm; margin-left: 2cm; font: Arial;'><center>
 		<p><b>CONTRATO DE COMPRA E VENDA DE VEÍCULO</b></p><br/>
 		<p><b>IDENTIFICAÇÃO DAS PARTES CONTRATANTES</b></p></center><br/><br/>";
-	//PARA VENDEDOR///////////////////////////////////////////////////////////////////////////////
+
 	$titulovend = "<p align='justify'><b>VENDEDOR:";
 
-	//PARA COMPRADOR///////////////////////////////////////////////////////////////////////////////
 	$titulocomp = "<p align='justify'><b>COMPRADOR:";
 
 	$tituloobj = "<p align='center'><b>DO OBJETO DO CONTRATO</b></p>";
 
 	$tituloresp = "<p align='center'><b>DAS RESPONSABILIDADES</b></p>";
 
-
-	$responsabilidade2 = "<p align='justify'><b>Cláusula ".$clausula."ª.</b> O <b>VENDEDOR</b> se responsabilizará pela entrega do veículo no local indicado pelo <b>COMPRADOR</b>, nas mesmas condições de quando foi inspecionado pelo <b>COMPRADOR</b>.</p><br/>";
-	$clausula++;
-
 	$titulotrans = "<p align='center'><b>DA TRANSFERÊNCIA DA PROPRIEDADE DO VEÍCULO</b></p>";
-
-	$transferencia= "<p align='justify'><b>Cláusula ".$clausula."ª.</b>A transferência da propriedade do veículo será feita até o prazo máximo de 30 (trinta) dias a contar da data de assinatura deste contrato.</p><br/>";
-	$clausula++;
 
 	$titulopre= "<p align='center'><b>DO PREÇO</b></p>";
 
-	$sql = "SELECT c.* FROM contrato c
-	inner join pessoa p on c.Pessoa_IdComprador = p.idpessoa
-	inner join pessoa pp on c.Pessoa_IdVendedor = pp.idpessoa
-	inner join veiculo v on c.Veiculo_IdVeiculo = v.idveiculo where c.idcontrato = $id";
-	$result = mysqli_query($conexao, $sql);
-	$row = mysqli_fetch_assoc($result);
-
-
-	$entrada = $row['Entrada'];
-	$total = $row['ValorTotal'];
-
-	$total_format = number_format($row['ValorTotal'], 2, ',', '.');
-	$entrada_format = number_format($row['Entrada'], 2, ',', '.');
-	$parcela_format = number_format($row['ValorParcela'], 2, ',', '.');
-
-	if($entrada == $total){
-
-		$preco = "<p align='justify'><b>Cláusula ".$clausula."ª.</b> O <b>COMPRADOR</b> pagará ao <b>VENDEDOR</b> pela compra do veículo, objeto deste contrato, a quantia de R$ ".$total_format.",à vista, que deverá ser quiatda até o dia ".$row['DataPagamento'].".</p><br/>";
-		$clausula++;
-	}else if($row['Entrada'] != 0 ){
-
-		$preco = "<p align='justify'><b>Cláusula ".$clausula."ª.</b> O <b>COMPRADOR</b> pagará ao <b>VENDEDOR</b> pela compra do veículo, objeto deste contrato, a quantia de R$ ".$total_format.", por meio de uma entrada de R$ ".$entrada_format." e mais ".$row['NumeroParcelas']." parcelas de R$ ".$parcela_format.", que serão pagas mensalmente, todos os dias ".$row['DataPagamento']." dos meses subsequentes.";
-		$clausula++;
-	}else{
-
-		$preco = "<p align='justify'><b>Cláusula ".$clausula."ª.</b> O <b>COMPRADOR</b> pagará ao <b>VENDEDOR</b> pela compra do veículo, objeto deste contrato, a quantia de R$ ".$total_format.", dividida em ".$row['NumeroParcelas']." parcelas mensais de ".$parcela_format.", a serem pagas até o dia ".$row['DataPagamento']." dos meses subsequentes.</p><br/>";
-		$clausula++;
-
-	}
-
 	$titulocond = "<p align='center'><b>CONDIÇÕES GERAIS</b></p>";
 
-	$condicao1= "<p><b>Cláusula ".$clausula."ª.</b> Qualquer problema verificado no funcionamento ou na estrutura do veículo, depois do prazo estabelecido na Cláusula ".$aclausula."ª, será de inteira responsabilidade no <b>COMPRADOR</b>.</p>";
-	$clausula++;
+
 
 	$condicao2= "<p><b>Cláusula ".$clausula."ª.</b> O presente contrato passa a valer a partir da assinatura pelas partes, obrigando-se a ele os herdeiros ou secessores das mesmas.</p><br/>";
 	$clausula++;
@@ -210,8 +171,9 @@ if (isset($_post['imprmir'])){
 							<label class="custom-control-label" for="switch1">Cláusula</label>
 						</div>
 						<div class="form-group">
-							<textarea class="form-control rounded-0" id="textarea1" rows="3">Teste</textarea>
+							<textarea class="form-control rounded-0" id="textarea1" rows="2">Teste</textarea>
 						</div>
+						<!--/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
 
 						<?php
 							$sql = "SELECT pp.* FROM contrato c
@@ -266,14 +228,15 @@ if (isset($_post['imprmir'])){
 									$vendedor=" ".$nomeempresa."</b>, empresa ".$tipoempresa.", inscrita no CNPJ n. ".$row['CNPJ'].", localizada na ".$row['EnderecoEmpresa'].", n. ".$row['NumeroEmpresa'].", na cidade de ".$row['CidadeEmpresa']."-".$row['UFEmpresa'].", representada neste ato por ".$sua." ".$cargo." <b>".$nome."</b>, ".$nacionalidade.", ".$ecivil.$final.", ".$profissao.", inscrit".$final." no CPF sob n. ".$row['CPF'].", residente e domiciliad".$final." na ".$row['Endereco'].", n. ".$row['Numero'].", na cidade de ".$row['Cidade']."-".$row['UF'].", CEP: ".$row['CEP'].";</p><br/>";
 								}
 
-								$vendedor_vizualizacao = strip_tags($vendedor);
+								$vendedor_visualizacao = strip_tags($vendedor);
 							}
 							?>
 						<div class="form-group">
 							<label for="vendedor"><b>VENDEDOR</b></label>
-							<textarea class="form-control rounded-0" id="vendedor" rows="3" readonly><?php echo $vendedor_vizualizacao ?></textarea>
+							<textarea class="form-control rounded-0" id="vendedor" rows="2" readonly><?php echo $vendedor_visualizacao ?></textarea>
 						</div>
-						<!--//////////////////////////////////////////////////////////////////////////////////////////-->
+						<!--/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
+
 						<?php
 	$sql = "SELECT p.* FROM contrato c
 	inner join pessoa p on c.Pessoa_IdComprador = p.idpessoa
@@ -327,15 +290,17 @@ if (isset($_post['imprmir'])){
 											$comprador=" ".$nomeempresa."</b>, empresa ".$tipoempresa.", inscrita no CNPJ n. ".$row['CNPJ'].", localizada na ".$row['EnderecoEmpresa'].", n. ".$row['NumeroEmpresa'].", na cidade de ".$row['CidadeEmpresa']."-".$row['UFEmpresa'].", representada neste ato por ".$sua." ".$cargo." <b>".$nomec."</b>, ".$nacionalidade.", ".$ecivil.$final.", ".$profissao.", inscrit".$final." no CPF sob n. ".$row['CPF'].", residente e domiciliad".$final." na ".$row['Endereco'].", n. ".$row['Numero'].", na cidade de ".$row['Cidade']."-".$row['UF'].", CEP: ".$row['CEP'].";</p><br/>";
 										}
 									}
-									$comprador_vizualizacao = strip_tags($comprador);
+									$comprador_visualizacao = strip_tags($comprador);
 
 							?>
 
 						<div class="form-group">
 							<label for="comprador"><b>COMPRADOR</b></label>
-							<textarea class="form-control rounded-0" id="comprador" rows="3" readonly><?php echo $comprador_vizualizacao ?></textarea>
+							<textarea class="form-control rounded-0" id="comprador" rows="2" readonly><?php echo $comprador_visualizacao ?></textarea>
 						</div>
 						<br />
+						<!--/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
+
 
 						<?php
 	$sql = "SELECT v.*, c.ValorTotal as ValorTotal FROM contrato c
@@ -348,12 +313,13 @@ if (isset($_post['imprmir'])){
 									$estado = ucfirst($row['Estado']);
 									$fixo = "<p align='justify'><b>As partes acima identificadas têm, entre si, justo e acertado o presente Contrato e Venda de Veículo ".$estado.", que se regerá pelas cláusulas seguintes e pelas condições descritas no presente.</b></p><br/>";
 
-									$fixo_vizualizacao = strip_tags($fixo);
+									$fixo_visualizacao = strip_tags($fixo);
 
 							?>
 						<div class="form-group">
-							<textarea class="form-control rounded-0" id="fixo" rows="3" readonly><?php echo $fixo_vizualizacao ?></textarea>
+							<textarea class="form-control rounded-0" id="fixo" rows="2" readonly><?php echo $fixo_visualizacao ?></textarea>
 						</div>
+						<!--/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
 
 						<?php
 
@@ -378,42 +344,158 @@ if (isset($_post['imprmir'])){
 
 									$objeto= "<p align='justify'><b>Cláusula ".$clausula."ª.</b> O presente contrato tem como OBJETO, um ".$nomevei.", ANO MODELO ".$row['Ano']."/".$row['Modelo'].", PLACA ".$placa.", RENAVAM N. ".$row['Renavam'].", CHASSI ".$row['Chassi'].", COMBUSTÍVEL ".$combustivel.", COR ".$cor.", livre de qualquer ônus ou encargo.</p>";
 									$clausula++;
-									$objeto_vizualizacao = strip_tags($objeto);
+									$objeto_visualizacao = strip_tags($objeto);
 
 							?>
 						<div class="form-group">
-							<label for="comprador"><b>DO OBJETO</b></label>
-							<textarea class="form-control rounded-0" id="objeto" rows="3" readonly><?php echo $objeto_vizualizacao ?></textarea>
+							<label for="objeto"><b>DO OBJETO</b></label>
+							<textarea class="form-control rounded-0" id="objeto" rows="2" readonly><?php echo $objeto_visualizacao ?></textarea>
 						</div>
+						<!--/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
 
 						<?php
 	$objeto1="";
 									if($row['Estado'] == "usado"){
 										$objeto1 = "<p align='justify'><b>Cláusula ".$clausula."ª.</b> O veículo, objeto deste contrato é usado, apresentando desgaste natural decorrente do tempo, já visto e inspecionado pelo <b>COMPRADOR</b>, o qual tomou ciência de suas condições e estado de conservação.</p><br />";
 										$clausula++;
-										$objeto1_vizualizacao = strip_tags($objeto1);
+										$objeto1_visualizacao = strip_tags($objeto1);
 										echo "<div class='form-group'>
-								<textarea class='form-control rounded-0' id='objeto1' rows='3' readonly>".$objeto1_vizualizacao."</textarea>
+								<textarea class='form-control rounded-0' id='objeto1' rows='3' readonly>".$objeto1_visualizacao."</textarea>
 				</div>";
 									}
 							?>
+						<!--/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
 
 						<?php
 
-							$responsabilidade1 = "<p align='justify'><b>Cláusula ".$clausula."ª.</b> O <b>VENDEDOR</b> se responsabilizará pelo bom estado e perfeito funcionamento do veículo até a data de assinatura do presente contrato.</p>";
+							$responsabilidade1 = "<b>Cláusula ".$clausula."ª.</b> O <b>VENDEDOR</b> se responsabilizará pelo bom estado e perfeito funcionamento do veículo até a data de assinatura do presente contrato.";
 							$aclausula = $clausula;
 							$clausula++;
+
+							$inicio ="<p align='justify'>";
+							$fim = "</p>";
+							$responsabilidade1_visualizacao = strip_tags($responsabilidade1);
+
+							/*FAZER COM O QUE VIER DO CAMPO NO SUBMIT
+							$resposabilidade1 = substr_replace($responsabilidade1_visualizacao,"<b>VENDEDOR</b>",strpos($responsabilidade1_visualizacao,"VENDEDOR"), 8);
+							$resposabilidade1 = substr_replace($responsabilidade1_visualizacao,"<b>COMPRADOR</b>",strpos($responsabilidade1_visualizacao,"COMPRADOR"), 9);
+							for ($i = 1; $i >15; $i++){
+								$resposabilidade1 = substr_replace($responsabilidade1_visualizacao,"<b>Cláusula ".$i."ª.</b>",strpos($responsabilidade1_visualizacao,"Cláusula ".$i."ª."), 12);
+							}
+							$responsabilidade1 = $inicio."".$responsabilidade1."".$fim;
+							*/
+
 							?>
 						<div class="form-group">
 
-							<label for="comprador"><b>DAS RESPONSABILIDADES</b></label>
+							<label for="responsabilidade1"><b>DAS RESPONSABILIDADES</b></label>
 							<div class="custom-control custom-switch">
 								<input type="checkbox" class="custom-control-input" id="switch_responsabilidade1">
 								<label class="custom-control-label" for="switch_responsabilidade1">Utilizar</label>
 							</div>
-							<textarea class="form-control rounded-0" id="responsabilidade1" rows="3" readonly><?php echo $responsabilidade1 ?></textarea>
+							<textarea class="form-control rounded-0" id="responsabilidade1" rows="2" readonly><?php echo $responsabilidade1_visualizacao; ?></textarea>
+						</div>
+						<!--/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
+
+						<?php
+
+							$inicio="<p align='justify'>";
+							$fim = "</p><br/>";
+							$responsabilidade2 = "<b>Cláusula ".$clausula."ª.</b> O <b>VENDEDOR</b> se responsabilizará pela entrega do veículo no local indicado pelo <b>COMPRADOR</b>, nas mesmas condições de quando foi inspecionado pelo <b>COMPRADOR</b>.";
+							$clausula++;
+
+							$responsabilidade2_visualizacao = strip_tags($responsabilidade2);
+							?>
+						<div class="form-group">
+							<div class="custom-control custom-switch">
+								<input type="checkbox" class="custom-control-input" id="switch_responsabilidade2">
+								<label class="custom-control-label" for="switch_responsabilidade2">Utilizar</label>
+							</div>
+							<textarea class="form-control rounded-0" id="responsabilidade2" rows="2" readonly><?php echo $responsabilidade2_visualizacao; ?></textarea>
+						</div>
+						<!--/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
+						<?php
+
+							$inicio = "<p align='justify'>";
+							$fim ="</p><br/>";
+							$transferencia= "<b>Cláusula ".$clausula."ª.</b> A transferência da propriedade do veículo será feita até o prazo máximo de 30 (trinta) dias a contar da data de assinatura deste contrato.";
+							$clausula++;
+							$transferencia_visualizacao = strip_tags($transferencia);
+
+							?>
+						<div class="form-group">
+
+							<label for="transferencia"><b>DA TRANSFERÊNCIA DA PROPRIEDADE DO VEÍCULO</b></label>
+							<div class="custom-control custom-switch">
+								<input type="checkbox" class="custom-control-input" id="switch_transferencia">
+								<label class="custom-control-label" for="switch_transferencia">Utilizar</label>
+							</div>
+							<textarea class="form-control rounded-0" id="transferencia" rows="2" readonly><?php echo $transferencia_visualizacao; ?></textarea>
+						</div>
+						<!--/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
+
+						<?php
+
+							$sql = "SELECT c.* FROM contrato c
+	inner join pessoa p on c.Pessoa_IdComprador = p.idpessoa
+	inner join pessoa pp on c.Pessoa_IdVendedor = pp.idpessoa
+	inner join veiculo v on c.Veiculo_IdVeiculo = v.idveiculo where c.idcontrato = $id";
+							$result = mysqli_query($conexao, $sql);
+							$row = mysqli_fetch_assoc($result);
+
+
+							$entrada = $row['Entrada'];
+							$total = $row['ValorTotal'];
+
+							$total_format = number_format($row['ValorTotal'], 2, ',', '.');
+							$entrada_format = number_format($row['Entrada'], 2, ',', '.');
+							$parcela_format = number_format($row['ValorParcela'], 2, ',', '.');
+
+							$inicio="<p align='justify'>";
+							$fim ="</p><br/>";
+
+							if($entrada == $total){
+
+								$preco = "<b>Cláusula ".$clausula."ª.</b> O <b>COMPRADOR</b> pagará ao <b>VENDEDOR</b> pela compra do veículo, objeto deste contrato, a quantia de R$ ".$total_format.",à vista, que deverá ser quiatda até o dia ".$row['DataPagamento'].".";
+								$clausula++;
+							}else if($row['Entrada'] != 0 ){
+
+								$preco = "<b>Cláusula ".$clausula."ª.</b> O <b>COMPRADOR</b> pagará ao <b>VENDEDOR</b> pela compra do veículo, objeto deste contrato, a quantia de R$ ".$total_format.", por meio de uma entrada de R$ ".$entrada_format." e mais ".$row['NumeroParcelas']." parcelas de R$ ".$parcela_format.", que serão pagas mensalmente, todos os dias ".$row['DataPagamento']." dos meses subsequentes.";
+								$clausula++;
+							}else{
+
+								$preco = "<b>Cláusula ".$clausula."ª.</b> O <b>COMPRADOR</b> pagará ao <b>VENDEDOR</b> pela compra do veículo, objeto deste contrato, a quantia de R$ ".$total_format.", dividida em ".$row['NumeroParcelas']." parcelas mensais de ".$parcela_format.", a serem pagas até o dia ".$row['DataPagamento']." dos meses subsequentes.";
+								$clausula++;
+
+							}
+
+							$preco_visualizacao = strip_tags($preco);
+
+							?>
+						<div class="form-group">
+
+							<label for="preco"><b>DO PREÇO</b></label>
+							<textarea class="form-control rounded-0" id="preco" rows="2" readonly><?php echo $preco_visualizacao; ?></textarea>
 						</div>
 
+						<!--/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
+						<?php
+							$condicao1= "<b>Cláusula ".$clausula."ª.</b> Qualquer problema verificado no funcionamento ou na estrutura do veículo, depois do prazo estabelecido na Cláusula ".$aclausula."ª, será de inteira responsabilidade no <b>COMPRADOR</b>.";
+							$clausula++;
+
+							$inicio="<p align='justify'>";
+							$fim ="</p>";
+							$condicao1_visualizacao = strip_tags($condicao1);
+							?>
+						<div class="form-group">
+							<label for="condicao1"><b>CONDIÇÕES GERAIS</b></label>
+							<div class="custom-control custom-switch">
+								<input type="checkbox" class="custom-control-input" id="switch_condicao1">
+								<label class="custom-control-label" for="switch_condicao1">Utilizar</label>
+							</div>
+							<textarea class="form-control rounded-0" id="condicao1" rows="2" readonly><?php echo $condicao1_visualizacao; ?></textarea>
+						</div>
+						<!--/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
 
 
 
