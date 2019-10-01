@@ -68,5 +68,76 @@ $(document).ready(function () {
    $("#condicao1").prop("readonly", true);
   }
  });
+ /////////////////////////////////////////////////////////////////////////////
+ if ($("#switch_condicao2").is(":checked")) {
+  $("#condicao2").prop("readonly", false);
+ } else {
+  $("#condicao2").prop("readonly", true);
+ }
+
+ $("#switch_condicao2").click(function () {
+  if ($("#switch_condicao2").is(":checked")) {
+   $("#condicao2").prop("readonly", false);
+  } else {
+   $("#condicao2").prop("readonly", true);
+  }
+ });
+ /////////////////////////////////////////////////////////////////////////////
+ if ($("#switch_recisao1").is(":checked")) {
+  $("#recisao1").prop("readonly", false);
+ } else {
+  $("#recisao1").prop("readonly", true);
+ }
+
+ $("#switch_recisao1").click(function () {
+  if ($("#switch_recisao1").is(":checked")) {
+   $("#recisao1").prop("readonly", false);
+  } else {
+   $("#recisao1").prop("readonly", true);
+  }
+ });
+ /////////////////////////////////////////////////////////////////////////////
+ if ($("#switch_recisao2").is(":checked")) {
+  $("#recisao2").prop("readonly", false);
+ } else {
+  $("#recisao2").prop("readonly", true);
+ }
+
+ $("#switch_recisao2").click(function () {
+  if ($("#switch_recisao2").is(":checked")) {
+   $("#recisao2").prop("readonly", false);
+  } else {
+   $("#recisao2").prop("readonly", true);
+  }
+ });
+ /////////////////////////////////////////////////////////////////////////////
+ if ($("#switch_recisao3").is(":checked")) {
+  $("#recisao3").prop("readonly", false);
+ } else {
+  $("#recisao3").prop("readonly", true);
+ }
+
+ $("#switch_recisao3").click(function () {
+  if ($("#switch_recisao3").is(":checked")) {
+   $("#recisao3").prop("readonly", false);
+  } else {
+   $("#recisao3").prop("readonly", true);
+  }
+ });
+ /////////////////////////////////////////////////////////////////////////////
+ if ($("#switch_foro").is(":checked")) {
+  $("#foro").prop("readonly", false);
+ } else {
+  $("#foro").prop("readonly", true);
+ }
+
+ $("#switch_foro").click(function () {
+  if ($("#switch_foro").is(":checked")) {
+   $("#foro").prop("readonly", false);
+  } else {
+   $("#foro").prop("readonly", true);
+  }
+ });
+
 
 })

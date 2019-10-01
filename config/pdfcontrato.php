@@ -1,8 +1,4 @@
 <?php
-
-//referenciar o DomPDF com namespace
-use Dompdf\Dompdf;
-require_once 'dompdf/autoload.inc.php';
 setlocale(LC_TIME, 'pt_BR', 'pt_BR.utf-8', 'pt_BR.utf-8', 'portuguese');
 date_default_timezone_set('America/Sao_Paulo');
 session_start();
@@ -12,77 +8,9 @@ include('../config/verifica_login.php');
 if (isset($_GET['id'])){
 	$id=$_GET['id'];
 }else{
-	header('Location: cadastro_contrato.php');
+	header('Location:../cadastros/cadastro_contrato.php');
 }
 
-if (isset($_post['imprmir'])){
-
-	$inicio = "<!DOCTYPE html><html><head><meta charset='utf-8'><style>font-family: sans-serif;</style></head><body style=' margin-top: 2cm; margin-right: 1cm; margin-bottom: 1cm; margin-left: 2cm; font: Arial;'><center>
-		<p><b>CONTRATO DE COMPRA E VENDA DE VEÍCULO</b></p><br/>
-		<p><b>IDENTIFICAÇÃO DAS PARTES CONTRATANTES</b></p></center><br/><br/>";
-
-	$titulovend = "<p align='justify'><b>VENDEDOR:";
-
-	$titulocomp = "<p align='justify'><b>COMPRADOR:";
-
-	$tituloobj = "<p align='center'><b>DO OBJETO DO CONTRATO</b></p>";
-
-	$tituloresp = "<p align='center'><b>DAS RESPONSABILIDADES</b></p>";
-
-	$titulotrans = "<p align='center'><b>DA TRANSFERÊNCIA DA PROPRIEDADE DO VEÍCULO</b></p>";
-
-	$titulopre= "<p align='center'><b>DO PREÇO</b></p>";
-
-	$titulocond = "<p align='center'><b>CONDIÇÕES GERAIS</b></p>";
-
-
-
-	$condicao2= "<p><b>Cláusula ".$clausula."ª.</b> O presente contrato passa a valer a partir da assinatura pelas partes, obrigando-se a ele os herdeiros ou secessores das mesmas.</p><br/>";
-	$clausula++;
-
-	$titulorec= "<p align='center'><b>DA RECISÃO DO CONTRATO</b></p>";
-
-	$recisao1 = "<p align='justify'><b>Cláusula ".$clausula."ª.</b> O atraso no pagamento de qualquer parcela no prazo acordado acarretará na aplicação de multa de 10% (dez por cento) sobre a mesma e juros de ".$row['Juros'].".</p><br/>";
-	$clausula++;
-
-	$recisao2 = "<p><b>parágrafo primeiro:</b> se houver atraso de pagamento de mais de uma parcela, o presente contrato estará automaticamente rescindo e o <b>COMPRADOR</b> deverá restituir o veículo ao <b>VENDEDOR</b>, sob pena de busca e apreensão.</p>";
-
-	$recisao3 = "<p><b>parágrafo segundo:</b> em caso de rescisão de contrato por falta de pagamento das parcelas ou por desistência do <b>COMPRADOR</b>, além da restituição do veículo, fica resguardada ao <b>VENDEDOR</b> o direito de retenção 100% (cem por cento) da primeira parcela e de 50% (cinquenta por cento) das demais parcelas pagas, a título de indenização pela frustração do negócio e taxa de ocupação do veículo, sem prejuízo de valor para restauração de eventuais avarias causadas pelo <b>COMPRADOR</b>.</p><br/>";
-
-	$tituloforo= "<p align='center'><b>DO FORO</b></p>";
-
-	$foro= "<p align='justify'><b>Cláusula ".$clausula."ª.</b> Para dirimir quaisquer controvérsias oriundas do CONTRATO, as partes elegem o foro da comarca de ".$row['Foro'].".</p><p>Por estarem assim justos e contratados, firmam o presente instrumento, em duas vias de igual teor, juntamente com duas testemunhas.</p><br/>";
-
-	$localass="<palign='justify'>".$row['LocalAss'].", ".strftime('%d de %B de %Y', strtotime($row['DataAss'])).".</p><br/><br/><br/>";
-
-
-	$assinaturas="<p align='center'>__________________________________________</p><p align='center'>(Nome e assinatura do Vendedor)</p><br/><p align='center'><b>".$nome."</b></p><br/><br/>";
-	$assinaturas .="<p align='center'>__________________________________________</p><p align='center'>(Nome e assinatura do Comprador)</p><br/><p align='center'><b>".$nomec."</b></p><br/>";
-
-	$assinaturas .="<p align='justify'>Testemunhas:</p><br/>";
-	$nome1 = mb_strtoupper($row['NomeTestemunha1'], 'UTF-8');
-	$assinaturas .="<p align='center'>__________________________________________</p><p align='center'>".$nome1."</p><p align='center'>RG ".$row['RGTestemunha1']."</p><br/><br/>";
-	$nome2 = mb_strtoupper($row['NomeTestemunha2'], 'UTF-8');
-	$assinaturas .="<p align='center'>__________________________________________</p><p align='center'>".$nome2."</p><p align='center'>RG ".$row['RGTestemunha2']."</p><br/>";
-	$fim="</body></html>";
-
-	//Criando a Instancia
-	$dompdf = new DOMPDF();
-	// Carrega seu HTML
-	$dompdf->load_html($inicio."".$titulovend."".$vendedor."".$titulocomp."".$comprador."".$fixo."".$tituloobj."".$objeto."".$objeto1."".$tituloresp."".$responsabilidade1."".$responsabilidade2."".$titulotrans."".$transferencia."".$titulopre."".$preco."".$titulocond."".$condicao1."".$condicao2."".$titulorec."".$recisao1."".$recisao2."".$recisao3."".$tituloforo."".$foro."".$localass."".$assinaturas."".$fim);
-	$dompdf -> setPaper ( ' A4 ' , ' landscape ' );
-
-	//Renderizar o html
-	$dompdf->render();
-
-	//Exibibir a página
-	$dompdf->stream(
-		"contrato_P".$placa."_ID".$id.".pdf",
-		array(
-			"Attachment" => false //Para realizar o download somente alterar para true
-		)
-	);
-}
 ?>
 <!--////////////////////////////////////////////////////////////////////////////-->
 <!DOCTYPE html>
@@ -165,16 +93,8 @@ if (isset($_post['imprmir'])){
 			<div class="card card-padrao my-5 justify-content-center">
 				<div class="card-body">
 					<h5 class="card-title text-center">Editar contrato:</h5>
-					<form action="#" method="post" class="form-padrao">
-						<div class="custom-control custom-switch">
-							<input type="checkbox" class="custom-control-input" id="switch1">
-							<label class="custom-control-label" for="switch1">Cláusula</label>
-						</div>
-						<div class="form-group">
-							<textarea class="form-control rounded-0" id="textarea1" rows="2">Teste</textarea>
-						</div>
+					<form action="imprimir.php" method="post" class="form-padrao">
 						<!--/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
-
 						<?php
 							$sql = "SELECT pp.* FROM contrato c
 	inner join pessoa p on c.Pessoa_IdComprador = p.idpessoa
@@ -296,7 +216,7 @@ if (isset($_post['imprmir'])){
 
 						<div class="form-group">
 							<label for="comprador"><b>COMPRADOR</b></label>
-							<textarea class="form-control rounded-0" id="comprador" rows="2" readonly><?php echo $comprador_visualizacao ?></textarea>
+							<textarea class="form-control rounded-0" id="comprador" rows="3" readonly><?php echo $comprador_visualizacao ?></textarea>
 						</div>
 						<br />
 						<!--/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
@@ -317,7 +237,7 @@ if (isset($_post['imprmir'])){
 
 							?>
 						<div class="form-group">
-							<textarea class="form-control rounded-0" id="fixo" rows="2" readonly><?php echo $fixo_visualizacao ?></textarea>
+							<textarea class="form-control rounded-0" id="fixo" rows="3" readonly><?php echo $fixo_visualizacao ?></textarea>
 						</div>
 						<!--/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
 
@@ -360,7 +280,7 @@ if (isset($_post['imprmir'])){
 										$clausula++;
 										$objeto1_visualizacao = strip_tags($objeto1);
 										echo "<div class='form-group'>
-								<textarea class='form-control rounded-0' id='objeto1' rows='3' readonly>".$objeto1_visualizacao."</textarea>
+								<textarea class='form-control rounded-0' id='objeto1' rows='2' readonly>".$objeto1_visualizacao."</textarea>
 				</div>";
 									}
 							?>
@@ -379,6 +299,9 @@ if (isset($_post['imprmir'])){
 							/*FAZER COM O QUE VIER DO CAMPO NO SUBMIT
 							$resposabilidade1 = substr_replace($responsabilidade1_visualizacao,"<b>VENDEDOR</b>",strpos($responsabilidade1_visualizacao,"VENDEDOR"), 8);
 							$resposabilidade1 = substr_replace($responsabilidade1_visualizacao,"<b>COMPRADOR</b>",strpos($responsabilidade1_visualizacao,"COMPRADOR"), 9);
+							$resposabilidade1 = substr_replace($responsabilidade1_visualizacao,"<b>parágrafo primeiro:</b>",strpos($responsabilidade1_visualizacao,"parágrafo primeiro:"), 19);
+							$resposabilidade1 = substr_replace($responsabilidade1_visualizacao,"<b>parágrafo segundo:</b>
+",strpos($responsabilidade1_visualizacao,"parágrafo segundo:"), 18);
 							for ($i = 1; $i >15; $i++){
 								$resposabilidade1 = substr_replace($responsabilidade1_visualizacao,"<b>Cláusula ".$i."ª.</b>",strpos($responsabilidade1_visualizacao,"Cláusula ".$i."ª."), 12);
 							}
@@ -393,7 +316,7 @@ if (isset($_post['imprmir'])){
 								<input type="checkbox" class="custom-control-input" id="switch_responsabilidade1">
 								<label class="custom-control-label" for="switch_responsabilidade1">Utilizar</label>
 							</div>
-							<textarea class="form-control rounded-0" id="responsabilidade1" rows="2" readonly><?php echo $responsabilidade1_visualizacao; ?></textarea>
+							<textarea class="form-control rounded-0" id="responsabilidade1" rows="1" readonly><?php echo $responsabilidade1_visualizacao; ?></textarea>
 						</div>
 						<!--/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
 
@@ -430,7 +353,7 @@ if (isset($_post['imprmir'])){
 								<input type="checkbox" class="custom-control-input" id="switch_transferencia">
 								<label class="custom-control-label" for="switch_transferencia">Utilizar</label>
 							</div>
-							<textarea class="form-control rounded-0" id="transferencia" rows="2" readonly><?php echo $transferencia_visualizacao; ?></textarea>
+							<textarea class="form-control rounded-0" id="transferencia" rows="1" readonly><?php echo $transferencia_visualizacao; ?></textarea>
 						</div>
 						<!--/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
 
@@ -496,7 +419,89 @@ if (isset($_post['imprmir'])){
 							<textarea class="form-control rounded-0" id="condicao1" rows="2" readonly><?php echo $condicao1_visualizacao; ?></textarea>
 						</div>
 						<!--/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
-
+						<?php
+							$inicio="<p>";
+							$fim="</p><br/>";
+							$condicao2= "<b>Cláusula ".$clausula."ª.</b> O presente contrato passa a valer a partir da assinatura pelas partes, obrigando-se a ele os herdeiros ou secessores das mesmas.";
+							$clausula++;
+							$condicao2_visualizacao = strip_tags($condicao2);
+							?>
+						<div class="form-group">
+							<div class="custom-control custom-switch">
+								<input type="checkbox" class="custom-control-input" id="switch_condicao2">
+								<label class="custom-control-label" for="switch_condicao2">Utilizar</label>
+							</div>
+							<textarea class="form-control rounded-0" id="condicao2" rows="1" readonly><?php echo $condicao2_visualizacao; ?></textarea>
+						</div>
+						<!--/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
+						<?php
+							$inicio="<p align='justify'>";
+							$fim ="</p><br/>";
+							$recisao1 = "<b>Cláusula ".$clausula."ª.</b> O atraso no pagamento de qualquer parcela no prazo acordado acarretará na aplicação de multa de 10% (dez por cento) sobre a mesma e juros de ".$row['Juros'].".";
+							$clausula++;
+							$recisao1_visualizacao = strip_tags($recisao1);
+							?>
+						<div class="form-group">
+							<label for="transferencia"><b>DA RECISÃO DO CONTRATO</b></label>
+							<div class="custom-control custom-switch">
+								<input type="checkbox" class="custom-control-input" id="switch_recisao1">
+								<label class="custom-control-label" for="switch_recisao1">Utilizar</label>
+							</div>
+							<textarea class="form-control rounded-0" id="recisao1" rows="2" readonly><?php echo $recisao1_visualizacao; ?></textarea>
+						</div>
+						<!--/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
+						<?php
+							$inicio ="<p>";
+							$fim ="</p>";
+							$recisao2 = "<b>parágrafo primeiro:</b> se houver atraso de pagamento de mais de uma parcela, o presente contrato estará automaticamente rescindo e o <b>COMPRADOR</b> deverá restituir o veículo ao <b>VENDEDOR</b>, sob pena de busca e apreensão.";
+							$recisao2_visualizacao = strip_tags($recisao2);
+							?>
+						<div class="form-group">
+							<div class="custom-control custom-switch">
+								<input type="checkbox" class="custom-control-input" id="switch_recisao2">
+								<label class="custom-control-label" for="switch_recisao2">Utilizar</label>
+							</div>
+							<textarea class="form-control rounded-0" id="recisao2" rows="2" readonly><?php echo $recisao2_visualizacao; ?></textarea>
+						</div>
+						<!--/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
+						<?php
+							$inicio="<p>";
+							$fim ="</p><br/>";
+							$recisao3 = "<b>parágrafo segundo:</b> em caso de rescisão de contrato por falta de pagamento das parcelas ou por desistência do <b>COMPRADOR</b>, além da restituição do veículo, fica resguardada ao <b>VENDEDOR</b> o direito de retenção 100% (cem por cento) da primeira parcela e de 50% (cinquenta por cento) das demais parcelas pagas, a título de indenização pela frustração do negócio e taxa de ocupação do veículo, sem prejuízo de valor para restauração de eventuais avarias causadas pelo <b>COMPRADOR</b>.";
+							$recisao3_visualizacao = strip_tags($recisao3);
+							?>
+						<div class="form-group">
+							<div class="custom-control custom-switch">
+								<input type="checkbox" class="custom-control-input" id="switch_recisao3">
+								<label class="custom-control-label" for="switch_recisao3">Utilizar</label>
+							</div>
+							<textarea class="form-control rounded-0" id="recisao3" rows="4" readonly><?php echo $recisao3_visualizacao; ?></textarea>
+						</div>
+						<!--/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
+						<?php
+							$inicio="<p align='justify'>";
+							$fim="</p><br/>";
+							$foro= "<b>Cláusula ".$clausula."ª.</b> Para dirimir quaisquer controvérsias oriundas do CONTRATO, as partes elegem o foro da comarca de ".$row['Foro'].".</p><p>Por estarem assim justos e contratados, firmam o presente instrumento, em duas vias de igual teor, juntamente com duas testemunhas.";
+							$foro_visualizacao = strip_tags($foro);
+							?>
+						<div class="form-group">
+							<label for="transferencia"><b>DO FORO</b></label>
+							<div class="custom-control custom-switch">
+								<input type="checkbox" class="custom-control-input" id="switch_foro">
+								<label class="custom-control-label" for="switch_foro">Utilizar</label>
+							</div>
+							<textarea class="form-control rounded-0" id="foro" rows="2" readonly><?php echo $foro_visualizacao; ?></textarea>
+						</div>
+						<!--/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
+						<?php
+							$inicio="<p align='justify'>";
+							$fim="</p><br/><br/><br/>";
+							$localass="".$row['LocalAss'].", ".strftime('%d de %B de %Y', strtotime($row['DataAss'])).".";
+							?>
+						<div class="form-group">
+							<label for="transferencia"><b>DA ASSINATURA</b></label>
+							<textarea class="form-control rounded-0" id="localass" rows="1" readonly><?php echo $localass; ?></textarea>
+						</div>
 
 
 						<!-- $comp = " este é o Comprador do carro";
