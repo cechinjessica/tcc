@@ -12,6 +12,7 @@ if (isset($_GET['id'])){
 }
 
 ?>
+
 <!--////////////////////////////////////////////////////////////////////////////-->
 <!DOCTYPE html>
 <html>
@@ -118,7 +119,7 @@ if (isset($_GET['id'])){
 									$ecivil = substr($ecivil ,0, $size-1);
 
 
-									$vendedor= " ".$nome."</b>, ".$nacionalidade.", ".$ecivil.$final.", ".$profissao.", inscrit".$final." no CPF sob n. ".$row['CPF'].", residente e domiciliad".$final." na ".$row['Endereco'].", n. ".$row['Numero'].", na cidade de ".$row['Cidade']."-".$row['UF'].", CEP: ".$row['CEP'].";</p><br/>";
+									$vendedor= " ".$nome.", ".$nacionalidade.", ".$ecivil.$final.", ".$profissao.", inscrit".$final." no CPF sob n. ".$row['CPF'].", residente e domiciliad".$final." na ".$row['Endereco'].", n. ".$row['Numero'].", na cidade de ".$row['Cidade']."-".$row['UF'].", CEP: ".$row['CEP'].";</p><br/>";
 
 								}else{
 									$nacionalidade = mb_strtolower($row['Nacionalidade'], 'UTF-8');
@@ -145,7 +146,7 @@ if (isset($_GET['id'])){
 									$size = strlen($ecivil);
 									$ecivil = substr($ecivil ,0, $size-1);
 
-									$vendedor=" ".$nomeempresa."</b>, empresa ".$tipoempresa.", inscrita no CNPJ n. ".$row['CNPJ'].", localizada na ".$row['EnderecoEmpresa'].", n. ".$row['NumeroEmpresa'].", na cidade de ".$row['CidadeEmpresa']."-".$row['UFEmpresa'].", representada neste ato por ".$sua." ".$cargo." <b>".$nome."</b>, ".$nacionalidade.", ".$ecivil.$final.", ".$profissao.", inscrit".$final." no CPF sob n. ".$row['CPF'].", residente e domiciliad".$final." na ".$row['Endereco'].", n. ".$row['Numero'].", na cidade de ".$row['Cidade']."-".$row['UF'].", CEP: ".$row['CEP'].";</p><br/>";
+									$vendedor=" ".$nomeempresa.", empresa ".$tipoempresa.", inscrita no CNPJ n. ".$row['CNPJ'].", localizada na ".$row['EnderecoEmpresa'].", n. ".$row['NumeroEmpresa'].", na cidade de ".$row['CidadeEmpresa']."-".$row['UFEmpresa'].", representada neste ato por ".$sua." ".$cargo." <b>".$nome."</b>, ".$nacionalidade.", ".$ecivil.$final.", ".$profissao.", inscrit".$final." no CPF sob n. ".$row['CPF'].", residente e domiciliad".$final." na ".$row['Endereco'].", n. ".$row['Numero'].", na cidade de ".$row['Cidade']."-".$row['UF'].", CEP: ".$row['CEP'].";</p><br/>";
 								}
 
 								$vendedor_visualizacao = strip_tags($vendedor);
@@ -153,7 +154,7 @@ if (isset($_GET['id'])){
 							?>
 						<div class="form-group">
 							<label for="vendedor"><b>VENDEDOR</b></label>
-							<textarea class="form-control rounded-0" id="vendedor" rows="2" readonly><?php echo $vendedor_visualizacao ?></textarea>
+							<textarea class="form-control rounded-0" id="vendedor" rows="2" name="vendedor" readonly><?php echo $vendedor_visualizacao ?></textarea>
 						</div>
 						<!--/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
 
@@ -216,7 +217,7 @@ if (isset($_GET['id'])){
 
 						<div class="form-group">
 							<label for="comprador"><b>COMPRADOR</b></label>
-							<textarea class="form-control rounded-0" id="comprador" rows="3" readonly><?php echo $comprador_visualizacao ?></textarea>
+							<textarea class="form-control rounded-0" id="comprador" rows="3" name="comprador" readonly><?php echo $comprador_visualizacao ?></textarea>
 						</div>
 						<br />
 						<!--/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
@@ -237,7 +238,7 @@ if (isset($_GET['id'])){
 
 							?>
 						<div class="form-group">
-							<textarea class="form-control rounded-0" id="fixo" rows="3" readonly><?php echo $fixo_visualizacao ?></textarea>
+							<textarea class="form-control rounded-0" id="fixo" rows="3" name="fixo" readonly><?php echo $fixo_visualizacao ?></textarea>
 						</div>
 						<!--/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
 
@@ -269,7 +270,7 @@ if (isset($_GET['id'])){
 							?>
 						<div class="form-group">
 							<label for="objeto"><b>DO OBJETO</b></label>
-							<textarea class="form-control rounded-0" id="objeto" rows="2" readonly><?php echo $objeto_visualizacao ?></textarea>
+							<textarea class="form-control rounded-0" id="objeto" rows="2" name="objeto" readonly><?php echo $objeto_visualizacao ?></textarea>
 						</div>
 						<!--/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
 
@@ -280,8 +281,10 @@ if (isset($_GET['id'])){
 										$clausula++;
 										$objeto1_visualizacao = strip_tags($objeto1);
 										echo "<div class='form-group'>
-								<textarea class='form-control rounded-0' id='objeto1' rows='2' readonly>".$objeto1_visualizacao."</textarea>
+								<textarea class='form-control rounded-0' id='objeto1' rows='2' name='objeto1' readonly>".$objeto1_visualizacao."</textarea>
 				</div>";
+									}else{
+										echo "<textarea class='form-control rounded-0 d-none' id='objeto1' rows='2' name='objeto1'> </textarea>";
 									}
 							?>
 						<!--/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
@@ -316,7 +319,7 @@ if (isset($_GET['id'])){
 								<input type="checkbox" class="custom-control-input" id="switch_responsabilidade1">
 								<label class="custom-control-label" for="switch_responsabilidade1">Utilizar</label>
 							</div>
-							<textarea class="form-control rounded-0" id="responsabilidade1" rows="1" readonly><?php echo $responsabilidade1_visualizacao; ?></textarea>
+							<textarea class="form-control rounded-0" id="responsabilidade1" rows="1" name="responsabilidade1" readonly><?php echo $responsabilidade1_visualizacao; ?></textarea>
 						</div>
 						<!--/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
 
@@ -334,7 +337,7 @@ if (isset($_GET['id'])){
 								<input type="checkbox" class="custom-control-input" id="switch_responsabilidade2">
 								<label class="custom-control-label" for="switch_responsabilidade2">Utilizar</label>
 							</div>
-							<textarea class="form-control rounded-0" id="responsabilidade2" rows="2" readonly><?php echo $responsabilidade2_visualizacao; ?></textarea>
+							<textarea class="form-control rounded-0" id="responsabilidade2" rows="2" name="responsabilidade2" readonly><?php echo $responsabilidade2_visualizacao; ?></textarea>
 						</div>
 						<!--/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
 						<?php
@@ -353,7 +356,7 @@ if (isset($_GET['id'])){
 								<input type="checkbox" class="custom-control-input" id="switch_transferencia">
 								<label class="custom-control-label" for="switch_transferencia">Utilizar</label>
 							</div>
-							<textarea class="form-control rounded-0" id="transferencia" rows="1" readonly><?php echo $transferencia_visualizacao; ?></textarea>
+							<textarea class="form-control rounded-0" id="transferencia" rows="1" name="transferencia" readonly><?php echo $transferencia_visualizacao; ?></textarea>
 						</div>
 						<!--/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
 
@@ -398,7 +401,7 @@ if (isset($_GET['id'])){
 						<div class="form-group">
 
 							<label for="preco"><b>DO PREÇO</b></label>
-							<textarea class="form-control rounded-0" id="preco" rows="2" readonly><?php echo $preco_visualizacao; ?></textarea>
+							<textarea class="form-control rounded-0" id="preco" rows="2" name="preco" readonly><?php echo $preco_visualizacao; ?></textarea>
 						</div>
 
 						<!--/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
@@ -416,7 +419,7 @@ if (isset($_GET['id'])){
 								<input type="checkbox" class="custom-control-input" id="switch_condicao1">
 								<label class="custom-control-label" for="switch_condicao1">Utilizar</label>
 							</div>
-							<textarea class="form-control rounded-0" id="condicao1" rows="2" readonly><?php echo $condicao1_visualizacao; ?></textarea>
+							<textarea class="form-control rounded-0" id="condicao1" rows="2" name="condicao1" readonly><?php echo $condicao1_visualizacao; ?></textarea>
 						</div>
 						<!--/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
 						<?php
@@ -431,7 +434,7 @@ if (isset($_GET['id'])){
 								<input type="checkbox" class="custom-control-input" id="switch_condicao2">
 								<label class="custom-control-label" for="switch_condicao2">Utilizar</label>
 							</div>
-							<textarea class="form-control rounded-0" id="condicao2" rows="1" readonly><?php echo $condicao2_visualizacao; ?></textarea>
+							<textarea class="form-control rounded-0" id="condicao2" rows="1" name="condicao2" readonly><?php echo $condicao2_visualizacao; ?></textarea>
 						</div>
 						<!--/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
 						<?php
@@ -447,7 +450,7 @@ if (isset($_GET['id'])){
 								<input type="checkbox" class="custom-control-input" id="switch_recisao1">
 								<label class="custom-control-label" for="switch_recisao1">Utilizar</label>
 							</div>
-							<textarea class="form-control rounded-0" id="recisao1" rows="2" readonly><?php echo $recisao1_visualizacao; ?></textarea>
+							<textarea class="form-control rounded-0" id="recisao1" rows="2" name="recisao1" readonly><?php echo $recisao1_visualizacao; ?></textarea>
 						</div>
 						<!--/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
 						<?php
@@ -461,7 +464,7 @@ if (isset($_GET['id'])){
 								<input type="checkbox" class="custom-control-input" id="switch_recisao2">
 								<label class="custom-control-label" for="switch_recisao2">Utilizar</label>
 							</div>
-							<textarea class="form-control rounded-0" id="recisao2" rows="2" readonly><?php echo $recisao2_visualizacao; ?></textarea>
+							<textarea class="form-control rounded-0" id="recisao2" rows="2" name="recisao2" readonly><?php echo $recisao2_visualizacao; ?></textarea>
 						</div>
 						<!--/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
 						<?php
@@ -475,7 +478,7 @@ if (isset($_GET['id'])){
 								<input type="checkbox" class="custom-control-input" id="switch_recisao3">
 								<label class="custom-control-label" for="switch_recisao3">Utilizar</label>
 							</div>
-							<textarea class="form-control rounded-0" id="recisao3" rows="4" readonly><?php echo $recisao3_visualizacao; ?></textarea>
+							<textarea class="form-control rounded-0" id="recisao3" rows="4" name="recisao3" readonly><?php echo $recisao3_visualizacao; ?></textarea>
 						</div>
 						<!--/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
 						<?php
@@ -490,7 +493,7 @@ if (isset($_GET['id'])){
 								<input type="checkbox" class="custom-control-input" id="switch_foro">
 								<label class="custom-control-label" for="switch_foro">Utilizar</label>
 							</div>
-							<textarea class="form-control rounded-0" id="foro" rows="2" readonly><?php echo $foro_visualizacao; ?></textarea>
+							<textarea class="form-control rounded-0" id="foro" rows="2" name="foro" readonly><?php echo $foro_visualizacao; ?></textarea>
 						</div>
 						<!--/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
 						<?php
@@ -500,14 +503,16 @@ if (isset($_GET['id'])){
 							?>
 						<div class="form-group">
 							<label for="transferencia"><b>DA ASSINATURA</b></label>
-							<textarea class="form-control rounded-0" id="localass" rows="1" readonly><?php echo $localass; ?></textarea>
+							<textarea class="form-control rounded-0" id="localass" rows="1" name="localass" readonly><?php echo $localass; ?></textarea>
 						</div>
+
 
 
 						<!-- $comp = " este é o Comprador do carro";
 echo substr_replace($comp,"<b>Comprador</b>",strpos($comp,"Comprador"), 9);
 PARA COLOCAR TAGS B-->
-						<a href="pdfcontrato.php?id=<?php echo $id?>"><button type='submit' class='btn btn-outline-info btn-sm w-100' name='imprimir'>Imprimir</button></a>
+						<input type="hidden" value="<?php echo $id?>" name="id">
+						<button type='submit' class='btn btn-outline-info btn-sm w-100' name='imprimir'>Imprimir</button>
 					</form>
 				</div>
 			</div>

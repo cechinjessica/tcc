@@ -1,4 +1,6 @@
 <?php
+session_start();
+require 'conexao.php';
 //include('pdfcontrato.php');
 //referenciar o DomPDF com namespace
 use Dompdf\Dompdf;
@@ -7,11 +9,54 @@ require_once 'dompdf/autoload.inc.php';
 //Criando a Instancia
 $dompdf = new DOMPDF();
 
-if (isset($_POST['imprmir'])){
 
-	$inicial = "<!DOCTYPE html><html><head><meta charset='utf-8'><style>font-family: sans-serif;</style></head><body style=' margin-top: 2cm; margin-right: 1cm; margin-bottom: 1cm; margin-left: 2cm; font: Arial;'><center>
+if (isset($_POST['imprimir'])){
+	$vendedor = $_POST['vendedor'];
+	$comprador = $_POST['comprador'];
+	$fixo = $_POST['fixo'];
+	$objeto = $_POST['objeto'];
+	$objeto1 = $_POST['objeto1'];
+	$responsabilidade1 = $_POST['responsabilidade1'];
+	$responsabilidade2 = $_POST['responsabilidade2'];
+	$transferencia = $_POST['transferencia'];
+	$preco = $_POST['preco'];
+	$condicao1 = $_POST['condicao1'];
+	$condicao2 = $_POST['condicao2'];
+	$recisao1 = $_POST['recisao1'];
+	$recisao2 = $_POST['recisao2'];
+	$recisao3 = $_POST['recisao3'];
+	$foro = $_POST['foro'];
+	$localass = $_POST['localass'];
+	$id = $_POST['id'];
+
+
+
+
+	$sql = "SELECT pp.Nome as NomeVend, p.Nome as NomeComp, c.*, v.Placa as Placa FROM contrato c
+	inner join pessoa p on c.Pessoa_IdComprador = p.idpessoa
+	inner join pessoa pp on c.Pessoa_IdVendedor = pp.idpessoa
+	inner join veiculo v on c.Veiculo_IdVeiculo = v.idveiculo where c.idcontrato = $id";
+	$result = mysqli_query($conexao, $sql);
+	$row = mysqli_fetch_assoc($result);
+	$nome = mb_strtoupper($row['NomeVend'], 'UTF-8');
+	$nomec = mb_strtoupper($row['NomeComp'], 'UTF-8');
+	$placa = mb_strtoupper($row['Placa'], 'UTF-8');
+
+
+
+
+	$inicial = "<!DOCTYPE html>
+	<html>
+	<head>
+	<meta charset='utf-8'><style>font-family: sans-serif;</style>
+	</head>
+	<body style=' margin-top: 2cm; margin-right: 1cm; margin-bottom: 1cm; margin-left: 2cm; font: Arial;'>
+	<center>
 		<p><b>CONTRATO DE COMPRA E VENDA DE VEÍCULO</b></p><br/>
-		<p><b>IDENTIFICAÇÃO DAS PARTES CONTRATANTES</b></p></center><br/><br/>";
+		<p><b>IDENTIFICAÇÃO DAS PARTES CONTRATANTES</b></p>
+		</center>
+		<br/>
+		<br/>";
 
 	$titulovend = "<p align='justify'><b>VENDEDOR:";
 
@@ -43,10 +88,15 @@ if (isset($_POST['imprmir'])){
 
 	// Carrega seu HTML
 	$dompdf->load_html( $inicial ."". $titulovend ."". $vendedor ."". $titulocomp ."". $comprador ."". $fixo ."". $tituloobj ."". $objeto ."". $objeto1 ."". $tituloresp ."". $responsabilidade1 ."". $responsabilidade2 ."". $titulotrans ."". $transferencia ."". $titulopre ."". $preco ."". $titulocond ."". $condicao1 ."". $condicao2 ."". $titulorec ."". $recisao1 ."". $recisao2 ."". $recisao3 ."". $tituloforo ."". $foro ."". $localass ."". $assinaturas ."". $final);
+	//$variavel = $inicial ."". $titulovend ."". $vendedor ."". $titulocomp ."". $comprador ."". $fixo ."". $tituloobj ."". $objeto ."". $objeto1 ."". $tituloresp ."". $responsabilidade1 ."". $responsabilidade2 ."". $titulotrans ."". $transferencia ."". $titulopre ."". $preco ."". $titulocond ."". $condicao1 ."". $condicao2 ."". $titulorec ."". $recisao1 ."". $recisao2 ."". $recisao3 ."". $tituloforo ."". $foro ."". $localass ."". $assinaturas ."". $final;
+
+	//var_dump($variavel);
+	//$dompdf->load_html($variavel);
+
 	$dompdf -> setPaper ( ' A4 ' , ' landscape ' );
 
 	//Renderizar o html
-	$dompdf->render();
+	//$dompdf->render();
 
 	//Exibibir a página
 	$dompdf->stream(
