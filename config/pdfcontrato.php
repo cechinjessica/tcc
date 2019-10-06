@@ -325,8 +325,7 @@ if (isset($_GET['id'])){
 
 						<?php
 
-							$inicio="<p align='justify'>";
-							$fim = "</p><br/>";
+
 							$responsabilidade2 = "<b>Cláusula ".$clausula."ª.</b> O <b>VENDEDOR</b> se responsabilizará pela entrega do veículo no local indicado pelo <b>COMPRADOR</b>, nas mesmas condições de quando foi inspecionado pelo <b>COMPRADOR</b>.";
 							$clausula++;
 
