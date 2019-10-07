@@ -29,6 +29,26 @@ if (isset($_POST['imprimir'])){
 	$localass = $_POST['localass'];
 	$id = $_POST['id'];
 
+	$inicio = "<p align='justify'>";
+	$fim ="</p><br/>";
+
+	$vendedor = $inicio."".$vendedor."".$fim;
+	$comprador = $inicio."".$comprador."".$fim;
+	$fixo = $inicio."".$fixo."".$fim;
+	$objeto = $inicio."".$objeto."".$fim;
+	$objeto1 = $inicio."".$objeto1."".$fim;
+	$responsabilidade1 = $inicio."".$responsabilidade1."".$fim;
+	$responsabilidade2 = $inicio."".$responsabilidade2."".$fim;
+	$transferencia = $inicio."".$transferencia."".$fim;
+	$preco = $inicio."".$preco."".$fim;
+	$condicao1 = $inicio."".$condicao1."".$fim;
+	$condicao2 = $inicio."".$condicao2."".$fim;
+	$recisao1 = $inicio."".$recisao1."".$fim;
+	$recisao2 = $inicio."".$recisao2."".$fim;
+	$recisao3 = $inicio."".$recisao3."".$fim;
+	$foro = $inicio."".$foro."".$fim;
+	$localass = $inicio."".$localass."".$fim;
+
 
 
 
@@ -58,9 +78,9 @@ if (isset($_POST['imprimir'])){
 		<br/>
 		<br/>";
 
-	$titulovend = "<p align='justify'><b>VENDEDOR:";
+	$titulovend = "<p align='justify'><b>VENDEDOR:</b></p>";
 
-	$titulocomp = "<p align='justify'><b>COMPRADOR:";
+	$titulocomp = "<p align='justify'><b>COMPRADOR:</b></p>";
 
 	$tituloobj = "<p align='center'><b>DO OBJETO DO CONTRATO</b></p>";
 
@@ -87,11 +107,11 @@ if (isset($_POST['imprimir'])){
 	$final="</body></html>";
 
 	// Carrega seu HTML
-	$dompdf->load_html( $inicial ."". $titulovend ."". $vendedor ."". $titulocomp ."". $comprador ."". $fixo ."". $tituloobj ."". $objeto ."". $objeto1 ."". $tituloresp ."". $responsabilidade1 ."". $responsabilidade2 ."". $titulotrans ."". $transferencia ."". $titulopre ."". $preco ."". $titulocond ."". $condicao1 ."". $condicao2 ."". $titulorec ."". $recisao1 ."". $recisao2 ."". $recisao3 ."". $tituloforo ."". $foro ."". $localass ."". $assinaturas ."". $final);
-	//$variavel = $inicial ."". $titulovend ."". $vendedor ."". $titulocomp ."". $comprador ."". $fixo ."". $tituloobj ."". $objeto ."". $objeto1 ."". $tituloresp ."". $responsabilidade1 ."". $responsabilidade2 ."". $titulotrans ."". $transferencia ."". $titulopre ."". $preco ."". $titulocond ."". $condicao1 ."". $condicao2 ."". $titulorec ."". $recisao1 ."". $recisao2 ."". $recisao3 ."". $tituloforo ."". $foro ."". $localass ."". $assinaturas ."". $final;
+	//$dompdf->load_html( $inicial ."". $titulovend ."". $vendedor ."". $titulocomp ."". $comprador ."". $fixo ."". $tituloobj ."". $objeto ."". $objeto1 ."". $tituloresp ."". $responsabilidade1 ."". $responsabilidade2 ."". $titulotrans ."". $transferencia ."". $titulopre ."". $preco ."". $titulocond ."". $condicao1 ."". $condicao2 ."". $titulorec ."". $recisao1 ."". $recisao2 ."". $recisao3 ."". $tituloforo ."". $foro ."". $localass ."". $assinaturas ."". $final);
+	$variavel = $inicial ."". $titulovend ."". $vendedor ." ". $titulocomp ."". $comprador ."". $fixo ."". $tituloobj ."". $objeto ."". $objeto1 ."". $tituloresp ."". $responsabilidade1 ."". $responsabilidade2 ."". $titulotrans ."". $transferencia ."". $titulopre ."". $preco ."". $titulocond ."". $condicao1 ."". $condicao2 ."". $titulorec ."". $recisao1 ."". $recisao2 ."". $recisao3 ."". $tituloforo ."". $foro ."". $localass ."". $assinaturas ."". $final;
 
 	//var_dump($variavel);
-	//$dompdf->load_html($variavel);
+	$dompdf->load_html($variavel);
 
 	$dompdf -> setPaper ( ' A4 ' , ' landscape ' );
 
@@ -105,5 +125,7 @@ if (isset($_POST['imprimir'])){
 			"Attachment" =>false //Para realizar o download somente alterar para true
 		)
 	);
+}else{
+	header('Location:../cadastros/cadastro_contrato.php');
 }
 ?>

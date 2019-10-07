@@ -341,8 +341,7 @@ if (isset($_GET['id'])){
 						<!--/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
 						<?php
 
-							$inicio = "<p align='justify'>";
-							$fim ="</p><br/>";
+
 							$transferencia= "<b>Cláusula ".$clausula."ª.</b> A transferência da propriedade do veículo será feita até o prazo máximo de 30 (trinta) dias a contar da data de assinatura deste contrato.";
 							$clausula++;
 							$transferencia_visualizacao = strip_tags($transferencia);
