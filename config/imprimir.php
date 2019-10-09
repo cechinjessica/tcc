@@ -1,5 +1,4 @@
 <?php
-session_start();
 require 'conexao.php';
 //include('pdfcontrato.php');
 //referenciar o DomPDF com namespace
@@ -7,7 +6,9 @@ use Dompdf\Dompdf;
 
 require_once 'dompdf/autoload.inc.php';
 //Criando a Instancia
-$dompdf = new DOMPDF();
+$dompdf = new Dompdf();
+// some options...
+$dompdf->getOptions()->setLogOutputFile('dompdf.log');
 
 
 if (isset($_POST['imprimir'])){
@@ -34,7 +35,7 @@ if (isset($_POST['imprimir'])){
 
 	$vendedor = $inicio."".$vendedor."".$fim;
 	$comprador = $inicio."".$comprador."".$fim;
-	$fixo = $inicio."".$fixo."".$fim;
+	$fixo = $inicio."<b>".$fixo."</b>".$fim;
 	$objeto = $inicio."".$objeto."".$fim;
 	$objeto1 = $inicio."".$objeto1."".$fim;
 	$responsabilidade1 = $inicio."".$responsabilidade1."".$fim;
@@ -49,9 +50,6 @@ if (isset($_POST['imprimir'])){
 	$foro = $inicio."".$foro."".$fim;
 	$localass = $inicio."".$localass."".$fim;
 
-
-
-
 	$sql = "SELECT pp.Nome as NomeVend, p.Nome as NomeComp, c.*, v.Placa as Placa FROM contrato c
 	inner join pessoa p on c.Pessoa_IdComprador = p.idpessoa
 	inner join pessoa pp on c.Pessoa_IdVendedor = pp.idpessoa
@@ -62,25 +60,21 @@ if (isset($_POST['imprimir'])){
 	$nomec = mb_strtoupper($row['NomeComp'], 'UTF-8');
 	$placa = mb_strtoupper($row['Placa'], 'UTF-8');
 
-
-
-
 	$inicial = "<!DOCTYPE html>
 	<html>
 	<head>
-	<meta charset='utf-8'><style>font-family: sans-serif;</style>
 	</head>
-	<body style=' margin-top: 2cm; margin-right: 1cm; margin-bottom: 1cm; margin-left: 2cm; font: Arial;'>
-	<center>
+	<body>
+	<div style='text-align: center; margin:2cm 1cm 1cm 2cm;'>
 		<p><b>CONTRATO DE COMPRA E VENDA DE VEÍCULO</b></p><br/>
 		<p><b>IDENTIFICAÇÃO DAS PARTES CONTRATANTES</b></p>
-		</center>
+		</div>
 		<br/>
 		<br/>";
 
-	$titulovend = "<p align='justify'><b>VENDEDOR:</b></p>";
+	$titulovend = "<p align='justify'> <b>VENDEDOR:</b></p>";
 
-	$titulocomp = "<p align='justify'><b>COMPRADOR:</b></p>";
+	$titulocomp = "<p align='justify'> <b>COMPRADOR:</b></p>";
 
 	$tituloobj = "<p align='center'><b>DO OBJETO DO CONTRATO</b></p>";
 
@@ -106,25 +100,34 @@ if (isset($_POST['imprimir'])){
 	$assinaturas .="<p align='center'>__________________________________________</p><p align='center'>".$nome2."</p><p align='center'>RG ".$row['RGTestemunha2']."</p><br/>";
 	$final="</body></html>";
 
+
+
 	// Carrega seu HTML
-	//$dompdf->load_html( $inicial ."". $titulovend ."". $vendedor ."". $titulocomp ."". $comprador ."". $fixo ."". $tituloobj ."". $objeto ."". $objeto1 ."". $tituloresp ."". $responsabilidade1 ."". $responsabilidade2 ."". $titulotrans ."". $transferencia ."". $titulopre ."". $preco ."". $titulocond ."". $condicao1 ."". $condicao2 ."". $titulorec ."". $recisao1 ."". $recisao2 ."". $recisao3 ."". $tituloforo ."". $foro ."". $localass ."". $assinaturas ."". $final);
-	$variavel = $inicial ."". $titulovend ."". $vendedor ." ". $titulocomp ."". $comprador ."". $fixo ."". $tituloobj ."". $objeto ."". $objeto1 ."". $tituloresp ."". $responsabilidade1 ."". $responsabilidade2 ."". $titulotrans ."". $transferencia ."". $titulopre ."". $preco ."". $titulocond ."". $condicao1 ."". $condicao2 ."". $titulorec ."". $recisao1 ."". $recisao2 ."". $recisao3 ."". $tituloforo ."". $foro ."". $localass ."". $assinaturas ."". $final;
+	//$dompdf->loadHtml( $inicial ."". $titulovend ."". $vendedor ."". $titulocomp ."". $comprador ."". $fixo ."". $tituloobj ."". $objeto ."". $objeto1 ."". $tituloresp ."". $responsabilidade1 ."". $responsabilidade2 ."". $titulotrans ."". $transferencia ."". $titulopre ."". $preco ."". $titulocond ."". $condicao1 ."". $condicao2 ."". $titulorec ."". $recisao1 ."". $recisao2 ."". $recisao3 ."". $tituloforo ."". $foro ."". $localass ."". $assinaturas ."". $final, "utf-8");
+	//$variavel = $inicial ."". $titulovend ."". $vendedor ." ". $titulocomp ."". $comprador ."". $fixo ."". $tituloobj ."". $objeto ."". $objeto1 ."". $tituloresp ."". $responsabilidade1 ."". $responsabilidade2 ."". $titulotrans ."". $transferencia ."". $titulopre ."". $preco ."". $titulocond ."". $condicao1 ."". $condicao2 ."". $titulorec ."". $recisao1 ."". $recisao2 ."". $recisao3 ."". $tituloforo ."". $foro ."". $localass ."". $assinaturas ."". $final;
+	$variavel= $inicial ."". $titulovend ."". $vendedor ."". $titulocomp ."". $comprador ."". $fixo ."". $tituloobj ."". $objeto ."". $objeto1 ."". $tituloresp ."". $responsabilidade1 ."". $responsabilidade2 ."". $titulotrans ."". $transferencia ."". $titulopre ."". $preco ."". $titulocond ."". $condicao1 ."". $condicao2 ."". $titulorec ."". $recisao1 ."". $recisao2 ."". $recisao3 ."". $tituloforo ."". $foro ."". $localass ."". $assinaturas ."". $final;
 
-	//var_dump($variavel);
-	$dompdf->load_html($variavel);
+	/*$variavel_c = $variavel;
+	$variavel_c = substr_replace($variavel_c,"<b>VENDEDOR</b>",strpos($variavel,"VENDEDOR"), 8);
+	$variavel_c = substr_replace($variavel_c,"<b>COMPRADOR</b>",strpos($variavel,"COMPRADOR"), 9);
+	$variavel_c = substr_replace($variavel_c,"<b>parágrafo primeiro:</b>",strpos($variavel,"parágrafo primeiro:"), 19);
+	$variavel_c = substr_replace($variavel_c,"<b>parágrafo segundo:</b>", strpos($variavel,"parágrafo segundo:"), 18);
+	for ($i = 1; $i <15; $i++){
+		$variavel_c = substr_replace($variavel,"<b>Cláusula ".$i."ª.</b>",strpos($variavel,"Cláusula ".$i."ª."), 12);
+	}*/
 
+	//echo $variavel_c;
+	//header_remove();
+	$dompdf->loadHtml($inicial ."". $titulovend ."". $vendedor ."". $titulocomp ."". $comprador ."". $fixo ."". $tituloobj ."". $objeto ."". $objeto1 ."". $tituloresp ."". $responsabilidade1 ."". $responsabilidade2 ."". $titulotrans ."". $transferencia ."". $titulopre ."". $preco ."". $titulocond ."". $condicao1 ."". $condicao2 ."". $titulorec ."". $recisao1 ."". $recisao2 ."". $recisao3 ."". $tituloforo ."". $foro ."".$localass ."". $assinaturas ."".$final);
 	$dompdf -> setPaper ( ' A4 ' , ' landscape ' );
 
 	//Renderizar o html
-	//$dompdf->render();
+	$dompdf->render();
 
 	//Exibibir a página
-	$dompdf->stream(
-		"contrato_P".$placa."_ID".$id.".pdf",
-		array(
-			"Attachment" =>false //Para realizar o download somente alterar para true
-		)
-	);
+	$dompdf->stream( "contrato_P".$placa."_ID".$id.".pdf",array(
+		"Attachment" =>false //Para realizar o download somente alterar para true
+	));
 }else{
 	header('Location:../cadastros/cadastro_contrato.php');
 }

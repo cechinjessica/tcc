@@ -37,11 +37,6 @@ if (isset($_GET['id'])){
 			display: inline-block;
 			width: auto;
 		}
-
-		.form-check-input {
-			margin: 1px;
-		}
-
 	</style>
 
 </head>
@@ -66,8 +61,8 @@ if (isset($_GET['id'])){
 						Cadastrar
 					</a>
 					<div class="dropdown-menu">
-						<a class="dropdown-item" href="vendedor.php">Pessoa</a>
-						<a class="dropdown-item" href="veiculo.php">Veículo</a>
+						<a class="dropdown-item" href="../cadastros/vendedor.php">Pessoa</a>
+						<a class="dropdown-item" href="../cadastros/veiculo.php">Veículo</a>
 					</div>
 				</li>
 				<li class="nav-item dropdown">
@@ -75,9 +70,9 @@ if (isset($_GET['id'])){
 						Ver cadastros
 					</a>
 					<div class="dropdown-menu">
-						<a class="dropdown-item" href="cadastro_pessoa.php">Pessoa</a>
-						<a class="dropdown-item" href="cadastro_veiculo.php">Veículo</a>
-						<a class="dropdown-item" href="cadastro_contrato.php">Contrato</a>
+						<a class="dropdown-item" href="../cadastros/cadastro_pessoa.php">Pessoa</a>
+						<a class="dropdown-item" href="../cadastros/cadastro_veiculo.php">Veículo</a>
+						<a class="dropdown-item" href="../cadastros/cadastro_contrato.php">Contrato</a>
 					</div>
 				</li>
 			</ul>
