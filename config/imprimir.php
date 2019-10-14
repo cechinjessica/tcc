@@ -13,43 +13,119 @@ $dompdf->getOptions()->setLogOutputFile('dompdf.log');
 
 
 if (isset($_POST['imprimir'])){
+	$inicio = "<p align='justify'>";
+	$fim ="</p><br/>";
+	$clausula = 1;
+
 	$vendedor = $_POST['vendedor'];
 	$comprador = $_POST['comprador'];
 	$fixo = $_POST['fixo'];
 	$objeto = $_POST['objeto'];
-	$objeto1 = $_POST['objeto1'];
-	$responsabilidade1 = $_POST['responsabilidade1'];
-	$responsabilidade2 = $_POST['responsabilidade2'];
-	$transferencia = $_POST['transferencia'];
-	$preco = $_POST['preco'];
-	$condicao1 = $_POST['condicao1'];
-	$condicao2 = $_POST['condicao2'];
-	$recisao1 = $_POST['recisao1'];
-	$recisao2 = $_POST['recisao2'];
-	$recisao3 = $_POST['recisao3'];
-	$foro = $_POST['foro'];
-	$localass = $_POST['localass'];
-	$id = $_POST['id'];
 
-	$inicio = "<p align='justify'>";
-	$fim ="</p><br/>";
 
 	$vendedor = $vendedor."".$fim;
 	$comprador = $comprador."".$fim;
 	$fixo = $inicio."<b>".$fixo."</b>".$fim;
-	$objeto = $inicio."".$objeto."".$fim;
-	$objeto1 = $inicio."".$objeto1."".$fim;
-	$responsabilidade1 = $inicio."".$responsabilidade1."".$fim;
-	$responsabilidade2 = $inicio."".$responsabilidade2."".$fim;
-	$transferencia = $inicio."".$transferencia."".$fim;
+	$objeto ="<b>Cláusula ".$clausula."ª.</b>".$inicio."".$objeto."".$fim;
+	$clausula++;
+
+	if(isset($_POST['objeto1'])){
+		$objeto1 = $_POST['objeto1'];
+		echo "<script>alert(A".$objeto1."A);</script>";
+		$objeto1 = "<b>Cláusula ".$clausula."ª.</b>".$inicio."".$objeto1."".$fim;
+		$clausula++;
+	}else{
+		$objeto1 = "";
+	}
+
+	if(isset($_POST['s_responsabilidade1'])){
+		$s_responsabilidade1 = $_POST['s_responsabilidade1'];
+		$responsabilidade1 = $_POST['responsabilidade1'];
+		$responsabilidade1 = "<b>Cláusula ".$clausula."ª.</b>".$inicio."".$responsabilidade1."".$fim;
+		$clausula++;
+	}else {
+		$s_responsabilidade1="";
+		$responsabilidade1="";
+	}
+
+	if(isset($_POST['s_responsabilidade2'])){
+		$s_responsabilidade2 = $_POST['s_responsabilidade2'];
+		$responsabilidade2 = $_POST['responsabilidade2'];
+		$responsabilidade2 = "<b>Cláusula ".$clausula."ª.</b>".$inicio."".$responsabilidade2."".$fim;
+		$clausula++;
+	}else{
+		$s_responsabilidade2 = "";
+		$responsabilidade2 = "";
+	}
+
+	if(isset($_POST['s_transferencia'])){
+		$s_transferencia = $_POST['s_transferencia'];
+		$transferencia = $_POST['transferencia'];
+		$transferencia = "<b>Cláusula ".$clausula."ª.</b>".$inicio."".$transferencia."".$fim;
+		$clausula++;
+	}else{
+		$s_transferencia = "";
+		$transferencia = "";
+	}
+
+	$preco = $_POST['preco'];
 	$preco = $inicio."".$preco."".$fim;
-	$condicao1 = $inicio."".$condicao1."".$fim;
-	$condicao2 = $inicio."".$condicao2."".$fim;
-	$recisao1 = $inicio."".$recisao1."".$fim;
-	$recisao2 = $inicio."".$recisao2."".$fim;
-	$recisao3 = $inicio."".$recisao3."".$fim;
+
+	if(isset($_POST['s_condicao1'])){
+		$s_condicao1 = $_POST['s_condicao1'];
+		$condicao1 = $_POST['condicao1'];
+		$condicao1 = "<b>Cláusula ".$clausula."ª.</b>".$inicio."".$condicao1."".$fim;
+		$clausula++;
+	}else{
+		$s_condicao1= "";
+		$condicao1= "";
+	}
+
+	if(isset($_POST['s_condicao2'])){
+		$s_condicao2 = $_POST['s_condicao2'];
+		$condicao2 = $_POST['condicao2'];
+		$condicao2 = "<b>Cláusula ".$clausula."ª.</b>".$inicio."".$condicao2."".$fim;
+		$clausula++;
+	}else{
+		$s_condicao2 = "";
+		$condicao2 = "";
+	}
+
+	if(isset($_POST['s_recisao1'])){
+		$s_recisao1 = $_POST['s_recisao1'];
+		$recisao1 = $_POST['recisao1'];
+		$recisao1 = "<b>Cláusula ".$clausula."ª.</b>".$inicio."".$recisao1."".$fim;
+		$clausula++;
+	}else{
+		$s_recisao1 = "";
+		$recisao1 = "";
+	}
+
+	if(isset($_POST['s_recisao2'])){
+		$s_recisao2 = $_POST['s_recisao2'];
+		$recisao2 = $_POST['recisao2'];
+		$recisao2 = "<b>Cláusula ".$clausula."ª.</b>".$inicio."".$recisao2."".$fim;
+		$clausula++;
+	}else{
+		$s_recisao2= "";
+		$recisao2= "";
+	}
+
+	if(isset($_POST['s_recisao3'])){
+		$s_recisao3 = $_POST['s_recisao3'];
+		$recisao3 = $_POST['recisao3'];
+		$recisao3 = "<b>Cláusula ".$clausula."ª.</b>".$inicio."".$recisao3."".$fim;
+		$clausula++;
+	}else{
+		$s_recisao3 = "";
+		$recisao3 = "";
+	}
+
+	$foro = $_POST['foro'];
 	$foro = $inicio."".$foro."".$fim;
+	$localass = $_POST['localass'];
 	$localass = $inicio."".$localass."".$fim;
+	$id = $_POST['id'];
 
 	$sql = "SELECT pp.Nome as NomeVend, p.Nome as NomeComp, c.*, v.Placa as Placa FROM contrato c
 	inner join pessoa p on c.Pessoa_IdComprador = p.idpessoa
@@ -65,8 +141,8 @@ if (isset($_POST['imprimir'])){
 	<html>
 	<head>
 	</head>
-	<body>
-	<div style='text-align: center; margin:2cm 1cm 1cm 2cm;'>
+	<body style='margin:2cm 1cm 1cm 2cm;'>
+	<div style='text-align: center;'>
 		<p><b>CONTRATO DE COMPRA E VENDA DE VEÍCULO</b></p><br/>
 		<p><b>IDENTIFICAÇÃO DAS PARTES CONTRATANTES</b></p>
 		</div>
@@ -100,19 +176,20 @@ if (isset($_POST['imprimir'])){
 	$assinaturas .="<p align='center'>__________________________________________</p><p align='center'>".$nome2."</p><p align='center'>RG ".$row['RGTestemunha2']."</p><br/>";
 	$final="</body></html>";
 
-
-	$objeto = str_replace("Cláusula 1ª.", "<b>Cláusula 1ª.</b>", $objeto);
-	/*$objeto = substr_replace($objeto,"<b>VENDEDOR</b>",strpos($objeto,"VENDEDOR"), 8);
-	$objeto = substr_replace($objeto,"<b>COMPRADOR</b>",strpos($objeto,"COMPRADOR"), 9);
-	$objeto = substr_replace($objeto,"<b>parágrafo primeiro:</b>",strpos($objeto,"parágrafo primeiro:"), 19);
-	$objeto = substr_replace($objeto,"<b>parágrafo segundo:</b>", strpos($objeto,"parágrafo segundo:"), 18);
-	for ($i = 1; $i <15; $i++){
-		$objeto = substr_replace($objeto,"<b>Cláusula ".$i."ª.</b>",strpos($objeto,"Cláusula ".$i."ª."), 12);
-	}*/
-
-	//echo $variavel_c;
 	//header_remove();
-	$dompdf->loadHtml($inicial ."". $titulovend ."". $vendedor ."". $titulocomp ."". $comprador ."". $fixo ."". $tituloobj ."". $objeto ."". $objeto1 ."". $tituloresp ."". $responsabilidade1 ."". $responsabilidade2 ."". $titulotrans ."". $transferencia ."". $titulopre ."". $preco ."". $titulocond ."". $condicao1 ."". $condicao2 ."". $titulorec ."". $recisao1 ."". $recisao2 ."". $recisao3 ."". $tituloforo ."". $foro ."".$localass ."". $assinaturas ."".$final);
+	$variavel =$inicial ."". $titulovend ."". $vendedor ."". $titulocomp ."". $comprador ."". $fixo ."". $tituloobj ."". $objeto ."". $objeto1 ."". $tituloresp ."". $responsabilidade1 ."". $responsabilidade2 ."". $titulotrans ."". $transferencia ."". $titulopre ."". $preco ."". $titulocond ."". $condicao1 ."". $condicao2 ."". $titulorec ."". $recisao1 ."". $recisao2 ."". $recisao3 ."". $tituloforo ."". $foro ."".$localass ."". $assinaturas ."".$final;
+
+	$variavel = str_replace("VENDEDOR","<b>VENDEDOR</b>",$variavel);
+	$variavel = str_replace("COMPRADOR","<b>COMPRADOR</b>",$variavel);
+	$variavel = str_replace("parágrafo primeiro:","<b>parágrafo primeiro:</b>",$variavel);
+	$variavel = str_replace("parágrafo segundo:","<b>parágrafo segundo:</b>", $variavel);
+	for ($i = 1; $i <15; $i++){
+		$variavel = str_replace("Cláusula ".$i."ª.","<b>Cláusula ".$i."ª.</b>",$variavel);
+	}
+
+
+	echo $variavel;
+	$dompdf->loadHtml($variavel);
 	$dompdf -> setPaper ( ' A4 ' , ' landscape ' );
 
 	//Renderizar o html

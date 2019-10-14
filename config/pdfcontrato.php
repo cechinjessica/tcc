@@ -37,6 +37,7 @@ if (isset($_GET['id'])){
 			display: inline-block;
 			width: auto;
 		}
+
 	</style>
 
 </head>
@@ -258,7 +259,7 @@ if (isset($_GET['id'])){
 
 									$placa =$row['Placa'];
 
-									$objeto= "<p align='justify'><b>Cláusula ".$clausula."ª.</b> O presente contrato tem como OBJETO, um ".$nomevei.", ANO MODELO ".$row['Ano']."/".$row['Modelo'].", PLACA ".$placa.", RENAVAM N. ".$row['Renavam'].", CHASSI ".$row['Chassi'].", COMBUSTÍVEL ".$combustivel.", COR ".$cor.", livre de qualquer ônus ou encargo.</p>";
+									$objeto= "<p align='justify'>O presente contrato tem como OBJETO, um ".$nomevei.", ANO MODELO ".$row['Ano']."/".$row['Modelo'].", PLACA ".$placa.", RENAVAM N. ".$row['Renavam'].", CHASSI ".$row['Chassi'].", COMBUSTÍVEL ".$combustivel.", COR ".$cor.", livre de qualquer ônus ou encargo.</p>";
 									$clausula++;
 									$objeto_visualizacao = strip_tags($objeto);
 
@@ -272,21 +273,19 @@ if (isset($_GET['id'])){
 						<?php
 	$objeto1="";
 									if($row['Estado'] == "usado"){
-										$objeto1 = "<p align='justify'><b>Cláusula ".$clausula."ª.</b> O veículo, objeto deste contrato é usado, apresentando desgaste natural decorrente do tempo, já visto e inspecionado pelo <b>COMPRADOR</b>, o qual tomou ciência de suas condições e estado de conservação.</p><br />";
+										$objeto1 = "<p align='justify'>O veículo, objeto deste contrato é usado, apresentando desgaste natural decorrente do tempo, já visto e inspecionado pelo <b>COMPRADOR</b>, o qual tomou ciência de suas condições e estado de conservação.</p><br />";
 										$clausula++;
 										$objeto1_visualizacao = strip_tags($objeto1);
 										echo "<div class='form-group'>
 								<textarea class='form-control rounded-0' id='objeto1' rows='2' name='objeto1' readonly>".$objeto1_visualizacao."</textarea>
 				</div>";
-									}else{
-										echo "<textarea class='form-control rounded-0 d-none' id='objeto1' rows='2' name='objeto1'> </textarea>";
 									}
 							?>
 						<!--/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
 
 						<?php
 
-							$responsabilidade1 = "<b>Cláusula ".$clausula."ª.</b> O <b>VENDEDOR</b> se responsabilizará pelo bom estado e perfeito funcionamento do veículo até a data de assinatura do presente contrato.";
+							$responsabilidade1 = "O <b>VENDEDOR</b> se responsabilizará pelo bom estado e perfeito funcionamento do veículo até a data de assinatura do presente contrato.";
 							$aclausula = $clausula;
 							$clausula++;
 
@@ -294,24 +293,12 @@ if (isset($_GET['id'])){
 							$fim = "</p>";
 							$responsabilidade1_visualizacao = strip_tags($responsabilidade1);
 
-							/*FAZER COM O QUE VIER DO CAMPO NO SUBMIT
-							$resposabilidade1 = substr_replace($responsabilidade1_visualizacao,"<b>VENDEDOR</b>",strpos($responsabilidade1_visualizacao,"VENDEDOR"), 8);
-							$resposabilidade1 = substr_replace($responsabilidade1_visualizacao,"<b>COMPRADOR</b>",strpos($responsabilidade1_visualizacao,"COMPRADOR"), 9);
-							$resposabilidade1 = substr_replace($responsabilidade1_visualizacao,"<b>parágrafo primeiro:</b>",strpos($responsabilidade1_visualizacao,"parágrafo primeiro:"), 19);
-							$resposabilidade1 = substr_replace($responsabilidade1_visualizacao,"<b>parágrafo segundo:</b>
-",strpos($responsabilidade1_visualizacao,"parágrafo segundo:"), 18);
-							for ($i = 1; $i >15; $i++){
-								$resposabilidade1 = substr_replace($responsabilidade1_visualizacao,"<b>Cláusula ".$i."ª.</b>",strpos($responsabilidade1_visualizacao,"Cláusula ".$i."ª."), 12);
-							}
-							$responsabilidade1 = $inicio."".$responsabilidade1."".$fim;
-							*/
-
 							?>
 						<div class="form-group">
 
 							<label for="responsabilidade1"><b>DAS RESPONSABILIDADES</b></label>
 							<div class="custom-control custom-switch">
-								<input type="checkbox" class="custom-control-input" id="switch_responsabilidade1">
+								<input type="checkbox" class="custom-control-input" id="switch_responsabilidade1" name="s_responsabilidade1" checked>
 								<label class="custom-control-label" for="switch_responsabilidade1">Utilizar</label>
 							</div>
 							<textarea class="form-control rounded-0" id="responsabilidade1" rows="1" name="responsabilidade1" readonly><?php echo $responsabilidade1_visualizacao; ?></textarea>
@@ -321,14 +308,14 @@ if (isset($_GET['id'])){
 						<?php
 
 
-							$responsabilidade2 = "<b>Cláusula ".$clausula."ª.</b> O <b>VENDEDOR</b> se responsabilizará pela entrega do veículo no local indicado pelo <b>COMPRADOR</b>, nas mesmas condições de quando foi inspecionado pelo <b>COMPRADOR</b>.";
+							$responsabilidade2 = "O <b>VENDEDOR</b> se responsabilizará pela entrega do veículo no local indicado pelo <b>COMPRADOR</b>, nas mesmas condições de quando foi inspecionado pelo <b>COMPRADOR</b>.";
 							$clausula++;
 
 							$responsabilidade2_visualizacao = strip_tags($responsabilidade2);
 							?>
 						<div class="form-group">
 							<div class="custom-control custom-switch">
-								<input type="checkbox" class="custom-control-input" id="switch_responsabilidade2">
+								<input type="checkbox" class="custom-control-input" id="switch_responsabilidade2" name="s_responsabilidade2" checked>
 								<label class="custom-control-label" for="switch_responsabilidade2">Utilizar</label>
 							</div>
 							<textarea class="form-control rounded-0" id="responsabilidade2" rows="2" name="responsabilidade2" readonly><?php echo $responsabilidade2_visualizacao; ?></textarea>
@@ -337,7 +324,7 @@ if (isset($_GET['id'])){
 						<?php
 
 
-							$transferencia= "<b>Cláusula ".$clausula."ª.</b> A transferência da propriedade do veículo será feita até o prazo máximo de 30 (trinta) dias a contar da data de assinatura deste contrato.";
+							$transferencia= "A transferência da propriedade do veículo será feita até o prazo máximo de 30 (trinta) dias a contar da data de assinatura deste contrato.";
 							$clausula++;
 							$transferencia_visualizacao = strip_tags($transferencia);
 
@@ -346,7 +333,7 @@ if (isset($_GET['id'])){
 
 							<label for="transferencia"><b>DA TRANSFERÊNCIA DA PROPRIEDADE DO VEÍCULO</b></label>
 							<div class="custom-control custom-switch">
-								<input type="checkbox" class="custom-control-input" id="switch_transferencia">
+								<input type="checkbox" class="custom-control-input" id="switch_transferencia" name="s_transferencia" checked>
 								<label class="custom-control-label" for="switch_transferencia">Utilizar</label>
 							</div>
 							<textarea class="form-control rounded-0" id="transferencia" rows="1" name="transferencia" readonly><?php echo $transferencia_visualizacao; ?></textarea>
@@ -375,15 +362,15 @@ if (isset($_GET['id'])){
 
 							if($entrada == $total){
 
-								$preco = "<b>Cláusula ".$clausula."ª.</b> O <b>COMPRADOR</b> pagará ao <b>VENDEDOR</b> pela compra do veículo, objeto deste contrato, a quantia de R$ ".$total_format.",à vista, que deverá ser quiatda até o dia ".$row['DataPagamento'].".";
+								$preco = "O <b>COMPRADOR</b> pagará ao <b>VENDEDOR</b> pela compra do veículo, objeto deste contrato, a quantia de R$ ".$total_format.",à vista, que deverá ser quiatda até o dia ".$row['DataPagamento'].".";
 								$clausula++;
 							}else if($row['Entrada'] != 0 ){
 
-								$preco = "<b>Cláusula ".$clausula."ª.</b> O <b>COMPRADOR</b> pagará ao <b>VENDEDOR</b> pela compra do veículo, objeto deste contrato, a quantia de R$ ".$total_format.", por meio de uma entrada de R$ ".$entrada_format." e mais ".$row['NumeroParcelas']." parcelas de R$ ".$parcela_format.", que serão pagas mensalmente, todos os dias ".$row['DataPagamento']." dos meses subsequentes.";
+								$preco = "O <b>COMPRADOR</b> pagará ao <b>VENDEDOR</b> pela compra do veículo, objeto deste contrato, a quantia de R$ ".$total_format.", por meio de uma entrada de R$ ".$entrada_format." e mais ".$row['NumeroParcelas']." parcelas de R$ ".$parcela_format.", que serão pagas mensalmente, todos os dias ".$row['DataPagamento']." dos meses subsequentes.";
 								$clausula++;
 							}else{
 
-								$preco = "<b>Cláusula ".$clausula."ª.</b> O <b>COMPRADOR</b> pagará ao <b>VENDEDOR</b> pela compra do veículo, objeto deste contrato, a quantia de R$ ".$total_format.", dividida em ".$row['NumeroParcelas']." parcelas mensais de ".$parcela_format.", a serem pagas até o dia ".$row['DataPagamento']." dos meses subsequentes.";
+								$preco = "O <b>COMPRADOR</b> pagará ao <b>VENDEDOR</b> pela compra do veículo, objeto deste contrato, a quantia de R$ ".$total_format.", dividida em ".$row['NumeroParcelas']." parcelas mensais de ".$parcela_format.", a serem pagas até o dia ".$row['DataPagamento']." dos meses subsequentes.";
 								$clausula++;
 
 							}
@@ -399,7 +386,7 @@ if (isset($_GET['id'])){
 
 						<!--/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
 						<?php
-							$condicao1= "<b>Cláusula ".$clausula."ª.</b> Qualquer problema verificado no funcionamento ou na estrutura do veículo, depois do prazo estabelecido na Cláusula ".$aclausula."ª, será de inteira responsabilidade no <b>COMPRADOR</b>.";
+							$condicao1= "Qualquer problema verificado no funcionamento ou na estrutura do veículo, depois do prazo estabelecido na Cláusula ".$aclausula."ª, será de inteira responsabilidade no <b>COMPRADOR</b>.";
 							$clausula++;
 
 							$inicio="<p align='justify'>";
@@ -409,7 +396,7 @@ if (isset($_GET['id'])){
 						<div class="form-group">
 							<label for="condicao1"><b>CONDIÇÕES GERAIS</b></label>
 							<div class="custom-control custom-switch">
-								<input type="checkbox" class="custom-control-input" id="switch_condicao1">
+								<input type="checkbox" class="custom-control-input" id="switch_condicao1" name="s_condicao1" checked>
 								<label class="custom-control-label" for="switch_condicao1">Utilizar</label>
 							</div>
 							<textarea class="form-control rounded-0" id="condicao1" rows="2" name="condicao1" readonly><?php echo $condicao1_visualizacao; ?></textarea>
@@ -418,13 +405,13 @@ if (isset($_GET['id'])){
 						<?php
 							$inicio="<p>";
 							$fim="</p><br/>";
-							$condicao2= "<b>Cláusula ".$clausula."ª.</b> O presente contrato passa a valer a partir da assinatura pelas partes, obrigando-se a ele os herdeiros ou secessores das mesmas.";
+							$condicao2= "O presente contrato passa a valer a partir da assinatura pelas partes, obrigando-se a ele os herdeiros ou secessores das mesmas.";
 							$clausula++;
 							$condicao2_visualizacao = strip_tags($condicao2);
 							?>
 						<div class="form-group">
 							<div class="custom-control custom-switch">
-								<input type="checkbox" class="custom-control-input" id="switch_condicao2">
+								<input type="checkbox" class="custom-control-input" id="switch_condicao2" name="s_condicao2" checked>
 								<label class="custom-control-label" for="switch_condicao2">Utilizar</label>
 							</div>
 							<textarea class="form-control rounded-0" id="condicao2" rows="1" name="condicao2" readonly><?php echo $condicao2_visualizacao; ?></textarea>
@@ -433,14 +420,14 @@ if (isset($_GET['id'])){
 						<?php
 							$inicio="<p align='justify'>";
 							$fim ="</p><br/>";
-							$recisao1 = "<b>Cláusula ".$clausula."ª.</b> O atraso no pagamento de qualquer parcela no prazo acordado acarretará na aplicação de multa de 10% (dez por cento) sobre a mesma e juros de ".$row['Juros'].".";
+							$recisao1 = "O atraso no pagamento de qualquer parcela no prazo acordado acarretará na aplicação de multa de 10% (dez por cento) sobre a mesma e juros de ".$row['Juros'].".";
 							$clausula++;
 							$recisao1_visualizacao = strip_tags($recisao1);
 							?>
 						<div class="form-group">
 							<label for="transferencia"><b>DA RECISÃO DO CONTRATO</b></label>
 							<div class="custom-control custom-switch">
-								<input type="checkbox" class="custom-control-input" id="switch_recisao1">
+								<input type="checkbox" class="custom-control-input" id="switch_recisao1" name="s_recisao1" checked>
 								<label class="custom-control-label" for="switch_recisao1">Utilizar</label>
 							</div>
 							<textarea class="form-control rounded-0" id="recisao1" rows="2" name="recisao1" readonly><?php echo $recisao1_visualizacao; ?></textarea>
@@ -454,7 +441,7 @@ if (isset($_GET['id'])){
 							?>
 						<div class="form-group">
 							<div class="custom-control custom-switch">
-								<input type="checkbox" class="custom-control-input" id="switch_recisao2">
+								<input type="checkbox" class="custom-control-input" id="switch_recisao2" name="s_recisao2" checked>
 								<label class="custom-control-label" for="switch_recisao2">Utilizar</label>
 							</div>
 							<textarea class="form-control rounded-0" id="recisao2" rows="2" name="recisao2" readonly><?php echo $recisao2_visualizacao; ?></textarea>
@@ -468,7 +455,7 @@ if (isset($_GET['id'])){
 							?>
 						<div class="form-group">
 							<div class="custom-control custom-switch">
-								<input type="checkbox" class="custom-control-input" id="switch_recisao3">
+								<input type="checkbox" class="custom-control-input" id="switch_recisao3" name="s_recisao3" checked>
 								<label class="custom-control-label" for="switch_recisao3">Utilizar</label>
 							</div>
 							<textarea class="form-control rounded-0" id="recisao3" rows="4" name="recisao3" readonly><?php echo $recisao3_visualizacao; ?></textarea>
@@ -477,13 +464,13 @@ if (isset($_GET['id'])){
 						<?php
 							$inicio="<p align='justify'>";
 							$fim="</p><br/>";
-							$foro= "<b>Cláusula ".$clausula."ª.</b> Para dirimir quaisquer controvérsias oriundas do CONTRATO, as partes elegem o foro da comarca de ".$row['Foro'].".</p><p>Por estarem assim justos e contratados, firmam o presente instrumento, em duas vias de igual teor, juntamente com duas testemunhas.";
+							$foro= "Para dirimir quaisquer controvérsias oriundas do CONTRATO, as partes elegem o foro da comarca de ".$row['Foro'].".</p><p>Por estarem assim justos e contratados, firmam o presente instrumento, em duas vias de igual teor, juntamente com duas testemunhas.";
 							$foro_visualizacao = strip_tags($foro);
 							?>
 						<div class="form-group">
 							<label for="transferencia"><b>DO FORO</b></label>
 							<div class="custom-control custom-switch">
-								<input type="checkbox" class="custom-control-input" id="switch_foro">
+								<input type="checkbox" class="custom-control-input" id="switch_foro" name="s_foro" checked>
 								<label class="custom-control-label" for="switch_foro">Utilizar</label>
 							</div>
 							<textarea class="form-control rounded-0" id="foro" rows="2" name="foro" readonly><?php echo $foro_visualizacao; ?></textarea>
