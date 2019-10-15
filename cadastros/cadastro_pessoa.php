@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<?php session_start(); ?>
+<?php session_start();
+include('../config/verifica_login.php');
+?>
 
 <html>
 
@@ -57,34 +59,35 @@
 <body style="background: #007bff;
                  background: linear-gradient(to left, #5A8BB7, #2D9AAD);">
     <!--NAVBAR-->
-    <nav class="navbar navbar-expand-sm bg-info navbar-light sticky-top">
-        <a class="navbar-brand" href="#"><img src="../imagens/icone.png" width="30px">Á definir</a>
-        <a class="nav-text">Bem vindo(a) <?php echo $_SESSION['nome']; ?></a>
+    <nav class="navbar navbar-expand-md bg-info navbar-light sticky-top">
+        <a class="navbar-brand" href="#"><img src="../imagens/icone.png" width="30px">Contrato</a>
+        <a class="nav-text d-none  d-lg-inline">Bem vindo(a) <?php echo $_SESSION['nome']; ?></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="collapsibleNavbar">
             <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link" href="../contrato.php">Criar contrato</a>
+                <li class="nav-item ">
+                    <a class="nav-link" href="../contrato.php">Gerar contrato</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
                         Cadastrar
                     </a>
                     <div class="dropdown-menu">
-                        <a class="dropdown-item" href="vendedor.php">Pessoa</a>
-                        <a class="dropdown-item" href="veiculo.php">Veículo</a>
+                        <a class="dropdown-item" href="../cadastros/vendedor.php">Pessoa</a>
+                        <a class="dropdown-item" href="../cadastros/veiculo.php">Veículo</a>
+                        <a class="dropdown-item" href="../cadastro_contrato.php">Contrato</a>
                     </div>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
-                        Ver cadastros
+                        Cadastros
                     </a>
                     <div class="dropdown-menu">
-                        <a class="dropdown-item" href="cadastro_pessoa.php">Pessoa</a>
-                        <a class="dropdown-item" href="cadastro_veiculo.php">Veículo</a>
-                        <a class="dropdown-item" href="cadastro_contrato.php">Contrato</a>
+                        <a class="dropdown-item" href="../cadastros/cadastro_pessoa.php">Pessoa</a>
+                        <a class="dropdown-item" href="../cadastros/cadastro_veiculo.php">Veículo</a>
+                        <a class="dropdown-item" href="../cadastros/cadastro_contrato.php">Contrato</a>
                     </div>
                 </li>
             </ul>
