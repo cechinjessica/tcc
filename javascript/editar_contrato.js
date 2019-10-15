@@ -98,6 +98,8 @@ $(document).ready(function () {
  });
  /////////////////////////////////////////////////////////////////////////////
  if ($("#switch_recisao2").is(":checked")) {
+
+  $("#switch_recisao1").prop("checked", true);
   $("#recisao2").prop("readonly", false);
  } else {
   $("#recisao2").prop("readonly", true);
@@ -105,25 +107,14 @@ $(document).ready(function () {
 
  $("#switch_recisao2").click(function () {
   if ($("#switch_recisao2").is(":checked")) {
+
+   $("#switch_recisao1").prop("checked", true);
    $("#recisao2").prop("readonly", false);
   } else {
    $("#recisao2").prop("readonly", true);
   }
  });
- /////////////////////////////////////////////////////////////////////////////
- if ($("#switch_recisao3").is(":checked")) {
-  $("#recisao3").prop("readonly", false);
- } else {
-  $("#recisao3").prop("readonly", true);
- }
 
- $("#switch_recisao3").click(function () {
-  if ($("#switch_recisao3").is(":checked")) {
-   $("#recisao3").prop("readonly", false);
-  } else {
-   $("#recisao3").prop("readonly", true);
-  }
- });
  /////////////////////////////////////////////////////////////////////////////
  if ($("#switch_foro").is(":checked")) {
   $("#foro").prop("readonly", false);

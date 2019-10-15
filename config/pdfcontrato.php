@@ -438,27 +438,16 @@ if (isset($_GET['id'])){
 							$fim ="</p>";
 							$recisao2 = "<b>parágrafo primeiro:</b> se houver atraso de pagamento de mais de uma parcela, o presente contrato estará automaticamente rescindo e o <b>COMPRADOR</b> deverá restituir o veículo ao <b>VENDEDOR</b>, sob pena de busca e apreensão.";
 							$recisao2_visualizacao = strip_tags($recisao2);
+							$recisao3 = "<b>parágrafo segundo:</b> em caso de rescisão de contrato por falta de pagamento das parcelas ou por desistência do <b>COMPRADOR</b>, além da restituição do veículo, fica resguardada ao <b>VENDEDOR</b> o direito de retenção 100% (cem por cento) da primeira parcela e de 50% (cinquenta por cento) das demais parcelas pagas, a título de indenização pela frustração do negócio e taxa de ocupação do veículo, sem prejuízo de valor para restauração de eventuais avarias causadas pelo <b>COMPRADOR</b>.";
+							$recisao3_visualizacao = strip_tags($recisao3);
 							?>
 						<div class="form-group">
 							<div class="custom-control custom-switch">
 								<input type="checkbox" class="custom-control-input" id="switch_recisao2" name="s_recisao2" checked>
 								<label class="custom-control-label" for="switch_recisao2">Utilizar</label>
 							</div>
-							<textarea class="form-control rounded-0" id="recisao2" rows="2" name="recisao2" readonly><?php echo $recisao2_visualizacao; ?></textarea>
-						</div>
-						<!--/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
-						<?php
-							$inicio="<p>";
-							$fim ="</p><br/>";
-							$recisao3 = "<b>parágrafo segundo:</b> em caso de rescisão de contrato por falta de pagamento das parcelas ou por desistência do <b>COMPRADOR</b>, além da restituição do veículo, fica resguardada ao <b>VENDEDOR</b> o direito de retenção 100% (cem por cento) da primeira parcela e de 50% (cinquenta por cento) das demais parcelas pagas, a título de indenização pela frustração do negócio e taxa de ocupação do veículo, sem prejuízo de valor para restauração de eventuais avarias causadas pelo <b>COMPRADOR</b>.";
-							$recisao3_visualizacao = strip_tags($recisao3);
-							?>
-						<div class="form-group">
-							<div class="custom-control custom-switch">
-								<input type="checkbox" class="custom-control-input" id="switch_recisao3" name="s_recisao3" checked>
-								<label class="custom-control-label" for="switch_recisao3">Utilizar</label>
-							</div>
-							<textarea class="form-control rounded-0" id="recisao3" rows="4" name="recisao3" readonly><?php echo $recisao3_visualizacao; ?></textarea>
+							<textarea class="form-control rounded-0" id="recisao2" rows="5" name="recisao2" readonly><?php echo $recisao2_visualizacao; echo "
+".$recisao3_visualizacao; ?></textarea>
 						</div>
 						<!--/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
 						<?php
@@ -469,10 +458,6 @@ if (isset($_GET['id'])){
 							?>
 						<div class="form-group">
 							<label for="transferencia"><b>DO FORO</b></label>
-							<div class="custom-control custom-switch">
-								<input type="checkbox" class="custom-control-input" id="switch_foro" name="s_foro" checked>
-								<label class="custom-control-label" for="switch_foro">Utilizar</label>
-							</div>
 							<textarea class="form-control rounded-0" id="foro" rows="2" name="foro" readonly><?php echo $foro_visualizacao; ?></textarea>
 						</div>
 						<!--/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->
