@@ -18,7 +18,7 @@ include('../config/verifica_login.php');
 
     <link rel="stylesheet" type="text/css" href="../css/style.css">
     <?php include('../config/verifica_login.php');
-	?>
+        ?>
     <script>
         function showcli(nm) {
             str = nm;
@@ -104,12 +104,14 @@ include('../config/verifica_login.php');
             <div class="card card-padrao my-5">
                 <div class="card-body">
                     <h5 class="card-title text-center">Pessoas Cadastradas</h5>
-                    <?php
-						if (isset($_SESSION['msg'])) {
-						echo  $_SESSION['msg'];
-            			unset ($_SESSION['msg']);
-						}
-    				?>
+                    <p>
+                        <?php
+                            if (isset($_SESSION['msg'])) {
+                                echo  $_SESSION['msg'];
+                                unset ($_SESSION['msg']);
+                            }
+                            ?>
+                    </p>
 
                     <form>
                         <div class="row">

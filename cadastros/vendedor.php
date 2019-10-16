@@ -139,8 +139,8 @@ if (isset($_POST['enviar'])){
 
             $res = mysqli_query($conexao,$sql);
             if (mysqli_error($conexao)) {
-                $_SESSION['msg'] = "<p class='alert alert-danger' role='alert'>Erro na atualização de $nome</p>";
-                header('Location:cadastro_pessoa.php');
+                $_SESSION['msg_erro'] = "<p class='alert alert-danger' role='alert'>Erro na atualização de $nome</p>";
+                header('Location:vendedor.php');
             } else {
                 $_SESSION['msg'] = "<p class='alert alert-success' role='alert'>$nome atualizado com sucesso!</p>";
                 header('Location:cadastro_pessoa.php');
@@ -155,7 +155,9 @@ if (isset($_POST['enviar'])){
                 $_SESSION['msg'] = "<p class='alert alert-success' role='alert'>$nome excluído com sucesso!</p>";
                 header('Location:cadastro_pessoa.php');
             } else {
-                $_SESSION['msg'] = "p class='alert alert-danger' role='alert'>Erro na exclusão de $nome</p>";
+                $_SESSION['msg_erro'] = "p class='alert alert-danger' role='alert'>Erro na exclusão de $nome. Usuário tem contratos!</p>";
+                 header('Location:vendedor.php');
+                //adicionar mesagem que não apaga pois tem contrato
             }
             mysqli_close($conexao);
         }
@@ -167,8 +169,8 @@ if (isset($_POST['enviar'])){
 
         if (mysqli_affected_rows($conexao)!=0) {
             mysqli_close($conexao);
-            $_SESSION['msg'] = "p class='alert alert-danger' role='alert'>$cpf já foi cadastrado</p>";
-            header('Location:cadastro_pessoa.php');
+            $_SESSION['msg_erro'] = "p class='alert alert-danger' role='alert'>$cpf já foi cadastrado</p>";
+            header('Location:vendedor.php');
 
         }else {
             if($tipopessoa == "j"){
@@ -182,8 +184,8 @@ if (isset($_POST['enviar'])){
                 $_SESSION['msg'] = "<p class='alert alert-success' role='alert'>$nome inserido com sucesso!</p>";
                 header('Location:cadastro_pessoa.php');
             } else {
-                $_SESSION['msg'] ="<p class='alert alert-danger' role='alert'>Erro: ".mysqli_error($conexao)."<p>";
-                header('Location:cadastro_pessoa.php');
+                $_SESSION['msg_erro'] ="<p class='alert alert-danger' role='alert'>Erro: ".mysqli_error($conexao)."<p>";
+                header('Location:vendedor.php');
             }
             mysqli_close($conexao);
         }
@@ -314,13 +316,14 @@ if (isset($_POST['enviar'])){
             <div class="card card-padrao my-5 justify-content-center">
                 <div class="card-body justify-content-center">
                     <h5 class="card-title text-center">Sobre a pessoa:</h5>
-                    <form action="#" method="post" class="form-padrao">
-                        <p class="feedback"><?php
-                                if (isset($_SESSION['msg'])) {
-                                    echo  $_SESSION['msg'];
-                                    unset ($_SESSION['msg']);
+                    <p class="feedback"><?php
+                                if (isset($_SESSION['msg_erro'])) {
+                                    echo  $_SESSION['msg_erro'];
+                                    unset ($_SESSION['msg_erro']);
                                 }
                                 ?></p>
+
+                    <form action="#" method="post" class="form-padrao">
                         <div class="form-group">
                             <label for="pessoa">Tipo de pessoa</label>
                             <div class="form-check-inline">
@@ -395,7 +398,7 @@ if (isset($_POST['enviar'])){
                             </div>
                             <div class="form-group col-xl">
                                 <label for="uf">UF</label><label for="uf" class="representante"> da empresa</label>
-                                <input type="text" id="uf" class="form-control col-md-2" name="uf" style="text-transform:uppercase" maxlength="2" value="<?php echo ($id!=0)?"$uf":'';?>">
+                                <input type="text" id="uf" class="form-control col-md-3" name="uf" style="text-transform:uppercase" maxlength="2" value="<?php echo ($id!=0)?"$uf":'';?>">
                                 <p id="msg_uf" class="form-control-feedback "></p>
                             </div>
                         </div>
