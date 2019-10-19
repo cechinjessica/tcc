@@ -121,6 +121,36 @@ descricao,  tamanho, tipo, arquivo) VALUES ('$nomeEvento',
     </div>
   </nav>
   <!--</NAVBAR-->
+  <?php
+    if (isset($_SESSION['msg'])) {
+      echo "<script>
+                $(document).ready(function() {
+                $('.toast').toast({
+                  delay: 2000
+                });
+                $('.toast').toast({
+                  animation: true
+                });
+                $('.toast').toast('show');
+              });
+              var a = Veiooooo;
+              </script>";
+    }
+    ?>
+  <div class="toast">
+    <div class="toast-header">
+      Notificação
+    </div>
+    <div class="toast-body">
+      <?php
+        if (isset($_SESSION['msg_contrato'])) {
+          echo  $_SESSION['msg_contrato'];
+          unset ($_SESSION['msg_contrato']);
+        }
+        ?>
+    </div>
+  </div>
+
   <div class="container-fluid fundo-card">
     <div class="col-sm-12 col-md-12 col-lg-11 mx-auto">
       <div class="card card-padrao my-5">

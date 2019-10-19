@@ -32,7 +32,7 @@ $(document).ready(function () {
             if (!pessoa()) {
                 e.preventDefault();
             }
-            if (!nome()) {
+            if (!anome()) {
                 e.preventDefault();
             }
             if (!nacionalidade()) {
@@ -96,7 +96,7 @@ $(document).ready(function () {
             if (!pessoa()) {
                 e.preventDefault();
             }
-            if (!nome()) {
+            if (!anome()) {
                 e.preventDefault();
             }
             if (!nacionalidade()) {
@@ -194,7 +194,7 @@ function selecionarj() {
 
 }
 
-function nome() {
+function anome() {
     if ($("#nome").hasClass("is-invalid")) {
         $("#nome").removeClass("is-invalid");
     } else if ($("#nome").hasClass("is-valid")) {
@@ -203,13 +203,13 @@ function nome() {
     $("#nome").addClass("is-valid");
     var a = true;
 
-    var nome = $("#nome").val();
-    if (nome.trim() == "" || nome.trim().indexOf(" ") == -1) {
+    if ($("#nome").val().trim() == "" || $("#nome").val().trim().indexOf(" ") == -1) {
         $("#nome").addClass("is-invalid");
         a = false;
     }
     return a;
 }
+
 
 function nacionalidade() {
     if ($("#nacionalidade").hasClass("is-invalid")) {
@@ -433,12 +433,12 @@ function cep() {
 }
 
 function sexo() {
-    if ($("input[name='sexo']").hasClass("erro")) {
-        $("input[name='sexo']").removeClass("erro");
-    } else if ($("input[name='sexo']").hasClass("certo")) {
-        $("input[name='sexo']").removeClass("certo");
+    if ($("input[name='sexo'][type='radio']").hasClass("erro")) {
+        $("input[name='sexo'][type='radio']").removeClass("erro");
+    } else if ($("input[name='sexo'][type='radio']").hasClass("certo")) {
+        $("input[name='sexo'][type='radio']").removeClass("certo");
     }
-    $("input[name='sexo']").addClass("certo");
+    $("input[name='sexo'][type='radio']").addClass("certo");
     var a = true;
     $("#msg_sexo").text("");
 

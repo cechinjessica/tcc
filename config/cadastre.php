@@ -16,7 +16,7 @@ if (isset($_POST['usuario']) & isset($_POST['senha'])){
 	//$con->query($sql);
 	if (mysqli_affected_rows($conexao)!=0) {
 		mysqli_close($conexao);
-		$_SESSION['msg'] = "<p class='alert alert-danger' role='alert'>Usuário $usuario já existe</p>";
+		$_SESSION['msg'] = "Usuário $usuario já existe";
 		header('Location:../cadastrese.php');
 	}
 
@@ -26,10 +26,10 @@ if (isset($_POST['usuario']) & isset($_POST['senha'])){
 		mysqli_query($conexao,$sql);
 		if (mysqli_affected_rows($conexao)!=0) {
 			//echo "Usuario $nome inserido com sucesso!";
-			$_SESSION['msg'] = "<p class='alert alert-success' role='alert'>Usuário $usuario cadastrado com sucesso! </p>";
+			$_SESSION['msg'] = "Usuário $usuario cadastrado com sucesso!";
 			header('Location:../index.php');
 		} else {
-			$_SESSION['msg'] ="<p class='alert alert-danger' role='alert'>Erro: " . $sql . "<br/>" . mysqli_error($conexao) . "</p>" . "<br/>";
+			$_SESSION['msg'] ="Erro: " . $sql . "<br/>" . mysqli_error($conexao) . "</p>" . " no banco de dados<br/>";
 			header('Location:../cadastrese.php');
 		}
 		mysqli_close($conexao);

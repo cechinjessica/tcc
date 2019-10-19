@@ -3,6 +3,19 @@ session_start();
 require 'config/conexao.php';
 require 'verifica_login.php';
 
+$script = "<script>
+    $(document).ready(function() {
+      $('.toast').toast({
+        delay: 2000
+      });
+      $('.toast').toast({
+        animation: true
+      });
+      $('.toast').toast('show');
+    });
+
+  </script>";
+
 //PARA COLOCAR AS INFORMAÇÕES DO BD NOS CAMPOS CONTRATO
 ////////////////////////////Contrato
 if (isset($_GET['id'])){
@@ -105,11 +118,11 @@ if (isset($_POST['enviarcontrato'])){
 
       $res = mysqli_query($conexao,$sql);
       if (mysqli_error($conexao)) {
-        $_SESSION['msg'] = "<p class='alert alert-danger' role='alert'>Erro na atualização do contrato</p>";
-        header('Location:contrato.php');
+        $_SESSION['msg_erro'] = "Erro na atualização do contrato";
+        echo $script;
       } else {
-        $_SESSION['msg'] = "<p class='alert alert-success' role='alert'>contrato atualizado com sucesso!</p>";
-        header('Location:cadastros/cadastro_contrato.php');
+        $_SESSION['msg_contrato'] = "Contrato atualizado com sucesso!";
+        //header('Location:cadastros/cadastro_contrato.php');
       }
       mysqli_close($conexao);
 
@@ -118,11 +131,12 @@ if (isset($_POST['enviarcontrato'])){
       echo $sql;
       $res = mysqli_query($conexao,$sql);
       if (mysqli_affected_rows($conexao)=='1') {
-        $_SESSION['msg'] = "<p class='alert alert-success' role='alert'>Contrato excluído com sucesso!</p>";
+        $_SESSION['msg_contrato'] = "Contrato excluído com sucesso!";
         header('Location:cadastros/cadastro_contrato.php');
       } else {
-        $_SESSION['msg'] = "p class='alert alert-danger' role='alert'>Erro na exclusão do contrato</p>";
-        header('Location:contrato.php');
+        $_SESSION['msg_erro'] = "Erro na exclusão do contrato";
+        echo $script;
+
       }
       mysqli_close($conexao);
     }
@@ -131,15 +145,17 @@ if (isset($_POST['enviarcontrato'])){
     //SE FOR == 0 ENTÃO O CONTRATO AINDA NÃO ESTÁ CADASTRADO
     //INCLUSÃO
     $sql = "INSERT INTO contrato (ValorTotal, NumeroParcelas, ValorParcela, DataPagamento, Juros, Foro, LocalAss, DataAss, DataCriacao, NomeTestemunha1, RGTestemunha1, NomeTestemunha2, RGTestemunha2, Pessoa_IdVendedor,Pessoa_IdComprador, Veiculo_IdVeiculo, Login_IdUsuario, Entrada) VALUES ('$valortotal' ,'$numeroparcelas' ,'$valorparcela', '$dpagamento', '$juro' ,'$foro' ,'$lassinatura' ,'$dassinatura',(now()), '$ntestemunha1' ,'$rgtestemunha1' ,'$ntestemunha2' ,'$rgtestemunha2' ,'$idvend', '$idcomp' ,'$idvei','$idlogin','$entrada')";
-
+    echo $sql;
     mysqli_query($conexao,$sql);
 
     if (mysqli_affected_rows($conexao) =='1') {
-      $_SESSION['msg'] = "<p class='alert alert-success' role='alert'>Contrato inserido com sucesso!</p>";
+      $_SESSION['msg_contrato'] = "Contrato inserido com sucesso!";
       header('Location:cadastros/cadastro_contrato.php');
+
     } else {
-      $_SESSION['msg'] ="<p class='alert alert-danger' role='alert'>Erro: ".mysqli_error($conexao)."<p>";
-      header('Location:contrato.php');
+      $_SESSION['msg_erro'] ="Erro: ".mysqli_error($conexao)." no banco de dados";
+      echo $script;
+
     }
     mysqli_close($conexao);
 
@@ -165,7 +181,11 @@ if (isset($_POST['enviarpessoa'])){
   $cnpjempresa = $_POST['cnpjempresa'];
   $enderecoempresa = $_POST['enderecoempresa'];
   $cargoempresa = $_POST['cargoempresa'];
-  $tipoempresa = $_POST['tipoempresa'];
+  if(isset($_POST['tipoempresa'])){
+    $tipoempresa = $_POST['tipoempresa'];
+  }else{
+    $tipoempresa="";
+  }
   $cidadeempresa = $_POST['cidadeempresa'];
   $numeroempresa = $_POST['numeroempresa'];
   $nomeempresa = $_POST['nomeempresa'];
@@ -178,24 +198,22 @@ if (isset($_POST['enviarpessoa'])){
 
   if (mysqli_affected_rows($conexao)!=0) {
     mysqli_close($conexao);
-    $_SESSION['msgvendedor'] = "p class='alert alert-danger' role='alert'>$cpf já foi cadastrado</p>";
-    header("Location:contrato.php");
+    $_SESSION['msg_cpf'] = "$cpf já foi cadastrado";
 
   }else {
     if($tipopessoa == "j"){
-      $sql = "INSERT INTO pessoa (tipopessoa, nome, nacionalidade, profissao, estadocivil, rg, cpf, endereco, sexo, numero, cidade, cep, cnpj, enderecoempresa, cargoempresa, tipoempresa, cidadeempresa, numeroempresa, nomeempresa, uf, ufempresa) VALUES ('$tipopessoa', '$nome', LCASE('$nacionalidade'), '$profissao', '$ecivil', '$rg', '$cpf', '$endereco', '$sexo', '$numero', '$cidade', '$cep', '$cnpjempresa', '$enderecoempresa', '$cargoempresa', '$tipoempresa', '$cidadeempresa', '$numeroempresa', '$nomeempresa',UCASE('$uf'),UCASE('$ufempresa')";
+      $sql = "INSERT INTO pessoa (tipopessoa, nome, nacionalidade, profissao, estadocivil, rg, cpf, endereco, sexo, numero, cidade, cep, cnpj, enderecoempresa, cargoempresa, tipoempresa, cidadeempresa, numeroempresa, nomeempresa, uf, ufempresa) VALUES ('$tipopessoa', '$nome', LCASE('$nacionalidade'), '$profissao', '$ecivil', '$rg', '$cpf', '$endereco', '$sexo', '$numero', '$cidade', '$cep', '$cnpjempresa', '$enderecoempresa', '$cargoempresa', '$tipoempresa', '$cidadeempresa', '$numeroempresa', '$nomeempresa',UCASE('$uf'),UCASE('$ufempresa'))";
 
     } else if($tipopessoa == "f"){
       $sql = "INSERT INTO pessoa (tipopessoa, nome, nacionalidade, profissao, estadocivil, rg, cpf, endereco, sexo, numero, cidade, cep, uf) VALUES ('$tipopessoa', '$nome', LCASE('$nacionalidade'), '$profissao', '$ecivil', '$rg', '$cpf', '$endereco', '$sexo', '$numero', '$cidade', '$cep', UCASE('$uf'))";
     }
+    echo $sql;
     mysqli_query($conexao,$sql);
 
     if (mysqli_affected_rows($conexao) =='1') {
-      $_SESSION['msgvendedor'] = "<p class='alert alert-success' role='alert'>$nome inserido com sucesso!</p>";
-      header("Location:contrato.php");
+      $_SESSION['msgvendedor'] = "$nome inserido com sucesso!";
     } else {
-      $_SESSION['msgvendedor'] ="<p class='alert alert-danger' role='alert'>Erro: ".mysqli_error($conexao)."<p>";
-      header("Location:contrato.php");
+      $_SESSION['msgvendedor'] ="Erro: ".mysqli_error($conexao)." no banco de dados";
     }
     mysqli_close($conexao);
   }
@@ -229,27 +247,22 @@ if (isset($_POST['enviarveiculo'])){
 
   if (mysqli_affected_rows($conexao)!=0) {
     mysqli_close($conexao);
-    $_SESSION['msg'] = "p class='alert alert-danger' role='alert'>$placa já foi cadastrada</p>";
-    header('Location:contrato.php');
-
+    $_SESSION[_contrato] = "$placa já foi cadastrada";
   }else {
     $sql = "INSERT INTO veiculo (nome, marca, modelo, ano, chassi, cor, placa, renavam, emnomede, valor, estado, combustivel) VALUES ('$nomevei', '$marca', '$modelo', '$ano', '$chassi', '$cor', UCASE('$placa'), '$renavam', '$proprietario', '$valorvei', '$estado', '$combustivel')";
+    echo $sql;
     mysqli_query($conexao,$sql);
 
     if (mysqli_affected_rows($conexao) =='1') {
-      $_SESSION['msg'] = "<p class='alert alert-success' role='alert'>$nomevei inserido com sucesso!</p>";
-      header('Location:contrato.php');
+      $_SESSION['msg'] = "$nomevei inserido com sucesso!";
     } else {
-      $_SESSION['msg'] ="<p class='alert alert-danger' role='alert'>Erro: ".mysqli_error($conexao)."<p>";
-      header('Location:contrato.php');
+      $_SESSION['msg'] ="Erro: ".mysqli_error($conexao)." no banco de dados";
     }
     mysqli_close($conexao);
   }
 }
 
 ?>
-
-
 
 <!DOCTYPE html>
 <html>
@@ -381,6 +394,36 @@ if (isset($_POST['enviarveiculo'])){
     </div>
   </nav>
   <!--</NAVBAR-->
+
+  <div class="toast">
+    <div class="toast-header">
+      Notificação
+    </div>
+    <div class="toast-body">
+      <?php
+        if (isset($_SESSION['msg_contrato'])) {
+          echo  $_SESSION['msg_contrato'];
+          unset ($_SESSION['msg_contrato']);
+        }
+
+        if (isset($_SESSION['msg_erro'])) {
+          echo  $_SESSION['msg_erro'];
+          unset ($_SESSION['msg_erro']);
+        }
+
+        if (isset($_SESSION['msg'])) {
+          echo  $_SESSION['msg'];
+          unset ($_SESSION['msg']);
+        }
+
+        if (isset($_SESSION['msgvendedor'])) {
+          echo  $_SESSION['msgvendedor'];
+          unset ($_SESSION['msgvendedor']);
+        }
+        ?>
+    </div>
+  </div>
+
   <!--MODAL VENDEDOR Buscar-->
   <div class="modal fade" id="modalVendedor" tabindex="-1" role="dialog" aria-labelledby="modalVendedor" aria-hidden="true">
     <div class="modal-dialog modal-xl" role="document" style="max-width: 90%;">
@@ -457,7 +500,7 @@ if (isset($_POST['enviarveiculo'])){
 
             <div class="row">
               <div class="form-group col-xl">
-                <label for="nome">Nome completo</label><label for="nome" class="representante"> do representante</label>
+                <label for="nome">Nome</label><label for="nome" class="representante"> do representante</label>
                 <input type="text" id="nome" class="form-control" name="nome">
               </div>
 
@@ -504,6 +547,19 @@ if (isset($_POST['enviarveiculo'])){
               <div class="form-group col-xl">
                 <label for="cpf">CPF</label><label for="cpf" class="representante"> do representante</label>
                 <input type="text" id="cpf" class="form-control" name="cpf">
+                <div class="toast">
+                  <div class="toast-header">
+                    Notificação
+                  </div>
+                  <div class="toast-body">
+                    <?php
+                      if (isset($_SESSION['msg_cpf'])) {
+                        echo  $_SESSION['msg_cpf'];
+                        unset ($_SESSION['msg_cpf']);
+                      }
+                      ?>
+                  </div>
+                </div>
               </div>
 
               <div class="form-group col-xl">
@@ -512,7 +568,7 @@ if (isset($_POST['enviarveiculo'])){
               </div>
 
               <div class="form-group col-xl">
-                <label for="uf">UF</label><label for="uf" class="representante"> da empresa</label>
+                <label for="uf">UF</label><label for="uf" class="representante"> do representante</label>
                 <input type="text" id="uf" class="form-control col-md-2" name="uf" style="text-transform:uppercase" maxlength="2" value="<?php echo ($id!=0)?"$uf":'';?>">
                 <p id="msg_uf" class="form-control-feedback "></p>
               </div>
@@ -543,6 +599,7 @@ if (isset($_POST['enviarveiculo'])){
                 <div class="form-check-inline">
                   <input type="radio" class="form-check-input" name="sexo" value="m" id="sexom">Masculino
                 </div>
+                <p id="msg_sexo" class="form-control feedback"></p>
               </div>
             </div>
 
@@ -595,12 +652,14 @@ if (isset($_POST['enviarveiculo'])){
                 <input type="text" id="ufempresa" class="form-control" name="ufempresa" style="text-transform:uppercase" maxlength="2" value="<?php echo ($id!=0)?"$ufempresa":'';?>">
                 <p id="msg_ufempresa" class="form-control-feedback "></p>
               </div>
-              <div class="form-group" id="gnumeroempresa">
+              <div class="form-group col-xl" id="gnumeroempresa">
                 <label for="numeroempresa">Número</label><label for="numeroempresa" class="representante"> da empresa</label>
                 <input type="text" id="numeroempresa" class="form-control" name="numeroempresa" value="<?php echo ($id!=0)?"$numeroempresa":'';?>">
                 <p id="msg_numeroempresa" class="form-control-feedback "></p>
               </div>
             </div>
+
+            <p class="form-control-feedback" id="msg_pessoa"></p>
 
             <input type='hidden' name='id' id='codigo' value="<?php echo ($id!=0)?"$id":'0';?>">
 
@@ -650,12 +709,19 @@ if (isset($_POST['enviarveiculo'])){
         </div>
         <div class="modal-body">
           <form action="#" method="post" class="form-padrao">
-            <p class="feedback"><?php
-                if (isset($_SESSION['msg'])) {
-                  echo  $_SESSION['msg'];
-                  unset ($_SESSION['msg']);
-                }
-                ?></p>
+            <div class="toast">
+              <div class="toast-header">
+                Notificação
+              </div>
+              <div class="toast-body">
+                <?php
+                  if (isset($_SESSION['msg'])) {
+                    echo  $_SESSION['msg'];
+                    unset ($_SESSION['msg']);
+                  }
+                  ?>
+              </div>
+            </div>
 
             <div class="row">
               <div class="form-group col-xl">
@@ -776,19 +842,6 @@ if (isset($_POST['enviarveiculo'])){
         <div class="card-body">
           <h5 class="card-title text-center">O contrato:</h5>
           <form action="#" method="post" class="form-padrao">
-            <p class="feedback" id="msg">
-              <?php
-  if (isset($_SESSION['msg'])) {
-    echo  $_SESSION['msg'];
-    unset ($_SESSION['msg']);
-  }
-                ?></p>
-            <p class="feedback"><?php
-                if (isset($_SESSION['msgvendedor'])) {
-                  echo  $_SESSION['msgvendedor'];
-                  unset ($_SESSION['msgvendedor']);
-                }
-                ?></p>
 
             <div class="row">
               <div class="form-group col-md">

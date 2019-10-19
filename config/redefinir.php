@@ -18,17 +18,17 @@ if (isset($_POST['usuario']) & isset($_POST['senha']) & isset($_POST['nsenha']))
 		mysqli_query($conexao,$sql);
 		if (mysqli_affected_rows($conexao)!=0) {
 			//echo "Usuario $nome inserido com sucesso!";
-			$_SESSION['msg'] = "<p class='alert alert-success' role='alert'>Usuário $usuario teve a senha redefinida com sucesso! </p>";
+			$_SESSION['msg'] = "Usuário $usuario teve a senha redefinida com sucesso!";
 			header('Location:../index.php');
 		} else {
-			$_SESSION['msg'] ="<p class='alert alert-danger' role='alert'>Erro: " . $sql . "<br/>" . mysqli_error($conexao) . "<p>" . "<br/>";
+			$_SESSION['msg'] ="Erro: " . $sql . "<br/>" . mysqli_error($conexao) . " no banco de dados";
 			header('Location:../redefinirsenha.php');
 		}
 		mysqli_close($conexao);
 
 	}else{
 		mysqli_close($conexao);
-		$_SESSION['msg'] = "<p class='alert alert-danger' role='alert'>Usuário $usuario não existe</p>";
+		$_SESSION['msg'] = "Usuário $usuario não existe";
 		header('Location:../redefinirsenha.php');
 
 	}
