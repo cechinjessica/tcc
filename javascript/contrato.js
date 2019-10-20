@@ -26,7 +26,6 @@ $(document).ready(function () {
 	});
 
 
-
 	$("#rgtestemunha1").mask("0000000000");
 	$("#rgtestemunha2").mask("0000000000");
 
@@ -389,7 +388,7 @@ function dassinatura() {
 	data.setHours(0, 0, 0, 0);
 	data.setDate(data.getDate() + 1);
 
-	if (data.valueOf() < hoje.valueOf()) {
+	if (data.valueOf() < hoje.valueOf() | data.toString() == "Invalid Date") {
 		$("#dassinatura").addClass("is-invalid");
 		a = false;
 	}
