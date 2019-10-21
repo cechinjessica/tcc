@@ -122,7 +122,14 @@ descricao,  tamanho, tipo, arquivo) VALUES ('$nomeEvento',
   </nav>
   <!--</NAVBAR-->
   <?php
-    if (isset($_SESSION['msg'])) {
+    if (isset($_SESSION['msg_contratoa'])) {
+      echo "<div class='toast'>
+    <div class='toast-header'>
+      Notificação
+    </div>
+    <div class='toast-body'>";
+      echo  $_SESSION['msg_contratoa'];
+      unset ($_SESSION['msg_contratoa']);
       echo "<script>
                 $(document).ready(function() {
                 $('.toast').toast({
@@ -133,23 +140,11 @@ descricao,  tamanho, tipo, arquivo) VALUES ('$nomeEvento',
                 });
                 $('.toast').toast('show');
               });
-              var a = Veiooooo;
               </script>";
+      echo "  </div>
+  </div>";
     }
     ?>
-  <div class="toast">
-    <div class="toast-header">
-      Notificação
-    </div>
-    <div class="toast-body">
-      <?php
-        if (isset($_SESSION['msg_contrato'])) {
-          echo  $_SESSION['msg_contrato'];
-          unset ($_SESSION['msg_contrato']);
-        }
-        ?>
-    </div>
-  </div>
 
   <div class="container-fluid fundo-card">
     <div class="col-sm-12 col-md-12 col-lg-11 mx-auto">

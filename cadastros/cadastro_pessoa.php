@@ -8,7 +8,7 @@ include('../config/verifica_login.php');
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <link rel="shortcut icon" href="imagens/icone.png" />
+  <link rel="shortcut icon" href="../imagens/icone.png" />
   <title>Contrato - Pessoas</title>
 
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
@@ -102,6 +102,15 @@ include('../config/verifica_login.php');
   <!--</NAVBAR-->
   <?php
     if (isset($_SESSION['msg'])) {
+      echo "<div class='toast'>
+    <div class='toast-header'>
+      Notificação
+    </div>
+    <div class='toast-body'>";
+      echo  $_SESSION['msg'];
+      unset ($_SESSION['msg']);
+      echo " </div>
+  </div>";
 
       echo "<script>
                 $(document).ready(function() {
@@ -113,23 +122,11 @@ include('../config/verifica_login.php');
                 });
                 $('.toast').toast('show');
               });
-              
+
               </script>";
     }
     ?>
-  <div class="toast">
-    <div class="toast-header">
-      Notificação
-    </div>
-    <div class="toast-body">
-      <?php
-        if (isset($_SESSION['msg'])) {
-          echo  $_SESSION['msg'];
-          unset ($_SESSION['msg']);
-        }
-        ?>
-    </div>
-  </div>
+
 
   <div class="container-fluid fundo-card">
     <div class="col-sm-12 col-md-12 col-lg-11 mx-auto">

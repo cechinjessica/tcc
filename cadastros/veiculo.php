@@ -252,19 +252,21 @@ if (isset($_POST['enviarveiculo'])){
         <div class="card-body">
           <h5 class="card-title text-center">Sobre a veículo:</h5>
           <form action="#" method="post" class="form-padrao">
-            <div class="toast">
-              <div class="toast-header">
+
+            <?php
+              if (isset($_SESSION['msg_erro'])) {
+                echo "<div class='toast'>
+              <div class='toast-header'>
                 Notificação
               </div>
-              <div class="toast-body">
-                <?php
-                if (isset($_SESSION['msg_erro'])) {
-                  echo  $_SESSION['msg_erro'];
-                  unset ($_SESSION['msg_erro']);
-                }
-                ?>
-              </div>
-            </div>
+              <div class='toast-body'>";
+                echo  $_SESSION['msg_erro'];
+                unset ($_SESSION['msg_erro']);
+
+                echo "</div></div>";
+              }
+              ?>
+
 
             <div class="row">
               <div class="form-group col-xl">

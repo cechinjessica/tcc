@@ -31,7 +31,7 @@ if (mysqli_affected_rows($conexao)>0) {
         echo "<div class='card-body bg-transparent'><div class='card-text'>";
         echo "<p>Vendedor: $row[1]</p>";
         echo "<p>Comprador: $row[0]</p>";
-        echo "<p class='text-success'>R$$row[3]</p> ";
+        echo "<p class='text-success lead'>R$$row[3]</p> ";
         echo "<p> $dt $hora</p>";
         echo "<a href=../contrato.php?id=$row[5]&op=A class='card-link text-info'>Atualizar</a><a href=../contrato.php?id=$row[5]&op=D class='card-link text-danger'>Deletar</a>";
         echo "<center><a href=../config/pdfcontrato.php?id=$row[5]><button type='button' class='btn btn-outline-info btn-sm w-100'>Imprimir</button></a></center>";

@@ -330,19 +330,21 @@ if (isset($_POST['enviar'])){
       <div class="card card-padrao my-5 justify-content-center">
         <div class="card-body justify-content-center">
           <h5 class="card-title text-center">Sobre a pessoa:</h5>
-          <div class="toast">
-            <div class="toast-header">
+
+          <?php
+            if (isset($_SESSION['msg_erro'])) {
+              echo "<div class='toast'>
+            <div class='toast-header'>
               Notificação
             </div>
-            <div class="toast-body">
-              <?php
-                if (isset($_SESSION['msg_erro'])) {
-                  echo  $_SESSION['msg_erro'];
-                  unset ($_SESSION['msg_erro']);
-                }
-                ?>
-            </div>
-          </div>
+            <div class='toast-body'>";
+              echo  $_SESSION['msg_erro'];
+              unset ($_SESSION['msg_erro']);
+              echo " </div>
+          </div>";
+            }
+            ?>
+
 
           <form action="#" method="post" class="form-padrao">
             <div class="form-group">
@@ -355,189 +357,189 @@ if (isset($_POST['enviar'])){
               <div class="form-check-inline">
                 <input type="radio" class="form-check-input was-validated" name="pessoa" value="j" id="pessoaj" <?php echo ($id!=0)?"$pessoaj":'';?>>Pessoa jurídica
               </div>
-              <p id="msg_pessoa" class="form-control feedback"></p>
-              <div class="row">
-                <div class="form-group col-xl">
-                  <label for="cpf">CPF</label><label for="cpf" class="representante"> do representante</label>
-                  <input type="text" id="cpf" class="form-control" name="cpf" value="<?php echo ($id!=0)?"$cpf":'';?>">
-                  <p id="msg_cpf" class="form-control-feedback "></p>
-                </div>
+            </div>
+            <p id="msg_pessoa" class="form-control feedback"></p>
+            <div class="row">
+              <div class="form-group col-xl">
+                <label for="cpf">CPF</label><label for="cpf" class="representante"> do representante</label>
+                <input type="text" id="cpf" class="form-control" name="cpf" value="<?php echo ($id!=0)?"$cpf":'';?>">
+                <p id="msg_cpf" class="form-control-feedback "></p>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="form-group col-xl">
+                <label for="nome">Nome completo</label><label for="nome" class="representante"> do representante</label>
+                <input type="text" id="nome" class="form-control" name="nome" value="<?php echo ($id!=0)?"$nome":'';?>">
+                <p id="msg_nome" class="form-control-feedback"></p>
               </div>
 
-              <div class="row">
-                <div class="form-group col-xl">
-                  <label for="nome">Nome completo</label><label for="nome" class="representante"> do representante</label>
-                  <input type="text" id="nome" class="form-control" name="nome" value="<?php echo ($id!=0)?"$nome":'';?>">
-                  <p id="msg_nome" class="form-control-feedback"></p>
-                </div>
+              <div class="form-group col-xl">
+                <label for="nacionalidade">Nacionalidade</label><label for="nacionalidade" class="representante"> do representante</label>
+                <input type="text" id="nacionalidade" class="form-control" name="nacionalidade" value="<?php echo ($id!=0)?"$nacionalidade":'';?>">
+                <p id="msg_nacionalidade" class="form-control feedback"></p>
+              </div>
+            </div>
 
-                <div class="form-group col-xl">
-                  <label for="nacionalidade">Nacionalidade</label><label for="nacionalidade" class="representante"> do representante</label>
-                  <input type="text" id="nacionalidade" class="form-control" name="nacionalidade" value="<?php echo ($id!=0)?"$nacionalidade":'';?>">
-                  <p id="msg_nacionalidade" class="form-control feedback"></p>
-                </div>
+            <div class="row">
+              <div class="form-group col-xl">
+                <label for="profissao">Profissão</label><label for="profissao" class="representante"> do representante</label>
+                <input type="text" id="profissao" class="form-control" name="profissao" value="<?php echo ($id!=0)?"$profissao":'';?>">
+                <p id="msg_profissao" class="form-control feedback"></p>
               </div>
 
-              <div class="row">
-                <div class="form-group col-xl">
-                  <label for="profissao">Profissão</label><label for="profissao" class="representante"> do representante</label>
-                  <input type="text" id="profissao" class="form-control" name="profissao" value="<?php echo ($id!=0)?"$profissao":'';?>">
-                  <p id="msg_profissao" class="form-control feedback"></p>
-                </div>
+              <div class="form-group col-xl">
+                <label for="rg">RG</label><label for="rg" class="representante"> do representante</label>
+                <input type="text" id="rg" class="form-control" name="rg" value="<?php echo ($id!=0)?"$rg":'';?>">
+                <p id="msg_rg" class="form-control-feedback "></p>
+              </div>
+            </div>
 
-                <div class="form-group col-xl">
-                  <label for="rg">RG</label><label for="rg" class="representante"> do representante</label>
-                  <input type="text" id="rg" class="form-control" name="rg" value="<?php echo ($id!=0)?"$rg":'';?>">
-                  <p id="msg_rg" class="form-control-feedback "></p>
-                </div>
+            <div class="form-group" id="ecivil">
+              <label for="ecivil">Estado cívil</label>
+              <label for="ecivil" class="representante"> do representante</label>
+              <div class="form-check-inline">
+                <input type="radio" class="form-check-input" name="ecivil" value="solteiro" id="solteiro" <?php echo ($id!=0)?"$solteiro":'';?>>Solteiro(a)
+              </div>
+              <div class="form-check-inline">
+                <input type="radio" class="form-check-input" name="ecivil" value="casado" id="casado" <?php echo ($id!=0)?"$casado":'';?>>Casado(a)
+              </div>
+              <div class="form-check-inline">
+                <input type="radio" class="form-check-input" name="ecivil" value="divorciado" id="divorciado" <?php echo ($id!=0)?"$divorciado":'';?>>Divorciado(a)
+              </div>
+              <div class="form-check-inline">
+                <input type="radio" class="form-check-input" name="ecivil" value="viuvo" id="viuvo" <?php echo ($id!=0)?"$viuvo":'';?>>Viúvo(a)
+              </div>
+              <div class="form-check-inline">
+                <input type="radio" class="form-check-input" name="ecivil" value="separado" id="separado" <?php echo ($id!=0)?"$separado":'';?>>Separado(a)
+              </div>
+              <p id="msg_ecivil" class="form-control feedback"></p>
+            </div>
+
+            <div class="row">
+              <div class="form-group col-xl">
+                <label for="endereco">Endereço</label><label for="endereco" class="representante"> do representante</label>
+                <input type="text" id="endereco" class="form-control" name="endereco" title="Rua XXXXX, Bairro XXXX" value="<?php echo ($id!=0)?"$endereco":'';?>">
+                <p id="msg_endereco" class="form-control-feedback "></p>
+              </div>
+              <div class="form-group col-xl">
+                <label for="uf">UF</label><label for="uf" class="representante"> do representante</label>
+                <input type="text" id="uf" class="form-control col-md-3" name="uf" style="text-transform:uppercase" maxlength="2" value="<?php echo ($id!=0)?"$uf":'';?>">
+                <p id="msg_uf" class="form-control-feedback "></p>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="form-group col-xl">
+                <label for="numero">Número</label><label for="numero" class="representante"> do representante</label>
+                <input type="text" id="numero" class="form-control" name="numero" value="<?php echo ($id!=0)?"$numero":'';?>">
+                <p id="msg_numero" class="form-control-feedback "></p>
               </div>
 
-              <div class="form-group" id="ecivil">
-                <label for="ecivil">Estado cívil</label>
-                <label for="ecivil" class="representante"> do representante</label>
+              <div class="form-group col-xl">
+                <label for="cidade">Cidade</label><label for="cidade" class="representante"> do representante</label>
+                <input type="text" id="cidade" class="form-control" name="cidade" value="<?php echo ($id!=0)?"$cidade":'';?>">
+                <p id="msg_cidade" class="form-control-feedback "></p>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="form-group col-xl">
+                <label for="cep">CEP</label><label for="cep" class="representante"> do representante</label>
+                <input type="text" id="cep" class="form-control" name="cep" value="<?php echo ($id!=0)?"$cep":'';?>">
+                <p id="msg_cep" class="form-control-feedback "></p>
+              </div>
+
+              <div class="form-group col-xl">
+                <label for="sexo">Sexo</label><label for="cep" class="representante"> do representante</label>
                 <div class="form-check-inline">
-                  <input type="radio" class="form-check-input" name="ecivil" value="solteiro" id="solteiro" <?php echo ($id!=0)?"$solteiro":'';?>>Solteiro(a)
+                  <input type="radio" class="form-check-input" name="sexo" value="f" id="sexof" <?php echo ($id!=0)?"$sexof":'';?>>Feminino
                 </div>
                 <div class="form-check-inline">
-                  <input type="radio" class="form-check-input" name="ecivil" value="casado" id="casado" <?php echo ($id!=0)?"$casado":'';?>>Casado(a)
+                  <input type="radio" class="form-check-input" name="sexo" value="m" id="sexom" <?php echo ($id!=0)?"$sexom":'';?>>Masculino
+                </div>
+                <p id="msg_sexo" class="form-control feedback"></p>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="form-group col-xl" id="gnomeempresa">
+                <label for="nomeempresa">Nome</label><label for="nomeempresa" class="representante"> da empresa</label>
+                <input type="text" id="nomeempresa" class="form-control" name="nomeempresa" value="<?php echo ($id!=0)?"$nomeempresa":'';?>">
+                <p id="msg_nomeempresa" class="form-control-feedback "></p>
+              </div>
+
+              <div class="form-group col-xl" id="gcnpj">
+                <label for="cnpj">CNPJ</label><label for="cnpj" class="representante"> da empresa</label>
+                <input type="text" id="cnpj" class="form-control" name="cnpjempresa" value="<?php echo ($id!=0)?"$cnpjempresa":'';?>">
+                <p id="msg_cnpj" class="form-control-feedback "></p>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="form-group col-xl" id="gtipoempresa">
+                <label for="tipoempresa">Tipo</label>
+                <label for="tipoempresa" class="representante"> da empresa</label>
+                <div class="form-check-inline">
+                  <input type="radio" class="form-check-input" name="tipoempresa" value="pu" id="tipoempresapu" <?php echo ($id!=0)?"$tipoempresapu":'';?>>Pública
                 </div>
                 <div class="form-check-inline">
-                  <input type="radio" class="form-check-input" name="ecivil" value="divorciado" id="divorciado" <?php echo ($id!=0)?"$divorciado":'';?>>Divorciado(a)
+                  <input type="radio" class="form-check-input" name="tipoempresa" value="pr" id="tipoempresapr" <?php echo ($id!=0)?"$tipoempresapr":'';?>>Privada
                 </div>
-                <div class="form-check-inline">
-                  <input type="radio" class="form-check-input" name="ecivil" value="viuvo" id="viuvo" <?php echo ($id!=0)?"$viuvo":'';?>>Viúvo(a)
-                </div>
-                <div class="form-check-inline">
-                  <input type="radio" class="form-check-input" name="ecivil" value="separado" id="separado" <?php echo ($id!=0)?"$separado":'';?>>Separado(a)
-                </div>
-                <p id="msg_ecivil" class="form-control feedback"></p>
+                <p id="msg_tipoempresa" class="form-control feedback"></p>
               </div>
 
-              <div class="row">
-                <div class="form-group col-xl">
-                  <label for="endereco">Endereço</label><label for="endereco" class="representante"> do representante</label>
-                  <input type="text" id="endereco" class="form-control" name="endereco" title="Rua XXXXX, Bairro XXXX" value="<?php echo ($id!=0)?"$endereco":'';?>">
-                  <p id="msg_endereco" class="form-control-feedback "></p>
-                </div>
-                <div class="form-group col-xl">
-                  <label for="uf">UF</label><label for="uf" class="representante"> do representante</label>
-                  <input type="text" id="uf" class="form-control col-md-3" name="uf" style="text-transform:uppercase" maxlength="2" value="<?php echo ($id!=0)?"$uf":'';?>">
-                  <p id="msg_uf" class="form-control-feedback "></p>
-                </div>
+              <div class="form-group col-xl" id="gcargoempresa">
+                <label for="cargo">Cargo</label><label for="cargo" class="representante"> do representante</label>
+                <input type="text" id="cargoempresa" class="form-control" name="cargoempresa" value="<?php echo ($id!=0)?"$cargoempresa":'';?>">
+                <p id="msg_cargoempresa" class="form-control-feedback "></p>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="form-group col-xl" id="genderecoempresa">
+                <label for="enderecoempresa">Endereço</label><label for="enderecoempresa" class="representante"> da empresa</label>
+                <input type="text" id="enderecoempresa" class="form-control" title="Rua XXXX, Bairro XXXX" name="enderecoempresa" value="<?php echo ($id!=0)?"$enderecoempresa":'';?>">
+                <p id="msg_enderecoempresa" class="form-control-feedback "></p>
               </div>
 
-              <div class="row">
-                <div class="form-group col-xl">
-                  <label for="numero">Número</label><label for="numero" class="representante"> do representante</label>
-                  <input type="text" id="numero" class="form-control" name="numero" value="<?php echo ($id!=0)?"$numero":'';?>">
-                  <p id="msg_numero" class="form-control-feedback "></p>
-                </div>
-
-                <div class="form-group col-xl">
-                  <label for="cidade">Cidade</label><label for="cidade" class="representante"> do representante</label>
-                  <input type="text" id="cidade" class="form-control" name="cidade" value="<?php echo ($id!=0)?"$cidade":'';?>">
-                  <p id="msg_cidade" class="form-control-feedback "></p>
-                </div>
+              <div class="form-group col-xl" id="gcidadeempresa">
+                <label for="cidadeempresa">Cidade</label><label for="cidadeempresa" class="representante"> da empresa</label>
+                <input type="text" id="cidadeempresa" class="form-control" name="cidadeempresa" value="<?php echo ($id!=0)?"$cidadeempresa":'';?>">
+                <p id="msg_cidadeempresa" class="form-control-feedback "></p>
               </div>
-
-              <div class="row">
-                <div class="form-group col-xl">
-                  <label for="cep">CEP</label><label for="cep" class="representante"> do representante</label>
-                  <input type="text" id="cep" class="form-control" name="cep" value="<?php echo ($id!=0)?"$cep":'';?>">
-                  <p id="msg_cep" class="form-control-feedback "></p>
-                </div>
-
-                <div class="form-group col-xl">
-                  <label for="sexo">Sexo</label><label for="cep" class="representante"> do representante</label>
-                  <div class="form-check-inline">
-                    <input type="radio" class="form-check-input" name="sexo" value="f" id="sexof" <?php echo ($id!=0)?"$sexof":'';?>>Feminino
-                  </div>
-                  <div class="form-check-inline">
-                    <input type="radio" class="form-check-input" name="sexo" value="m" id="sexom" <?php echo ($id!=0)?"$sexom":'';?>>Masculino
-                  </div>
-                  <p id="msg_sexo" class="form-control feedback"></p>
-                </div>
+            </div>
+            <div class="row">
+              <div class="form-group col-xl" id="gufempresa">
+                <label for="ufempresa">UF</label><label for="ufempresa" class="representante"> da empresa</label>
+                <input type="text" id="ufempresa" class="form-control" name="ufempresa" style="text-transform:uppercase" maxlength="2" value="<?php echo ($id!=0)?"$ufempresa":'';?>">
+                <p id="msg_ufempresa" class="form-control-feedback "></p>
               </div>
-
-              <div class="row">
-                <div class="form-group col-xl" id="gnomeempresa">
-                  <label for="nomeempresa">Nome</label><label for="nomeempresa" class="representante"> da empresa</label>
-                  <input type="text" id="nomeempresa" class="form-control" name="nomeempresa" value="<?php echo ($id!=0)?"$nomeempresa":'';?>">
-                  <p id="msg_nomeempresa" class="form-control-feedback "></p>
-                </div>
-
-                <div class="form-group col-xl" id="gcnpj">
-                  <label for="cnpj">CNPJ</label><label for="cnpj" class="representante"> da empresa</label>
-                  <input type="text" id="cnpj" class="form-control" name="cnpjempresa" value="<?php echo ($id!=0)?"$cnpjempresa":'';?>">
-                  <p id="msg_cnpj" class="form-control-feedback "></p>
-                </div>
+              <div class="form-group col-xl" id="gnumeroempresa">
+                <label for="numeroempresa">Número</label><label for="numeroempresa" class="representante"> da empresa</label>
+                <input type="text" id="numeroempresa" class="form-control" name="numeroempresa" value="<?php echo ($id!=0)?"$numeroempresa":'';?>">
+                <p id="msg_numeroempresa" class="form-control-feedback "></p>
               </div>
+            </div>
 
-              <div class="row">
-                <div class="form-group col-xl" id="gtipoempresa">
-                  <label for="tipoempresa">Tipo</label>
-                  <label for="tipoempresa" class="representante"> da empresa</label>
-                  <div class="form-check-inline">
-                    <input type="radio" class="form-check-input" name="tipoempresa" value="pu" id="tipoempresapu" <?php echo ($id!=0)?"$tipoempresapu":'';?>>Pública
-                  </div>
-                  <div class="form-check-inline">
-                    <input type="radio" class="form-check-input" name="tipoempresa" value="pr" id="tipoempresapr" <?php echo ($id!=0)?"$tipoempresapr":'';?>>Privada
-                  </div>
-                  <p id="msg_tipoempresa" class="form-control feedback"></p>
-                </div>
+            <input type='hidden' name='id' id='codigo' value="<?php echo ($id!=0)?"$id":'0';?>">
+            <input type='hidden' name='op' value="<?php echo ($id!=0)?"$op":'';?>">
 
-                <div class="form-group col-xl" id="gcargoempresa">
-                  <label for="cargo">Cargo</label><label for="cargo" class="representante"> do representante</label>
-                  <input type="text" id="cargoempresa" class="form-control" name="cargoempresa" value="<?php echo ($id!=0)?"$cargoempresa":'';?>">
-                  <p id="msg_cargoempresa" class="form-control-feedback "></p>
-                </div>
-              </div>
-
-              <div class="row">
-                <div class="form-group col-xl" id="genderecoempresa">
-                  <label for="enderecoempresa">Endereço</label><label for="enderecoempresa" class="representante"> da empresa</label>
-                  <input type="text" id="enderecoempresa" class="form-control" title="Rua XXXX, Bairro XXXX" name="enderecoempresa" value="<?php echo ($id!=0)?"$enderecoempresa":'';?>">
-                  <p id="msg_enderecoempresa" class="form-control-feedback "></p>
-                </div>
-
-                <div class="form-group col-xl" id="gcidadeempresa">
-                  <label for="cidadeempresa">Cidade</label><label for="cidadeempresa" class="representante"> da empresa</label>
-                  <input type="text" id="cidadeempresa" class="form-control" name="cidadeempresa" value="<?php echo ($id!=0)?"$cidadeempresa":'';?>">
-                  <p id="msg_cidadeempresa" class="form-control-feedback "></p>
-                </div>
-              </div>
-              <div class="row">
-                <div class="form-group col-xl" id="gufempresa">
-                  <label for="ufempresa">UF</label><label for="ufempresa" class="representante"> da empresa</label>
-                  <input type="text" id="ufempresa" class="form-control" name="ufempresa" style="text-transform:uppercase" maxlength="2" value="<?php echo ($id!=0)?"$ufempresa":'';?>">
-                  <p id="msg_ufempresa" class="form-control-feedback "></p>
-                </div>
-                <div class="form-group col-xl" id="gnumeroempresa">
-                  <label for="numeroempresa">Número</label><label for="numeroempresa" class="representante"> da empresa</label>
-                  <input type="text" id="numeroempresa" class="form-control" name="numeroempresa" value="<?php echo ($id!=0)?"$numeroempresa":'';?>">
-                  <p id="msg_numeroempresa" class="form-control-feedback "></p>
-                </div>
-              </div>
-
-              <input type='hidden' name='id' id='codigo' value="<?php echo ($id!=0)?"$id":'0';?>">
-              <input type='hidden' name='op' value="<?php echo ($id!=0)?"$op":'';?>">
-
-              <?php
-                $txtbtn="Incluir";
-                if (isset($op)){
-                  $txtbtn=($op=='A')?'Atualizar':'Excluir';
-                }
-                ?>
-              <input class="btn btn-md btn-primary btn-block text-uppercase" type="submit" name="enviar" value="<?php echo $txtbtn?>" id="salvar">
+            <?php
+              $txtbtn="Incluir";
+              if (isset($op)){
+                $txtbtn=($op=='A')?'Atualizar':'Excluir';
+              }
+              ?>
+            <input class="btn btn-md btn-primary btn-block text-uppercase" type="submit" name="enviar" value="<?php echo $txtbtn?>" id="salvar">
           </form>
         </div>
       </div>
     </div>
+
+
+
   </div>
-
-
-
-
 
   <!--<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>-->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>

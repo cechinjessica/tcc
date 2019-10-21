@@ -25,8 +25,7 @@ if (isset($_POST['usuario']) & isset($_POST['senha'])){
 
 		mysqli_query($conexao,$sql);
 		if (mysqli_affected_rows($conexao)!=0) {
-			//echo "Usuario $nome inserido com sucesso!";
-			$_SESSION['msg'] = "Usuário $usuario cadastrado com sucesso!";
+			$_SESSION['msg'] = " <p class='text-success lead'>Usuário $usuario cadastrado com sucesso!</p>";
 			header('Location:../index.php');
 		} else {
 			$_SESSION['msg'] ="Erro: " . $sql . "<br/>" . mysqli_error($conexao) . "</p>" . " no banco de dados<br/>";

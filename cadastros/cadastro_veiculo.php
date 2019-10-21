@@ -24,15 +24,15 @@ include('../config/verifica_login.php');?>
       //COM JQUERY
       //POST
       /*$.post("busca_cli.php", {
-          	q: str;
-          	//op: 'teste'
-          }, function(data, status) {
-          	if (status == 'success') {
-          		$('#txtcli').html(data);
-          	} else {
-          		$('#txtcli').html("Erro na consulta de dados");
-          	}
-          });*/
+        	q: str;
+        	//op: 'teste'
+        }, function(data, status) {
+        	if (status == 'success') {
+        		$('#txtcli').html(data);
+        	} else {
+        		$('#txtcli').html("Erro na consulta de dados");
+        	}
+        });*/
 
       ///GET
       $.get("../config/busca_veiculo.php?q=" + str, function(data, status) {
@@ -100,6 +100,15 @@ include('../config/verifica_login.php');?>
   <!--</NAVBAR-->
   <?php
     if (isset($_SESSION['msg'])) {
+      echo "  <div class='toast'>
+    <div class='toast-header'>
+      Notificação
+    </div>
+    <div class='toast-body'>";
+      echo  $_SESSION['msg'];
+      unset ($_SESSION['msg']);
+      echo " </div>
+  </div>";
 
       echo "<script>
                 $(document).ready(function() {
@@ -115,19 +124,7 @@ include('../config/verifica_login.php');?>
               </script>";
     }
     ?>
-  <div class="toast">
-    <div class="toast-header">
-      Notificação
-    </div>
-    <div class="toast-body">
-      <?php
-        if (isset($_SESSION['msg'])) {
-          echo  $_SESSION['msg'];
-          unset ($_SESSION['msg']);
-        }
-        ?>
-    </div>
-  </div>
+
   <div class="container-fluid fundo-card">
     <div class="col-sm-12 col-md-12 col-lg-11 mx-auto">
       <div class="card card-padrao my-5">

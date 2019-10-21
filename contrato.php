@@ -118,23 +118,23 @@ if (isset($_POST['enviarcontrato'])){
 
       $res = mysqli_query($conexao,$sql);
       if (mysqli_error($conexao)) {
-        $_SESSION['msg_erro'] = "Erro na atualização do contrato";
+        $_SESSION['msg_erro'] = "<p class='text-danger lead'>Erro na atualização do contrato</p>";
         echo $script;
       } else {
-        $_SESSION['msg_contrato'] = "Contrato atualizado com sucesso!";
+        $_SESSION['msg_contratoa'] = "<p class='text-success lead'>Contrato atualizado com sucesso!</p>";
         //header('Location:cadastros/cadastro_contrato.php');
       }
       mysqli_close($conexao);
 
     } else if($op == "D") { //PARA EXCLUIR
       $sql="DELETE FROM contrato WHERE IdContrato='$id'";
-      echo $sql;
+
       $res = mysqli_query($conexao,$sql);
       if (mysqli_affected_rows($conexao)=='1') {
-        $_SESSION['msg_contrato'] = "Contrato excluído com sucesso!";
+        $_SESSION['msg_contratoa'] = "<p class='text-success lead'>Contrato excluído com sucesso!</p>";
         header('Location:cadastros/cadastro_contrato.php');
       } else {
-        $_SESSION['msg_erro'] = "Erro na exclusão do contrato";
+        $_SESSION['msg_erro'] = "<p class='text-danger lead'>Erro na exclusão do contrato</p>";
         echo $script;
 
       }
@@ -145,15 +145,14 @@ if (isset($_POST['enviarcontrato'])){
     //SE FOR == 0 ENTÃO O CONTRATO AINDA NÃO ESTÁ CADASTRADO
     //INCLUSÃO
     $sql = "INSERT INTO contrato (ValorTotal, NumeroParcelas, ValorParcela, DataPagamento, Juros, Foro, LocalAss, DataAss, DataCriacao, NomeTestemunha1, RGTestemunha1, NomeTestemunha2, RGTestemunha2, Pessoa_IdVendedor,Pessoa_IdComprador, Veiculo_IdVeiculo, Login_IdUsuario, Entrada) VALUES ('$valortotal' ,'$numeroparcelas' ,'$valorparcela', '$dpagamento', '$juro' ,'$foro' ,'$lassinatura' ,'$dassinatura',(now()), '$ntestemunha1' ,'$rgtestemunha1' ,'$ntestemunha2' ,'$rgtestemunha2' ,'$idvend', '$idcomp' ,'$idvei','$idlogin','$entrada')";
-    echo $sql;
     mysqli_query($conexao,$sql);
 
     if (mysqli_affected_rows($conexao) =='1') {
-      $_SESSION['msg_contrato'] = "Contrato inserido com sucesso!";
+      $_SESSION['msg_contratoa'] = "<p class='text-success lead'>Contrato inserido com sucesso!</p>";
       header('Location:cadastros/cadastro_contrato.php');
 
     } else {
-      $_SESSION['msg_erro'] ="Erro: ".mysqli_error($conexao)." no banco de dados";
+      $_SESSION['msg_erro'] ="<p class='text-danger lead'>Erro: ".mysqli_error($conexao)." no banco de dados</p>";
       echo $script;
 
     }
@@ -198,7 +197,7 @@ if (isset($_POST['enviarpessoa'])){
 
   if (mysqli_affected_rows($conexao)!=0) {
     mysqli_close($conexao);
-    $_SESSION['msg_cpf'] = "$cpf já foi cadastrado";
+    $_SESSION['msg_cpf'] = "<p class='text-danger lead'>$cpf já foi cadastrado</p>";
 
   }else {
     if($tipopessoa == "j"){
@@ -207,13 +206,12 @@ if (isset($_POST['enviarpessoa'])){
     } else if($tipopessoa == "f"){
       $sql = "INSERT INTO pessoa (tipopessoa, nome, nacionalidade, profissao, estadocivil, rg, cpf, endereco, sexo, numero, cidade, cep, uf) VALUES ('$tipopessoa', '$nome', LCASE('$nacionalidade'), '$profissao', '$ecivil', '$rg', '$cpf', '$endereco', '$sexo', '$numero', '$cidade', '$cep', UCASE('$uf'))";
     }
-    echo $sql;
     mysqli_query($conexao,$sql);
 
     if (mysqli_affected_rows($conexao) =='1') {
-      $_SESSION['msgvendedor'] = "$nome inserido com sucesso!";
+      $_SESSION['msgvendedor'] = "<p class='text-success lead'>$nome inserido com sucesso!</p>";
     } else {
-      $_SESSION['msgvendedor'] ="Erro: ".mysqli_error($conexao)." no banco de dados";
+      $_SESSION['msgvendedor'] ="<p class='text-danger lead'>Erro: ".mysqli_error($conexao)." no banco de dados</p>";
     }
     mysqli_close($conexao);
   }
@@ -250,13 +248,12 @@ if (isset($_POST['enviarveiculo'])){
     $_SESSION[_contrato] = "$placa já foi cadastrada";
   }else {
     $sql = "INSERT INTO veiculo (nome, marca, modelo, ano, chassi, cor, placa, renavam, emnomede, valor, estado, combustivel) VALUES ('$nomevei', '$marca', '$modelo', '$ano', '$chassi', '$cor', UCASE('$placa'), '$renavam', '$proprietario', '$valorvei', '$estado', '$combustivel')";
-    echo $sql;
     mysqli_query($conexao,$sql);
 
     if (mysqli_affected_rows($conexao) =='1') {
-      $_SESSION['msg'] = "$nomevei inserido com sucesso!";
+      $_SESSION['msg'] = "<p class='text-success lead'>$nomevei inserido com sucesso!</p>";
     } else {
-      $_SESSION['msg'] ="Erro: ".mysqli_error($conexao)." no banco de dados";
+      $_SESSION['msg'] ="<p class='text-danger lead'>Erro: ".mysqli_error($conexao)." no banco de dados</p>";
     }
     mysqli_close($conexao);
   }
@@ -395,34 +392,39 @@ if (isset($_POST['enviarveiculo'])){
   </nav>
   <!--</NAVBAR-->
 
-  <div class="toast">
-    <div class="toast-header">
+
+  <?php
+    if(isset($_SESSION['msg_contrato']) || isset($_SESSION['msg_erro']) || isset($_SESSION['msg']) || isset($_SESSION['msgvendedor'])){
+      echo "  <div class='toast'>
+    <div class='toast-header'>
       Notificação
     </div>
-    <div class="toast-body">
-      <?php
-        if (isset($_SESSION['msg_contrato'])) {
-          echo  $_SESSION['msg_contrato'];
-          unset ($_SESSION['msg_contrato']);
-        }
+    <div class='toast-body'>";
 
-        if (isset($_SESSION['msg_erro'])) {
-          echo  $_SESSION['msg_erro'];
-          unset ($_SESSION['msg_erro']);
-        }
+      if (isset($_SESSION['msg_contrato'])) {
+        echo  $_SESSION['msg_contrato'];
+        unset ($_SESSION['msg_contrato']);
+      }
 
-        if (isset($_SESSION['msg'])) {
-          echo  $_SESSION['msg'];
-          unset ($_SESSION['msg']);
-        }
+      if (isset($_SESSION['msg_erro'])) {
+        echo  $_SESSION['msg_erro'];
+        unset ($_SESSION['msg_erro']);
+      }
 
-        if (isset($_SESSION['msgvendedor'])) {
-          echo  $_SESSION['msgvendedor'];
-          unset ($_SESSION['msgvendedor']);
-        }
-        ?>
-    </div>
-  </div>
+      if (isset($_SESSION['msg'])) {
+        echo  $_SESSION['msg'];
+        unset ($_SESSION['msg']);
+      }
+
+      if (isset($_SESSION['msgvendedor'])) {
+        echo  $_SESSION['msgvendedor'];
+        unset ($_SESSION['msgvendedor']);
+      }
+      echo "  </div>
+  </div>";
+    }
+    ?>
+
 
   <!--MODAL VENDEDOR Buscar-->
   <div class="modal fade" id="modalVendedor" tabindex="-1" role="dialog" aria-labelledby="modalVendedor" aria-hidden="true">
@@ -547,19 +549,22 @@ if (isset($_POST['enviarveiculo'])){
               <div class="form-group col-xl">
                 <label for="cpf">CPF</label><label for="cpf" class="representante"> do representante</label>
                 <input type="text" id="cpf" class="form-control" name="cpf">
-                <div class="toast">
-                  <div class="toast-header">
+
+                <?php
+                  if (isset($_SESSION['msg_cpf'])) {
+                    echo "<div class='toast'>
+                  <div class='toast-header'>
                     Notificação
                   </div>
-                  <div class="toast-body">
-                    <?php
-                      if (isset($_SESSION['msg_cpf'])) {
-                        echo  $_SESSION['msg_cpf'];
-                        unset ($_SESSION['msg_cpf']);
-                      }
-                      ?>
-                  </div>
-                </div>
+                  <div class='toast-body'>";
+                    echo  $_SESSION['msg_cpf'];
+                    unset ($_SESSION['msg_cpf']);
+                    echo " </div>
+                </div>";
+
+                  }
+                  ?>
+
               </div>
 
               <div class="form-group col-xl">
@@ -709,19 +714,21 @@ if (isset($_POST['enviarveiculo'])){
         </div>
         <div class="modal-body">
           <form action="#" method="post" class="form-padrao">
-            <div class="toast">
-              <div class="toast-header">
+
+            <?php
+                  if (isset($_SESSION['msg'])) {
+                    echo " <div class='toast'>
+              <div class='toast-header'>
                 Notificação
               </div>
-              <div class="toast-body">
-                <?php
-                  if (isset($_SESSION['msg'])) {
+              <div class='toast-body'>";
                     echo  $_SESSION['msg'];
                     unset ($_SESSION['msg']);
+                    echo " </div>
+            </div>";
                   }
                   ?>
-              </div>
-            </div>
+
 
             <div class="row">
               <div class="form-group col-xl">

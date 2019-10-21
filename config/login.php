@@ -28,7 +28,7 @@ if (mysqli_affected_rows($conexao) != '0') {
 	header('Location: ../contrato.php');
 	exit();
 }else{
-	$_SESSION['nao_autenticado'] = "Usuário ou senha inválidos!";
+	$_SESSION['nao_autenticado'] = "<p class='text-danger lead'>Usuário ou senha inválidos!</p>";
 	header('Location: ../index.php');
 	exit();
 }
