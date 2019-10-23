@@ -223,8 +223,9 @@ if (isset($_POST['imprimir'])){
 	$sql = "update contrato set Nome = 'contrato_P".$placa."_ID".$id."', Tamanho = '".filesize("../arquivos/contrato_P".$placa."_ID".$id.".pdf")."', Tipo = 'application/pdf', Arquivo = '$conteudo' where IdContrato = '".$id."';";
 	//echo $sql;
 	$res = mysqli_query($conexao,$sql) or die("Algo deu errado ao inserir o contrato no banco");
+	fclose($fp);
 	if(mysqli_affected_rows($conexao) > 0){
-		//print "O contrato foi salvo na base de dados.";
+		unlink("../arquivos/contrato_P".$placa."_ID".$id.".pdf");
 	}else{
 		//print "Não foi possível salvar contrato na base de dados.";
 	}
