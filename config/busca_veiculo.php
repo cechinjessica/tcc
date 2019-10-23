@@ -16,21 +16,21 @@ if (mysqli_affected_rows($conexao)>0) {
 	<table class='table table-hover table-light table-sm'>
              <thead>
 			  <tr>
-                <th scope='col' style='white-space: nowrap; text-align:center;'>Código</th>
-                <th scope='col' style='white-space: nowrap; text-align:center;'>Nome</th>
-                <th scope='col' style='white-space: nowrap; text-align:center;'>Marca</th>
-                <th scope='col' style='white-space: nowrap; text-align:center;'>Modelo</th>
-                <th scope='col' style='white-space: nowrap; text-align:center;'>Ano</th>
-                <th scope='col' style='white-space: nowrap; text-align:center;'>Chassi</th>
-                <th scope='col' style='white-space: nowrap; text-align:center;'>Cor</th>
-                <th scope='col' style='white-space: nowrap; text-align:center;'>Placa</th>
-				<th scope='col' style='white-space: nowrap; text-align:center;'>Renavam</th>
-                <th scope='col' style='white-space: nowrap; text-align:center;'>Proprietário</th>
-                <th scope='col' style='white-space: nowrap; text-align:center;'>Valor</th>
-                <th scope='col' style='white-space: nowrap; text-align:center;'>Estado</th>
-                <th scope='col' style='white-space: nowrap; text-align:center;'>Combustível</th>
-                <th scope='col' style='white-space: nowrap; text-align:center;'>Tem Contrato?</th>
-                <th scope='col' style='white-space: nowrap; text-align:center;'>Operação</th>
+                <th scope='col' style='white-space: nowrap; text-align:center; text-transform: uppercase;'>Código</th>
+                <th scope='col' style='white-space: nowrap; text-align:center; text-transform: uppercase;'>Nome</th>
+                <th scope='col' style='white-space: nowrap; text-align:center; text-transform: uppercase;'>Marca</th>
+                <th scope='col' style='white-space: nowrap; text-align:center; text-transform: uppercase;'>Modelo</th>
+                <th scope='col' style='white-space: nowrap; text-align:center; text-transform: uppercase;'>Ano</th>
+                <th scope='col' style='white-space: nowrap; text-align:center; text-transform: uppercase;'>Chassi</th>
+                <th scope='col' style='white-space: nowrap; text-align:center; text-transform: uppercase;'>Cor</th>
+                <th scope='col' style='white-space: nowrap; text-align:center; text-transform: uppercase;'>Placa</th>
+				<th scope='col' style='white-space: nowrap; text-align:center; text-transform: uppercase;'>Renavam</th>
+                <th scope='col' style='white-space: nowrap; text-align:center; text-transform: uppercase;'>Proprietário</th>
+                <th scope='col' style='white-space: nowrap; text-align:center; text-transform: uppercase;'>Valor</th>
+                <th scope='col' style='white-space: nowrap; text-align:center; text-transform: uppercase;'>Estado</th>
+                <th scope='col' style='white-space: nowrap; text-align:center; text-transform: uppercase;'>Combustível</th>
+                <th scope='col' style='white-space: nowrap; text-align:center; text-transform: uppercase;'>Tem Contrato?</th>
+                <th scope='col' style='white-space: nowrap; text-align:center; text-transform: uppercase;'>Operação</th>
 			 <tr>
             </thead>";
     while ($row=mysqli_fetch_row($result))

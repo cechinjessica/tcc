@@ -149,9 +149,9 @@ if (isset($_POST['enviarcontrato'])){
 
     if (mysqli_affected_rows($conexao) =='1') {
       $sql = "SELECT idcontrato FROM contrato order by idcontrato desc";
-  $res=mysqli_query($conexao,$sql);
-  $row=mysqli_fetch_row($res);
-  $id= $row[0];
+      $res=mysqli_query($conexao,$sql);
+      $row=mysqli_fetch_row($res);
+      $id= $row[0];
 
       $_SESSION['msg_contratob'] = "<p class='text-success lead'>Contrato inserido com sucesso!</p>";
       header("Location:config/pdfcontrato.php?id=".$id);
@@ -358,12 +358,12 @@ if (isset($_POST['enviarveiculo'])){
   <!--NAVBAR-->
   <nav class="navbar navbar-expand-md bg-info navbar-light sticky-top">
     <a class="navbar-brand" href="#"><img src="imagens/icone.png" width="30px">Contrato</a>
-    <a class="nav-text d-none  d-lg-inline">Bem vindo(a) <?php echo $_SESSION['nome']; ?></a>
+    <a class="nav-text d-none  d-lg-inline mr-5"><b> <?php echo $_SESSION['nome']; ?></b></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="collapsibleNavbar">
-      <ul class="navbar-nav">
+      <ul class="navbar-nav ml-5">
         <li class="nav-item ">
           <a class="nav-link" href="contrato.php">Gerar contrato</a>
         </li>
@@ -396,8 +396,6 @@ if (isset($_POST['enviarveiculo'])){
     </div>
   </nav>
   <!--</NAVBAR-->
-
-
   <?php
     if(isset($_SESSION['msg_contrato']) || isset($_SESSION['msg_erro']) || isset($_SESSION['msg']) || isset($_SESSION['msgvendedor'])){
       echo "  <div class='toast'>
@@ -721,18 +719,18 @@ if (isset($_POST['enviarveiculo'])){
           <form action="#" method="post" class="form-padrao">
 
             <?php
-                  if (isset($_SESSION['msg'])) {
-                    echo " <div class='toast'>
+              if (isset($_SESSION['msg'])) {
+                echo " <div class='toast'>
               <div class='toast-header'>
                 Notificação
               </div>
               <div class='toast-body'>";
-                    echo  $_SESSION['msg'];
-                    unset ($_SESSION['msg']);
-                    echo " </div>
+                echo  $_SESSION['msg'];
+                unset ($_SESSION['msg']);
+                echo " </div>
             </div>";
-                  }
-                  ?>
+              }
+              ?>
 
 
             <div class="row">
@@ -909,94 +907,106 @@ if (isset($_POST['enviarveiculo'])){
 
             <div class="row">
               <div class="form-group col-md">
-                <label for="dpagamento" class="col-lg-4 col-sm-12 m-0">Dia de Pagamento</label>
+                <label for="dpagamento">Dia de Pagamento</label>
                 <input type="text" id="dpagamento" class="form-control col-lg-5 m-0" name="dpagamento" value="<?php echo ($id!=0)?"$dpagamento":'';?>" placeholder="Ex. 15" title="Todo dia X de cada mês">
               </div>
 
               <div class="form-group col-md">
-                <label for="valortotal" class="col-lg-4 col-sm-12 m-0">Valor Total</label>
+                <label for="valortotal">Valor Total</label>
                 <input type="text" id="valortotal" class="form-control col-lg-5 m-0" name="valortotal" value="<?php echo ($id!=0)?"$valortotal":'';?>" readonly>
               </div>
             </div>
 
             <div class="row">
               <div class="form-group col-md">
-                <label for="entrada" class="col-lg-4 col-sm-12 m-0">Entrada</label>
+                <label for="entrada">Entrada</label>
                 <input type="text" id="entrada" class="form-control col-lg-5 m-0" name="entrada" title="Caso seja á vista digite 0 na entrada" value="<?php echo ($id!=0)?"$entrada":'';?>">
               </div>
               <div class="form-group col-md">
-                <label for="numeroparcelas" class="col-lg-4 col-sm-12 m-0">Quantidade de Parcelas</label>
+                <label for="numeroparcelas">Qtd. Parcelas</label>
                 <input type="text" id="numeroparcelas" class="form-control col-lg-5 m-0" name="numeroparcelas" value="<?php echo ($id!=0)?"$numeroparcelas":'';?>">
               </div>
             </div>
 
             <div class="row">
               <div class="form-group col-md">
-                <label for="vparcela" class="col-lg-4 col-sm-12 m-0">Valor das Parcelas</label>
+                <label for="vparcela">Valor da Parcela</label>
                 <input type="text" id="valorparcela" class="form-control col-lg-5 m-0" name="valorparcela" value="<?php echo ($id!=0)?"$valorparcela":'';?>" readonly>
               </div>
 
               <div class="form-group col-md">
-                <label for="juro" class="col-lg-2 col-sm-12 m-0 pr-0">Juros</label>
-                <div class="form-check-inline">
-                  <input type="radio" id="juro05" class="form-check-input" name="juro" value="0.5% ao mês" <?php echo ($id!=0)?"$juro05":'';?>>0.5% ao mês
+
+                <label for="juro" class="d-inline">Juros</label>
+                <div class="row">
+                  <div class="col-md-8" id="juro">
+                    <div class="form-check-inline">
+                      <input type="radio" id="juro05" class="form-check-input" name="juro" value="0.5% ao mês" <?php echo ($id!=0)?"$juro05":'';?>>0.5% ao mês
+                    </div>
+                    <div class="form-check-inline">
+                      <input type="radio" id="juro1" class="form-check-input" name="juro" value="1% ao mês" <?php echo ($id!=0)?"$juro1":'';?>>1% ao mês
+                    </div>
+                    <div class="form-check-inline">
+                      <input type="radio" id="juro15" class="form-check-input" name="juro" value="1.5% ao mês" <?php echo ($id!=0)?"$juro15":'';?>>1.5% ao mês
+                    </div>
+                    <div class="form-check-inline">
+                      <input type="radio" id="juro2" class="form-check-input" name="juro" value="2% ao mês" <?php echo ($id!=0)?"$juro2":'';?>>2% ao mês
+                    </div>
+                  </div>
                 </div>
-                <div class="form-check-inline">
-                  <input type="radio" id="juro1" class="form-check-input" name="juro" value="1% ao mês" <?php echo ($id!=0)?"$juro1":'';?>>1% ao mês
-                </div>
-                <div class="form-check-inline">
-                  <input type="radio" id="juro15" class="form-check-input" name="juro" value="1.5% ao mês" <?php echo ($id!=0)?"$juro15":'';?>>1.5% ao mês
-                </div>
-                <div class="form-check-inline">
-                  <input type="radio" id="juro2" class="form-check-input" name="juro" value="2% ao mês" <?php echo ($id!=0)?"$juro2":'';?>>2% ao mês
-                </div>
-                <label class="form-text text-muted">A porcentagem de juros é cobrada sob o valor incial.</label>
+              </div>
+            </div>
+            <div class="row d-flex justify-content-end">
+              <div class="col-md-6">
+                <label class="form-text text-muted ">A porcentagem de juros é cobrada sob o valor incial em caso de atraso na parcela.</label>
                 <p id="msg_juro" class="form-control-feedback"></p>
               </div>
             </div>
 
+
             <div class="row">
               <div class="form-group col-md">
-                <label for="foro" class="col-lg-4 col-sm-12 m-0">Foro</label>
+                <label for="foro">Foro</label>
                 <input type="text" id="foro" class="form-control col-lg-5 m-0" name="foro" placeholder="Cidade-UF" value="<?php echo ($id!=0)?"$foro":'';?>">
               </div>
 
               <div class="form-group col-md">
-                <label for="datacriacao" class="m-0">Data Criação</label>
+                <label for="datacriacao">Data Criação</label>
                 <input type="text" id="datacriacao" class="form-control m-0" name="datacriacao" value="<?php echo ($id!=0)?"$datacriacao":'';?>">
               </div>
             </div>
 
             <div class="row">
-              <div class="form-group col-xl">
-                <label for="ntestemunha1" class="col-lg-3 col-sm-12 m-0">Nome Completo da Testemunha 1</label>
-                <input type="text" id="ntestemunha1" class="form-control col-xl-4 col-lg-5 m-0" name="ntestemunha1" value="<?php echo ($id!=0)?"$ntestemunha1":'';?>">
-
-                <label for="rgtestemunha1" class="col-lg-3 col-sm-12 m-0">RG da Testemunha 1</label>
-                <input type="text" id="rgtestemunha1" class="form-control col-xl-4 col-lg-5 m-0" name="rgtestemunha1" value="<?php echo ($id!=0)?"$rgtestemunha1":'';?>">
+              <div class="form-group col-md">
+                <label for="lassinatura">Local de Ass.</label>
+                <input type="text" id="lassinatura" class="form-control m-0" name="lassinatura" placeholder="Cidade-UF" value="<?php echo ($id!=0)?"$lassinatura":'';?>">
+              </div>
+              <div class="form-group col-md">
+                <label for="dassinatura">Data de Ass.</label>
+                <input type="date" id="dassinatura" class="form-control m-0" name="dassinatura" value="<?php echo ($id!=0)?"$dassinatura":'';?>">
               </div>
             </div>
 
             <div class="row">
-              <div class="form-group col-xl">
-                <label for="ntestemunha2" class="col-lg-3 col-sm-12 m-0">Nome Completo da Testemunha 2</label>
-                <input type="text" id="ntestemunha2" class="form-control col-xl-4 col-lg-5 m-0" name="ntestemunha2" value="<?php echo ($id!=0)?"$ntestemunha2":'';?>">
-
-                <label for="rgtestemunha2" class="col-lg-3 col-sm-12 m-0">RG da Testemunha 2</label>
-                <input type="text" id="rgtestemunha2" class="form-control col-xl-4 col-lg-5 m-0" name="rgtestemunha2" value="<?php echo ($id!=0)?"$rgtestemunha2":'';?>">
+              <div class="form-group col-md">
+                <label for="ntestemunha1">Nome da Test. 1</label>
+                <input type="text" id="ntestemunha1" class="form-control m-0" name="ntestemunha1" value="<?php echo ($id!=0)?"$ntestemunha1":'';?>">
+              </div>
+              <div class="form-group col-md">
+                <label for="rgtestemunha1">RG da Test. 1</label>
+                <input type="text" id="rgtestemunha1" class="form-control m-0" name="rgtestemunha1" value="<?php echo ($id!=0)?"$rgtestemunha1":'';?>">
               </div>
             </div>
 
             <div class="row">
-              <div class="form-group col-xl">
-                <label for="lassinatura" class="col-lg-3 col-sm-12 m-0 ">Cidade para Assinatura</label>
-                <input type="text" id="lassinatura" class="form-control col-xl-4 col-lg-5 m-0" name="lassinatura" placeholder="Cidade-UF" value="<?php echo ($id!=0)?"$lassinatura":'';?>">
-
-                <label for="dassinatura" class="col-lg-3 col-sm-12 m-0 ">Data de Assinatura</label>
-                <input type="date" id="dassinatura" class="form-control col-xl-4 col-lg-5 m-0" name="dassinatura" value="<?php echo ($id!=0)?"$dassinatura":'';?>">
+              <div class="form-group col-md">
+                <label for="ntestemunha2">Nome da Test. 2</label>
+                <input type="text" id="ntestemunha2" class="form-control m-0" name="ntestemunha2" value="<?php echo ($id!=0)?"$ntestemunha2":'';?>">
+              </div>
+              <div class="form-group col-md">
+                <label for="rgtestemunha2">RG da Test. 2</label>
+                <input type="text" id="rgtestemunha2" class="form-control m-0" name="rgtestemunha2" value="<?php echo ($id!=0)?"$rgtestemunha2":'';?>">
               </div>
             </div>
-
 
             <input type='hidden' name='id' id='codigo' value="<?php echo ($id!=0)?"$id":'0';?>">
             <input type='hidden' name='op' value="<?php echo ($id!=0)?"$op":'';?>">

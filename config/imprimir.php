@@ -208,10 +208,6 @@ if (isset($_POST['imprimir'])){
 	//Renderizar o html
 	$dompdf->render();
 
-	//Exibibir a página
-	/*$dompdf->stream( "contrato_P".$placa."_ID".$id.".pdf",array(
-		"Attachment" =>false //Para realizar o download somente alterar para true
-	));*/
 
 	$pdf = $dompdf->output();
 	file_put_contents("../arquivos/contrato_P".$placa."_ID".$id.".pdf", $pdf);

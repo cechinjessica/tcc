@@ -17,27 +17,27 @@ if (mysqli_affected_rows($conexao)>0) {
 	<table class='table table-hover table-light table-sm table-bordered'>
              <thead>
 			  <tr>
-                <th scope='col' style='white-space: nowrap; text-align:center;'>Código</th>
-                <th scope='col' style='white-space: nowrap; text-align:center;'>Pessoa</th>
-                <th scope='col' style='white-space: nowrap; text-align:center;'>Nome</th>
-                <th scope='col' style='white-space: nowrap; text-align:center;'>Origem</th>
-                <th scope='col' style='white-space: nowrap; text-align:center;'>Profissão</th>
-                <th scope='col' style='white-space: nowrap; text-align:center;'>Est. Cívil</th>
-                <th scope='col' style='white-space: nowrap; text-align:center;'>RG</th>
-                <th scope='col' style='white-space: nowrap; text-align:center;'>CPF</th>
-				<th scope='col' style='white-space: nowrap; text-align:center;'>Sexo</th>
-                <th scope='col' style='white-space: nowrap; text-align:center;'>Endereço</th>
-                <th scope='col' style='white-space: nowrap; text-align:center;'>Número</th>
-                <th scope='col' style='white-space: nowrap; text-align:center;'>Cidade</th>
-                <th scope='col' style='white-space: nowrap; text-align:center;'>CEP</th>
-                <th scope='col' style='white-space: nowrap; text-align:center;'>Cargo</th>
-				<th scope='col' style='white-space: nowrap; text-align:center;'>Empresa</th>
-                <th scope='col' style='white-space: nowrap; text-align:center;'>CNPJ</th>
-                <th scope='col' style='white-space: nowrap; text-align:center;'>Enderço</th>
-                <th scope='col' style='white-space: nowrap; text-align:center;'>Tipo</th>
-                <th scope='col' style='white-space: nowrap; text-align:center;'>Cidade</th>
-                <th scope='col' style='white-space: nowrap; text-align:center;'>Número</th>
-                <th scope='col' style='white-space: nowrap; text-align:center;'>Operação</th>
+                <th scope='col' style='white-space: nowrap; text-align:center; text-transform: uppercase;'>Código</th>
+                <th scope='col' style='white-space: nowrap; text-align:center; text-transform: uppercase;'>Pessoa</th>
+                <th scope='col' style='white-space: nowrap; text-align:center; text-transform: uppercase;'>Nome</th>
+                <th scope='col' style='white-space: nowrap; text-align:center; text-transform: uppercase;'>Origem</th>
+                <th scope='col' style='white-space: nowrap; text-align:center; text-transform: uppercase;'>Profissão</th>
+                <th scope='col' style='white-space: nowrap; text-align:center; text-transform: uppercase;'>Est. Cívil</th>
+                <th scope='col' style='white-space: nowrap; text-align:center; text-transform: uppercase;'>RG</th>
+                <th scope='col' style='white-space: nowrap; text-align:center; text-transform: uppercase;'>CPF</th>
+				<th scope='col' style='white-space: nowrap; text-align:center; text-transform: uppercase;'>Sexo</th>
+                <th scope='col' style='white-space: nowrap; text-align:center; text-transform: uppercase;'>Endereço</th>
+                <th scope='col' style='white-space: nowrap; text-align:center; text-transform: uppercase;'>Número</th>
+                <th scope='col' style='white-space: nowrap; text-align:center; text-transform: uppercase;'>Cidade</th>
+                <th scope='col' style='white-space: nowrap; text-align:center; text-transform: uppercase;'>CEP</th>
+                <th scope='col' style='white-space: nowrap; text-align:center; text-transform: uppercase;'>Cargo</th>
+				<th scope='col' style='white-space: nowrap; text-align:center; text-transform: uppercase;'>Empresa</th>
+                <th scope='col' style='white-space: nowrap; text-align:center; text-transform: uppercase;'>CNPJ</th>
+                <th scope='col' style='white-space: nowrap; text-align:center; text-transform: uppercase;'>Enderço</th>
+                <th scope='col' style='white-space: nowrap; text-align:center; text-transform: uppercase;'>Tipo</th>
+                <th scope='col' style='white-space: nowrap; text-align:center; text-transform: uppercase;'>Cidade</th>
+                <th scope='col' style='white-space: nowrap; text-align:center; text-transform: uppercase;'>Número</th>
+                <th scope='col' style='white-space: nowrap; text-align:center; text-transform: uppercase;'>Operação</th>
 			 <tr>
             </thead>";
   while ($row=mysqli_fetch_row($result))

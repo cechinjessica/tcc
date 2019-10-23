@@ -16,7 +16,7 @@ require '../config/conexao.php';
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="../css/style.css">
   <script>
     function showcontrato(vei) {
@@ -49,12 +49,12 @@ require '../config/conexao.php';
   <!--NAVBAR-->
   <nav class="navbar navbar-expand-md bg-info navbar-light sticky-top">
     <a class="navbar-brand" href="#"><img src="../imagens/icone.png" width="30px">Contrato</a>
-    <a class="nav-text d-none  d-lg-inline">Bem vindo(a) <?php echo $_SESSION['nome']; ?></a>
+    <a class="nav-text d-none  d-lg-inline"><b> <?php echo $_SESSION['nome']; ?></b></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="collapsibleNavbar">
-      <ul class="navbar-nav">
+      <ul class="navbar-nav ml-5">
         <li class="nav-item ">
           <a class="nav-link" href="../contrato.php">Gerar contrato</a>
         </li>
@@ -120,7 +120,7 @@ require '../config/conexao.php';
           <div class="form-padrao">
             <form>
               <div class="row">
-                <div class="form-group">
+                <div class="form-group col-lg-3 col-md-5">
                   <input type='text' name='vei' id='vei' class="form-control" placeholder="Pesquisar uma placa" style="display:inline;" autofocus>
                 </div>
               </div>
