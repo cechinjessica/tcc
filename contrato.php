@@ -148,8 +148,13 @@ if (isset($_POST['enviarcontrato'])){
     mysqli_query($conexao,$sql);
 
     if (mysqli_affected_rows($conexao) =='1') {
-      $_SESSION['msg_contratoa'] = "<p class='text-success lead'>Contrato inserido com sucesso!</p>";
-      header('Location:cadastros/cadastro_contrato.php');
+      $sql = "SELECT idcontrato FROM contrato order by idcontrato desc";
+  $res=mysqli_query($conexao,$sql);
+  $row=mysqli_fetch_row($res);
+  $id= $row[0];
+
+      $_SESSION['msg_contratob'] = "<p class='text-success lead'>Contrato inserido com sucesso!</p>";
+      header("Location:config/pdfcontrato.php?id=".$id);
 
     } else {
       $_SESSION['msg_erro'] ="<p class='text-danger lead'>Erro: ".mysqli_error($conexao)." no banco de dados</p>";
@@ -369,7 +374,7 @@ if (isset($_POST['enviarveiculo'])){
           <div class="dropdown-menu">
             <a class="dropdown-item" href="cadastros/vendedor.php">Pessoa</a>
             <a class="dropdown-item" href="cadastros/veiculo.php">Veículo</a>
-            <a class="dropdown-item" href="cadastro_contrato.php">Contrato</a>
+
           </div>
         </li>
         <li class="nav-item dropdown">

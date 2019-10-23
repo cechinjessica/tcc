@@ -64,7 +64,7 @@ if (isset($_GET['id'])){
 					<div class="dropdown-menu">
 						<a class="dropdown-item" href="../cadastros/vendedor.php">Pessoa</a>
 						<a class="dropdown-item" href="../cadastros/veiculo.php">Veículo</a>
-						<a class="dropdown-item" href="../cadastro_contrato.php">Contrato</a>
+
 					</div>
 				</li>
 				<li class="nav-item dropdown">
@@ -86,6 +86,32 @@ if (isset($_GET['id'])){
 		</div>
 	</nav>
 	<!--</NAVBAR-->
+	<?php
+    if (isset($_SESSION['msg_contratob'])) {
+      echo "<div class='toast'>
+    <div class='toast-header'>
+      Notificação
+    </div>
+    <div class='toast-body'>";
+      echo  $_SESSION['msg_contratob'];
+      unset ($_SESSION['msg_contratob']);
+      echo "<script>
+                $(document).ready(function() {
+                $('.toast').toast({
+                  delay: 2000
+                });
+                $('.toast').toast({
+                  animation: true
+                });
+                $('.toast').toast('show');
+              });
+              </script>";
+      echo "  </div>
+  </div>";
+    }
+    ?>
+
+
 	<div class="container-fluid fundo-card">
 		<div class="col-sm-12 col-md-11 col-lg-11 mx-auto">
 			<div class="card card-padrao my-5 justify-content-center">

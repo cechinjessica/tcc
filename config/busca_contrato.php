@@ -34,7 +34,22 @@ if (mysqli_affected_rows($conexao)>0) {
         echo "<p class='text-success lead'>R$$row[3]</p> ";
         echo "<p> $dt $hora</p>";
         echo "<a href=../contrato.php?id=$row[5]&op=A class='card-link text-info'>Atualizar</a><a href=../contrato.php?id=$row[5]&op=D class='card-link text-danger'>Deletar</a>";
-        echo "<center><a href=../config/pdfcontrato.php?id=$row[5]><button type='button' class='btn btn-outline-info btn-sm w-100'>Imprimir</button></a></center>";
+
+        $querySelecao = "SELECT c.idcontrato as id
+                FROM contrato c
+inner join pessoa p on c.pessoa_idcomprador = p.idpessoa
+inner join pessoa pp on c.pessoa_idvendedor = pp.idpessoa
+inner join veiculo v on c.veiculo_idveiculo = v.idveiculo
+where Arquivo is not null and IdContrato=".$row[5];
+        $resultado = mysqli_query($conexao,$querySelecao);
+        $rows=mysqli_fetch_row($resultado);
+        if (mysqli_affected_rows($conexao) != '0') {
+            echo "<a href='ver.php?id=".$rows[0]."' class='card-link text-secondary'>Visualizar</a>";
+        }
+
+
+
+        echo "<center><a href=../config/pdfcontrato.php?id=$row[5]><button type='button' class='btn btn-outline-info btn-sm w-100'>Editar</button></a></center>";
         echo "</div></div></div></div>";
 
     }

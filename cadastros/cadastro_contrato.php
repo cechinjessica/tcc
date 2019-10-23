@@ -2,40 +2,6 @@
 <?php session_start();
 include('../config/verifica_login.php');
 require '../config/conexao.php';
-
-if (isset($_POST['enviararquivo'])){
-  $nomeEvento = $_POST['nome'];
-  $descricaoEvento = $_POST['descricao'];
-  $arquivo= $_FILES['arquivo']['tmp_name'];
-  $tamanho = $_FILES['arquivo']['size'];
-  $tipo = $_FILES['arquivo']['type'];
-  $nome = $_FILES['arquivo']['name'];
-
-  move_uploaded_file($arquivo, "../arquivos/$nome");
-
-  if ( $arquivo != "none" )
-  {
-    $fp = fopen($arquivo, "rb");
-    $conteudo = fread($fp, $tamanho);
-    $conteudo = addslashes($conteudo);
-    fclose($fp);
-
-    $sql = "INSERT INTO arquivos (nome,
-descricao,  tamanho, tipo, arquivo) VALUES ('$nomeEvento',
-'$descricaoEvento','$tamanho', '$tipo','$conteudo')";
-
-    $res=mysqli_query($conexao,$sql) or die("Algo deu errado ao inserir
- o registro. Tente novamente.");
-    echo 'Registro inserido com sucesso!';
-    header('Location: cadastro_contrato.php');
-    if(mysqli_affected_rows($conexao) > 0)
-      print "A imagem foi salva na base de dados.";
-    else
-      print "Não foi possível salvar a imagem na base de dados.";
-  }
-  else
-    print "Não foi possível carregar a imagem.";
-}
 ?>
 
 <html>
@@ -99,7 +65,7 @@ descricao,  tamanho, tipo, arquivo) VALUES ('$nomeEvento',
           <div class="dropdown-menu">
             <a class="dropdown-item" href="../cadastros/vendedor.php">Pessoa</a>
             <a class="dropdown-item" href="../cadastros/veiculo.php">Veículo</a>
-            <a class="dropdown-item" href="../cadastro_contrato.php">Contrato</a>
+
           </div>
         </li>
         <li class="nav-item dropdown">
@@ -164,61 +130,6 @@ descricao,  tamanho, tipo, arquivo) VALUES ('$nomeEvento',
             </div>
             <center><a href="../contrato.php"><button class="btn btn-outline-info text-uppercase btn-inline col-sm-9 col-md-5 col-lg-5">Cadastrar um Contrato</button></a>
             </center>
-            <!--PARA SALVAR ARQUIVOS NO BANCO (IDEIA PARA SALVAR O CONTRATO)
-<form enctype="multipart/form-data" action="#" method="post">
-<div><input name="nome" type="text" /></div>
-<div><input name="descricao" type="textarea" /></div>
-<input type="hidden" name="MAX_FILE_SIZE" value="99999999" />
-<div><input name="arquivo" type="file" /></div>
-<div><input type="submit" name="enviararquivo" value="Salvar" /></div>
-</form>
-<table border="1">
-<tr>
-<td align="center">
-Código
-</td>
-<td align="center">
-Evento
-</td>
-<td align="center">
-Descrição
-</td>
-<td align="center">
-Tipo
-</td>
-<td align="center">
-Visualizar
-</td>
-</tr>
-<?php
-
-$querySelecao = "SELECT codigo, nome, descricao,
-     tipo, arquivo FROM arquivos";
-$resultado = mysqli_query($conexao,$querySelecao);
-
-while ($aquivos = mysqli_fetch_array($resultado)) { ?>
-<tr>
-<td align="center">
-<?php echo $aquivos['codigo']; ?>
-</td>
-<td align="center">
-<?php echo $aquivos['nome']; ?>
-</td>
-<td align="center">
-<?php echo $aquivos['descricao']; ?>
-</td>
-<td align="center">
-<?php echo $aquivos['tipo']; ?>
-</td>
-<td align="center">
-<?php echo '<a href="ver.php?id='.$aquivos['codigo'].
-  '">Imagem '.$aquivos['codigo'].'</a>'; ?>
-</td>
-</tr>
-<?php } ?>
-</table>
--->
-
           </div>
         </div>
       </div>

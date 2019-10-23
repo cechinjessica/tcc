@@ -107,9 +107,9 @@ $(document).ready(function () {
 
  $("#switch_recisao2").click(function () {
   if ($("#switch_recisao2").is(":checked")) {
-
-   $("#switch_recisao1").prop("checked", true);
    $("#recisao2").prop("readonly", false);
+   $("#switch_recisao1").prop("checked", true);
+   $("#recisao1").prop("readonly", false);
   } else {
    $("#recisao2").prop("readonly", true);
   }
@@ -129,6 +129,8 @@ $(document).ready(function () {
    $("#foro").prop("readonly", true);
   }
  });
+ ////////////////////////////////////////////////////////////////////////////////
+
 
 
 })

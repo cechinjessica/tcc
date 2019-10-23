@@ -9,10 +9,12 @@ require_once 'dompdf/autoload.inc.php';
 
 $dompdf = new Dompdf();
 // some options...
-$dompdf->getOptions()->setLogOutputFile('dompdf.log');
+//$dompdf->getOptions()->setLogOutputFile('dompdf.log');
+$dompdf->set_option('isHtml5ParserEnabled', true);
 
 
 if (isset($_POST['imprimir'])){
+
 	$inicio = "<p align='justify'>";
 	$fim ="</p><br/>";
 	$clausula = 1;
@@ -35,7 +37,6 @@ if (isset($_POST['imprimir'])){
 
 	if(isset($_POST['objeto1'])){
 		$objeto1 = $_POST['objeto1'];
-		echo "<script>alert(A".$objeto1."A);</script>";
 		$objeto1 = $inicio."<b>Cláusula ".$clausula."ª.</b>"."".$objeto1."".$fim;
 		$clausula++;
 	}else{
@@ -170,6 +171,7 @@ if (isset($_POST['imprimir'])){
 	</head>
 	<body style='margin:1cm 0.5cm 0.5cm 1cm;'>
 	<div style='text-align: center;'>
+	<div style='text-align: center;'>
 		<p><b>CONTRATO DE COMPRA E VENDA DE VEÍCULO</b></p><br/>
 		<p><b>IDENTIFICAÇÃO DAS PARTES CONTRATANTES</b></p>
 		</div>
@@ -207,9 +209,30 @@ if (isset($_POST['imprimir'])){
 	$dompdf->render();
 
 	//Exibibir a página
+	/*$dompdf->stream( "contrato_P".$placa."_ID".$id.".pdf",array(
+		"Attachment" =>false //Para realizar o download somente alterar para true
+	));*/
+
+	$pdf = $dompdf->output();
+	file_put_contents("../arquivos/contrato_P".$placa."_ID".$id.".pdf", $pdf);
+
+	$fp = fopen("../arquivos/contrato_P".$placa."_ID".$id.".pdf", "rb");
+	$conteudo = fread($fp,filesize("../arquivos/contrato_P".$placa."_ID".$id.".pdf"));
+	$conteudo = addslashes($conteudo);
+
+	$sql = "update contrato set Nome = 'contrato_P".$placa."_ID".$id."', Tamanho = '".filesize("../arquivos/contrato_P".$placa."_ID".$id.".pdf")."', Tipo = 'application/pdf', Arquivo = '$conteudo' where IdContrato = '".$id."';";
+	//echo $sql;
+	$res = mysqli_query($conexao,$sql) or die("Algo deu errado ao inserir o contrato no banco");
+	if(mysqli_affected_rows($conexao) > 0){
+		//print "O contrato foi salvo na base de dados.";
+	}else{
+		//print "Não foi possível salvar contrato na base de dados.";
+	}
+	//Exibibir a página
 	$dompdf->stream( "contrato_P".$placa."_ID".$id.".pdf",array(
 		"Attachment" =>false //Para realizar o download somente alterar para true
 	));
+
 }else{
 	header('Location:../cadastros/cadastro_contrato.php');
 }

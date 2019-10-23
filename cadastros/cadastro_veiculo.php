@@ -76,7 +76,7 @@ include('../config/verifica_login.php');?>
           <div class="dropdown-menu">
             <a class="dropdown-item" href="../cadastros/vendedor.php">Pessoa</a>
             <a class="dropdown-item" href="../cadastros/veiculo.php">Veículo</a>
-            <a class="dropdown-item" href="../cadastro_contrato.php">Contrato</a>
+
           </div>
         </li>
         <li class="nav-item dropdown">

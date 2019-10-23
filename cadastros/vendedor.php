@@ -289,7 +289,7 @@ if (isset($_POST['enviar'])){
     <a class="navbar-brand" href="#"><img src="../imagens/icone.png" width="30px">Contrato</a>
     <a class="nav-text d-none  d-lg-inline">Bem vindo(a) <?php echo $_SESSION['nome']; ?></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
-      <span class="navbar-toggler-icon"></span>
+<span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="collapsibleNavbar">
       <ul class="navbar-nav">
@@ -303,7 +303,7 @@ if (isset($_POST['enviar'])){
           <div class="dropdown-menu">
             <a class="dropdown-item" href="vendedor.php">Pessoa</a>
             <a class="dropdown-item" href="veiculo.php">Veículo</a>
-            <a class="dropdown-item" href="../contrato.php">Contrato</a>
+
           </div>
         </li>
         <li class="nav-item dropdown">

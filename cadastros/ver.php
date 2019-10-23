@@ -1,11 +1,10 @@
 <?php
 require '../config/conexao.php';
 
-$id_imagem = $_GET['id'];
-$sql = "SELECT codigo,
-arquivo, tipo FROM arquivos WHERE codigo = ".$id_imagem;
+$id = $_GET['id'];
+$sql = "SELECT Arquivo, Tipo FROM contrato WHERE IdContrato = ".$id;
 $res=mysqli_query($conexao,$sql);
 $row=mysqli_fetch_assoc($res);
-header( "Content-type:".$row['tipo']);
-echo $row['arquivo'];
+header( "Content-type:".$row['Tipo']);
+echo $row['Arquivo'];
 ?>
