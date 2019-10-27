@@ -387,6 +387,9 @@ if (isset($_POST['enviarveiculo'])){
             <a class="dropdown-item" href="cadastros/cadastro_contrato.php">Contrato</a>
           </div>
         </li>
+        <li class="nav-item ">
+          <a class="nav-link" href="relatorio.php">Relatórios</a>
+        </li>
       </ul>
       <ul class="navbar-nav flex-row ml-md-auto d-md-flex">
         <li class="nav-item">
