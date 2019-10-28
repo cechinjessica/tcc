@@ -1,86 +1,7 @@
 <?php 
 session_start();
-require 'config/conexao.php';
 require 'verifica_login.php';
-
-
-if(isset($_POST['submit'])){
-  $sql = "SELECT * FROM contrato c INNER JOIN veiculo v on c.Veiculo_IdVeiculo = v.IdVeiculo";
-
-  $dinicial = $_POST['dinicial'];
-  $dfinal = $_POST['dfinal'];
-  $comprador = $_POST['comprador'];
-  $vendedor = $_POST['vendedor'];
-  $ulogado = $_POST['ulogado'];
-  $foro = $_POST['foro'];
-  $modelo = $_POST['modelo'];
-  $ano = $_POST['ano'];
-
-  //echo $dfinal."A".$dinicial."A".$comprador."A".$vendedor."A".$ulogado."A".$foro."A".$modelo."A".$ano;
-  if($_POST['dinicial'] != "" || $_POST['dfinal'] != "" || $_POST['comprador'] != "" || $_POST['vendedor'] != "" || $_POST['ulogado'] != "" || $_POST['foro'] != "" || $_POST['modelo'] != "" || $_POST['ano'] != ""){
-    $sql .=" where";
-
-    if($dinicial != "" & $dfinal != ""){
-      $sql .= " c.DataCriacao BETWEEN '".$dinicial."' AND '".$dfinal."'";
-
-    }else if($dfinal == "" & $dinicial != ""){
-      $sql .= " c.DataCriacao <= '".$dinicial."'";
-
-    }else if($dfinal != "" & $dinicial == ""){
-      $sql .= " c.DataCriacao >= '".$dfinal."'";
-    }
-
-    if($comprador != ""){
-      if(strlen($sql) > 88){
-        $sql .= " AND";
-      }
-      $sql .= " c.Pessoa_IdComprador ='".$comprador."'";
-    }
-
-    if($vendedor != ""){
-      if(strlen($sql) > 88){
-        $sql .= " AND";
-      }
-      $sql .= " c.Pessoa_IdVendedor ='".$vendedor."'";
-    }
-
-    if($ulogado != ""){
-      if(strlen($sql) > 88){
-        $sql .= " AND";
-      }
-      $sql .= " c.Login_IdUsuario ='".$ulogado."'";
-    }
-
-    if($foro != ""){
-      if(strlen($sql) > 88){
-        $sql .= " AND";
-      }
-      $sql .= " c.Foro ='".$foro."'";
-    }
-
-    if($modelo != ""){
-      if(strlen($sql) >= 88){
-        $sql .= " AND";
-      }
-      $sql .= " v.Nome ='".$modelo."'";
-    }
-
-    if($ano != ""){
-      if(strlen($sql) >= 88){
-        $sql .= " AND";
-      }
-      $sql .= " v.Ano ='".$ano."'";
-    }
-
-  }
-  $sql .= ";";
-  echo $sql;
-
-  $res=mysqli_query($conexao,$sql);
-  $row=mysqli_fetch_row($res);
-  echo $row[0];
-}
-
+require 'config/conexao.php';
 ?>
 
 <!--  //////////////////////////////-->
@@ -97,6 +18,27 @@ if(isset($_POST['submit'])){
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
   <link rel="stylesheet" type="text/css" href="css/style.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <script type="text/javascript">
+    jQuery(document).ready(function() {
+      jQuery('#formulario').submit(function() {
+        var dados = jQuery(this).serialize();
+
+        jQuery.ajax({
+          type: "POST",
+          url: "config/montasql.php",
+          data: dados,
+          cache: false,
+          data: dados,
+          success: function(result) {
+            $('.result').html(result); //exibe o resultado em uma div class="result"
+          }
+        });
+        return false;
+      });
+    });
+
+  </script>
 </head>
 
 <body style="background: #007bff;
@@ -150,7 +92,7 @@ if(isset($_POST['submit'])){
       <div class="card card-padrao my-5">
         <div class="card-body">
           <h5 class="card-title text-center">Relatório</h5>
-          <form action="#" method="post" class="form-padrao">
+          <form action="" method="post" class="form-padrao" id="formulario">
 
             <div class="card-deck">
 
@@ -221,27 +163,27 @@ if(isset($_POST['submit'])){
                       <div class="form-group">
                         <label for="ulogado">Usuário</label>
                         <?php $sql = "SELECT l.idusuario, l.nome FROM contrato c inner join login l on c.Login_IdUsuario = l.IdUsuario group by c.Login_IdUsuario order by c.Login_IdUsuario asc;";
-                            $result=mysqli_query($conexao,$sql);
-                            echo "<select class='form-control custom-select' name='ulogado' id='ulogado'>";
-                            echo "<option selected value='' >Usuários</option>";
-                            while ($row = mysqli_fetch_row($result)){?>
+                          $result=mysqli_query($conexao,$sql);
+                          echo "<select class='form-control custom-select' name='ulogado' id='ulogado'>";
+                          echo "<option selected value='' >Usuários</option>";
+                          while ($row = mysqli_fetch_row($result)){?>
                         <option value='<?php echo $row[0] ?>'> <?php echo $row[1] ?></option>";
                         <?php }
-                            echo "</select>";
-                            ?>
+                          echo "</select>";
+                          ?>
                       </div>
 
                       <div class="form-group">
                         <label for="foro">Foro</label>
                         <?php $sql = "SELECT c.foro FROM contrato c group by c.foro order by c.foro asc;";
-                            $result=mysqli_query($conexao,$sql);
-                            echo "<select class='form-control custom-select' name='foro' id='foro'>";
-                            echo "<option selected value='' >Cidades</option>";
-                            while ($row = mysqli_fetch_row($result)){?>
+                          $result=mysqli_query($conexao,$sql);
+                          echo "<select class='form-control custom-select' name='foro' id='foro'>";
+                          echo "<option selected value='' >Cidades</option>";
+                          while ($row = mysqli_fetch_row($result)){?>
                         <option value='<?php echo $row[0] ?>'> <?php echo $row[0] ?></option>";
                         <?php }
-                            echo "</select>";
-                            ?>
+                          echo "</select>";
+                          ?>
                       </div>
                     </div>
                   </div>
@@ -257,28 +199,28 @@ if(isset($_POST['submit'])){
                     <div class='card-text'>
                       <div class="form-group">
                         <label for="modelo">Modelo</label>
-                        <?php $sql = "SELECT v.nome FROM contrato c inner join veiculo v on c.Veiculo_IdVeiculo = v.IdVeiculo group by v.modelo order by v.modelo asc;";
-                            $result=mysqli_query($conexao,$sql);
-                            echo "<select class='form-control custom-select' name='modelo' id='modelo'>";
-                            echo "<option selected value=''>Modelos</option>";
-                            while ($row = mysqli_fetch_row($result)){?>
+                        <?php $sql = "SELECT v.nome FROM contrato c inner join veiculo v on c.Veiculo_IdVeiculo = v.IdVeiculo group by v.nome order by v.nome asc;";
+                          $result=mysqli_query($conexao,$sql);
+                          echo "<select class='form-control custom-select' name='modelo' id='modelo'>";
+                          echo "<option selected value=''>Modelos</option>";
+                          while ($row = mysqli_fetch_row($result)){?>
                         <option value='<?php echo $row[0] ?>'> <?php echo $row[0] ?></option>";
                         <?php }
-                            echo "</select>";
-                            ?>
+                          echo "</select>";
+                          ?>
                       </div>
 
                       <div class="form-group">
                         <label for="ano">Ano</label>
                         <?php $sql = "SELECT v.modelo FROM contrato c inner join veiculo v on c.Veiculo_IdVeiculo = v.IdVeiculo group by v.modelo order by v.modelo asc;";
-                            $result=mysqli_query($conexao,$sql);
-                            echo "<select class='form-control custom-select' name='ano' id='ano'>";
-                            echo "<option selected value=''>Anos</option>";
-                            while ($row = mysqli_fetch_row($result)){?>
+                          $result=mysqli_query($conexao,$sql);
+                          echo "<select class='form-control custom-select' name='ano' id='ano'>";
+                          echo "<option selected value=''>Anos</option>";
+                          while ($row = mysqli_fetch_row($result)){?>
                         <option value='<?php echo $row[0] ?>'> <?php echo $row[0] ?></option>";
                         <?php }
-                            echo "</select>";
-                            ?>
+                          echo "</select>";
+                          ?>
                       </div>
                     </div>
                   </div>
@@ -287,8 +229,11 @@ if(isset($_POST['submit'])){
 
             </div>
 
-            <input class="btn btn-md btn-primary btn-block text-uppercase" type="submit" name="submit" value="Encontrar" id="submit">
+            <input class="btn btn-md btn-primary btn-block text-uppercase" type="submit" name="encontrar" value="Encontrar" id="encontrar">
           </form>
+
+          <div class="result"></div>
+
 
         </div>
       </div>
