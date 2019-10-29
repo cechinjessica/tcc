@@ -94,7 +94,7 @@ require 'config/conexao.php';
           <h5 class="card-title text-center">Relatório</h5>
           <form action="" method="post" class="form-padrao" id="formulario">
 
-            <div class="card-deck">
+            <div class="card-deck my-3">
 
               <div class='custom-control custom-control p-0 mb-1'>
                 <div class='card border-primary' style='width:16rem;'>

@@ -74,7 +74,7 @@ if($_POST['dinicial'] != "" || $_POST['dfinal'] != "" || $_POST['comprador'] != 
 
 }
 $sql_rel .= ";";
-//echo $sql_rel;
+echo $sql_rel;
 
 ////////////////////////////Gerar cards
 $result=mysqli_query($conexao,$sql_rel);

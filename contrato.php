@@ -47,12 +47,12 @@ if (isset($_GET['id'])){
   $idvei = $row[16];
   $idlogin = $row[17];
   $entrada = $row[18];
-  $nomevend = $row[19];
-  $cpfvend = $row[20];
-  $nomecomp = $row[21];
-  $cpfcomp = $row[22];
-  $nomevei = $row[23];
-  $placavei = $row[24];
+  $nomevend = $row[23];
+  $cpfvend = $row[24];
+  $nomecomp = $row[25];
+  $cpfcomp = $row[26];
+  $nomevei = $row[27];
+  $placavei = $row[28];
 
   if ($juro == "0.5% ao mês"){
     $juro05="checked";
@@ -122,7 +122,7 @@ if (isset($_POST['enviarcontrato'])){
         echo $script;
       } else {
         $_SESSION['msg_contratoa'] = "<p class='text-success lead'>Contrato atualizado com sucesso!</p>";
-        //header('Location:cadastros/cadastro_contrato.php');
+        header('Location:cadastros/cadastro_contrato.php');
       }
       mysqli_close($conexao);
 
