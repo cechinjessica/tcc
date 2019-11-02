@@ -97,7 +97,7 @@ require 'config/conexao.php';
             <div class="card-deck my-3">
 
               <div class='custom-control custom-control p-0 mb-1'>
-                <div class='card border-primary' style='width:16rem;'>
+                <div class='card border-0' style='width:16rem;'>
                   <div class='card-header border-primary bg-transparent'>
                     <h6 class='text-uppercase'>Período</h6>
                   </div>
@@ -117,7 +117,7 @@ require 'config/conexao.php';
               </div>
 
               <div class='custom-control custom-control p-0 mb-1'>
-                <div class='card border-primary' style='width:16rem;'>
+                <div class='card border-0' style='width:16rem;'>
                   <div class='card-header border-primary bg-transparent'>
                     <h6 class='text-uppercase'>Envolvidos</h6>
                   </div>
@@ -154,7 +154,7 @@ require 'config/conexao.php';
               </div>
 
               <div class='custom-control custom-control p-0 mb-1'>
-                <div class='card border-primary' style='width:16rem;'>
+                <div class='card border-0' style='width:16rem;'>
                   <div class='card-header border-primary bg-transparent'>
                     <h6 class='text-uppercase'>Sobre o contrato</h6>
                   </div>
@@ -191,7 +191,7 @@ require 'config/conexao.php';
               </div>
 
               <div class='custom-control custom-control p-0 mb-1'>
-                <div class='card border-primary' style='width:16rem;'>
+                <div class='card border-0' style='width:16rem;'>
                   <div class='card-header border-primary bg-transparent'>
                     <h6 class='text-uppercase'>Veículo</h6>
                   </div>

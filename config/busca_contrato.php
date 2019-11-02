@@ -25,7 +25,7 @@ if (mysqli_affected_rows($conexao)>0) {
     $hora = substr($row[4], 11,5);
     $dt = $dia."/".$mes."/".$ano;
 
-    echo "<div class='custom-control custom-control-inline my-6'>";
+    echo "<div class='custom-control custom-control-inline p-0 my-2'>";
     echo "<div class='card border-primary' style='width:18rem;'>";
     echo "<div class='card-header border-primary bg-transparent'><h5 class='text-uppercase'>$row[2] $row[6]</h5></div>";
     echo "<div class='card-body bg-transparent'><div class='card-text'>";
@@ -49,7 +49,7 @@ where Arquivo is not null and IdContrato=".$row[5];
     echo "</div>";
 
 
-    echo "<center><a href=../config/pdfcontrato.php?id=$row[5]><button type='button' class='btn btn-outline-info btn-sm w-100'>Editar</button></a></center>";
+    echo "<center><a href=../config/pdfcontrato.php?id=$row[5]><button type='button' class='btn btn-outline-info btn-sm w-100'>Imprimir</button></a></center>";
     echo "</div></div></div></div>";
 
   }
