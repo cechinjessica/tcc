@@ -19,249 +19,249 @@ $script = "<script>
 //PARA COLOCAR AS INFORMAÇÕES DO BD NOS CAMPOS CONTRATO
 ////////////////////////////Contrato
 if (isset($_GET['id'])){
-  $id=$_GET['id'];
-  $op=$_GET['op'];
-  $sql = "SELECT c.*, p.nome, p.cpf, pp.nome, pp.cpf, v.nome, v.placa FROM contrato c
+	$id=$_GET['id'];
+	$op=$_GET['op'];
+	$sql = "SELECT c.*, p.nome, p.cpf, pp.nome, pp.cpf, v.nome, v.placa FROM contrato c
     inner join pessoa p on p.idpessoa = c.pessoa_idvendedor
     inner join pessoa pp on pp.idpessoa = c.pessoa_idcomprador
     inner join veiculo v on v.idveiculo = c.veiculo_idveiculo
     WHERE IdContrato='$id'";
-  $res=mysqli_query($conexao,$sql);
-  $row=mysqli_fetch_row($res);
-  $id= $row[0];
-  $valortotal = $row[1];
-  $numeroparcelas  = $row[2];
-  $valorparcela = $row[3];
-  $dpagamento = $row[4];
-  $juro = $row[5];
-  $foro = $row[6];
-  $lassinatura = $row[7];
-  $dassinatura =$row[8];
-  $datacriacao =$row[9];
-  $ntestemunha1 = $row[10];
-  $rgtestemunha1 = $row[11];
-  $ntestemunha2 = $row[12];
-  $rgtestemunha2 = $row[13];
-  $idvend = $row[14];
-  $idcomp = $row[15];
-  $idvei = $row[16];
-  $idlogin = $row[17];
-  $entrada = $row[18];
-  $nomevend = $row[23];
-  $cpfvend = $row[24];
-  $nomecomp = $row[25];
-  $cpfcomp = $row[26];
-  $nomevei = $row[27];
-  $placavei = $row[28];
+	$res=mysqli_query($conexao,$sql);
+	$row=mysqli_fetch_row($res);
+	$id= $row[0];
+	$valortotal = $row[1];
+	$numeroparcelas  = $row[2];
+	$valorparcela = $row[3];
+	$dpagamento = $row[4];
+	$juro = $row[5];
+	$foro = $row[6];
+	$lassinatura = $row[7];
+	$dassinatura =$row[8];
+	$datacriacao =$row[9];
+	$ntestemunha1 = $row[10];
+	$rgtestemunha1 = $row[11];
+	$ntestemunha2 = $row[12];
+	$rgtestemunha2 = $row[13];
+	$idvend = $row[14];
+	$idcomp = $row[15];
+	$idvei = $row[16];
+	$idlogin = $row[17];
+	$entrada = $row[18];
+	$nomevend = $row[23];
+	$cpfvend = $row[24];
+	$nomecomp = $row[25];
+	$cpfcomp = $row[26];
+	$nomevei = $row[27];
+	$placavei = $row[28];
 
-  if ($juro == "0.5% ao mês"){
-    $juro05="checked";
-    $juro1="";
-    $juro15="";
-    $juro2="";
-  }else if($juro == "1% ao mês"){
-    $juro05="";
-    $juro1="checked";
-    $juro15="";
-    $juro2="";
-  }else if($juro == "1.5% ao mês"){
-    $juro05="";
-    $juro1="";
-    $juro15="checked";
-    $juro2="";
-  }else if($juro == "2% ao mês"){
-    $juro05="";
-    $juro1="";
-    $juro15="";
-    $juro2="checked";
+	if ($juro == "0.5% ao mês"){
+		$juro05="checked";
+		$juro1="";
+		$juro15="";
+		$juro2="";
+	}else if($juro == "1% ao mês"){
+		$juro05="";
+		$juro1="checked";
+		$juro15="";
+		$juro2="";
+	}else if($juro == "1.5% ao mês"){
+		$juro05="";
+		$juro1="";
+		$juro15="checked";
+		$juro2="";
+	}else if($juro == "2% ao mês"){
+		$juro05="";
+		$juro1="";
+		$juro15="";
+		$juro2="checked";
 
-  }
+	}
 } else{
-  $id=0;
+	$id=0;
 }
 
 //PARA PEGAR OS DADOS DOS CAMPOS
 if (isset($_POST['enviarcontrato'])){
-  $valortotal2 = $_POST['valortotal'];
-  $numeroparcelas  = $_POST['numeroparcelas'];
-  $valorparcela2 = $_POST['valorparcela'];
-  $dpagamento = $_POST['dpagamento'];
-  $juro = $_POST['juro'];
-  $foro = $_POST['foro'];
-  $lassinatura = $_POST['lassinatura'];
-  $dassinatura = $_POST['dassinatura'];
-  $datacriacao = $_POST['datacriacao'];
-  $ntestemunha1 = $_POST['ntestemunha1'];
-  $rgtestemunha1 = $_POST['rgtestemunha1'];
-  $ntestemunha2 = $_POST['ntestemunha2'];
-  $rgtestemunha2 = $_POST['rgtestemunha2'];
-  $idvend = $_POST['idvend'];
-  $idcomp = $_POST['idcomp'];
-  $idvei = $_POST['idvei'];
-  $idlogin = $_POST['idlogin'];
-  $entrada2 = $_POST['entrada'];
-  $op=$_POST['op'];
+	$valortotal2 = $_POST['valortotal'];
+	$numeroparcelas  = $_POST['numeroparcelas'];
+	$valorparcela2 = $_POST['valorparcela'];
+	$dpagamento = $_POST['dpagamento'];
+	$juro = $_POST['juro'];
+	$foro = $_POST['foro'];
+	$lassinatura = $_POST['lassinatura'];
+	$dassinatura = $_POST['dassinatura'];
+	$datacriacao = $_POST['datacriacao'];
+	$ntestemunha1 = $_POST['ntestemunha1'];
+	$rgtestemunha1 = $_POST['rgtestemunha1'];
+	$ntestemunha2 = $_POST['ntestemunha2'];
+	$rgtestemunha2 = $_POST['rgtestemunha2'];
+	$idvend = $_POST['idvend'];
+	$idcomp = $_POST['idcomp'];
+	$idvei = $_POST['idvei'];
+	$idlogin = $_POST['idlogin'];
+	$entrada2 = $_POST['entrada'];
+	$op=$_POST['op'];
 
-  $valortotal1 = str_replace ( "." ,"", $valortotal2);
-  $valortotal = str_replace ( "," ,".", $valortotal1);
+	$valortotal1 = str_replace ( "." ,"", $valortotal2);
+	$valortotal = str_replace ( "," ,".", $valortotal1);
 
-  $valorparcela1 = str_replace ( "." ,"", $valorparcela2);
-  $valorparcela = str_replace ( "," ,".", $valorparcela1);
+	$valorparcela1 = str_replace ( "." ,"", $valorparcela2);
+	$valorparcela = str_replace ( "," ,".", $valorparcela1);
 
-  $entrada1 = str_replace ( "." ,"", $entrada2);
-  $entrada = str_replace ( "," ,".", $entrada1);
+	$entrada1 = str_replace ( "." ,"", $entrada2);
+	$entrada = str_replace ( "," ,".", $entrada1);
 
-  //PARA ATUALIZAR, HAVERÁ ID POIS HÁ UM CONTRATO
-  if ($id != 0) {
-    if ($op == 'A') {
-      $sql="UPDATE contrato SET ValorTotal ='$valortotal', NumeroParcelas ='$numeroparcelas', ValorParcela ='$valorparcela', DataPagamento='$dpagamento', Juros='$juro', Foro ='$foro', LocalAss=' $lassinatura', DataAss ='$dassinatura', DataCriacao =STR_TO_DATE( '$datacriacao', '%d/%m/%Y %H:%i:%s'), NomeTestemunha1='$ntestemunha1', RGTestemunha1='$rgtestemunha1', NomeTestemunha2='$ntestemunha2', RGTestemunha2='$rgtestemunha2', Pessoa_IdVendedor='$idvend', Pessoa_IdComprador=' $idcomp',Veiculo_IdVeiculo='$idvei', Login_IdUsuario='$idlogin', Entrada='$entrada' WHERE IdContrato ='$id'";
+	//PARA ATUALIZAR, HAVERÁ ID POIS HÁ UM CONTRATO
+	if ($id != 0) {
+		if ($op == 'A') {
+			$sql="UPDATE contrato SET ValorTotal ='$valortotal', NumeroParcelas ='$numeroparcelas', ValorParcela ='$valorparcela', DataPagamento='$dpagamento', Juros='$juro', Foro ='$foro', LocalAss=' $lassinatura', DataAss ='$dassinatura', DataCriacao =STR_TO_DATE( '$datacriacao', '%d/%m/%Y %H:%i:%s'), NomeTestemunha1='$ntestemunha1', RGTestemunha1='$rgtestemunha1', NomeTestemunha2='$ntestemunha2', RGTestemunha2='$rgtestemunha2', Pessoa_IdVendedor='$idvend', Pessoa_IdComprador=' $idcomp',Veiculo_IdVeiculo='$idvei', Login_IdUsuario='$idlogin', Entrada='$entrada' WHERE IdContrato ='$id'";
 
-      $res = mysqli_query($conexao,$sql);
-      if (mysqli_error($conexao)) {
-        $_SESSION['msg_erro'] = "<p class='text-danger lead'>Erro na atualização do contrato</p>";
-        echo $script;
-      } else {
-        $_SESSION['msg_contratoa'] = "<p class='text-success lead'>Contrato atualizado com sucesso!</p>";
-        header('Location:cadastros/cadastro_contrato.php');
-      }
-      mysqli_close($conexao);
+			$res = mysqli_query($conexao,$sql);
+			if (mysqli_error($conexao)) {
+				$_SESSION['msg_erro'] = "<p class='text-danger lead'>Erro na atualização do contrato</p>";
+				echo $script;
+			} else {
+				$_SESSION['msg_contratoa'] = "<p class='text-success lead'>Contrato atualizado com sucesso!</p>";
+				header('Location:cadastros/cadastro_contrato.php');
+			}
+			mysqli_close($conexao);
 
-    } else if($op == "D") { //PARA EXCLUIR
-      $sql="DELETE FROM contrato WHERE IdContrato='$id'";
+		} else if($op == "D") { //PARA EXCLUIR
+			$sql="DELETE FROM contrato WHERE IdContrato='$id'";
 
-      $res = mysqli_query($conexao,$sql);
-      if (mysqli_affected_rows($conexao)=='1') {
-        $_SESSION['msg_contratoa'] = "<p class='text-success lead'>Contrato excluído com sucesso!</p>";
-        header('Location:cadastros/cadastro_contrato.php');
-      } else {
-        $_SESSION['msg_erro'] = "<p class='text-danger lead'>Erro na exclusão do contrato</p>";
-        echo $script;
+			$res = mysqli_query($conexao,$sql);
+			if (mysqli_affected_rows($conexao)=='1') {
+				$_SESSION['msg_contratoa'] = "<p class='text-success lead'>Contrato excluído com sucesso!</p>";
+				header('Location:cadastros/cadastro_contrato.php');
+			} else {
+				$_SESSION['msg_erro'] = "<p class='text-danger lead'>Erro na exclusão do contrato</p>";
+				echo $script;
 
-      }
-      mysqli_close($conexao);
-    }
+			}
+			mysqli_close($conexao);
+		}
 
-  }else{
-    //SE FOR == 0 ENTÃO O CONTRATO AINDA NÃO ESTÁ CADASTRADO
-    //INCLUSÃO
-    $sql = "INSERT INTO contrato (ValorTotal, NumeroParcelas, ValorParcela, DataPagamento, Juros, Foro, LocalAss, DataAss, DataCriacao, NomeTestemunha1, RGTestemunha1, NomeTestemunha2, RGTestemunha2, Pessoa_IdVendedor,Pessoa_IdComprador, Veiculo_IdVeiculo, Login_IdUsuario, Entrada) VALUES ('$valortotal' ,'$numeroparcelas' ,'$valorparcela', '$dpagamento', '$juro' ,'$foro' ,'$lassinatura' ,'$dassinatura',(now()), '$ntestemunha1' ,'$rgtestemunha1' ,'$ntestemunha2' ,'$rgtestemunha2' ,'$idvend', '$idcomp' ,'$idvei','$idlogin','$entrada')";
-    mysqli_query($conexao,$sql);
+	}else{
+		//SE FOR == 0 ENTÃO O CONTRATO AINDA NÃO ESTÁ CADASTRADO
+		//INCLUSÃO
+		$sql = "INSERT INTO contrato (ValorTotal, NumeroParcelas, ValorParcela, DataPagamento, Juros, Foro, LocalAss, DataAss, DataCriacao, NomeTestemunha1, RGTestemunha1, NomeTestemunha2, RGTestemunha2, Pessoa_IdVendedor,Pessoa_IdComprador, Veiculo_IdVeiculo, Login_IdUsuario, Entrada) VALUES ('$valortotal' ,'$numeroparcelas' ,'$valorparcela', '$dpagamento', '$juro' ,'$foro' ,'$lassinatura' ,'$dassinatura',(now()), '$ntestemunha1' ,'$rgtestemunha1' ,'$ntestemunha2' ,'$rgtestemunha2' ,'$idvend', '$idcomp' ,'$idvei','$idlogin','$entrada')";
+		mysqli_query($conexao,$sql);
 
-    if (mysqli_affected_rows($conexao) =='1') {
-      $sql = "SELECT idcontrato FROM contrato order by idcontrato desc";
-      $res=mysqli_query($conexao,$sql);
-      $row=mysqli_fetch_row($res);
-      $id= $row[0];
+		if (mysqli_affected_rows($conexao) =='1') {
+			$sql = "SELECT idcontrato FROM contrato order by idcontrato desc";
+			$res=mysqli_query($conexao,$sql);
+			$row=mysqli_fetch_row($res);
+			$id= $row[0];
 
-      $_SESSION['msg_contratob'] = "<p class='text-success lead'>Contrato inserido com sucesso!</p>";
-      header("Location:config/pdfcontrato.php?id=".$id);
+			$_SESSION['msg_contratob'] = "<p class='text-success lead'>Contrato inserido com sucesso!</p>";
+			header("Location:config/pdfcontrato.php?id=".$id);
 
-    } else {
-      $_SESSION['msg_erro'] ="<p class='text-danger lead'>Erro: ".mysqli_error($conexao)." no banco de dados</p>";
-      echo $script;
+		} else {
+			$_SESSION['msg_erro'] ="<p class='text-danger lead'>Erro: ".mysqli_error($conexao)." no banco de dados</p>";
+			echo $script;
 
-    }
-    mysqli_close($conexao);
+		}
+		mysqli_close($conexao);
 
-  }
-  $id=0;
+	}
+	$id=0;
 }
 
 //Pessoa
 //PARA PEGAR OS DADOS DOS CAMPOS DO VENDEDOR/COMPRADOR
 if (isset($_POST['enviarpessoa'])){
-  $tipopessoa = $_POST['pessoa'];
-  $nome = $_POST['nome'];
-  $nacionalidade = $_POST['nacionalidade'];
-  $profissao = $_POST['profissao'];
-  $ecivil = $_POST['ecivil'];
-  $rg = $_POST['rg'];
-  $cpf = $_POST['cpf'];
-  $endereco = $_POST['endereco'];
-  $sexo = $_POST['sexo'];
-  $numero = $_POST['numero'];
-  $cidade = $_POST['cidade'];
-  $cep = $_POST['cep'];
-  $cnpjempresa = $_POST['cnpjempresa'];
-  $enderecoempresa = $_POST['enderecoempresa'];
-  $cargoempresa = $_POST['cargoempresa'];
-  if(isset($_POST['tipoempresa'])){
-    $tipoempresa = $_POST['tipoempresa'];
-  }else{
-    $tipoempresa="";
-  }
-  $cidadeempresa = $_POST['cidadeempresa'];
-  $numeroempresa = $_POST['numeroempresa'];
-  $nomeempresa = $_POST['nomeempresa'];
-  $uf = $_POST['uf'];
-  $ufempresa = $_POST['ufempresa'];
+	$tipopessoa = $_POST['pessoa'];
+	$nome = $_POST['nome'];
+	$nacionalidade = $_POST['nacionalidade'];
+	$profissao = $_POST['profissao'];
+	$ecivil = $_POST['ecivil'];
+	$rg = $_POST['rg'];
+	$cpf = $_POST['cpf'];
+	$endereco = $_POST['endereco'];
+	$sexo = $_POST['sexo'];
+	$numero = $_POST['numero'];
+	$cidade = $_POST['cidade'];
+	$cep = $_POST['cep'];
+	$cnpjempresa = $_POST['cnpjempresa'];
+	$enderecoempresa = $_POST['enderecoempresa'];
+	$cargoempresa = $_POST['cargoempresa'];
+	if(isset($_POST['tipoempresa'])){
+		$tipoempresa = $_POST['tipoempresa'];
+	}else{
+		$tipoempresa="";
+	}
+	$cidadeempresa = $_POST['cidadeempresa'];
+	$numeroempresa = $_POST['numeroempresa'];
+	$nomeempresa = $_POST['nomeempresa'];
+	$uf = $_POST['uf'];
+	$ufempresa = $_POST['ufempresa'];
 
-  //PARA INCLUIR
-  $sql = "SELECT * FROM pessoa WHERE cpf='$cpf'";
-  mysqli_query($conexao,$sql);
+	//PARA INCLUIR
+	$sql = "SELECT * FROM pessoa WHERE cpf='$cpf'";
+	mysqli_query($conexao,$sql);
 
-  if (mysqli_affected_rows($conexao)!=0) {
-    mysqli_close($conexao);
-    $_SESSION['msg_cpf'] = "<p class='text-danger lead'>$cpf já foi cadastrado</p>";
+	if (mysqli_affected_rows($conexao)!=0) {
+		mysqli_close($conexao);
+		$_SESSION['msg_cpf'] = "<p class='text-danger lead'>$cpf já foi cadastrado</p>";
 
-  }else {
-    if($tipopessoa == "j"){
-      $sql = "INSERT INTO pessoa (tipopessoa, nome, nacionalidade, profissao, estadocivil, rg, cpf, endereco, sexo, numero, cidade, cep, cnpj, enderecoempresa, cargoempresa, tipoempresa, cidadeempresa, numeroempresa, nomeempresa, uf, ufempresa) VALUES ('$tipopessoa', '$nome', LCASE('$nacionalidade'), '$profissao', '$ecivil', '$rg', '$cpf', '$endereco', '$sexo', '$numero', '$cidade', '$cep', '$cnpjempresa', '$enderecoempresa', '$cargoempresa', '$tipoempresa', '$cidadeempresa', '$numeroempresa', '$nomeempresa',UCASE('$uf'),UCASE('$ufempresa'))";
+	}else {
+		if($tipopessoa == "j"){
+			$sql = "INSERT INTO pessoa (tipopessoa, nome, nacionalidade, profissao, estadocivil, rg, cpf, endereco, sexo, numero, cidade, cep, cnpj, enderecoempresa, cargoempresa, tipoempresa, cidadeempresa, numeroempresa, nomeempresa, uf, ufempresa) VALUES ('$tipopessoa', '$nome', LCASE('$nacionalidade'), '$profissao', '$ecivil', '$rg', '$cpf', '$endereco', '$sexo', '$numero', '$cidade', '$cep', '$cnpjempresa', '$enderecoempresa', '$cargoempresa', '$tipoempresa', '$cidadeempresa', '$numeroempresa', '$nomeempresa',UCASE('$uf'),UCASE('$ufempresa'))";
 
-    } else if($tipopessoa == "f"){
-      $sql = "INSERT INTO pessoa (tipopessoa, nome, nacionalidade, profissao, estadocivil, rg, cpf, endereco, sexo, numero, cidade, cep, uf) VALUES ('$tipopessoa', '$nome', LCASE('$nacionalidade'), '$profissao', '$ecivil', '$rg', '$cpf', '$endereco', '$sexo', '$numero', '$cidade', '$cep', UCASE('$uf'))";
-    }
-    mysqli_query($conexao,$sql);
+		} else if($tipopessoa == "f"){
+			$sql = "INSERT INTO pessoa (tipopessoa, nome, nacionalidade, profissao, estadocivil, rg, cpf, endereco, sexo, numero, cidade, cep, uf) VALUES ('$tipopessoa', '$nome', LCASE('$nacionalidade'), '$profissao', '$ecivil', '$rg', '$cpf', '$endereco', '$sexo', '$numero', '$cidade', '$cep', UCASE('$uf'))";
+		}
+		mysqli_query($conexao,$sql);
 
-    if (mysqli_affected_rows($conexao) =='1') {
-      $_SESSION['msgvendedor'] = "<p class='text-success lead'>$nome inserido com sucesso!</p>";
-    } else {
-      $_SESSION['msgvendedor'] ="<p class='text-danger lead'>Erro: ".mysqli_error($conexao)." no banco de dados</p>";
-    }
-    mysqli_close($conexao);
-  }
+		if (mysqli_affected_rows($conexao) =='1') {
+			$_SESSION['msgvendedor'] = "<p class='text-success lead'>$nome inserido com sucesso!</p>";
+		} else {
+			$_SESSION['msgvendedor'] ="<p class='text-danger lead'>Erro: ".mysqli_error($conexao)." no banco de dados</p>";
+		}
+		mysqli_close($conexao);
+	}
 
 }
 
 //Veiculo
 //PARA PEGAR OS DADOS DOS CAMPOS
 if (isset($_POST['enviarveiculo'])){
-  $nomevei = $_POST['nomevei'];
-  $marca  = $_POST['marca'];
-  $modelo = $_POST['modelo'];
-  $ano = $_POST['ano'];
-  $chassi = $_POST['chassi'];
-  $cor = $_POST['cor'];
-  $placa = $_POST['placa'];
-  $renavam = $_POST['renavam'];
-  $proprietario = $_POST['proprietario'];
-  $valorvei2 = $_POST['valorvei'];
-  $estado = $_POST['estado'];
-  $combustivel = $_POST['combustivel'];
-  $op=$_POST['op'];
+	$nomevei = $_POST['nomevei'];
+	$marca  = $_POST['marca'];
+	$modelo = $_POST['modelo'];
+	$ano = $_POST['ano'];
+	$chassi = $_POST['chassi'];
+	$cor = $_POST['cor'];
+	$placa = $_POST['placa'];
+	$renavam = $_POST['renavam'];
+	$proprietario = $_POST['proprietario'];
+	$valorvei2 = $_POST['valorvei'];
+	$estado = $_POST['estado'];
+	$combustivel = $_POST['combustivel'];
+	$op=$_POST['op'];
 
-  $valorvei1 = str_replace ( "." ,"", $valorvei2);
-  $valorvei = str_replace ( "," ,".", $valorvei1);
+	$valorvei1 = str_replace ( "." ,"", $valorvei2);
+	$valorvei = str_replace ( "," ,".", $valorvei1);
 
 
-  //PARA ATUALIZAR, HAVERÁ ID POIS HÁ UM VEICULO
-  $sql = "SELECT * FROM veiculo WHERE placa='$placa'";
-  mysqli_query($conexao,$sql);
+	//PARA ATUALIZAR, HAVERÁ ID POIS HÁ UM VEICULO
+	$sql = "SELECT * FROM veiculo WHERE placa='$placa'";
+	mysqli_query($conexao,$sql);
 
-  if (mysqli_affected_rows($conexao)!=0) {
-    mysqli_close($conexao);
-    $_SESSION[_contrato] = "$placa já foi cadastrada";
-  }else {
-    $sql = "INSERT INTO veiculo (nome, marca, modelo, ano, chassi, cor, placa, renavam, emnomede, valor, estado, combustivel) VALUES ('$nomevei', '$marca', '$modelo', '$ano', '$chassi', '$cor', UCASE('$placa'), '$renavam', '$proprietario', '$valorvei', '$estado', '$combustivel')";
-    mysqli_query($conexao,$sql);
+	if (mysqli_affected_rows($conexao)!=0) {
+		mysqli_close($conexao);
+		$_SESSION[_contrato] = "$placa já foi cadastrada";
+	}else {
+		$sql = "INSERT INTO veiculo (nome, marca, modelo, ano, chassi, cor, placa, renavam, emnomede, valor, estado, combustivel) VALUES ('$nomevei', '$marca', '$modelo', '$ano', '$chassi', '$cor', UCASE('$placa'), '$renavam', '$proprietario', '$valorvei', '$estado', '$combustivel')";
+		mysqli_query($conexao,$sql);
 
-    if (mysqli_affected_rows($conexao) =='1') {
-      $_SESSION['msg'] = "<p class='text-success lead'>$nomevei inserido com sucesso!</p>";
-    } else {
-      $_SESSION['msg'] ="<p class='text-danger lead'>Erro: ".mysqli_error($conexao)." no banco de dados</p>";
-    }
-    mysqli_close($conexao);
-  }
+		if (mysqli_affected_rows($conexao) =='1') {
+			$_SESSION['msg'] = "<p class='text-success lead'>$nomevei inserido com sucesso!</p>";
+		} else {
+			$_SESSION['msg'] ="<p class='text-danger lead'>Erro: ".mysqli_error($conexao)." no banco de dados</p>";
+		}
+		mysqli_close($conexao);
+	}
 }
 
 ?>
@@ -352,7 +352,7 @@ if (isset($_POST['enviarveiculo'])){
 </head>
 
 <body style="background: #007bff;
-               background: linear-gradient(to left, #5A8BB7, #2D9AAD);">
+				 background: linear-gradient(to left, #5A8BB7, #2D9AAD);">
 	<script type="text/javascript" src="javascript/contrato.js"></script>
 	<script type="text/javascript" src="javascript/vendedorcomprador.js"></script>
 	<!--NAVBAR-->
@@ -400,36 +400,36 @@ if (isset($_POST['enviarveiculo'])){
 	</nav>
 	<!--</NAVBAR-->
 	<?php
-    if(isset($_SESSION['msg_contrato']) || isset($_SESSION['msg_erro']) || isset($_SESSION['msg']) || isset($_SESSION['msgvendedor'])){
-      echo "  <div class='toast'>
+		if(isset($_SESSION['msg_contrato']) || isset($_SESSION['msg_erro']) || isset($_SESSION['msg']) || isset($_SESSION['msgvendedor'])){
+			echo "  <div class='toast'>
     <div class='toast-header'>
       Notificação
     </div>
     <div class='toast-body'>";
 
-      if (isset($_SESSION['msg_contrato'])) {
-        echo  $_SESSION['msg_contrato'];
-        unset ($_SESSION['msg_contrato']);
-      }
+			if (isset($_SESSION['msg_contrato'])) {
+				echo  $_SESSION['msg_contrato'];
+				unset ($_SESSION['msg_contrato']);
+			}
 
-      if (isset($_SESSION['msg_erro'])) {
-        echo  $_SESSION['msg_erro'];
-        unset ($_SESSION['msg_erro']);
-      }
+			if (isset($_SESSION['msg_erro'])) {
+				echo  $_SESSION['msg_erro'];
+				unset ($_SESSION['msg_erro']);
+			}
 
-      if (isset($_SESSION['msg'])) {
-        echo  $_SESSION['msg'];
-        unset ($_SESSION['msg']);
-      }
+			if (isset($_SESSION['msg'])) {
+				echo  $_SESSION['msg'];
+				unset ($_SESSION['msg']);
+			}
 
-      if (isset($_SESSION['msgvendedor'])) {
-        echo  $_SESSION['msgvendedor'];
-        unset ($_SESSION['msgvendedor']);
-      }
-      echo "  </div>
+			if (isset($_SESSION['msgvendedor'])) {
+				echo  $_SESSION['msgvendedor'];
+				unset ($_SESSION['msgvendedor']);
+			}
+			echo "  </div>
   </div>";
-    }
-    ?>
+		}
+		?>
 
 
 	<!--MODAL VENDEDOR Buscar-->
@@ -556,20 +556,7 @@ if (isset($_POST['enviarveiculo'])){
 								<label for="cpf">CPF</label><label for="cpf" class="representante"> do representante</label>
 								<input type="text" id="cpf" class="form-control" name="cpf">
 
-								<?php
-                  if (isset($_SESSION['msg_cpf'])) {
-                    echo "<div class='toast'>
-                  <div class='toast-header'>
-                    Notificação
-                  </div>
-                  <div class='toast-body'>";
-                    echo  $_SESSION['msg_cpf'];
-                    unset ($_SESSION['msg_cpf']);
-                    echo " </div>
-                </div>";
 
-                  }
-                  ?>
 
 							</div>
 
@@ -722,18 +709,18 @@ if (isset($_POST['enviarveiculo'])){
 					<form action="#" method="post" class="form-padrao">
 
 						<?php
-              if (isset($_SESSION['msg'])) {
-                echo " <div class='toast'>
+							if (isset($_SESSION['msg'])) {
+								echo " <div class='toast'>
               <div class='toast-header'>
                 Notificação
               </div>
               <div class='toast-body'>";
-                echo  $_SESSION['msg'];
-                unset ($_SESSION['msg']);
-                echo " </div>
+								echo  $_SESSION['msg'];
+								unset ($_SESSION['msg']);
+								echo " </div>
             </div>";
-              }
-              ?>
+							}
+							?>
 
 
 						<div class="row">
@@ -836,11 +823,11 @@ if (isset($_POST['enviarveiculo'])){
 						<input type='hidden' name='op' value="<?php echo ($id!=0)?"$op":'';?>">
 
 						<?php
-              $txtbtn="Incluir";
-              if (isset($op)){
-                $txtbtn=($op=='A')?'Atualizar':'Excluir';
-              }
-              ?>
+							$txtbtn="Incluir";
+							if (isset($op)){
+								$txtbtn=($op=='A')?'Atualizar':'Excluir';
+							}
+							?>
 						<input class="btn btn-md btn-primary btn-block text-uppercase" type="submit" name="enviarveiculo" value="<?php echo $txtbtn?>" id="salvarveiculo">
 					</form>
 				</div>
@@ -851,6 +838,32 @@ if (isset($_POST['enviarveiculo'])){
 
 	<div class="container fundo-card col-md-11 col-lg-12 col-sm-12">
 		<div class="col-sm-12 col-md-12 col-lg-11 mx-auto">
+			<?php
+	if (isset($_SESSION['msg_cpf'])) {
+		echo "<div class='toast'>
+                  <div class='toast-header'>
+                    Notificação
+                  </div>
+                  <div class='toast-body'>";
+		echo  $_SESSION['msg_cpf'];
+		unset ($_SESSION['msg_cpf']);
+		echo " </div>
+                </div>";
+		echo "<script>
+                $(document).ready(function() {
+                $('.toast').toast({
+                  delay: 10000
+                });
+                $('.toast').toast({
+                  animation: true
+                });
+                $('.toast').toast('show');
+              });
+
+              </script>";
+	}
+
+					?>
 			<div class="card card-padrao my-5">
 				<div class="card-body">
 					<h5 class="card-title text-center">O contrato:</h5>
@@ -1020,11 +1033,11 @@ if (isset($_POST['enviarveiculo'])){
 
 
 						<?php
-              $txtbtn="Incluir";
-              if (isset($op)){
-                $txtbtn=($op=='A')?'Atualizar':'Excluir';
-              }
-              ?>
+							$txtbtn="Incluir";
+							if (isset($op)){
+								$txtbtn=($op=='A')?'Atualizar':'Excluir';
+							}
+							?>
 						<input class="btn btn-md btn-primary btn-block text-uppercase" type="submit" name="enviarcontrato" value="<?php echo $txtbtn?>" id="salvarcontrato">
 
 					</form>

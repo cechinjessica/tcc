@@ -345,6 +345,18 @@ if (isset($_POST['enviar'])){
               unset ($_SESSION['msg_erro']);
               echo " </div>
           </div>";
+				  echo "<script>
+                $(document).ready(function() {
+                $('.toast').toast({
+                  delay: 10000
+                });
+                $('.toast').toast({
+                  animation: true
+                });
+                $('.toast').toast('show');
+              });
+
+              </script>";
             }
             ?>
 

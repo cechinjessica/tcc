@@ -131,14 +131,13 @@ if (isset($_POST['enviarveiculo'])){
 
     } else if($op == "D") { //PARA EXCLUIR
       $sql="DELETE FROM veiculo WHERE idveiculo='$id'";
-      echo $sql;
       $res = mysqli_query($conexao,$sql);
       if (mysqli_affected_rows($conexao)=='1') {
         $_SESSION['msg'] = "$nomevei excluído com sucesso!";
         header('Location:cadastro_veiculo.php');
       } else {
-        $_SESSION['msg_erro'] = "Erro na exclusão de $nomevei";
-        echo $script;
+        $_SESSION['msg_erro'] = "$nomevei já tem contrato";
+		  echo $script;
       }
       mysqli_close($conexao);
     }
@@ -267,6 +266,18 @@ if (isset($_POST['enviarveiculo'])){
                 unset ($_SESSION['msg_erro']);
 
                 echo "</div></div>";
+				  echo "<script>
+                $(document).ready(function() {
+                $('.toast').toast({
+                  delay: 10000
+                });
+                $('.toast').toast({
+                  animation: true
+                });
+                $('.toast').toast('show');
+              });
+
+              </script>";
               }
               ?>
 
