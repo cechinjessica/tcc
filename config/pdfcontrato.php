@@ -53,7 +53,7 @@ if (isset($_GET['id'])){
 			<span class="navbar-toggler-icon"></span>
 		</button>
 		<div class="collapse navbar-collapse" id="collapsibleNavbar">
-			<ul class="navbar-nav">
+			<ul class="navbar-nav ml-5">
 				<li class="nav-item ">
 					<a class="nav-link" href="../contrato.php">Gerar contrato</a>
 				</li>
@@ -101,7 +101,7 @@ if (isset($_GET['id'])){
       echo "<script>
                 $(document).ready(function() {
                 $('.toast').toast({
-                  delay: 2000
+                  delay: 10000
                 });
                 $('.toast').toast({
                   animation: true
