@@ -11,41 +11,41 @@ session_start();
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<title>Contrato - Login</title>
 	<link rel="shortcut icon" href="imagens/icone.png" />
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+	<script src="javascript/jquery-3.4.1.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+	<script src="javascript/popper.min.js"></script>
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 
 <body style="background: #007bff;
-               background: linear-gradient(to left, #5A8BB7, #2D9AAD);">
+				 background: linear-gradient(to left, #5A8BB7, #2D9AAD);">
 	<script type="text/javascript" src="javascript/login.js"></script>
 
 
 	<div class="container-fluid fundo-card">
 
 		<?php
-      if (isset($_SESSION['msg']) || isset($_SESSION['nao_autenticado'])) {
-        echo "<div class='toast'>
+			if (isset($_SESSION['msg']) || isset($_SESSION['nao_autenticado'])) {
+				echo "<div class='toast'>
       <div class='toast-header'>
         Notificação
       </div>
       <div class='toast-body'>";
 
-        if (isset($_SESSION['msg'])) {
-          echo  $_SESSION['msg'];
-          unset ($_SESSION['msg']);
-        }
-        if(isset($_SESSION['nao_autenticado'])){
-          echo $_SESSION['nao_autenticado'];
-          unset($_SESSION['nao_autenticado']);
-        }
+				if (isset($_SESSION['msg'])) {
+					echo  $_SESSION['msg'];
+					unset ($_SESSION['msg']);
+				}
+				if(isset($_SESSION['nao_autenticado'])){
+					echo $_SESSION['nao_autenticado'];
+					unset($_SESSION['nao_autenticado']);
+				}
 
 
-        echo "</div> </div>";
+				echo "</div> </div>";
 
-        echo "<script>
+				echo "<script>
                 $(document).ready(function() {
                 $('.toast').toast({
                   delay: 10000
@@ -57,8 +57,8 @@ session_start();
               });
 
               </script>";
-      }
-      ?>
+			}
+			?>
 
 
 
@@ -83,6 +83,7 @@ session_start();
 					<div class="form-padrao">
 						<center><a href="cadastrese.php"><button id="cadastrese1" class="btn btn-outline-info text-uppercase btn-inline col-sm-9 col-md-5 col-lg-5">Cadastre-se</button></a>
 							<a href="redefinirsenha.php"><button id="redefinir1" class="btn btn-outline-info text-uppercase btn-inline col-sm-9 col-md-5 col-lg-5">Redefinir senha</button></a>
+							<a href="Manual%20do%20Usuario.odt" download="Manual do Usuário.odt"><i class="material-icons">arrow_downward</i>Manual</a>
 						</center>
 					</div>
 				</div>

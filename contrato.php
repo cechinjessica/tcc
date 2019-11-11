@@ -275,13 +275,12 @@ if (isset($_POST['enviarveiculo'])){
 	<link rel="shortcut icon" href="imagens/icone.png" />
 	<title>Contrato</title>
 
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+	<script src="javascript/jquery-3.4.1.min.js"></script>
+	<script src="javascript/popper.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="css/style.css">
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.12/jquery.mask.min.js"></script>
+	<script src="javascript/jquery.mask.min.js"></script>
+
 	<style>
 		.form-group input {
 			border-radius: 2rem;
@@ -553,44 +552,44 @@ if (isset($_POST['enviarveiculo'])){
 
 						<div class="row">
 							<div class="form-group col-xl">
-								<label for="cpf">CPF</label><label for="cpf" class="representante"> do representante</label>
-								<input type="text" id="cpf" class="form-control" name="cpf">
-
-
-
-							</div>
-
-							<div class="form-group col-xl">
-								<label for="endereco">Endereço</label><label for="endereco" class="representante"> do representante</label>
-								<input type="text" id="endereco" class="form-control" name="endereco">
-							</div>
-
-							<div class="form-group col-xl">
-								<label for="uf">UF</label><label for="uf" class="representante"> do representante</label>
-								<input type="text" id="uf" class="form-control col-md-2" name="uf" style="text-transform:uppercase" maxlength="2" value="<?php echo ($id!=0)?"$uf":'';?>">
-								<p id="msg_uf" class="form-control-feedback "></p>
-							</div>
-						</div>
-						<div class="row">
-							<div class="form-group col-xl">
-								<label for="numero">Número</label><label for="numero" class="representante"> do representante</label>
-								<input type="text" id="numero" class="form-control" name="numero">
-							</div>
-
-							<div class="form-group col-xl">
-								<label for="cidade">Cidade</label><label for="cidade" class="representante"> do representante</label>
-								<input type="text" id="cidade" class="form-control" name="cidade">
-							</div>
-						</div>
-
-						<div class="row">
-							<div class="form-group col-xl">
 								<label for="cep">CEP</label><label for="cep" class="representante"> do representante</label>
 								<input type="text" id="cep" class="form-control" name="cep">
 							</div>
 
 							<div class="form-group col-xl">
-								<label for="sexo">Sexo</label><label for="cep" class="representante"> do representante</label>
+								<label for="endereco">Endereço</label><label for="endereco" class="representante"> do representante</label>
+								<input type="text" id="endereco" class="form-control" name="endereco" readonly>
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="form-group col-xl">
+								<label for="uf">UF</label><label for="uf" class="representante"> do representante</label>
+								<input type="text" id="uf" class="form-control col-md-2" name="uf" style="text-transform:uppercase" maxlength="2" value="<?php echo ($id!=0)?"$uf":'';?>" readonly>
+								<p id="msg_uf" class="form-control-feedback "></p>
+							</div>
+
+							<div class="form-group col-xl">
+								<label for="numero">Número</label><label for="numero" class="representante"> do representante</label>
+								<input type="text" id="numero" class="form-control" name="numero">
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="form-group col-xl">
+								<label for="cidade">Cidade</label><label for="cidade" class="representante"> do representante</label>
+								<input type="text" id="cidade" class="form-control" name="cidade" readonly>
+							</div>
+
+							<div class="form-group col-xl">
+								<label for="cpf">CPF</label><label for="cpf" class="representante"> do representante</label>
+								<input type="text" id="cpf" class="form-control" name="cpf">
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="form-group col-xl">
+								<label for="sexo">Sexo</label><label for="sexo" class="representante"> do representante</label>
 								<div class="form-check-inline">
 									<input type="radio" class="form-check-input" name="sexo" value="f" id="sexof">Feminino
 								</div>
@@ -599,21 +598,19 @@ if (isset($_POST['enviarveiculo'])){
 								</div>
 								<p id="msg_sexo" class="form-control feedback"></p>
 							</div>
-						</div>
 
-						<div class="row">
 							<div class="form-group col-xl" id="gnomeempresa">
 								<label for="nomeempresa">Nome</label><label for="nomeempresa" class="representante"> da empresa</label>
 								<input type="text" id="nomeempresa" class="form-control" name="nomeempresa">
 							</div>
+						</div>
 
+						<div class="row">
 							<div class="form-group col-xl" id="gcnpj">
 								<label for="cnpj">CNPJ</label><label for="cnpj" class="representante"> da empresa</label>
 								<input type="text" id="cnpj" class="form-control" name="cnpjempresa">
 							</div>
-						</div>
 
-						<div class="row">
 							<div class="form-group col-xl" id="gtipoempresa">
 								<label for="tipoempresa">Tipo</label>
 								<label for="tipoempresa" class="representante"> da empresa</label>
@@ -625,37 +622,41 @@ if (isset($_POST['enviarveiculo'])){
 								</div>
 								<p id="msg_tipoempresa" class="form-control feedback"></p>
 							</div>
+						</div>
 
+						<div class="row">
 							<div class="form-group col-xl" id="gcargoempresa">
 								<label for="cargo">Cargo</label><label for="cargo" class="representante"> do representante</label>
 								<input type="text" id="cargoempresa" class="form-control" name="cargoempresa">
 							</div>
-						</div>
 
-						<div class="row">
 							<div class="form-group col-xl" id="genderecoempresa">
 								<label for="enderecoempresa">Endereço</label><label for="enderecoempresa" class="representante"> da empresa</label>
 								<input type="text" id="enderecoempresa" class="form-control" name="enderecoempresa">
 							</div>
+						</div>
 
+						<div class="row">
 							<div class="form-group col-xl" id="gcidadeempresa">
 								<label for="cidadeempresa">Cidade</label><label for="cidadeempresa" class="representante"> da empresa</label>
 								<input type="text" id="cidadeempresa" class="form-control" name="cidadeempresa">
 							</div>
-						</div>
 
-						<div class="row">
 							<div class="form-group col-xl" id="gufempresa">
 								<label for="ufempresa">UF</label><label for="ufempresa" class="representante"> da empresa</label>
 								<input type="text" id="ufempresa" class="form-control" name="ufempresa" style="text-transform:uppercase" maxlength="2" value="<?php echo ($id!=0)?"$ufempresa":'';?>">
 								<p id="msg_ufempresa" class="form-control-feedback "></p>
 							</div>
+						</div>
+
+						<div class="row">
 							<div class="form-group col-xl" id="gnumeroempresa">
 								<label for="numeroempresa">Número</label><label for="numeroempresa" class="representante"> da empresa</label>
 								<input type="text" id="numeroempresa" class="form-control" name="numeroempresa" value="<?php echo ($id!=0)?"$numeroempresa":'';?>">
 								<p id="msg_numeroempresa" class="form-control-feedback "></p>
 							</div>
 						</div>
+
 
 						<p class="form-control-feedback" id="msg_pessoa"></p>
 
@@ -863,7 +864,7 @@ if (isset($_POST['enviarveiculo'])){
               </script>";
 	}
 
-					?>
+				?>
 			<div class="card card-padrao my-5">
 				<div class="card-body">
 					<h5 class="card-title text-center">O contrato:</h5>
