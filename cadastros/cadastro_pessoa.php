@@ -207,7 +207,7 @@ include('../config/verifica_login.php');
 						Dados dos usuario....
 					</div>
 					<div class="form-padrao">
-						<center><a href="vendedor.php"><button class="btn btn-outline-info text-uppercase btn-md btn-inline w-25">Cadastrar uma Pessoa</button></a><a><button class="btn btn-md btn-outline-info text-uppercase btn-inline w-25" name="botao" value="Imprimir" id="botao">Imprimir</button></a>
+						<center><a href="vendedor.php"><button class="btn btn-outline-info text-uppercase btn-md btn-inline col-sm-9 col-md-5 col-lg-5">Cadastrar uma Pessoa</button></a><a><button class="btn btn-md btn-outline-info text-uppercase btn-inline col-sm-9 col-md-5 col-lg-5" name="botao" value="Imprimir" id="botao">Imprimir</button></a>
 						</center>
 					</div>
 				</div>

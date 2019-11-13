@@ -158,7 +158,7 @@ require '../config/conexao.php';
 						<div id="txtcontrato">
 							Contratos..
 						</div>
-						<center><a href="../contrato.php"><button class="btn btn-outline-info text-uppercase btn-inline btn-md w-25">Cadastrar um Contrato</button></a><a><button class="btn btn-md btn-outline-info text-uppercase btn-inline w-25" name="botao" value="Imprimir" id="botao">Imprimir</button></a>
+						<center><a href="../contrato.php"><button class="btn btn-outline-info text-uppercase btn-inline btn-md col-sm-9 col-md-5 col-lg-5">Cadastrar um Contrato</button></a><a><button class="btn btn-md btn-outline-info text-uppercase btn-inline col-sm-9 col-md-5 col-lg-5" name="botao" value="Imprimir" id="botao">Imprimir</button></a>
 						</center>
 					</div>
 				</div>

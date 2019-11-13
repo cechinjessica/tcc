@@ -78,12 +78,14 @@ session_start();
 							<p id="msg_senha" class="form-control-feedback "></p>
 						</div>
 
-						<button class="btn btn-md btn-primary btn-block text-uppercase mb-2" type="submit" id="logar">Login</button>
+						<center><button class="btn btn-md btn-primary btn-block text-uppercase mb-2 col-sm-9 col-md-10 col-lg-10" type="submit" id="logar">Login</button></center>
 					</form>
 					<div class="form-padrao">
-						<center><a href="cadastrese.php"><button id="cadastrese1" class="btn btn-outline-info text-uppercase btn-inline col-sm-9 col-md-5 col-lg-5">Cadastre-se</button></a>
-							<a href="redefinirsenha.php"><button id="redefinir1" class="btn btn-outline-info text-uppercase btn-inline col-sm-9 col-md-5 col-lg-5">Redefinir senha</button></a>
-							<a href="Manual%20do%20Usuario.odt" download="Manual do Usuário.odt"><i class="material-icons">arrow_downward</i>Manual</a>
+						<center><a href="cadastrese.php"><button id="cadastrese1" class="btn btn-outline-info text-uppercase btn-inline col-sm-9 col-md-4 col-lg-4">Cadastre-se</button></a>
+							<a href="redefinirsenha.php"><button id="redefinir1" class="btn btn-outline-info text-uppercase btn-inline col-sm-9 col-md-4 col-lg-4">Redefinir senha</button></a>
+							<a href="Manual%20do%20Usuario.odt" download="Manual do Usuário.odt"><button class="btn btn-outline-info text-uppercase btn-sm"><i class="material-icons">
+										menu_book
+									</i></button></a>
 						</center>
 					</div>
 				</div>
