@@ -38,14 +38,41 @@ require '../config/conexao.php';
 				showcontrato($('#vei').val());
 			})
 			showcontrato('');
+			$('#botao').click(function() {
+				window.print();
+			});
 		});
 
 	</script>
 
+	<style>
+		@media print {
+
+			body {
+				margin: 0;
+				padding: 0;
+				line-height: 1.4em;
+				align-items: center;
+				font-size: 15px;
+			}
+
+			#txtcontrato {
+				display: flex;
+			}
+
+			form,
+			center,
+			a {
+				display: none;
+			}
+		}
+
+	</style>
+
 </head>
 
 <body style="background: #007bff;
-               background: linear-gradient(to left, #5A8BB7, #2D9AAD);">
+				 background: linear-gradient(to left, #5A8BB7, #2D9AAD);">
 	<!--NAVBAR-->
 	<nav class="navbar navbar-expand-md bg-info navbar-light sticky-top">
 		<a class="navbar-brand" href="#"><img src="../imagens/icone.png" width="30px">Contrato</a>
@@ -91,15 +118,15 @@ require '../config/conexao.php';
 	</nav>
 	<!--</NAVBAR-->
 	<?php
-    if (isset($_SESSION['msg_contratoa'])) {
-      echo "<div class='toast'>
+		if (isset($_SESSION['msg_contratoa'])) {
+			echo "<div class='toast'>
     <div class='toast-header'>
       Notificação
     </div>
     <div class='toast-body'>";
-      echo  $_SESSION['msg_contratoa'];
-      unset ($_SESSION['msg_contratoa']);
-      echo "<script>
+			echo  $_SESSION['msg_contratoa'];
+			unset ($_SESSION['msg_contratoa']);
+			echo "<script>
                 $(document).ready(function() {
                 $('.toast').toast({
                   delay: 10000
@@ -110,10 +137,10 @@ require '../config/conexao.php';
                 $('.toast').toast('show');
               });
               </script>";
-      echo "  </div>
+			echo "  </div>
   </div>";
-    }
-    ?>
+		}
+		?>
 
 	<div class="container-fluid fundo-card">
 		<div class="col-sm-12 col-md-12 col-lg-11 mx-auto">
@@ -131,7 +158,7 @@ require '../config/conexao.php';
 						<div id="txtcontrato">
 							Contratos..
 						</div>
-						<center><a href="../contrato.php"><button class="btn btn-outline-info text-uppercase btn-inline col-sm-9 col-md-5 col-lg-5">Cadastrar um Contrato</button></a>
+						<center><a href="../contrato.php"><button class="btn btn-outline-info text-uppercase btn-inline btn-md w-25">Cadastrar um Contrato</button></a><a><button class="btn btn-md btn-outline-info text-uppercase btn-inline w-25" name="botao" value="Imprimir" id="botao">Imprimir</button></a>
 						</center>
 					</div>
 				</div>

@@ -18,7 +18,7 @@ include('../config/verifica_login.php');
 
 	<link rel="stylesheet" type="text/css" href="../css/style.css">
 	<?php include('../config/verifica_login.php');
-    ?>
+		?>
 	<script>
 		function showcli(nm) {
 			str = nm;
@@ -51,14 +51,71 @@ include('../config/verifica_login.php');
 				showcli($('#nome').val());
 			})
 			showcli('');
+			$('#botao').click(function() {
+				window.print();
+			});
 		});
 
 	</script>
 
+	<style>
+		@media print {
+			@page {
+				size: landscape
+			}
+
+			body {
+				margin: 0;
+				padding: 0;
+				line-height: 1.4em;
+			}
+
+			#txtcli,
+			#textrel {
+				display: flex;
+				page: land;
+			}
+
+			center,
+			nav,
+			h5,
+			form,
+			card {
+				display: none;
+			}
+
+			#cod,
+			#tipo,
+			#origem,
+			#rg,
+			#sexo,
+			#endereco,
+			#enderecoempresa,
+			#cargo,
+			#numero,
+			#numeroempresa,
+			#cnpj,
+			#ecivil,
+			#tipoempresa,
+			#operacao,
+			#textpess {
+				display: none;
+			}
+		}
+
+		#textrel {
+			display: none;
+		}
+
+		#textpess {
+			display: flex
+		}
+
+	</style>
 </head>
 
 <body style="background: #007bff;
-               background: linear-gradient(to left, #5A8BB7, #2D9AAD);">
+				 background: linear-gradient(to left, #5A8BB7, #2D9AAD);">
 	<!--NAVBAR-->
 	<nav class="navbar navbar-expand-md bg-info navbar-light sticky-top">
 		<a class="navbar-brand" href="#"><img src="../imagens/icone.png" width="30px">Contrato</a>
@@ -104,18 +161,18 @@ include('../config/verifica_login.php');
 	</nav>
 	<!--</NAVBAR-->
 	<?php
-    if (isset($_SESSION['msg'])) {
-      echo "<div class='toast'>
+		if (isset($_SESSION['msg'])) {
+			echo "<div class='toast'>
     <div class='toast-header'>
       Notificação
     </div>
     <div class='toast-body'>";
-      echo  $_SESSION['msg'];
-      unset ($_SESSION['msg']);
-      echo " </div>
+			echo  $_SESSION['msg'];
+			unset ($_SESSION['msg']);
+			echo " </div>
   </div>";
 
-      echo "<script>
+			echo "<script>
                 $(document).ready(function() {
                 $('.toast').toast({
                   delay: 10000
@@ -127,15 +184,16 @@ include('../config/verifica_login.php');
               });
 
               </script>";
-    }
-    ?>
+		}
+		?>
 
 
 	<div class="container-fluid fundo-card">
 		<div class="col-sm-12 col-md-12 col-lg-11 mx-auto">
 			<div class="card card-padrao my-5">
 				<div class="card-body">
-					<h5 class="card-title text-center">Pessoas Cadastradas</h5>
+					<h5 class="card-title text-center" id="textpess">Pessoas Cadastradas</h5>
+					<h5 class="card-title text-center" id="textrel">Relatório de Pessoas Cadastradas</h5>
 
 					<form>
 						<div class="row">
@@ -149,7 +207,7 @@ include('../config/verifica_login.php');
 						Dados dos usuario....
 					</div>
 					<div class="form-padrao">
-						<center><a href="vendedor.php"><button class="btn btn-outline-info text-uppercase btn-inline col-sm-9 col-md-5 col-lg-5">Cadastrar uma Pessoa</button></a>
+						<center><a href="vendedor.php"><button class="btn btn-outline-info text-uppercase btn-md btn-inline w-25">Cadastrar uma Pessoa</button></a><a><button class="btn btn-md btn-outline-info text-uppercase btn-inline w-25" name="botao" value="Imprimir" id="botao">Imprimir</button></a>
 						</center>
 					</div>
 				</div>

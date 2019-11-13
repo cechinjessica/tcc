@@ -17,7 +17,7 @@ include('../config/verifica_login.php');?>
 
 	<link rel="stylesheet" type="text/css" href="../css/style.css">
 	<?php include('../config/verifica_login.php');
-    ?>
+		?>
 	<script>
 		function showvei(nm) {
 			str = nm;
@@ -49,13 +49,51 @@ include('../config/verifica_login.php');?>
 				showvei($('#nome').val());
 			})
 			showvei('');
+			$('#botao').click(function() {
+				window.print();
+			});
 		});
 
 	</script>
+
+	<style>
+		@media print {
+			@page {
+				size: landscape
+			}
+
+			body {
+				margin: 0;
+				padding: 0;
+				line-height: 1.4em;
+			}
+
+			#txtvei {
+				page: land;
+			}
+
+			nav,
+			form,
+			center {
+				display: none;
+			}
+
+			#card,
+			#operacao,
+			#codigo,
+			#chassi,
+			#renavam,
+			#combustivel,
+			#contrato {
+				display: none;
+
+			}
+
+	</style>
 </head>
 
 <body style="background: #007bff;
-               background: linear-gradient(to left, #5A8BB7, #2D9AAD);">
+				 background: linear-gradient(to left, #5A8BB7, #2D9AAD);">
 	<!--NAVBAR-->
 	<nav class="navbar navbar-expand-md bg-info navbar-light sticky-top">
 		<a class="navbar-brand" href="#"><img src="../imagens/icone.png" width="30px">Contrato</a>
@@ -101,18 +139,18 @@ include('../config/verifica_login.php');?>
 	</nav>
 	<!--</NAVBAR-->
 	<?php
-    if (isset($_SESSION['msg'])) {
-      echo "  <div class='toast'>
+		if (isset($_SESSION['msg'])) {
+			echo "  <div class='toast'>
     <div class='toast-header'>
       Notificação
     </div>
     <div class='toast-body'>";
-      echo  $_SESSION['msg'];
-      unset ($_SESSION['msg']);
-      echo " </div>
+			echo  $_SESSION['msg'];
+			unset ($_SESSION['msg']);
+			echo " </div>
   </div>";
 
-      echo "<script>
+			echo "<script>
                 $(document).ready(function() {
                 $('.toast').toast({
                   delay: 10000
@@ -124,8 +162,8 @@ include('../config/verifica_login.php');?>
               });
 
               </script>";
-    }
-    ?>
+		}
+		?>
 
 	<div class="container-fluid fundo-card">
 		<div class="col-sm-12 col-md-12 col-lg-11 mx-auto">
@@ -133,11 +171,11 @@ include('../config/verifica_login.php');?>
 				<div class="card-body">
 					<h5 class="card-title text-center">Veículos Cadastrados</h5>
 					<?php
-            if (isset($_SESSION['msg'])) {
-              echo  $_SESSION['msg'];
-              unset ($_SESSION['msg']);
-            }
-            ?>
+						if (isset($_SESSION['msg'])) {
+							echo  $_SESSION['msg'];
+							unset ($_SESSION['msg']);
+						}
+						?>
 
 					<form>
 						<div class="row">
@@ -151,7 +189,7 @@ include('../config/verifica_login.php');?>
 						Dados dos usuario....
 					</div>
 					<div class="form-padrao">
-						<center><a href="veiculo.php"><button class="btn btn-outline-info text-uppercase btn-inline col-sm-9 col-md-5 col-lg-5">Cadastrar um Veiculo</button></a>
+						<center><a href="veiculo.php"><button class="btn btn-outline-info text-uppercase btn-inline w-25">Cadastrar um Veiculo</button></a><a><button class="btn btn-md btn-outline-info text-uppercase btn-inline w-25" name="botao" value="Imprimir" id="botao">Imprimir</button></a>
 						</center>
 					</div>
 				</div>
