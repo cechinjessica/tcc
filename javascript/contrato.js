@@ -1,8 +1,28 @@
 $(document).ready(function () {
 	setdcriacao();
+	$('#entrada').maskMoney({
+		thousands: '.',
+		decimal: ',',
+		allowZero: true,
+		allowEmpty: true
+	});
+
+	$('#valortotal').maskMoney({
+		thousands: '.',
+		decimal: ',',
+		allowZero: true,
+		allowEmpty: true
+	});
+
+	$('#valorparcela').maskMoney({
+		thousands: '.',
+		decimal: ',',
+		allowZero: true,
+		allowEmpty: true
+	});
 
 	$("#dpagamento").mask("00");
-	$("#valortotal").mask("#.##0,00", {
+	/*$("#valortotal").mask("#.##0,00", {
 		reverse: true
 	});
 	$("#valorparcela").mask("#.##0,00", {
@@ -10,7 +30,7 @@ $(document).ready(function () {
 	});
 	$("#entrada").mask("#.##0,00", {
 		reverse: true
-	});
+	});*/
 
 
 	$("#numeroparcelas").focusout(function (e) {
@@ -235,7 +255,16 @@ function gerarparcela() {
 		} else {
 			var saldo = total - entrada;
 			var parcela = parseFloat(saldo / numero);
-			$("#valorparcela").val(parcela.toFixed(2));
+			parcela = parcela.toFixed(2);
+			parcela = parcela.replace(".", ",");
+			$("#valorparcela").val(parcela);
+			/*parcela = parseFloat(parcela.toFixed(2));
+			$("#valorparcela").maskMoney('mask', parcela, {
+				thousands: '.',
+				decimal: ',',
+				allowZero: true,
+				allowEmpty: true
+			});*/
 		}
 	}
 }

@@ -83,7 +83,7 @@ session_start();
 					<div class="form-padrao">
 						<center><a href="cadastrese.php"><button id="cadastrese1" class="btn btn-outline-info text-uppercase btn-inline col-sm-9 col-md-4 col-lg-4">Cadastre-se</button></a>
 							<a href="redefinirsenha.php"><button id="redefinir1" class="btn btn-outline-info text-uppercase btn-inline col-sm-9 col-md-4 col-lg-4">Redefinir senha</button></a>
-							<a href="Manual%20do%20Usuario.odt" download="Manual do Usuário.odt"><button class="btn btn-outline-info text-uppercase btn-sm"><i class="material-icons">
+							<a href="Manual%20do%20Usuario.pdf" download="Manual do Usuário.pdf"><button class="btn btn-outline-info text-uppercase btn-sm"><i class="material-icons">
 										menu_book
 									</i></button></a>
 						</center>

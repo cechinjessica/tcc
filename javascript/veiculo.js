@@ -3,8 +3,11 @@ $(document).ready(function () {
   $("#ano").mask("0000");
   $("#modelo").mask("0000");
   $("#cor").mask("SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS");
-  $("#valorvei").mask("#.##0,00", {
-    reverse: true
+  $("#valorvei").maskMoney({
+    thousands: '.',
+    decimal: ',',
+    allowZero: true,
+    allowEmpty: true
   });
 
   $("#salvarveiculo").click(function (e) {

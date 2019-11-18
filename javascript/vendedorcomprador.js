@@ -31,7 +31,7 @@ $(document).ready(function () {
             } //end if.
             else {
                 //cep é inválido.
-                alert("Formato de CEP inválido.");
+                $("#cep").val("Formato de CEP inválido.");
             }
         } //end if.
         else {}
@@ -362,7 +362,6 @@ function cpf() {
             return false;
         }
 
-        //alert(J);
         var k = 0;
         l = 12;
         for (i = 0; i <= 9; i++) {
@@ -377,7 +376,7 @@ function cpf() {
         } else {
             k = 11 - k;
         }
-        //alert(k);
+
         if (k != cpfA[10]) {
             $("#cpf").addClass("is-invalid");
             a = false;

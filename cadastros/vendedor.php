@@ -434,12 +434,12 @@ if (isset($_POST['enviar'])){
 						<div class="row">
 							<div class="form-group col-xl">
 								<label for="endereco">Endereço</label><label for="endereco" class="representante"> do representante</label>
-								<input type="text" id="endereco" class="form-control" name="endereco" title="Rua XXXXX, Bairro XXXX" value="<?php echo ($id!=0)?"$endereco":'';?>" readonly>
+								<input type="text" id="endereco" class="form-control" name="endereco" title="Rua XXXXX, Bairro XXXX" value="<?php echo ($id!=0)?"$endereco":'';?>">
 								<p id="msg_endereco" class="form-control-feedback "></p>
 							</div>
 							<div class="form-group col-xl">
 								<label for="uf">UF</label><label for="uf" class="representante"> do representante</label>
-								<input type="text" id="uf" class="form-control col-md-3" name="uf" style="text-transform:uppercase" maxlength="2" value="<?php echo ($id!=0)?"$uf":'';?>" readonly>
+								<input type="text" id="uf" class="form-control col-md-3" name="uf" style="text-transform:uppercase" maxlength="2" value="<?php echo ($id!=0)?"$uf":'';?>">
 								<p id="msg_uf" class="form-control-feedback "></p>
 							</div>
 						</div>
@@ -453,7 +453,7 @@ if (isset($_POST['enviar'])){
 
 							<div class="form-group col-xl">
 								<label for="cidade">Cidade</label><label for="cidade" class="representante"> do representante</label>
-								<input type="text" id="cidade" class="form-control" name="cidade" value="<?php echo ($id!=0)?"$cidade":'';?>" readonly>
+								<input type="text" id="cidade" class="form-control" name="cidade" value="<?php echo ($id!=0)?"$cidade":'';?>">
 								<p id="msg_cidade" class="form-control-feedback "></p>
 							</div>
 						</div>

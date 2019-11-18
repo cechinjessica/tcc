@@ -4,9 +4,7 @@ $sql = "SELECT * FROM pessoa";
 
 $nm=$_GET['q']; //recupera o parâmetro passado na visualização
 if ($nm!='') {
-   if ($nm!='') {
       $sql.=" WHERE UPPER(NOME) LIKE UPPER('%$nm%')";
-   }
 }
 $sql.=" ORDER BY Nome ASC";
 
@@ -35,6 +33,7 @@ if (mysqli_affected_rows($conexao)>0) {
                     <th scope='col' style='white-space: nowrap; text-align:center;'>Operação</th>
                  <tr>
                 </thead>";
+   echo " <tbody class='table-striped'>";
    while ($row=mysqli_fetch_row($result))
    {
       if($row[1] == "f"){
@@ -63,7 +62,7 @@ if (mysqli_affected_rows($conexao)>0) {
       $estcivil="Viúvo(a)";
     }
 
-      echo " <tbody class='table-striped'>";
+
       echo " <tr id='linha'>";
       echo "<th scope='row' id=".$row[0]." onclick=getidcomp(".$row[0].",'".$row[7]."','".$nome."') style='white-space: nowrap;'>".$row[0]."</td>";
       echo "<td scope='row' id=".$row[0]." onclick=getidcomp(".$row[0].",'".$row[7]."','".$nome."') style='white-space: nowrap;'>".$pessoa."</td>";

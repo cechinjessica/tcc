@@ -97,7 +97,7 @@ if (mysqli_affected_rows($conexao)>0) {
     echo "<div class='card-body bg-transparent'><div class='card-text'>";
     echo "<p><b>Vendedor:</b> $row[1]</p>";
     echo "<p><b>Comprador:</b> $row[0]</p>";
-    echo "<p class='text-success lead'>R$$row[3]</p> ";
+    echo "<p class='text-success '>R$$row[3]</p> ";
     echo "<p class='text-ligth'> $dt $hora</p>";
     $querySelecao = 'SELECT c.idcontrato as id
                 FROM contrato c

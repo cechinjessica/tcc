@@ -57,6 +57,8 @@ if (mysqli_affected_rows($conexao)>0) {
             $combustivel = "Flex";
         }
         $nome = str_replace(' ', '+', $row[1]);
+        $valor = number_format($row[10], 2, ',', '.');
+
         echo " <tbody>";
         echo " <tr>";
         echo "<th scope='row' id=".$row[0]." onclick=getidvei(".$row[0].",'".$nome."','".$row[7]."','".$row[10]."') style='white-space: nowrap; text-align:center;'>".$row[0]."</td>";
@@ -69,7 +71,7 @@ if (mysqli_affected_rows($conexao)>0) {
         echo "<td id=".$row[0]." onclick=getidvei(".$row[0].",'".$nome."','".$row[7]."','".$row[10]."') style='white-space: nowrap; text-align:center;'>".$row[7]."</td>";
         echo "<td id=".$row[0]." onclick=getidvei(".$row[0].",'".$nome."','".$row[7]."','".$row[10]."') style='white-space: nowrap; text-align:center;'>".$row[9]."</td>";
         echo "<td id=".$row[0]." onclick=getidvei(".$row[0].",'".$nome."','".$row[7]."','".$row[10]."') style='white-space: nowrap; text-align:center;'>".$row[8]."</td>";
-        echo "<td id=".$row[0]." onclick=getidvei(".$row[0].",'".$nome."','".$row[7]."','".$row[10]."') style='white-space: nowrap; text-align:center;'>".$row[10]."</td>";
+        echo "<td id=".$row[0]." onclick=getidvei(".$row[0].",'".$nome."','".$row[7]."','".$row[10]."') style='white-space: nowrap; text-align:center;'>".$valor."</td>";
         echo "<td id=".$row[0]." onclick=getidvei(".$row[0].",'".$nome."','".$row[7]."','".$row[10]."') style='white-space: nowrap; text-align:center;'>".$row[11]."</td>";
          echo "<td id=".$row[0]." onclick=getidvei(".$row[0].",'".$nome."','".$row[7]."','".$row[10]."') style='white-space: nowrap; text-align:center;'>".$combustivel."</td>";
          echo "<td id=".$row[0]." onclick=getidvei(".$row[0].",'".$nome."','".$row[7]."','".$row[10]."') style='white-space: nowrap; text-align:center;'>".$check."</td>";

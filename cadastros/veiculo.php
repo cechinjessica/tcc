@@ -181,7 +181,7 @@ if (isset($_POST['enviarveiculo'])){
 	<link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
 	<script src="../javascript/jquery-3.4.1.min.js"></script>
 	<script src="../javascript/popper.min.js"></script>
-
+	<script src="../javascript/jquery.maskMoney.min.js" type="text/javascript"></script>
 
 	<link rel="stylesheet" type="text/css" href="../css/style.css">
 	<script src="../javascript/jquery.mask.min.js"></script>
@@ -346,7 +346,7 @@ if (isset($_POST['enviarveiculo'])){
 
 							<div class="form-group col-xl">
 								<label for="valorvei">Valor</label>
-								<input type="text" id="valorvei" class="form-control" name="valorvei" title="Ex.: 10000,00" value="<?php echo ($id!=0)?"$valorvei":'';?>">
+								<input type="text" id="valorvei" maxlength="15" class="form-control" name="valorvei" title="Ex.: 10000,00" value="<?php echo ($id!=0)?"$valorvei":'';?>">
 								<p id="msg_valorvei" class="form-control-feedback "></p>
 							</div>
 						</div>
