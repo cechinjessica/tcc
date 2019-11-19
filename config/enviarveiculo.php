@@ -31,9 +31,9 @@ if (mysqli_affected_rows($conexao)!=0) {
     mysqli_query($conexao,$sql);
 
     if (mysqli_affected_rows($conexao) =='1') {
-        $_SESSION['msg'] = "<p class='text-success'>$nomevei inserido com sucesso!</p>";
+       // $_SESSION['msg'] = "<p class='text-success'>$nomevei inserido com sucesso!</p>";
     } else {
-        $_SESSION['msg'] ="<p class='text-danger'>Erro: ".mysqli_error($conexao)." no banco de dados</p>";
+        //$_SESSION['msg'] ="<p class='text-danger'>Erro: ".mysqli_error($conexao)." no banco de dados</p>";
     }
     mysqli_close($conexao);
 }

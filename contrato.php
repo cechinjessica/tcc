@@ -192,6 +192,7 @@ if (isset($_POST['enviarcontrato'])){
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
 	<script src="javascript/jquery-3.4.1.min.js"></script>
 	<script src="javascript/popper.min.js"></script>
+	<script src="javascript/bootstrap.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 	<script src="javascript/jquery.mask.min.js"></script>
 	<script src="javascript/jquery.maskMoney.min.js" type="text/javascript"></script>
@@ -205,6 +206,30 @@ if (isset($_POST['enviarcontrato'])){
 	</style>
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 	<script>
+		function limparpessoa() {
+			$('#pessoa').val("");
+			$('#nome').val("");
+			$('#nacionalidade').val("");
+			$('#profissao').val("");
+			$('#ecivil').val("");
+			$('#rg').val("");
+			$('#cpf').val("");
+			$('#endereco').val("");
+			$('#sexo').val("");
+			$('#numero').val("");
+			$('#cidade').val("");
+			$('#cep').val("");
+			$('#cnpjempresa').val("");
+			$('#enderecoempresa').val("");
+			$('#cargoempresa').val("");
+			$('#tipoempresa').val("");
+			$('#cidadeempresa').val("");
+			$('#numeroempresa').val("");
+			$('#nomeempresa').val("");
+			$('#uf').val("");
+			$('#ufempresa').val("");
+		}
+
 		function showvend(nm) {
 			str = nm;
 			///GET
@@ -258,9 +283,17 @@ if (isset($_POST['enviarcontrato'])){
 			showcomp('');
 			showvend('');
 			showvei('');
+
+			$('#profissao').keyup(function(e) {
+				$('#profissao').val($(this).val().toLowerCase());
+			});
+			$('#nacionalidade').keyup(function(e) {
+				$('#nacionalidade').val($(this).val().toLowerCase());
+			});
 		});
 
 	</script>
+	<script type="text/javascript" src="javascript/vendedorcomprador.js"></script>
 
 	<script type="text/javascript">
 		jQuery(document).ready(function() {
@@ -275,6 +308,7 @@ if (isset($_POST['enviarcontrato'])){
 						jQuery('#modalVendedorCadastrar').modal('hide');
 						showcomp('');
 						showvend('');
+						limparpessoa();
 					}
 				});
 				return false;
@@ -432,7 +466,6 @@ if (isset($_POST['enviarcontrato'])){
 	<!--MODAL COMPRADOR Buscar-->
 	<!--MODAL VENDEDOR/COMPRADOR Cadastrar-->
 	<div class="modal fade" id="modalVendedorCadastrar" tabindex="-1" role="dialog" aria-labelledby="modalVendedorCadastrar" aria-hidden="true">
-		<script type="text/javascript" src="javascript/vendedorcomprador.js"></script>
 		<div class="modal-dialog modal-xl" role="document" style="max-width: 95%;">
 			<div class="modal-content">
 				<div class="modal-header">
@@ -937,7 +970,7 @@ if (isset($_POST['enviarcontrato'])){
 
 							<div class="form-group col-md">
 								<label for="datacriacao">Data Criação</label>
-								<input type="text" id="datacriacao" class="form-control m-0" name="datacriacao" value="<?php echo ($id!=0)?"$datacriacao":'';?>">
+								<input type="text" id="datacriacao" class="form-control m-0" name="datacriacao" value="<?php echo ($id!=0)?"$datacriacao":'';?>" readonly>
 							</div>
 						</div>
 
@@ -999,9 +1032,9 @@ if (isset($_POST['enviarcontrato'])){
 
 
 
-	<!--<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>-->
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+	<!--<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>-
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>-->
 </body>
 
 </html>

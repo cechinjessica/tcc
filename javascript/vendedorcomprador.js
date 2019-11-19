@@ -200,7 +200,143 @@ $(document).ready(function () {
             $("#pessoa").addClass("erro");
             e.preventDefault();
         }
+    });
 
+    $("#enviarpessoa").click(function (e) {
+        if ($("#pessoaf").is(":checked")) {
+            if (!pessoa()) {
+                e.preventDefault();
+            }
+            if (!anome()) {
+                e.preventDefault();
+            }
+            if (!nacionalidade()) {
+                e.preventDefault();
+            }
+            if (!profissao()) {
+                e.preventDefault();
+            }
+            if (!estadocivil()) {
+                e.preventDefault();
+            }
+            if (!rg()) {
+                e.preventDefault();
+            }
+            if (!cpf()) {
+                e.preventDefault();
+            }
+            if (!endereco()) {
+                e.preventDefault();
+            }
+            if (!numero()) {
+                e.preventDefault();
+            }
+            if (!cidade()) {
+                e.preventDefault();
+            }
+            if (!cep()) {
+                e.preventDefault();
+            }
+            if (!sexo()) {
+                e.preventDefault();
+            }
+            if (!uf()) {
+                e.preventDefault();
+            }
+            if (!nomeempresafisico()) {
+                e.preventDefault();
+            }
+            if (!cnpjfisico()) {
+                e.preventDefault();
+            }
+            if (!enderecoempresafisico()) {
+                e.preventDefault();
+            }
+            if (!cargoempresafisico()) {
+                e.preventDefault();
+            }
+            if (!tipoempresafisico()) {
+                e.preventDefault();
+            }
+            if (!cidadeempresafisico()) {
+                e.preventDefault();
+            }
+            if (!numeroempresafisico()) {
+                e.preventDefault();
+            }
+            if (!ufempresafisico()) {
+                e.preventDefault();
+            }
+        } else if ($("#pessoaj").is(":checked")) {
+            if (!pessoa()) {
+                e.preventDefault();
+            }
+            if (!anome()) {
+                e.preventDefault();
+            }
+            if (!nacionalidade()) {
+                e.preventDefault();
+            }
+            if (!profissao()) {
+                e.preventDefault();
+            }
+            if (!estadocivil()) {
+                e.preventDefault();
+            }
+            if (!rg()) {
+                e.preventDefault();
+            }
+            if (!cpf()) {
+                e.preventDefault();
+            }
+            if (!endereco()) {
+                e.preventDefault();
+            }
+            if (!numero()) {
+                e.preventDefault();
+            }
+            if (!cidade()) {
+                e.preventDefault();
+            }
+            if (!cep()) {
+                e.preventDefault();
+            }
+            if (!sexo()) {
+                e.preventDefault();
+            }
+            if (!uf()) {
+                e.preventDefault();
+            }
+            if (!nomeempresa()) {
+                e.preventDefault();
+            }
+            if (!cnpj()) {
+                e.preventDefault();
+            }
+            if (!enderecoempresa()) {
+                e.preventDefault();
+            }
+            if (!cargoempresa()) {
+                e.preventDefault();
+            }
+            if (!tipoempresa()) {
+                e.preventDefault();
+            }
+            if (!cidadeempresa()) {
+                e.preventDefault();
+            }
+            if (!numeroempresa()) {
+                e.preventDefault();
+            }
+            if (!ufempresa()) {
+                e.preventDefault();
+            }
+        } else {
+            $("#msg_pessoa").text("*Selecione o tipo de pessoa");
+            $("#msg_pessoa").css("color", "red");
+            $("#pessoa").addClass("erro");
+            e.preventDefault();
+        }
     });
 })
 

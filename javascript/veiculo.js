@@ -1,4 +1,5 @@
 $(document).ready(function () {
+
   //MASCARAS
   $("#ano").mask("0000");
   $("#modelo").mask("0000");

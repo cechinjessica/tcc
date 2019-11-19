@@ -46,9 +46,9 @@ if (mysqli_affected_rows($conexao)!=0) {
 	mysqli_query($conexao,$sql);
 
 	if (mysqli_affected_rows($conexao) =='1') {
-		$_SESSION['msgvendedor'] = "<p class='text-success '>$nome inserido com sucesso!</p>";
+		//$_SESSION['msgvendedor'] = "<p class='text-success '>$nome inserido com sucesso!</p>";
 	} else {
-		$_SESSION['msgvendedor'] ="<p class='text-danger '>Erro: ".mysqli_error($conexao)." no banco de dados</p>";
+		//$_SESSION['msgvendedor'] ="<p class='text-danger '>Erro: ".mysqli_error($conexao)." no banco de dados</p>";
 	}
 	mysqli_close($conexao);
 }
