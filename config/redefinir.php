@@ -6,7 +6,9 @@ require 'conexao.php';
 if (isset($_POST['usuario']) & isset($_POST['senha']) & isset($_POST['nsenha'])){
 	$usuario = $_POST["usuario"];
 	$senha= $_POST["senha"];
+	$senha = md5($senha);
 	$nsenha= $_POST["nsenha"];
+	$nsenha = md5($nsenha);
 
 
 	$sql = "SELECT * FROM login WHERE usuario='$usuario' and senha ='$senha'";

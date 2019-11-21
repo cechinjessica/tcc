@@ -46,7 +46,7 @@ if (isset($_GET['id'])){
 	<script type="text/javascript" src="../javascript/editar_contrato.js"></script>
 	<!--NAVBAR-->
 	<nav class="navbar navbar-expand-md bg-info navbar-light sticky-top">
-		<a class="navbar-brand" href="#"><img src="../imagens/icone.png" width="30px">Contrato</a>
+		<a class="navbar-brand" href=""><img src="../imagens/icone.png" width="30px">Contrato</a>
 		<a class="nav-text d-none  d-lg-inline"><b> <?php echo $_SESSION['nome']; ?></b></a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
 			<span class="navbar-toggler-icon"></span>

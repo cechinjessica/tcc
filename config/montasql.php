@@ -159,7 +159,7 @@ where Arquivo is not null and IdContrato='.$row[5];
       </div>
 
       <input type='hidden' name='ids' id='ids' value='$ids'>
-      <input class='btn btn-primary btn-block text-uppercase' type='submit' name='imprimir_rel' value='Imprimir PDF' id='imprimir'>
+      <input class='btn btn-primary btn-block text-uppercase' type='submit' name='imprimir_rel' value='Imprimir' id='imprimir'>
     </form>
   </div>
 </div>

@@ -9,6 +9,8 @@ if (isset($_POST['usuario']) & isset($_POST['senha'])){
 	$nome= $_POST["nome"];
 	$email= $_POST["email"];
 
+	$senha = md5($senha);
+
 
 	$sql = "SELECT * FROM login WHERE usuario='$usuario'";
 	mysqli_query($conexao,$sql);

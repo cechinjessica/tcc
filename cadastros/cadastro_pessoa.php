@@ -118,7 +118,7 @@ include('../config/verifica_login.php');
 				 background: linear-gradient(to left, #5A8BB7, #2D9AAD);">
 	<!--NAVBAR-->
 	<nav class="navbar navbar-expand-md bg-info navbar-light sticky-top">
-		<a class="navbar-brand" href="#"><img src="../imagens/icone.png" width="30px">Contrato</a>
+		<a class="navbar-brand" href=""><img src="../imagens/icone.png" width="30px">Contrato</a>
 		<a class="nav-text d-none  d-lg-inline"><b> <?php echo $_SESSION['nome']; ?></b></a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
 			<span class="navbar-toggler-icon"></span>

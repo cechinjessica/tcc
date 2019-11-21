@@ -10,6 +10,7 @@ if(!isset($_POST['usuario']) || !isset($_POST['senha'])) {
 
 $usuario =  $_POST['usuario'];
 $senha =  $_POST['senha'];
+$senha = md5($senha);
 
 $sql = "SELECT IdUsuario, Usuario, Nome, Email FROM login WHERE usuario = '$usuario' AND senha ='$senha'";
 

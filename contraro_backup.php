@@ -356,7 +356,7 @@ if (isset($_POST['enviarveiculo'])){
     <script type="text/javascript" src="javascript/vendedorcomprador.js"></script>
     <!--NAVBAR-->
     <nav class="navbar navbar-expand-md bg-info navbar-light sticky-top">
-        <a class="navbar-brand" href="#"><img src="imagens/icone.png" width="30px">Contrato</a>
+        <a class="navbar-brand" href=""><img src="imagens/icone.png" width="30px">Contrato</a>
         <a class="nav-text d-none  d-lg-inline mr-5"><b> <?php echo $_SESSION['nome']; ?></b></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
             <span class="navbar-toggler-icon"></span>
