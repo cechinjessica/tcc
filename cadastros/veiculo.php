@@ -355,34 +355,26 @@ if (isset($_POST['enviarveiculo'])){
 							<div class="form-group col-xl">
 								<label for="estado">Estado</label>
 								<div class="form-check-inline">
-									<input type="radio" class="form-check-input" name="estado" value="novo" id="novo" <?php echo ($id!=0)?"$novo":'';?>>Novo
-								</div>
+									<input type="radio" class="form-check-input" name="estado" value="novo" id="novo" <?php echo ($id!=0)?"$novo":'';?>>Novo</div>
 								<div class="form-check-inline">
-									<input type="radio" class="form-check-input" name="estado" value="usado" id="usado" <?php echo ($id!=0)?"$usado":'';?>>Usado
-								</div>
+									<input type="radio" class="form-check-input" name="estado" value="usado" id="usado" <?php echo ($id!=0)?"$usado":'';?>>Usado</div>
 								<p id="msg_estado" class="form-control feedback"></p>
 							</div>
 
 							<div class="form-group col-xl">
 								<label for="combustivel">Combustível</label>
 								<div class="form-check-inline">
-									<input type="radio" class="form-check-input" name="combustivel" value="gasolina" id="gasolina" <?php echo ($id!=0)?"$gasolina":'';?>>Gasolina
-								</div>
+									<input type="radio" class="form-check-input" name="combustivel" value="gasolina" id="gasolina" <?php echo ($id!=0)?"$gasolina":'';?>>Gasolina</div>
 								<div class="form-check-inline">
-									<input type="radio" class="form-check-input" name="combustivel" value="etanol" id="etanol" <?php echo ($id!=0)?"$etanol":'';?>>Etanol
-								</div>
+									<input type="radio" class="form-check-input" name="combustivel" value="etanol" id="etanol" <?php echo ($id!=0)?"$etanol":'';?>>Etanol</div>
 								<div class="form-check-inline">
-									<input type="radio" class="form-check-input" name="combustivel" value="diesel" id="diesel" <?php echo ($id!=0)?"$diesel":'';?>>Diesel
-								</div>
+									<input type="radio" class="form-check-input" name="combustivel" value="diesel" id="diesel" <?php echo ($id!=0)?"$diesel":'';?>>Diesel</div>
 								<div class="form-check-inline">
-									<input type="radio" class="form-check-input" name="combustivel" value="gasnatural" id="gasnatural" <?php echo ($id!=0)?"$gasnatural":'';?>>Gás Natural
-								</div>
+									<input type="radio" class="form-check-input" name="combustivel" value="gasnatural" id="gasnatural" <?php echo ($id!=0)?"$gasnatural":'';?>>Gás Natural</div>
 								<div class="form-check-inline">
-									<input type="radio" class="form-check-input" name="combustivel" value="eletrico" id="eletrico" <?php echo ($id!=0)?"$eletrico":'';?>>Elétrico
-								</div>
+									<input type="radio" class="form-check-input" name="combustivel" value="eletrico" id="eletrico" <?php echo ($id!=0)?"$eletrico":'';?>>Elétrico</div>
 								<div class="form-check-inline">
-									<input type="radio" class="form-check-input" name="combustivel" value="flex" id="flex" <?php echo ($id!=0)?"$flex":'';?>>Flex
-								</div>
+									<input type="radio" class="form-check-input" name="combustivel" value="flex" id="flex" <?php echo ($id!=0)?"$flex":'';?>>Flex</div>
 								<p id="msg_combustivel" class="form-control feedback"></p>
 							</div>
 						</div>
