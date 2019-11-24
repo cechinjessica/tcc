@@ -1,22 +1,16 @@
 $(document).ready(function () {
     //Quando o campo cep perde o foco.
     $("#cep").blur(function () {
-
         //Nova variável "cep" somente com dígitos.
         var cep = $(this).val().replace(/\D/g, '');
-
         //Verifica se campo cep possui valor informado.
         if (cep != "") {
-
             //Expressão regular para validar o CEP.
             var validacep = /^[0-9]{8}$/;
-
             //Valida o formato do CEP.
             if (validacep.test(cep)) {
-
                 //Consulta o webservice viacep.com.br/
                 $.getJSON("https://viacep.com.br/ws/" + cep + "/json/?callback=?", function (dados) {
-
                     if (!("erro" in dados)) {
                         //Atualiza os campos com os valores da consulta.
                         $("#endereco").val(dados.logradouro + ", Bairro " + dados.bairro);
@@ -33,8 +27,27 @@ $(document).ready(function () {
                 //cep é inválido.
                 $("#cep").val("Formato de CEP inválido.");
             }
-        } //end if.
-        else {}
+        }
+    });
+
+    $("#cepempresa").blur(function () {
+        var cep = $(this).val().replace(/\D/g, '');
+        if (cep != "") {
+            var validacep = /^[0-9]{8}$/;
+            if (validacep.test(cep)) {
+                $.getJSON("https://viacep.com.br/ws/" + cep + "/json/?callback=?", function (dados) {
+                    if (!("erro" in dados)) {
+                        $("#enderecoempresa").val(dados.logradouro + ", Bairro " + dados.bairro);
+                        $("#cidadeempresa").val(dados.localidade);
+                        $("#ufempresa").val(dados.uf);
+                    } else {
+                        $("#cepempresa").val("CEP não encontrado.");
+                    }
+                });
+            } else {
+                $("#cepempresa").val("Formato de CEP inválido.");
+            }
+        }
     });
 
     //MASCARAS
@@ -46,6 +59,7 @@ $(document).ready(function () {
     });
     $("#rg").mask("0000000000");
     $("#cep").mask("00000-000");
+    $("#cepempresa").mask("00000-000");
     $("#numero").mask("000000");
     $("#numeroempresa").mask("000000");
     $("#nacionalidade").mask("SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS");
@@ -651,10 +665,6 @@ function nomeempresafisico() {
     $("#nomeempresa").addClass("is-valid");
     var a = true;
 
-    if ($("#nomeempresa").val() != "") {
-        $("#nomeempresa").addClass("is-invalid");
-        a = false;
-    }
     return a;
 }
 
@@ -684,10 +694,6 @@ function cnpjfisico() {
     $("#cnpj").addClass("is-valid");
     var a = true;
 
-    if ($("#cnpj").val() != "") {
-        $("#cnpj").addClass("is-invalid");
-        a = false;
-    }
     return a;
 }
 
@@ -716,10 +722,6 @@ function enderecoempresafisico() {
     $("#enderecoempresa").addClass("is-valid");
     var a = true;
 
-    if ($("#enderecoempresa").val() != "") {
-        $("#enderecoempresa").addClass("is-invalid");
-        a = false;
-    }
     return a;
 }
 
@@ -755,10 +757,6 @@ function cargoempresafisico() {
     $("#cargoempresa").addClass("is-valid");
     var a = true;
 
-    if ($("#cargoempresa").val() != "") {
-        $("#cargoempresa").addClass("is-invalid");
-        a = false;
-    }
     return a;
 }
 
@@ -791,12 +789,6 @@ function tipoempresafisico() {
     var a = true;
     $("#msg_tipoempresa").text("");
 
-    if ($("input[type='radio'][name='tipoempresa']").is(':checked')) {
-        $("#msg_tipoempresa").text("*Tipo da empresa inválido");
-        $("#msg_tipoempresa").css("color", "red");
-        $("#input[name='tipoempresa']").addClass("erro");
-        a = false;
-    }
     return a;
 }
 
@@ -825,10 +817,6 @@ function cidadeempresafisico() {
     $("#cidadeempresa").addClass("is-valid");
     var a = true;
 
-    if ($("#cidadeempresa").val().trim() != "") {
-        $("#cidadeempresa").addClass("is-invalid");
-        a = false;
-    }
     return a;
 }
 
@@ -857,10 +845,6 @@ function numeroempresafisico() {
     $("#numeroempresa").addClass("is-valid");
     var a = true;
 
-    if ($("#numeroempresa").val() != "") {
-        $("#numeroempresa").addClass("is-invalid");
-        a = false;
-    }
     return a;
 }
 
@@ -889,10 +873,6 @@ function ufempresafisico() {
     $("#ufempresa").addClass("is-valid");
     var a = true;
 
-    if ($("#ufempresa").val() != "") {
-        $("#ufempresa").addClass("is-invalid");
-        a = false;
-    }
     return a;
 }
 
@@ -921,9 +901,5 @@ function uffisico() {
     $("#uf").addClass("is-valid");
     var a = true;
 
-    if ($("#uf").val() != "") {
-        $("#uf").addClass("is-invalid");
-        a = false;
-    }
     return a;
 }

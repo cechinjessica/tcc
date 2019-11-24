@@ -148,7 +148,7 @@ if (isset($_POST['enviar'])){
 				$sql="UPDATE pessoa SET tipopessoa='$tipopessoa', nome ='$nome', nacionalidade =LCASE('$nacionalidade'), profissao ='$profissao', estadocivil ='$ecivil', rg='$rg', cpf='$cpf', endereco ='$endereco', sexo='$sexo', numero ='$numero', cidade ='$cidade', cep ='$cep', cnpj ='$cnpjempresa', enderecoempresa ='$enderecoempresa', cargoempresa ='$cargoempresa', tipoempresa ='$tipoempresa', cidadeempresa ='$cidadeempresa', numeroempresa ='$numeroempresa', nomeempresa ='$nomeempresa', uf=UCASE('$uf'), ufempresa=UCASE('$ufempresa') where idpessoa ='$id'";
 
 			}else if($tipopessoa == "f"){
-				$sql="UPDATE pessoa SET tipopessoa='$tipopessoa', nome ='$nome', nacionalidade =LCASE('$nacionalidade'), profissao ='$profissao', estadocivil ='$ecivil', rg='$rg', cpf='$cpf', endereco = '$endereco', sexo='$sexo', numero ='$numero', cidade ='$cidade', cep ='$cep', uf=UCASE('$uf') where idpessoa ='$id'";
+				$sql="UPDATE pessoa SET tipopessoa='$tipopessoa', nome ='$nome', nacionalidade =LCASE('$nacionalidade'), profissao ='$profissao', estadocivil ='$ecivil', rg='$rg', cpf='$cpf', endereco = '$endereco', sexo='$sexo', numero ='$numero', cidade ='$cidade', cep ='$cep', uf=UCASE('$uf'), cnpj =null, enderecoempresa =null, cargoempresa =null, tipoempresa =null, cidadeempresa =null, numeroempresa =null, nomeempresa =null, ufempresa=null where idpessoa ='$id'";
 			}
 
 			$res = mysqli_query($conexao,$sql);
@@ -187,7 +187,7 @@ if (isset($_POST['enviar'])){
 			if($tipopessoa == "j"){
 				$sql = "INSERT INTO pessoa (tipopessoa, nome, nacionalidade, profissao, estadocivil, rg, cpf, endereco, sexo, numero, cidade, cep, cnpj, enderecoempresa, cargoempresa, tipoempresa, cidadeempresa, numeroempresa, nomeempresa, uf, ufempresa) VALUES ('$tipopessoa', '$nome', LCASE('$nacionalidade'), '$profissao', '$ecivil', '$rg', '$cpf','$endereco', '$sexo', '$numero', '$cidade', '$cep', '$cnpjempresa', '$enderecoempresa', '$cargoempresa', '$tipoempresa', '$cidadeempresa', '$numeroempresa', '$nomeempresa',UCASE('$uf'),UCASE('$ufempresa'))";
 			} else if($tipopessoa == "f"){
-				$sql = "INSERT INTO pessoa (tipopessoa, nome, nacionalidade, profissao, estadocivil, rg, cpf, endereco, sexo, numero, cidade, cep, uf) VALUES ('$tipopessoa', '$nome', LCASE('$nacionalidade'), '$profissao', '$ecivil', '$rg', '$cpf', '$endereco', '$sexo', '$numero', '$cidade', '$cep', UCASE('$uf'))";
+				$sql = "INSERT INTO pessoa (tipopessoa, nome, nacionalidade, profissao, estadocivil, rg, cpf, endereco, sexo, numero, cidade, cep, uf, cnpj, enderecoempresa, cargoempresa, tipoempresa, cidadeempresa, numeroempresa, nomeempresa, ufempresa) VALUES ('$tipopessoa', '$nome', LCASE('$nacionalidade'), '$profissao', '$ecivil', '$rg', '$cpf', '$endereco', '$sexo', '$numero', '$cidade', '$cep', UCASE('$uf'), null, null, null, null, null, null, null, null)";
 			}
 
 			echo $sql;
@@ -267,6 +267,9 @@ if (isset($_POST['enviar'])){
 			});
 			$('#nacionalidade').keyup(function(e) {
 				$('#nacionalidade').val($(this).val().toLowerCase());
+			});
+			$('#cargoempresa').keyup(function(e) {
+				$('#cargoempresa').val($(this).val().toLowerCase());
 			});
 		});
 
@@ -518,30 +521,41 @@ if (isset($_POST['enviar'])){
 						</div>
 
 						<div class="row">
+							<div class="form-group col-xl">
+								<label for="cepempresa">CEP</label><label for="cepempresa" class="representante"> da empresa</label>
+								<input type="text" id="cepempresa" class="form-control">
+								<p id="msg_cepempresa" class="form-control-feedback "></p>
+							</div>
+
 							<div class="form-group col-xl" id="genderecoempresa">
 								<label for="enderecoempresa">Endereço</label><label for="enderecoempresa" class="representante"> da empresa</label>
 								<input type="text" id="enderecoempresa" class="form-control" title="Rua XXXX, Bairro XXXX" name="enderecoempresa" value="<?php echo ($id!=0)?"$enderecoempresa":'';?>">
 								<p id="msg_enderecoempresa" class="form-control-feedback "></p>
 							</div>
+						</div>
 
+						<div class="row">
 							<div class="form-group col-xl" id="gcidadeempresa">
 								<label for="cidadeempresa">Cidade</label><label for="cidadeempresa" class="representante"> da empresa</label>
 								<input type="text" id="cidadeempresa" class="form-control" name="cidadeempresa" value="<?php echo ($id!=0)?"$cidadeempresa":'';?>">
 								<p id="msg_cidadeempresa" class="form-control-feedback "></p>
 							</div>
-						</div>
-						<div class="row">
+
 							<div class="form-group col-xl" id="gufempresa">
 								<label for="ufempresa">UF</label><label for="ufempresa" class="representante"> da empresa</label>
 								<input type="text" id="ufempresa" class="form-control" name="ufempresa" style="text-transform:uppercase" maxlength="2" value="<?php echo ($id!=0)?"$ufempresa":'';?>">
 								<p id="msg_ufempresa" class="form-control-feedback "></p>
 							</div>
+						</div>
+
+						<div class="row">
 							<div class="form-group col-xl" id="gnumeroempresa">
 								<label for="numeroempresa">Número</label><label for="numeroempresa" class="representante"> da empresa</label>
 								<input type="text" id="numeroempresa" class="form-control" name="numeroempresa" value="<?php echo ($id!=0)?"$numeroempresa":'';?>">
 								<p id="msg_numeroempresa" class="form-control-feedback "></p>
 							</div>
 						</div>
+
 
 						<input type='hidden' name='id' id='codigo' value="<?php echo ($id!=0)?"$id":'0';?>">
 						<input type='hidden' name='op' value="<?php echo ($id!=0)?"$op":'';?>">

@@ -109,7 +109,7 @@ where Arquivo is not null and IdContrato='.$row[5];
     $rows=mysqli_fetch_row($resultado);
     if (mysqli_affected_rows($conexao) != '0') {
       echo "<div class='d-flex justify-content-center'>";
-      echo "<a href='cadastros/ver.php?id='".$rows[0]."' class='card-link text-secondary'><i class='material-icons'>remove_red_eye</i></a>";
+      echo "<a href='cadastros/ver.php?id=$rows[0]' class='card-link text-secondary'><i class='material-icons'>remove_red_eye</i></a>";
       echo "</div>";
     }
     echo "</div></div></div></div>";

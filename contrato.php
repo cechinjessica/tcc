@@ -208,26 +208,152 @@ if (isset($_POST['enviarcontrato'])){
 	<script>
 		function limparpessoa() {
 			$('#pessoa').val("");
+			if ($("#pessoa").hasClass("is-invalid")) {
+				$("#pessoa").removeClass("is-invalid");
+			} else if ($("#pessoa").hasClass("is-valid")) {
+				$("#pessoa").removeClass("is-valid");
+			}
+
 			$('#nome').val("");
+			if ($("#nome").hasClass("is-invalid")) {
+				$("#nome").removeClass("is-invalid");
+			} else if ($("#nome").hasClass("is-valid")) {
+				$("#nome").removeClass("is-valid");
+			}
+
 			$('#nacionalidade').val("");
+			if ($("#nacionalidade").hasClass("is-invalid")) {
+				$("#nacionalidade").removeClass("is-invalid");
+			} else if ($("#nacionalidade").hasClass("is-valid")) {
+				$("#nacionalidade").removeClass("is-valid");
+			}
+
 			$('#profissao').val("");
+			if ($("#profissao").hasClass("is-invalid")) {
+				$("#profissao").removeClass("is-invalid");
+			} else if ($("#profissao").hasClass("is-valid")) {
+				$("#profissao").removeClass("is-valid");
+			}
+
 			$('#ecivil').val("");
+			if ($("#ecivil").hasClass("is-invalid")) {
+				$("#ecivil").removeClass("is-invalid");
+			} else if ($("#ecivil").hasClass("is-valid")) {
+				$("#ecivil").removeClass("is-valid");
+			}
+
 			$('#rg').val("");
+			if ($("#rg").hasClass("is-invalid")) {
+				$("#rg").removeClass("is-invalid");
+			} else if ($("#rg").hasClass("is-valid")) {
+				$("#rg").removeClass("is-valid");
+			}
+
 			$('#cpf').val("");
+			if ($("#cpf").hasClass("is-invalid")) {
+				$("#cpf").removeClass("is-invalid");
+			} else if ($("#cpf").hasClass("is-valid")) {
+				$("#cpf").removeClass("is-valid");
+			}
+
 			$('#endereco').val("");
+			if ($("#endereco").hasClass("is-invalid")) {
+				$("#endereco").removeClass("is-invalid");
+			} else if ($("#endereco").hasClass("is-valid")) {
+				$("#endereco").removeClass("is-valid");
+			}
+
 			$('#sexo').val("");
+			if ($("#sexo").hasClass("is-invalid")) {
+				$("#sexo").removeClass("is-invalid");
+			} else if ($("#sexo").hasClass("is-valid")) {
+				$("#sexo").removeClass("is-valid");
+			}
+
 			$('#numero').val("");
+			if ($("#numero").hasClass("is-invalid")) {
+				$("#numero").removeClass("is-invalid");
+			} else if ($("#numero").hasClass("is-valid")) {
+				$("#numero").removeClass("is-valid");
+			}
+
 			$('#cidade').val("");
+			if ($("#cidade").hasClass("is-invalid")) {
+				$("#cidade").removeClass("is-invalid");
+			} else if ($("#cidade").hasClass("is-valid")) {
+				$("#cidade").removeClass("is-valid");
+			}
+
 			$('#cep').val("");
-			$('#cnpjempresa').val("");
+			if ($("#cep").hasClass("is-invalid")) {
+				$("#cep").removeClass("is-invalid");
+			} else if ($("#cep").hasClass("is-valid")) {
+				$("#cep").removeClass("is-valid");
+			}
+
+			$('#cnpj').val("");
+			if ($("#cnpj").hasClass("is-invalid")) {
+				$("#cnpj").removeClass("is-invalid");
+			} else if ($("#cnpj").hasClass("is-valid")) {
+				$("#cnpj").removeClass("is-valid");
+			}
+
 			$('#enderecoempresa').val("");
+			if ($("#enderecoempresa").hasClass("is-invalid")) {
+				$("#enderecoempresa").removeClass("is-invalid");
+			} else if ($("#enderecoempresa").hasClass("is-valid")) {
+				$("#enderecoempresa").removeClass("is-valid");
+			}
+
 			$('#cargoempresa').val("");
+			if ($("#cargoempresa").hasClass("is-invalid")) {
+				$("#cargoempresa").removeClass("is-invalid");
+			} else if ($("#cargoempresa").hasClass("is-valid")) {
+				$("#cargoempresa").removeClass("is-valid");
+			}
+
 			$('#tipoempresa').val("");
+			if ($("#tipoempresa").hasClass("is-invalid")) {
+				$("#tipoempresa").removeClass("is-invalid");
+			} else if ($("#tipoempresa").hasClass("is-valid")) {
+				$("#tipoempresa").removeClass("is-valid");
+			}
+
 			$('#cidadeempresa').val("");
+			if ($("#cidadeempresa").hasClass("is-invalid")) {
+				$("#cidadeempresa").removeClass("is-invalid");
+			} else if ($("#cidadeempresa").hasClass("is-valid")) {
+				$("#cidadeempresa").removeClass("is-valid");
+			}
+
 			$('#numeroempresa').val("");
+			if ($("#numeroempresa").hasClass("is-invalid")) {
+				$("#numeroempresa").removeClass("is-invalid");
+			} else if ($("#numeroempresa").hasClass("is-valid")) {
+				$("#numeroempresa").removeClass("is-valid");
+			}
+
 			$('#nomeempresa').val("");
+			if ($("#nomeempresa").hasClass("is-invalid")) {
+				$("#nomeempresa").removeClass("is-invalid");
+			} else if ($("#nomeempresa").hasClass("is-valid")) {
+				$("#nomeempresa").removeClass("is-valid");
+			}
+
 			$('#uf').val("");
+			if ($("#uf").hasClass("is-invalid")) {
+				$("#uf").removeClass("is-invalid");
+			} else if ($("#uf").hasClass("is-valid")) {
+				$("#uf").removeClass("is-valid");
+			}
+
 			$('#ufempresa').val("");
+			if ($("#ufempresa").hasClass("is-invalid")) {
+				$("#ufempresa").removeClass("is-invalid");
+			} else if ($("#ufempresa").hasClass("is-valid")) {
+				$("#ufempresa").removeClass("is-valid");
+			}
+
 		}
 
 		function showvend(nm) {
@@ -269,6 +395,34 @@ if (isset($_POST['enviarcontrato'])){
 
 		}
 
+		function verif_cli(cpf) {
+			str = cpf;
+			if (window.XMLHttpRequest) {
+				// code for IE7+, Firefox, Chrome, Opera, Safari
+				xmlhttp = new XMLHttpRequest();
+			} else {
+				// code for IE6, IE5
+				xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+			}
+			xmlhttp.onreadystatechange = function() {
+				if (this.readyState == 4 && this.status == 200) {
+					if ((this.response) == '1') {
+						$('#msg_cpf').html("<p class='alert alert-danger' role='alert'>CPF já cadastrado</p>");
+						$('#cpf').addClass('erro');
+					} else {
+						$('#cpf').removeClass('erro');
+						$('#msg_cpf').html("");
+					}
+					//return (this.response);
+				}
+			};
+			//xmlhttp.open("GET", "busca_cli.php?q=" + str, true);
+			//xmlhttp.send();
+			xmlhttp.open("POST", "config/busca_cli_cpf.php", true);
+			xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+			xmlhttp.send("q=" + str);
+		}
+
 		$(document).ready(function() {
 			$('#nomepesq').keyup(function() {
 				showvend($('#nomepesq').val());
@@ -289,6 +443,11 @@ if (isset($_POST['enviarcontrato'])){
 			});
 			$('#nacionalidade').keyup(function(e) {
 				$('#nacionalidade').val($(this).val().toLowerCase());
+			});
+
+			$('#cpf').blur(function() {
+				verif_cli($('#cpf').val());
+
 			});
 		});
 
@@ -566,6 +725,7 @@ if (isset($_POST['enviarcontrato'])){
 							<div class="form-group col-xl">
 								<label for="cpf">CPF</label><label for="cpf" class="representante"> do representante</label>
 								<input type="text" id="cpf" class="form-control" name="cpf">
+								<p id="msg_cpf" class="form-control-feedback "></p>
 							</div>
 						</div>
 
@@ -612,26 +772,33 @@ if (isset($_POST['enviarcontrato'])){
 								<input type="text" id="cargoempresa" class="form-control" name="cargoempresa">
 							</div>
 
-							<div class="form-group col-xl" id="genderecoempresa">
-								<label for="enderecoempresa">Endereço</label><label for="enderecoempresa" class="representante"> da empresa</label>
-								<input type="text" id="enderecoempresa" class="form-control" name="enderecoempresa">
+							<div class="form-group col-xl">
+								<label for="cepempresa">CEP</label><label for="cepempresa" class="representante"> da empresa</label>
+								<input type="text" id="cepempresa" class="form-control">
+								<p id="msg_cepempresa" class="form-control-feedback "></p>
 							</div>
 						</div>
 
 						<div class="row">
+							<div class="form-group col-xl" id="genderecoempresa">
+								<label for="enderecoempresa">Endereço</label><label for="enderecoempresa" class="representante"> da empresa</label>
+								<input type="text" id="enderecoempresa" class="form-control" name="enderecoempresa">
+							</div>
+
 							<div class="form-group col-xl" id="gcidadeempresa">
 								<label for="cidadeempresa">Cidade</label><label for="cidadeempresa" class="representante"> da empresa</label>
 								<input type="text" id="cidadeempresa" class="form-control" name="cidadeempresa">
 							</div>
+						</div>
+
+						<div class="row">
 
 							<div class="form-group col-xl" id="gufempresa">
 								<label for="ufempresa">UF</label><label for="ufempresa" class="representante"> da empresa</label>
 								<input type="text" id="ufempresa" class="form-control" name="ufempresa" style="text-transform:uppercase" maxlength="2" value="<?php echo ($id!=0)?"$ufempresa":'';?>">
 								<p id="msg_ufempresa" class="form-control-feedback "></p>
 							</div>
-						</div>
 
-						<div class="row">
 							<div class="form-group col-xl" id="gnumeroempresa">
 								<label for="numeroempresa">Número</label><label for="numeroempresa" class="representante"> da empresa</label>
 								<input type="text" id="numeroempresa" class="form-control" name="numeroempresa" value="<?php echo ($id!=0)?"$numeroempresa":'';?>">
