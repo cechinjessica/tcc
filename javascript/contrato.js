@@ -101,6 +101,9 @@ $(document).ready(function () {
 		if (!entrada()) {
 			e.preventDefault();
 		}
+		if (!vendedorXproprietario()) {
+			e.preventDefault();
+		}
 
 	});
 })
@@ -479,7 +482,7 @@ function getidcomp(idtd, cpftd, nometd) {
 	$('#modalComprador').modal('hide');
 }
 
-function getidvei(idtd, nometd, placatd, vtotaltd) {
+function getidvei(idtd, nometd, placatd, vtotaltd, prop) {
 	var id = idtd;
 	var placa = placatd;
 	var vtotal = vtotaltd;
@@ -497,7 +500,30 @@ function getidvei(idtd, nometd, placatd, vtotaltd) {
 	$("#placareadonly").val(placa);
 	$("#veiculo").val(nome);
 	$("#valortotal").val(vtotal);
+	$("#prop").val(prop);
 
 	$('#modalVeiculo').modal('hide');
 
+}
+
+function vendedorXproprietario() {
+	$("#msg_vendxprop").text("")
+	$("#msg_vendxprop").css("color", "");
+	var vendedor = $('#vendedor').val();
+	var prop = $('#prop').val();
+
+	var proprietario = prop.replace("+", " ");
+	while (proprietario.indexOf("+") != -1) {
+		proprietario = proprietario.replace("+", " ");
+	}
+	var a = true;
+
+	if (vendedor != proprietario) {
+		$("#vendedor").addClass("is-invalid");
+		$("#veiculo").addClass("is-invalid");
+		a = false;
+		$("#msg_vendxprop").text("*Vendedor e Proprietário do Veículo não são a mesma pessoa!")
+		$("#msg_vendxprop").css("color", "red");
+	}
+	return a;
 }

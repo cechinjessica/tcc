@@ -248,7 +248,7 @@ display:none;
 		</tr>";
 
 	}   
-	if($s_soma){
+	if($s_soma == "on"){
 		echo "<hr width = 100% style='color: grey;'>";
 		echo "<tr>";
 		echo "<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>Soma:</td>";

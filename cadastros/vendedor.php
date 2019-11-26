@@ -521,7 +521,7 @@ if (isset($_POST['enviar'])){
 						</div>
 
 						<div class="row">
-							<div class="form-group col-xl">
+							<div class="form-group col-xl" id="gcepempresa">
 								<label for="cepempresa">CEP</label><label for="cepempresa" class="representante"> da empresa</label>
 								<input type="text" id="cepempresa" class="form-control">
 								<p id="msg_cepempresa" class="form-control-feedback "></p>

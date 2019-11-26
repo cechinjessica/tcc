@@ -366,6 +366,7 @@ function selecionarf() {
     $("#gcidadeempresa").css("display", "none");
     $("#gnumeroempresa").css("display", "none");
     $("#gufempresa").css("display", "none");
+    $("#gcepempresa").css("display", "none");
 
 
 }
@@ -380,6 +381,7 @@ function selecionarj() {
     $("#gcidadeempresa").css("display", "inline");
     $("#gnumeroempresa").css("display", "inline");
     $("#gufempresa").css("display", "inline");
+    $("#gcepempresa").css("display", "inline");
 
 
 }

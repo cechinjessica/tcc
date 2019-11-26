@@ -23,14 +23,15 @@ session_start();
 
 	<?php
 		if (isset($_SESSION['msg'])) {
-			echo  $_SESSION['msg'];
-			unset ($_SESSION['msg']);
+
 			echo "<div class='toast'>
     <div class='toast-header'>
       Notificação
     </div>
-    <div class='toast-body'>
-     </div>
+    <div class='toast-body'>";
+			echo  $_SESSION['msg'];
+			unset ($_SESSION['msg']);
+			echo "</div>
   </div>";
 			echo "<script>
                 $(document).ready(function() {

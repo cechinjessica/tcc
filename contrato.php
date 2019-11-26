@@ -772,7 +772,7 @@ if (isset($_POST['enviarcontrato'])){
 								<input type="text" id="cargoempresa" class="form-control" name="cargoempresa">
 							</div>
 
-							<div class="form-group col-xl">
+							<div class="form-group col-xl" id="gcepempresa">
 								<label for="cepempresa">CEP</label><label for="cepempresa" class="representante"> da empresa</label>
 								<input type="text" id="cepempresa" class="form-control">
 								<p id="msg_cepempresa" class="form-control-feedback "></p>
@@ -1173,12 +1173,14 @@ if (isset($_POST['enviarcontrato'])){
 								<input type="text" id="rgtestemunha2" class="form-control m-0" name="rgtestemunha2" value="<?php echo ($id!=0)?"$rgtestemunha2":'';?>">
 							</div>
 						</div>
+						<p id="msg_vendxprop"> </p>
 
 						<input type='hidden' name='id' id='codigo' value="<?php echo ($id!=0)?"$id":'0';?>">
 						<input type='hidden' name='op' value="<?php echo ($id!=0)?"$op":'';?>">
 						<input type='hidden' name='idvend' id='idvend' value="<?php echo ($id!=0)?"$idvend":'';?>">
 						<input type='hidden' name='idcomp' id='idcomp' value="<?php echo ($id!=0)?"$idcomp":'';?>">
 						<input type='hidden' name='idvei' id='idvei' value="<?php echo ($id!=0)?"$idvei":'';?>">
+						<input type='hidden' name='prop' id='prop' value="">
 						<input type='hidden' name='idlogin' id='idlogin' value="<?php echo $_SESSION['idusuario']; ?>">
 
 
