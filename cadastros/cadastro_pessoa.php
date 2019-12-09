@@ -14,7 +14,7 @@ include('../config/verifica_login.php');
 	<link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
 	<script src="../javascript/jquery-3.4.1.min.js"></script>
 	<script src="../javascript/popper.min.js"></script>
-
+	<script src="../javascript/bootstrap.min.js"></script>
 
 	<link rel="stylesheet" type="text/css" href="../css/style.css">
 	<?php include('../config/verifica_login.php');
@@ -118,7 +118,7 @@ include('../config/verifica_login.php');
 				 background: linear-gradient(to left, #5A8BB7, #2D9AAD);">
 	<!--NAVBAR-->
 	<nav class="navbar navbar-expand-md bg-info navbar-light sticky-top">
-		<a class="navbar-brand" href="#"><img src="../imagens/icone.png" width="30px">Contrato</a>
+		<a class="navbar-brand" href=""><img src="../imagens/icone.png" width="30px">Contrato</a>
 		<a class="nav-text d-none  d-lg-inline"><b> <?php echo $_SESSION['nome']; ?></b></a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
 			<span class="navbar-toggler-icon"></span>
@@ -214,9 +214,6 @@ include('../config/verifica_login.php');
 			</div>
 		</div>
 	</div>
-
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </body>
 
 </html>

@@ -10,6 +10,7 @@ if(!isset($_POST['usuario']) || !isset($_POST['senha'])) {
 
 $usuario =  $_POST['usuario'];
 $senha =  $_POST['senha'];
+$senha = md5($senha);
 
 $sql = "SELECT IdUsuario, Usuario, Nome, Email FROM login WHERE usuario = '$usuario' AND senha ='$senha'";
 
@@ -28,7 +29,7 @@ if (mysqli_affected_rows($conexao) != '0') {
 	header('Location: ../contrato.php');
 	exit();
 }else{
-	$_SESSION['nao_autenticado'] = "<p class='text-danger lead'>Usuário ou senha inválidos!</p>";
+	$_SESSION['nao_autenticado'] = "<p class='text-danger '>Usuário ou senha inválidos!</p>";
 	header('Location: ../index.php');
 	exit();
 }

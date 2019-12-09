@@ -1,8 +1,28 @@
 $(document).ready(function () {
 	setdcriacao();
+	$('#entrada').maskMoney({
+		thousands: '.',
+		decimal: ',',
+		allowZero: true,
+		allowEmpty: true
+	});
+
+	$('#valortotal').maskMoney({
+		thousands: '.',
+		decimal: ',',
+		allowZero: true,
+		allowEmpty: true
+	});
+
+	$('#valorparcela').maskMoney({
+		thousands: '.',
+		decimal: ',',
+		allowZero: true,
+		allowEmpty: true
+	});
 
 	$("#dpagamento").mask("00");
-	$("#valortotal").mask("#.##0,00", {
+	/*$("#valortotal").mask("#.##0,00", {
 		reverse: true
 	});
 	$("#valorparcela").mask("#.##0,00", {
@@ -10,7 +30,7 @@ $(document).ready(function () {
 	});
 	$("#entrada").mask("#.##0,00", {
 		reverse: true
-	});
+	});*/
 
 
 	$("#numeroparcelas").focusout(function (e) {
@@ -79,6 +99,9 @@ $(document).ready(function () {
 			e.preventDefault();
 		}
 		if (!entrada()) {
+			e.preventDefault();
+		}
+		if (!vendedorXproprietario()) {
 			e.preventDefault();
 		}
 
@@ -235,7 +258,16 @@ function gerarparcela() {
 		} else {
 			var saldo = total - entrada;
 			var parcela = parseFloat(saldo / numero);
-			$("#valorparcela").val(parcela.toFixed(2));
+			parcela = parcela.toFixed(2);
+			parcela = parcela.replace(".", ",");
+			$("#valorparcela").val(parcela);
+			/*parcela = parseFloat(parcela.toFixed(2));
+			$("#valorparcela").maskMoney('mask', parcela, {
+				thousands: '.',
+				decimal: ',',
+				allowZero: true,
+				allowEmpty: true
+			});*/
 		}
 	}
 }
@@ -450,7 +482,7 @@ function getidcomp(idtd, cpftd, nometd) {
 	$('#modalComprador').modal('hide');
 }
 
-function getidvei(idtd, nometd, placatd, vtotaltd) {
+function getidvei(idtd, nometd, placatd, vtotaltd, prop) {
 	var id = idtd;
 	var placa = placatd;
 	var vtotal = vtotaltd;
@@ -468,7 +500,30 @@ function getidvei(idtd, nometd, placatd, vtotaltd) {
 	$("#placareadonly").val(placa);
 	$("#veiculo").val(nome);
 	$("#valortotal").val(vtotal);
+	$("#prop").val(prop);
 
 	$('#modalVeiculo').modal('hide');
 
+}
+
+function vendedorXproprietario() {
+	$("#msg_vendxprop").text("")
+	$("#msg_vendxprop").css("color", "");
+	var vendedor = $('#vendedor').val();
+	var prop = $('#prop').val();
+
+	var proprietario = prop.replace("+", " ");
+	while (proprietario.indexOf("+") != -1) {
+		proprietario = proprietario.replace("+", " ");
+	}
+	var a = true;
+
+	if (vendedor != proprietario) {
+		$("#vendedor").addClass("is-invalid");
+		$("#veiculo").addClass("is-invalid");
+		a = false;
+		$("#msg_vendxprop").html("*Vendedor e Proprietário do Veículo não são a mesma pessoa! </p> <p> Ou, em caso de edição, é preciso selecionar novamente o veículo e o vendedor.")
+		$("#msg_vendxprop").css("color", "red");
+	}
+	return a;
 }

@@ -13,26 +13,27 @@ session_start();
 	<script src="javascript/jquery-3.4.1.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
 	<script src="javascript/popper.min.js"></script>
-
+	<script src="javascript/bootstrap.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 
 <body style="background: #007bff;
-               background: linear-gradient(to left, #5A8BB7, #2D9AAD);">
+				 background: linear-gradient(to left, #5A8BB7, #2D9AAD);">
 	<script type="text/javascript" src="javascript/cadastre.js"></script>
 
 	<?php
-    if (isset($_SESSION['msg'])) {
-      echo  $_SESSION['msg'];
-      unset ($_SESSION['msg']);
-      echo "<div class='toast'>
+		if (isset($_SESSION['msg'])) {
+
+			echo "<div class='toast'>
     <div class='toast-header'>
       Notificação
     </div>
-    <div class='toast-body'>
-     </div>
+    <div class='toast-body'>";
+			echo  $_SESSION['msg'];
+			unset ($_SESSION['msg']);
+			echo "</div>
   </div>";
-      echo "<script>
+			echo "<script>
                 $(document).ready(function() {
                 $('.toast').toast({
                   delay: 10000
@@ -44,8 +45,8 @@ session_start();
               });
 
               </script>";
-    }
-    ?>
+		}
+		?>
 	<div class="container-fluid fundo-card">
 		<div class="col-sm-11 col-md-10 col-lg-8 mx-auto">
 			<div class="card card-padrao my-5">
@@ -89,10 +90,6 @@ session_start();
 			</div>
 		</div>
 	</div>
-
-	<!--<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>-->
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </body>
 
 </html>

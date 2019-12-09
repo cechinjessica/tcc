@@ -25,13 +25,16 @@ if (mysqli_affected_rows($conexao)>0) {
     $hora = substr($row[4], 11,5);
     $dt = $dia."/".$mes."/".$ano;
 
+    $valor = number_format($row[3], 2, ',', '.');
+
+
     echo "<div class='custom-control custom-control-inline p-0 my-2'>";
     echo "<div class='card border-primary' style='width:18rem;'>";
     echo "<div class='card-header border-primary bg-transparent'><h5 class='text-uppercase'>$row[2] $row[6]</h5></div>";
     echo "<div class='card-body bg-transparent'><div class='card-text'>";
     echo "<p><b>Vendedor:</b> $row[1]</p>";
     echo "<p><b>Comprador:</b> $row[0]</p>";
-    echo "<p class='text-success lead'>R$$row[3]</p> ";
+    echo "<p class='text-success lead'>R$$valor</p> ";
     echo "<p class='text-ligth'> $dt $hora</p>";
     echo "<div class='d-flex justify-content-center'><a href=../contrato.php?id=$row[5]&op=A class='card-link text-info'><i class='material-icons' style='font-size: 24px;'>edit</i></a><a href=../contrato.php?id=$row[5]&op=D class='card-link text-danger'><i class='material-icons'>delete</i></a>";
 

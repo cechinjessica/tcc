@@ -3,8 +3,11 @@ $(document).ready(function () {
   $("#ano").mask("0000");
   $("#modelo").mask("0000");
   $("#cor").mask("SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS");
-  $("#valorvei").mask("#.##0,00", {
-    reverse: true
+  $("#valorvei").maskMoney({
+    thousands: '.',
+    decimal: ',',
+    allowZero: true,
+    allowEmpty: true
   });
 
   $("#salvarveiculo").click(function (e) {
@@ -256,4 +259,14 @@ function combustivel() {
     a = false;
   }
   return a;
+}
+
+function getidprop(nometd) {
+  var nome = nometd.replace("+", " ");
+  while (nome.indexOf("+") != -1) {
+    nome = nome.replace("+", " ");
+  }
+  $("#proprietario").val(nome);
+
+  $('#modalProprietario').modal('hide');
 }

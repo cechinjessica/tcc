@@ -13,7 +13,7 @@ include('../config/verifica_login.php');?>
 	<link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
 	<script src="../javascript/jquery-3.4.1.min.js"></script>
 	<script src="../javascript/popper.min.js"></script>
-
+	<script src="../javascript/veiculo.js"></script>
 
 	<link rel="stylesheet" type="text/css" href="../css/style.css">
 	<?php include('../config/verifica_login.php');
@@ -49,9 +49,14 @@ include('../config/verifica_login.php');?>
 				showvei($('#nome').val());
 			})
 			showvei('');
-			$('#botao').click(function() {
-				window.print();
+
+			$('#button').click(function() {
+				imprimir();
 			});
+
+			function imprimir() {
+				window.print();
+			}
 		});
 
 	</script>
@@ -96,7 +101,7 @@ include('../config/verifica_login.php');?>
 				 background: linear-gradient(to left, #5A8BB7, #2D9AAD);">
 	<!--NAVBAR-->
 	<nav class="navbar navbar-expand-md bg-info navbar-light sticky-top">
-		<a class="navbar-brand" href="#"><img src="../imagens/icone.png" width="30px">Contrato</a>
+		<a class="navbar-brand" href=""><img src="../imagens/icone.png" width="30px">Contrato</a>
 		<a class="nav-text d-none  d-lg-inline"><b> <?php echo $_SESSION['nome']; ?></b></a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
 			<span class="navbar-toggler-icon"></span>
@@ -189,7 +194,7 @@ include('../config/verifica_login.php');?>
 						Dados dos usuario....
 					</div>
 					<div class="form-padrao">
-						<center><a href="veiculo.php"><button class="btn btn-outline-info text-uppercase btn-inline col-sm-9 col-md-5 col-lg-5">Cadastrar um Veiculo</button></a><a><button class="btn btn-md btn-outline-info text-uppercase btn-inline col-sm-9 col-md-5 col-lg-5" name="botao" value="Imprimir" id="botao">Imprimir</button></a>
+						<center><a href="veiculo.php"><button class="btn btn-outline-info text-uppercase btn-inline col-sm-9 col-md-5 col-lg-5">Cadastrar um Veiculo</button></a><a><button class="btn btn-md btn-outline-info text-uppercase btn-inline col-sm-9 col-md-5 col-lg-5" name="botao" value="Imprimir" id="button">Imprimir</button></a>
 						</center>
 					</div>
 				</div>

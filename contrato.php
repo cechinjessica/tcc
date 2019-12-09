@@ -30,8 +30,12 @@ if (isset($_GET['id'])){
 	$row=mysqli_fetch_row($res);
 	$id= $row[0];
 	$valortotal = $row[1];
+	$valortotal = str_replace ( "." ,",", $valortotal);
+
 	$numeroparcelas  = $row[2];
 	$valorparcela = $row[3];
+	$valorparcela = str_replace ( "." ,",", $valorparcela);
+
 	$dpagamento = $row[4];
 	$juro = $row[5];
 	$foro = $row[6];
@@ -47,6 +51,8 @@ if (isset($_GET['id'])){
 	$idvei = $row[16];
 	$idlogin = $row[17];
 	$entrada = $row[18];
+	$entrada = str_replace ( "." ,",", $entrada);
+
 	$nomevend = $row[23];
 	$cpfvend = $row[24];
 	$nomecomp = $row[25];
@@ -118,10 +124,10 @@ if (isset($_POST['enviarcontrato'])){
 
 			$res = mysqli_query($conexao,$sql);
 			if (mysqli_error($conexao)) {
-				$_SESSION['msg_erro'] = "<p class='text-danger lead'>Erro na atualização do contrato</p>";
+				$_SESSION['msg_erro'] = "<p class='text-danger '>Erro na atualização do contrato</p>";
 				echo $script;
 			} else {
-				$_SESSION['msg_contratoa'] = "<p class='text-success lead'>Contrato atualizado com sucesso!</p>";
+				$_SESSION['msg_contratoa'] = "<p class='text-success '>Contrato atualizado com sucesso!</p>";
 				header('Location:cadastros/cadastro_contrato.php');
 			}
 			mysqli_close($conexao);
@@ -131,10 +137,10 @@ if (isset($_POST['enviarcontrato'])){
 
 			$res = mysqli_query($conexao,$sql);
 			if (mysqli_affected_rows($conexao)=='1') {
-				$_SESSION['msg_contratoa'] = "<p class='text-success lead'>Contrato excluído com sucesso!</p>";
+				$_SESSION['msg_contratoa'] = "<p class='text-success '>Contrato excluído com sucesso!</p>";
 				header('Location:cadastros/cadastro_contrato.php');
 			} else {
-				$_SESSION['msg_erro'] = "<p class='text-danger lead'>Erro na exclusão do contrato</p>";
+				$_SESSION['msg_erro'] = "<p class='text-danger '>Erro na exclusão do contrato</p>";
 				echo $script;
 
 			}
@@ -153,11 +159,11 @@ if (isset($_POST['enviarcontrato'])){
 			$row=mysqli_fetch_row($res);
 			$id= $row[0];
 
-			$_SESSION['msg_contratob'] = "<p class='text-success lead'>Contrato inserido com sucesso!</p>";
+			$_SESSION['msg_contratob'] = "<p class='text-success '>Contrato inserido com sucesso!</p>";
 			header("Location:config/pdfcontrato.php?id=".$id);
 
 		} else {
-			$_SESSION['msg_erro'] ="<p class='text-danger lead'>Erro: ".mysqli_error($conexao)." no banco de dados</p>";
+			$_SESSION['msg_erro'] ="<p class='text-danger '>Erro: ".mysqli_error($conexao)." no banco de dados</p>";
 			echo $script;
 
 		}
@@ -169,101 +175,9 @@ if (isset($_POST['enviarcontrato'])){
 
 //Pessoa
 //PARA PEGAR OS DADOS DOS CAMPOS DO VENDEDOR/COMPRADOR
-if (isset($_POST['enviarpessoa'])){
-	$tipopessoa = $_POST['pessoa'];
-	$nome = $_POST['nome'];
-	$nacionalidade = $_POST['nacionalidade'];
-	$profissao = $_POST['profissao'];
-	$ecivil = $_POST['ecivil'];
-	$rg = $_POST['rg'];
-	$cpf = $_POST['cpf'];
-	$endereco = $_POST['endereco'];
-	$sexo = $_POST['sexo'];
-	$numero = $_POST['numero'];
-	$cidade = $_POST['cidade'];
-	$cep = $_POST['cep'];
-	$cnpjempresa = $_POST['cnpjempresa'];
-	$enderecoempresa = $_POST['enderecoempresa'];
-	$cargoempresa = $_POST['cargoempresa'];
-	if(isset($_POST['tipoempresa'])){
-		$tipoempresa = $_POST['tipoempresa'];
-	}else{
-		$tipoempresa="";
-	}
-	$cidadeempresa = $_POST['cidadeempresa'];
-	$numeroempresa = $_POST['numeroempresa'];
-	$nomeempresa = $_POST['nomeempresa'];
-	$uf = $_POST['uf'];
-	$ufempresa = $_POST['ufempresa'];
-
-	//PARA INCLUIR
-	$sql = "SELECT * FROM pessoa WHERE cpf='$cpf'";
-	mysqli_query($conexao,$sql);
-
-	if (mysqli_affected_rows($conexao)!=0) {
-		mysqli_close($conexao);
-		$_SESSION['msg_cpf'] = "<p class='text-danger lead'>$cpf já foi cadastrado</p>";
-
-	}else {
-		if($tipopessoa == "j"){
-			$sql = "INSERT INTO pessoa (tipopessoa, nome, nacionalidade, profissao, estadocivil, rg, cpf, endereco, sexo, numero, cidade, cep, cnpj, enderecoempresa, cargoempresa, tipoempresa, cidadeempresa, numeroempresa, nomeempresa, uf, ufempresa) VALUES ('$tipopessoa', '$nome', LCASE('$nacionalidade'), '$profissao', '$ecivil', '$rg', '$cpf', '$endereco', '$sexo', '$numero', '$cidade', '$cep', '$cnpjempresa', '$enderecoempresa', '$cargoempresa', '$tipoempresa', '$cidadeempresa', '$numeroempresa', '$nomeempresa',UCASE('$uf'),UCASE('$ufempresa'))";
-
-		} else if($tipopessoa == "f"){
-			$sql = "INSERT INTO pessoa (tipopessoa, nome, nacionalidade, profissao, estadocivil, rg, cpf, endereco, sexo, numero, cidade, cep, uf) VALUES ('$tipopessoa', '$nome', LCASE('$nacionalidade'), '$profissao', '$ecivil', '$rg', '$cpf', '$endereco', '$sexo', '$numero', '$cidade', '$cep', UCASE('$uf'))";
-		}
-		mysqli_query($conexao,$sql);
-
-		if (mysqli_affected_rows($conexao) =='1') {
-			$_SESSION['msgvendedor'] = "<p class='text-success lead'>$nome inserido com sucesso!</p>";
-		} else {
-			$_SESSION['msgvendedor'] ="<p class='text-danger lead'>Erro: ".mysqli_error($conexao)." no banco de dados</p>";
-		}
-		mysqli_close($conexao);
-	}
-
-}
 
 //Veiculo
 //PARA PEGAR OS DADOS DOS CAMPOS
-if (isset($_POST['enviarveiculo'])){
-	$nomevei = $_POST['nomevei'];
-	$marca  = $_POST['marca'];
-	$modelo = $_POST['modelo'];
-	$ano = $_POST['ano'];
-	$chassi = $_POST['chassi'];
-	$cor = $_POST['cor'];
-	$placa = $_POST['placa'];
-	$renavam = $_POST['renavam'];
-	$proprietario = $_POST['proprietario'];
-	$valorvei2 = $_POST['valorvei'];
-	$estado = $_POST['estado'];
-	$combustivel = $_POST['combustivel'];
-	$op=$_POST['op'];
-
-	$valorvei1 = str_replace ( "." ,"", $valorvei2);
-	$valorvei = str_replace ( "," ,".", $valorvei1);
-
-
-	//PARA ATUALIZAR, HAVERÁ ID POIS HÁ UM VEICULO
-	$sql = "SELECT * FROM veiculo WHERE placa='$placa'";
-	mysqli_query($conexao,$sql);
-
-	if (mysqli_affected_rows($conexao)!=0) {
-		mysqli_close($conexao);
-		$_SESSION[_contrato] = "$placa já foi cadastrada";
-	}else {
-		$sql = "INSERT INTO veiculo (nome, marca, modelo, ano, chassi, cor, placa, renavam, emnomede, valor, estado, combustivel) VALUES ('$nomevei', '$marca', '$modelo', '$ano', '$chassi', '$cor', UCASE('$placa'), '$renavam', '$proprietario', '$valorvei', '$estado', '$combustivel')";
-		mysqli_query($conexao,$sql);
-
-		if (mysqli_affected_rows($conexao) =='1') {
-			$_SESSION['msg'] = "<p class='text-success lead'>$nomevei inserido com sucesso!</p>";
-		} else {
-			$_SESSION['msg'] ="<p class='text-danger lead'>Erro: ".mysqli_error($conexao)." no banco de dados</p>";
-		}
-		mysqli_close($conexao);
-	}
-}
-
 ?>
 
 <!DOCTYPE html>
@@ -278,9 +192,10 @@ if (isset($_POST['enviarveiculo'])){
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
 	<script src="javascript/jquery-3.4.1.min.js"></script>
 	<script src="javascript/popper.min.js"></script>
+	<script src="javascript/bootstrap.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 	<script src="javascript/jquery.mask.min.js"></script>
-
+	<script src="javascript/jquery.maskMoney.min.js" type="text/javascript"></script>
 	<style>
 		.form-group input {
 			border-radius: 2rem;
@@ -291,6 +206,156 @@ if (isset($_POST['enviarveiculo'])){
 	</style>
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 	<script>
+		function limparpessoa() {
+			$('#pessoa').val("");
+			if ($("#pessoa").hasClass("is-invalid")) {
+				$("#pessoa").removeClass("is-invalid");
+			} else if ($("#pessoa").hasClass("is-valid")) {
+				$("#pessoa").removeClass("is-valid");
+			}
+
+			$('#nome').val("");
+			if ($("#nome").hasClass("is-invalid")) {
+				$("#nome").removeClass("is-invalid");
+			} else if ($("#nome").hasClass("is-valid")) {
+				$("#nome").removeClass("is-valid");
+			}
+
+			$('#nacionalidade').val("");
+			if ($("#nacionalidade").hasClass("is-invalid")) {
+				$("#nacionalidade").removeClass("is-invalid");
+			} else if ($("#nacionalidade").hasClass("is-valid")) {
+				$("#nacionalidade").removeClass("is-valid");
+			}
+
+			$('#profissao').val("");
+			if ($("#profissao").hasClass("is-invalid")) {
+				$("#profissao").removeClass("is-invalid");
+			} else if ($("#profissao").hasClass("is-valid")) {
+				$("#profissao").removeClass("is-valid");
+			}
+
+			$('#ecivil').val("");
+			if ($("#ecivil").hasClass("is-invalid")) {
+				$("#ecivil").removeClass("is-invalid");
+			} else if ($("#ecivil").hasClass("is-valid")) {
+				$("#ecivil").removeClass("is-valid");
+			}
+
+			$('#rg').val("");
+			if ($("#rg").hasClass("is-invalid")) {
+				$("#rg").removeClass("is-invalid");
+			} else if ($("#rg").hasClass("is-valid")) {
+				$("#rg").removeClass("is-valid");
+			}
+
+			$('#cpf').val("");
+			if ($("#cpf").hasClass("is-invalid")) {
+				$("#cpf").removeClass("is-invalid");
+			} else if ($("#cpf").hasClass("is-valid")) {
+				$("#cpf").removeClass("is-valid");
+			}
+
+			$('#endereco').val("");
+			if ($("#endereco").hasClass("is-invalid")) {
+				$("#endereco").removeClass("is-invalid");
+			} else if ($("#endereco").hasClass("is-valid")) {
+				$("#endereco").removeClass("is-valid");
+			}
+
+			$('#sexo').val("");
+			if ($("#sexo").hasClass("is-invalid")) {
+				$("#sexo").removeClass("is-invalid");
+			} else if ($("#sexo").hasClass("is-valid")) {
+				$("#sexo").removeClass("is-valid");
+			}
+
+			$('#numero').val("");
+			if ($("#numero").hasClass("is-invalid")) {
+				$("#numero").removeClass("is-invalid");
+			} else if ($("#numero").hasClass("is-valid")) {
+				$("#numero").removeClass("is-valid");
+			}
+
+			$('#cidade').val("");
+			if ($("#cidade").hasClass("is-invalid")) {
+				$("#cidade").removeClass("is-invalid");
+			} else if ($("#cidade").hasClass("is-valid")) {
+				$("#cidade").removeClass("is-valid");
+			}
+
+			$('#cep').val("");
+			if ($("#cep").hasClass("is-invalid")) {
+				$("#cep").removeClass("is-invalid");
+			} else if ($("#cep").hasClass("is-valid")) {
+				$("#cep").removeClass("is-valid");
+			}
+
+			$('#cnpj').val("");
+			if ($("#cnpj").hasClass("is-invalid")) {
+				$("#cnpj").removeClass("is-invalid");
+			} else if ($("#cnpj").hasClass("is-valid")) {
+				$("#cnpj").removeClass("is-valid");
+			}
+
+			$('#enderecoempresa').val("");
+			if ($("#enderecoempresa").hasClass("is-invalid")) {
+				$("#enderecoempresa").removeClass("is-invalid");
+			} else if ($("#enderecoempresa").hasClass("is-valid")) {
+				$("#enderecoempresa").removeClass("is-valid");
+			}
+
+			$('#cargoempresa').val("");
+			if ($("#cargoempresa").hasClass("is-invalid")) {
+				$("#cargoempresa").removeClass("is-invalid");
+			} else if ($("#cargoempresa").hasClass("is-valid")) {
+				$("#cargoempresa").removeClass("is-valid");
+			}
+
+			$('#tipoempresa').val("");
+			if ($("#tipoempresa").hasClass("is-invalid")) {
+				$("#tipoempresa").removeClass("is-invalid");
+			} else if ($("#tipoempresa").hasClass("is-valid")) {
+				$("#tipoempresa").removeClass("is-valid");
+			}
+
+			$('#cidadeempresa').val("");
+			if ($("#cidadeempresa").hasClass("is-invalid")) {
+				$("#cidadeempresa").removeClass("is-invalid");
+			} else if ($("#cidadeempresa").hasClass("is-valid")) {
+				$("#cidadeempresa").removeClass("is-valid");
+			}
+
+			$('#numeroempresa').val("");
+			if ($("#numeroempresa").hasClass("is-invalid")) {
+				$("#numeroempresa").removeClass("is-invalid");
+			} else if ($("#numeroempresa").hasClass("is-valid")) {
+				$("#numeroempresa").removeClass("is-valid");
+			}
+
+			$('#nomeempresa').val("");
+			if ($("#nomeempresa").hasClass("is-invalid")) {
+				$("#nomeempresa").removeClass("is-invalid");
+			} else if ($("#nomeempresa").hasClass("is-valid")) {
+				$("#nomeempresa").removeClass("is-valid");
+			}
+
+			$('#uf').val("");
+			if ($("#uf").hasClass("is-invalid")) {
+				$("#uf").removeClass("is-invalid");
+			} else if ($("#uf").hasClass("is-valid")) {
+				$("#uf").removeClass("is-valid");
+			}
+
+			$('#ufempresa').val("");
+			if ($("#ufempresa").hasClass("is-invalid")) {
+				$("#ufempresa").removeClass("is-invalid");
+			} else if ($("#ufempresa").hasClass("is-valid")) {
+				$("#ufempresa").removeClass("is-valid");
+			}
+
+		}
+
 		function showvend(nm) {
 			str = nm;
 			///GET
@@ -330,6 +395,48 @@ if (isset($_POST['enviarveiculo'])){
 
 		}
 
+		function showprop(nm) {
+			str = nm;
+			///GET
+			$.get("config/busca_proprietario.php?q=" + str, function(data, status) {
+				if (status == 'success') {
+					$('#txtprop').html(data);
+				} else {
+					$('#txtprop').html("Erro na consulta de dados");
+				}
+			});
+
+		}
+
+		function verif_cli(cpf) {
+			str = cpf;
+			if (window.XMLHttpRequest) {
+				// code for IE7+, Firefox, Chrome, Opera, Safari
+				xmlhttp = new XMLHttpRequest();
+			} else {
+				// code for IE6, IE5
+				xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+			}
+			xmlhttp.onreadystatechange = function() {
+				if (this.readyState == 4 && this.status == 200) {
+					if ((this.response) == '1') {
+						$('#msg_cpf').html("<p class='alert alert-danger' role='alert'>CPF já cadastrado</p>");
+						$('#cpf').addClass('erro');
+					} else {
+						$('#cpf').removeClass('erro');
+						$('#msg_cpf').html("");
+					}
+					//return (this.response);
+				}
+			};
+			//xmlhttp.open("GET", "busca_cli.php?q=" + str, true);
+			//xmlhttp.send();
+			xmlhttp.open("POST", "config/busca_cli_cpf.php", true);
+			xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+			xmlhttp.send("q=" + str);
+		}
+
+
 		$(document).ready(function() {
 			$('#nomepesq').keyup(function() {
 				showvend($('#nomepesq').val());
@@ -341,9 +448,72 @@ if (isset($_POST['enviarveiculo'])){
 			$('#nomepesqv').keyup(function() {
 				showvei($('#nomepesqv').val());
 			})
+
+			$('#nomepesqp').keyup(function() {
+				showprop($('#nomepesqp').val());
+			})
+			showprop('');
 			showcomp('');
 			showvend('');
 			showvei('');
+
+			$('#profissao').keyup(function(e) {
+				$('#profissao').val($(this).val().toLowerCase());
+			});
+			$('#nacionalidade').keyup(function(e) {
+				$('#nacionalidade').val($(this).val().toLowerCase());
+			});
+
+			$('#cpf').blur(function() {
+				verif_cli($('#cpf').val());
+
+			});
+
+			$("#modalProprietario").on('show.bs.modal', function() {
+				$("#modalVeiculoCadastrar").modal("hide");
+			})
+
+			$("#modalProprietario").on('hide.bs.modal', function() {
+				$("#modalVeiculoCadastrar").modal("show");
+			})
+		});
+
+	</script>
+	<script type="text/javascript" src="javascript/vendedorcomprador.js"></script>
+
+	<script type="text/javascript">
+		jQuery(document).ready(function() {
+			jQuery('#pessoa').submit(function() {
+				var dados = jQuery(this).serialize();
+				jQuery.ajax({
+					type: "POST",
+					url: "config/enviarpessoa.php",
+					data: dados,
+					cache: false,
+					success: function(result) {
+						jQuery('#modalVendedorCadastrar').modal('hide');
+						showcomp('');
+						showvend('');
+						limparpessoa();
+					}
+				});
+				return false;
+			});
+
+			jQuery('#veiculoform').submit(function() {
+				var dados = jQuery(this).serialize();
+				jQuery.ajax({
+					type: "POST",
+					url: "config/enviarveiculo.php",
+					data: dados,
+					cache: false,
+					success: function(result) {
+						jQuery('#modalVeiculoCadastrar').modal('hide');
+						showvei('');
+					}
+				});
+				return false;
+			});
 		});
 
 	</script>
@@ -356,7 +526,7 @@ if (isset($_POST['enviarveiculo'])){
 	<script type="text/javascript" src="javascript/vendedorcomprador.js"></script>
 	<!--NAVBAR-->
 	<nav class="navbar navbar-expand-md bg-info navbar-light sticky-top">
-		<a class="navbar-brand" href="#"><img src="imagens/icone.png" width="30px">Contrato</a>
+		<a class="navbar-brand" href=""><img src="imagens/icone.png" width="30px">Contrato</a>
 		<a class="nav-text d-none  d-lg-inline mr-5"><b> <?php echo $_SESSION['nome']; ?></b></a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
 			<span class="navbar-toggler-icon"></span>
@@ -430,7 +600,30 @@ if (isset($_POST['enviarveiculo'])){
 		}
 		?>
 
-
+	<!--MODAL Proprietario Buscar-->
+	<div class="modal fade" id="modalProprietario" tabindex="-1" role="dialog" aria-labelledby="modalProprietario" aria-hidden="true">
+		<div class="modal-dialog modal-xl" role="document" style="max-width: 90%;">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="TituloProprietario">Encontrar proprietárior</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<div class="row">
+						<div class="form-group">
+							<input type='text' name='nomepesqp' id='nomepesqp' class="form-control" placeholder="Pesquisar uma pessoa" style="display:inline;" autofocus>
+						</div>
+					</div>
+					<div id="txtprop">
+						Dados das pessoas....
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--MODAL Proprietario Buscar-->
 	<!--MODAL VENDEDOR Buscar-->
 	<div class="modal fade" id="modalVendedor" tabindex="-1" role="dialog" aria-labelledby="modalVendedor" aria-hidden="true">
 		<div class="modal-dialog modal-xl" role="document" style="max-width: 90%;">
@@ -444,7 +637,6 @@ if (isset($_POST['enviarveiculo'])){
 				<div class="modal-body">
 					<div class="row">
 						<div class="form-group">
-							<!--<label for="nome" style="display:inline;">Pesquisar</label>-->
 							<input type='text' name='nomepesq' id='nomepesq' class="form-control" placeholder="Pesquisar uma pessoa" style="display:inline;" autofocus>
 						</div>
 					</div>
@@ -483,7 +675,6 @@ if (isset($_POST['enviarveiculo'])){
 	<!--MODAL COMPRADOR Buscar-->
 	<!--MODAL VENDEDOR/COMPRADOR Cadastrar-->
 	<div class="modal fade" id="modalVendedorCadastrar" tabindex="-1" role="dialog" aria-labelledby="modalVendedorCadastrar" aria-hidden="true">
-		<script type="text/javascript" src="javascript/vendedorcomprador.js"></script>
 		<div class="modal-dialog modal-xl" role="document" style="max-width: 95%;">
 			<div class="modal-content">
 				<div class="modal-header">
@@ -493,7 +684,7 @@ if (isset($_POST['enviarveiculo'])){
 					</button>
 				</div>
 				<div class="modal-body">
-					<form action="#" method="post" class="form-padrao">
+					<form action="" method="post" class="form-padrao" id=pessoa>
 
 						<div class="form-group">
 							<label for="pessoa">Tipo de pessoa</label>
@@ -558,14 +749,14 @@ if (isset($_POST['enviarveiculo'])){
 
 							<div class="form-group col-xl">
 								<label for="endereco">Endereço</label><label for="endereco" class="representante"> do representante</label>
-								<input type="text" id="endereco" class="form-control" name="endereco" readonly>
+								<input type="text" id="endereco" class="form-control" name="endereco">
 							</div>
 						</div>
 
 						<div class="row">
 							<div class="form-group col-xl">
 								<label for="uf">UF</label><label for="uf" class="representante"> do representante</label>
-								<input type="text" id="uf" class="form-control col-md-2" name="uf" style="text-transform:uppercase" maxlength="2" value="<?php echo ($id!=0)?"$uf":'';?>" readonly>
+								<input type="text" id="uf" class="form-control col-md-2" name="uf" style="text-transform:uppercase" maxlength="2" value="<?php echo ($id!=0)?"$uf":'';?>">
 								<p id="msg_uf" class="form-control-feedback "></p>
 							</div>
 
@@ -578,12 +769,13 @@ if (isset($_POST['enviarveiculo'])){
 						<div class="row">
 							<div class="form-group col-xl">
 								<label for="cidade">Cidade</label><label for="cidade" class="representante"> do representante</label>
-								<input type="text" id="cidade" class="form-control" name="cidade" readonly>
+								<input type="text" id="cidade" class="form-control" name="cidade">
 							</div>
 
 							<div class="form-group col-xl">
 								<label for="cpf">CPF</label><label for="cpf" class="representante"> do representante</label>
 								<input type="text" id="cpf" class="form-control" name="cpf">
+								<p id="msg_cpf" class="form-control-feedback "></p>
 							</div>
 						</div>
 
@@ -630,26 +822,33 @@ if (isset($_POST['enviarveiculo'])){
 								<input type="text" id="cargoempresa" class="form-control" name="cargoempresa">
 							</div>
 
-							<div class="form-group col-xl" id="genderecoempresa">
-								<label for="enderecoempresa">Endereço</label><label for="enderecoempresa" class="representante"> da empresa</label>
-								<input type="text" id="enderecoempresa" class="form-control" name="enderecoempresa">
+							<div class="form-group col-xl" id="gcepempresa">
+								<label for="cepempresa">CEP</label><label for="cepempresa" class="representante"> da empresa</label>
+								<input type="text" id="cepempresa" class="form-control">
+								<p id="msg_cepempresa" class="form-control-feedback "></p>
 							</div>
 						</div>
 
 						<div class="row">
+							<div class="form-group col-xl" id="genderecoempresa">
+								<label for="enderecoempresa">Endereço</label><label for="enderecoempresa" class="representante"> da empresa</label>
+								<input type="text" id="enderecoempresa" class="form-control" name="enderecoempresa">
+							</div>
+
 							<div class="form-group col-xl" id="gcidadeempresa">
 								<label for="cidadeempresa">Cidade</label><label for="cidadeempresa" class="representante"> da empresa</label>
 								<input type="text" id="cidadeempresa" class="form-control" name="cidadeempresa">
 							</div>
+						</div>
+
+						<div class="row">
 
 							<div class="form-group col-xl" id="gufempresa">
 								<label for="ufempresa">UF</label><label for="ufempresa" class="representante"> da empresa</label>
 								<input type="text" id="ufempresa" class="form-control" name="ufempresa" style="text-transform:uppercase" maxlength="2" value="<?php echo ($id!=0)?"$ufempresa":'';?>">
 								<p id="msg_ufempresa" class="form-control-feedback "></p>
 							</div>
-						</div>
 
-						<div class="row">
 							<div class="form-group col-xl" id="gnumeroempresa">
 								<label for="numeroempresa">Número</label><label for="numeroempresa" class="representante"> da empresa</label>
 								<input type="text" id="numeroempresa" class="form-control" name="numeroempresa" value="<?php echo ($id!=0)?"$numeroempresa":'';?>">
@@ -663,7 +862,7 @@ if (isset($_POST['enviarveiculo'])){
 						<input type='hidden' name='id' id='codigo' value="<?php echo ($id!=0)?"$id":'0';?>">
 
 
-						<input class="btn btn-md btn-primary btn-block text-uppercase" type="submit" name="enviarpessoa" value="Incluir" id="salvar">
+						<input class="btn btn-md btn-primary btn-block text-uppercase" type="submit" name="enviarpessoa" value="Incluir" id="enviarpessoa">
 					</form>
 				</div>
 			</div>
@@ -707,7 +906,7 @@ if (isset($_POST['enviarveiculo'])){
 					</button>
 				</div>
 				<div class="modal-body">
-					<form action="#" method="post" class="form-padrao">
+					<form action="" method="post" class="form-padrao" id="veiculoform">
 
 						<?php
 							if (isset($_SESSION['msg'])) {
@@ -774,12 +973,16 @@ if (isset($_POST['enviarveiculo'])){
 						<div class="row">
 							<div class="form-group col-xl">
 								<label for="proprietario">Proprietario</label>
-								<input type="text" id="proprietario" class="form-control" name="proprietario" title="O veículo esta em nome de ..." value="<?php echo ($id!=0)?"$proprietario":'';?>">
+								<input type="text" id="proprietario" class="form-control" name="proprietario" title="O veículo esta em nome de ..." value="<?php echo ($id!=0)?"$proprietario":'';?>" readonly>
+								<i class="material-icons " style="font-size: 24px;" data-toggle="modal" data-target="#modalProprietario" id="searchprop">
+									search
+								</i>
+								<p id="msg_proprietario" class="form-control-feedback "></p>
 							</div>
 
 							<div class="form-group col-xl">
 								<label for="valorvei">Valor</label>
-								<input type="text" id="valorvei" class="form-control" name="valorvei" title="Ex.: 10000,00" value="<?php echo ($id!=0)?"$valorvei":'';?>">
+								<input type="text" id="valorvei" maxlegth="15" class="form-control" name="valorvei" value="<?php echo ($id!=0)?"$valorvei":'';?>">
 							</div>
 						</div>
 
@@ -937,7 +1140,7 @@ if (isset($_POST['enviarveiculo'])){
 						<div class="row">
 							<div class="form-group col-md">
 								<label for="entrada">Entrada</label>
-								<input type="text" id="entrada" class="form-control col-lg-5 m-0" name="entrada" title="Caso seja á vista digite 0 na entrada" value="<?php echo ($id!=0)?"$entrada":'';?>">
+								<input type="text" id="entrada" class="form-control col-lg-5 m-0" name="entrada" title="Caso seja á vista digite 0 na entrada" value="<?php echo ($id!=0)?"$entrada":'';?>" maxlength="15">
 							</div>
 							<div class="form-group col-md">
 								<label for="numeroparcelas">Qtd. Parcelas</label>
@@ -983,19 +1186,19 @@ if (isset($_POST['enviarveiculo'])){
 						<div class="row">
 							<div class="form-group col-md">
 								<label for="foro">Foro</label>
-								<input type="text" id="foro" class="form-control col-lg-5 m-0" name="foro" placeholder="Cidade-UF" value="<?php echo ($id!=0)?"$foro":'';?>">
+								<input type="text" id="foro" class="form-control col-lg-5 m-0" name="foro" placeholder="Cidade-UF" value="<?php echo ($id!=0)?"$foro":'Erechim-RS';?>">
 							</div>
 
 							<div class="form-group col-md">
 								<label for="datacriacao">Data Criação</label>
-								<input type="text" id="datacriacao" class="form-control m-0" name="datacriacao" value="<?php echo ($id!=0)?"$datacriacao":'';?>">
+								<input type="text" id="datacriacao" class="form-control m-0" name="datacriacao" value="<?php echo ($id!=0)?"$datacriacao":'';?>" readonly>
 							</div>
 						</div>
 
 						<div class="row">
 							<div class="form-group col-md">
 								<label for="lassinatura">Local de Ass.</label>
-								<input type="text" id="lassinatura" class="form-control m-0" name="lassinatura" placeholder="Cidade-UF" value="<?php echo ($id!=0)?"$lassinatura":'';?>">
+								<input type="text" id="lassinatura" class="form-control m-0" name="lassinatura" placeholder="Cidade-UF" value="<?php echo ($id!=0)?"$lassinatura":'Erechim-RS';?>">
 							</div>
 							<div class="form-group col-md">
 								<label for="dassinatura">Data de Ass.</label>
@@ -1024,12 +1227,14 @@ if (isset($_POST['enviarveiculo'])){
 								<input type="text" id="rgtestemunha2" class="form-control m-0" name="rgtestemunha2" value="<?php echo ($id!=0)?"$rgtestemunha2":'';?>">
 							</div>
 						</div>
+						<p id="msg_vendxprop"> </p>
 
 						<input type='hidden' name='id' id='codigo' value="<?php echo ($id!=0)?"$id":'0';?>">
 						<input type='hidden' name='op' value="<?php echo ($id!=0)?"$op":'';?>">
 						<input type='hidden' name='idvend' id='idvend' value="<?php echo ($id!=0)?"$idvend":'';?>">
 						<input type='hidden' name='idcomp' id='idcomp' value="<?php echo ($id!=0)?"$idcomp":'';?>">
 						<input type='hidden' name='idvei' id='idvei' value="<?php echo ($id!=0)?"$idvei":'';?>">
+						<input type='hidden' name='prop' id='prop' value="">
 						<input type='hidden' name='idlogin' id='idlogin' value="<?php echo $_SESSION['idusuario']; ?>">
 
 
@@ -1050,9 +1255,9 @@ if (isset($_POST['enviarveiculo'])){
 
 
 
-	<!--<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>-->
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+	<!--<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>-
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>-->
 </body>
 
 </html>

@@ -26,8 +26,7 @@ if (isset($_GET['id'])){
 	<link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
 	<script src="../javascript/jquery-3.4.1.min.js"></script>
 	<script src="../javascript/popper.min.js"></script>
-
-
+	<script src="../javascript/bootstrap.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="../css/style.css">
 	<script src="javascript/jquery.mask.min.js"></script>
 
@@ -47,7 +46,7 @@ if (isset($_GET['id'])){
 	<script type="text/javascript" src="../javascript/editar_contrato.js"></script>
 	<!--NAVBAR-->
 	<nav class="navbar navbar-expand-md bg-info navbar-light sticky-top">
-		<a class="navbar-brand" href="#"><img src="../imagens/icone.png" width="30px">Contrato</a>
+		<a class="navbar-brand" href=""><img src="../imagens/icone.png" width="30px">Contrato</a>
 		<a class="nav-text d-none  d-lg-inline"><b> <?php echo $_SESSION['nome']; ?></b></a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
 			<span class="navbar-toggler-icon"></span>
@@ -90,15 +89,15 @@ if (isset($_GET['id'])){
 	</nav>
 	<!--</NAVBAR-->
 	<?php
-    if (isset($_SESSION['msg_contratob'])) {
-      echo "<div class='toast'>
+		if (isset($_SESSION['msg_contratob'])) {
+			echo "<div class='toast'>
     <div class='toast-header'>
       Notificação
     </div>
     <div class='toast-body'>";
-      echo  $_SESSION['msg_contratob'];
-      unset ($_SESSION['msg_contratob']);
-      echo "<script>
+			echo  $_SESSION['msg_contratob'];
+			unset ($_SESSION['msg_contratob']);
+			echo "<script>
                 $(document).ready(function() {
                 $('.toast').toast({
                   delay: 10000
@@ -109,10 +108,10 @@ if (isset($_GET['id'])){
                 $('.toast').toast('show');
               });
               </script>";
-      echo "  </div>
+			echo "  </div>
   </div>";
-    }
-    ?>
+		}
+		?>
 
 
 	<div class="container-fluid fundo-card">
@@ -141,6 +140,9 @@ if (isset($_GET['id'])){
 									}
 
 									$ecivil = $row['EstadoCivil'];
+									if($ecivil=="viuvo"){
+										$ecivil="viúvo";
+									}
 									$size = strlen($ecivil);
 									$ecivil = substr($ecivil ,0, $size-1);
 
@@ -513,14 +515,6 @@ PARA COLOCAR TAGS B-->
 			</div>
 		</div>
 	</div>
-
-
-
-
-
-	<!--<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>-->
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </body>
 
 </html>

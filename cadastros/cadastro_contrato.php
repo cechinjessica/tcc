@@ -15,7 +15,7 @@ require '../config/conexao.php';
 	<link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
 	<script src="../javascript/jquery-3.4.1.min.js"></script>
 	<script src="../javascript/popper.min.js"></script>
-
+	<script src="../javascript/bootstrap.min.js"></script>
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="../css/style.css">
 	<script>
@@ -38,9 +38,6 @@ require '../config/conexao.php';
 				showcontrato($('#vei').val());
 			})
 			showcontrato('');
-			$('#botao').click(function() {
-				window.print();
-			});
 		});
 
 	</script>
@@ -75,7 +72,7 @@ require '../config/conexao.php';
 				 background: linear-gradient(to left, #5A8BB7, #2D9AAD);">
 	<!--NAVBAR-->
 	<nav class="navbar navbar-expand-md bg-info navbar-light sticky-top">
-		<a class="navbar-brand" href="#"><img src="../imagens/icone.png" width="30px">Contrato</a>
+		<a class="navbar-brand" href=""><img src="../imagens/icone.png" width="30px">Contrato</a>
 		<a class="nav-text d-none  d-lg-inline"><b> <?php echo $_SESSION['nome']; ?></b></a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
 			<span class="navbar-toggler-icon"></span>
@@ -158,16 +155,13 @@ require '../config/conexao.php';
 						<div id="txtcontrato">
 							Contratos..
 						</div>
-						<center><a href="../contrato.php"><button class="btn btn-outline-info text-uppercase btn-inline btn-md col-sm-9 col-md-5 col-lg-5">Cadastrar um Contrato</button></a><a><button class="btn btn-md btn-outline-info text-uppercase btn-inline col-sm-9 col-md-5 col-lg-5" name="botao" value="Imprimir" id="botao">Imprimir</button></a>
+						<center><a href="../contrato.php"><button class="btn btn-outline-info text-uppercase btn-inline btn-md col-sm-9 col-md-5 col-lg-5">Cadastrar um Contrato</button></a>
 						</center>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </body>
 
 </html>

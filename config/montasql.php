@@ -81,6 +81,7 @@ $sql_rel .= ";";
 ////////////////////////////Gerar cards
 $result=mysqli_query($conexao,$sql_rel);
 if (mysqli_affected_rows($conexao)>0) {
+  echo "<br/>";
   echo "<div class='card-deck my-2'>";
   while ($row=mysqli_fetch_row($result))
   {
@@ -90,6 +91,7 @@ if (mysqli_affected_rows($conexao)>0) {
     $dia = substr($row[4],8,2);
     $hora = substr($row[4], 11,5);
     $dt = $dia.'/'.$mes.'/'.$ano;
+    $valor = number_format($row[3], 2, ',', '.');
 
     echo "<div class='custom-control custom-control p-0 my-1'>";
     echo "<div class='card border-primary' style='width:16rem; height:21rem;'>";
@@ -97,7 +99,7 @@ if (mysqli_affected_rows($conexao)>0) {
     echo "<div class='card-body bg-transparent'><div class='card-text'>";
     echo "<p><b>Vendedor:</b> $row[1]</p>";
     echo "<p><b>Comprador:</b> $row[0]</p>";
-    echo "<p class='text-success lead'>R$$row[3]</p> ";
+    echo "<p class='text-success '>R$$valor</p> ";
     echo "<p class='text-ligth'> $dt $hora</p>";
     $querySelecao = 'SELECT c.idcontrato as id
                 FROM contrato c
@@ -109,7 +111,7 @@ where Arquivo is not null and IdContrato='.$row[5];
     $rows=mysqli_fetch_row($resultado);
     if (mysqli_affected_rows($conexao) != '0') {
       echo "<div class='d-flex justify-content-center'>";
-      echo "<a href='cadastros/ver.php?id='".$rows[0]."' class='card-link text-secondary'><i class='material-icons'>remove_red_eye</i></a>";
+      echo "<a href='cadastros/ver.php?id=$rows[0]' class='card-link text-secondary'><i class='material-icons'>remove_red_eye</i></a>";
       echo "</div>";
     }
     echo "</div></div></div></div>";
@@ -159,7 +161,7 @@ where Arquivo is not null and IdContrato='.$row[5];
       </div>
 
       <input type='hidden' name='ids' id='ids' value='$ids'>
-      <input class='btn btn-primary btn-block text-uppercase' type='submit' name='imprimir_rel' value='Imprimir PDF' id='imprimir'>
+      <input class='btn btn-primary btn-block text-uppercase' type='submit' name='imprimir_rel' value='Imprimir' id='imprimir'>
     </form>
   </div>
 </div>
