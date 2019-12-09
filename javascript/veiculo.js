@@ -1,5 +1,4 @@
 $(document).ready(function () {
-
   //MASCARAS
   $("#ano").mask("0000");
   $("#modelo").mask("0000");
@@ -260,4 +259,14 @@ function combustivel() {
     a = false;
   }
   return a;
+}
+
+function getidprop(nometd) {
+  var nome = nometd.replace("+", " ");
+  while (nome.indexOf("+") != -1) {
+    nome = nome.replace("+", " ");
+  }
+  $("#proprietario").val(nome);
+
+  $('#modalProprietario').modal('hide');
 }

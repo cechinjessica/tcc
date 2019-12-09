@@ -395,6 +395,19 @@ if (isset($_POST['enviarcontrato'])){
 
 		}
 
+		function showprop(nm) {
+			str = nm;
+			///GET
+			$.get("config/busca_proprietario.php?q=" + str, function(data, status) {
+				if (status == 'success') {
+					$('#txtprop').html(data);
+				} else {
+					$('#txtprop').html("Erro na consulta de dados");
+				}
+			});
+
+		}
+
 		function verif_cli(cpf) {
 			str = cpf;
 			if (window.XMLHttpRequest) {
@@ -423,54 +436,8 @@ if (isset($_POST['enviarcontrato'])){
 			xmlhttp.send("q=" + str);
 		}
 
-		function verif_prop(nome) {
-			str = nome;
-			if (window.XMLHttpRequest) {
-				// code for IE7+, Firefox, Chrome, Opera, Safari
-				xmlhttp = new XMLHttpRequest();
-			} else {
-				// code for IE6, IE5
-				xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-			}
-			xmlhttp.onreadystatechange = function() {
-				if (this.readyState == 4 && this.status == 200) {
-					if ((this.response) == '0') {
-						if ($("#proprietario").hasClass("is-invalid")) {
-							$("#proprietario").removeClass("is-invalid");
-						} else if ($("#proprietario").hasClass("is-valid")) {
-							$("#proprietario").removeClass("is-valid");
-						}
-
-						$("#proprietario").addClass("is-invalid");
-						$('#msg_proprietario').html("<p class='alert alert-danger' role='alert'>Proprietário não foi cadastrado como uma pessoa</p>");
-					} else {
-						if ($("#proprietario").hasClass("is-invalid")) {
-							$("#proprietario").removeClass("is-invalid");
-						} else if ($("#proprietario").hasClass("is-valid")) {
-							$("#proprietario").removeClass("is-valid");
-						}
-
-						$('#msg_proprietario').html("");
-						$("#proprietario").addClass("is-valid");
-					}
-					//return (this.response);
-				}
-			};
-			//xmlhttp.open("GET", "../config/busca_prop.php?q=" + str, true);
-			//xmlhttp.send();
-			xmlhttp.open("POST", "config/busca_prop.php", true);
-			xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-			xmlhttp.send("q=" + str);
-		}
 
 		$(document).ready(function() {
-			$('#proprietario').change(function() {
-				if ($('#proprietario').val().trim() != '') {
-					verif_prop($('#proprietario').val());
-				}
-
-			});
-
 			$('#nomepesq').keyup(function() {
 				showvend($('#nomepesq').val());
 			})
@@ -481,6 +448,11 @@ if (isset($_POST['enviarcontrato'])){
 			$('#nomepesqv').keyup(function() {
 				showvei($('#nomepesqv').val());
 			})
+
+			$('#nomepesqp').keyup(function() {
+				showprop($('#nomepesqp').val());
+			})
+			showprop('');
 			showcomp('');
 			showvend('');
 			showvei('');
@@ -496,6 +468,14 @@ if (isset($_POST['enviarcontrato'])){
 				verif_cli($('#cpf').val());
 
 			});
+
+			$("#modalProprietario").on('show.bs.modal', function() {
+				$("#modalVeiculoCadastrar").modal("hide");
+			})
+
+			$("#modalProprietario").on('hide.bs.modal', function() {
+				$("#modalVeiculoCadastrar").modal("show");
+			})
 		});
 
 	</script>
@@ -620,7 +600,30 @@ if (isset($_POST['enviarcontrato'])){
 		}
 		?>
 
-
+	<!--MODAL Proprietario Buscar-->
+	<div class="modal fade" id="modalProprietario" tabindex="-1" role="dialog" aria-labelledby="modalProprietario" aria-hidden="true">
+		<div class="modal-dialog modal-xl" role="document" style="max-width: 90%;">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="TituloProprietario">Encontrar proprietárior</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<div class="row">
+						<div class="form-group">
+							<input type='text' name='nomepesqp' id='nomepesqp' class="form-control" placeholder="Pesquisar uma pessoa" style="display:inline;" autofocus>
+						</div>
+					</div>
+					<div id="txtprop">
+						Dados das pessoas....
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--MODAL Proprietario Buscar-->
 	<!--MODAL VENDEDOR Buscar-->
 	<div class="modal fade" id="modalVendedor" tabindex="-1" role="dialog" aria-labelledby="modalVendedor" aria-hidden="true">
 		<div class="modal-dialog modal-xl" role="document" style="max-width: 90%;">
@@ -970,7 +973,10 @@ if (isset($_POST['enviarcontrato'])){
 						<div class="row">
 							<div class="form-group col-xl">
 								<label for="proprietario">Proprietario</label>
-								<input type="text" id="proprietario" class="form-control" name="proprietario" title="O veículo esta em nome de ..." value="<?php echo ($id!=0)?"$proprietario":'';?>">
+								<input type="text" id="proprietario" class="form-control" name="proprietario" title="O veículo esta em nome de ..." value="<?php echo ($id!=0)?"$proprietario":'';?>" readonly>
+								<i class="material-icons " style="font-size: 24px;" data-toggle="modal" data-target="#modalProprietario" id="searchprop">
+									search
+								</i>
 								<p id="msg_proprietario" class="form-control-feedback "></p>
 							</div>
 
@@ -1180,7 +1186,7 @@ if (isset($_POST['enviarcontrato'])){
 						<div class="row">
 							<div class="form-group col-md">
 								<label for="foro">Foro</label>
-								<input type="text" id="foro" class="form-control col-lg-5 m-0" name="foro" placeholder="Cidade-UF" value="<?php echo ($id!=0)?"$foro":'';?>">
+								<input type="text" id="foro" class="form-control col-lg-5 m-0" name="foro" placeholder="Cidade-UF" value="<?php echo ($id!=0)?"$foro":'Erechim-RS';?>">
 							</div>
 
 							<div class="form-group col-md">
@@ -1192,7 +1198,7 @@ if (isset($_POST['enviarcontrato'])){
 						<div class="row">
 							<div class="form-group col-md">
 								<label for="lassinatura">Local de Ass.</label>
-								<input type="text" id="lassinatura" class="form-control m-0" name="lassinatura" placeholder="Cidade-UF" value="<?php echo ($id!=0)?"$lassinatura":'';?>">
+								<input type="text" id="lassinatura" class="form-control m-0" name="lassinatura" placeholder="Cidade-UF" value="<?php echo ($id!=0)?"$lassinatura":'Erechim-RS';?>">
 							</div>
 							<div class="form-group col-md">
 								<label for="dassinatura">Data de Ass.</label>

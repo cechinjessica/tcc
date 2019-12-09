@@ -127,7 +127,7 @@ require 'config/conexao.php';
 												<?php $sql = "SELECT pp.idpessoa, pp.nome FROM contrato c inner join pessoa pp on pp.idpessoa = c.pessoa_idcomprador group by pp.nome order by pp.nome asc;";
                           $result=mysqli_query($conexao,$sql);
                           echo "<select class='form-control custom-select' name='comprador' id='comprador'>";
-                          echo "<option selected value='' >Compradores</option>";
+                          echo "<option selected value='' >Todos</option>";
                           while ($row = mysqli_fetch_row($result)){?>
 												<option value='<?php echo $row[0] ?>'> <?php echo $row[1] ?></option>";
 												<?php }
@@ -140,7 +140,7 @@ require 'config/conexao.php';
 												<?php $sql = "SELECT pp.idpessoa, pp.nome FROM contrato c inner join pessoa pp on pp.idpessoa = c.pessoa_idvendedor group by pp.nome order by pp.nome asc;";
                           $result=mysqli_query($conexao,$sql);
                           echo "<select class='form-control custom-select' name='vendedor' id='vendedor'>";
-                          echo "<option selected value='' >Vendedores</option>";
+                          echo "<option selected value='' >Todos</option>";
                           while ($row = mysqli_fetch_row($result)){?>
 												<option value='<?php echo $row[0] ?>'> <?php echo $row[1] ?></option>";
 												<?php }
@@ -161,10 +161,10 @@ require 'config/conexao.php';
 										<div class='card-text'>
 											<div class="form-group">
 												<label for="ulogado">Usuário</label>
-												<?php $sql = "SELECT l.idusuario, l.nome FROM contrato c inner join login l on c.Login_IdUsuario = l.IdUsuario group by c.Login_IdUsuario order by c.Login_IdUsuario asc;";
+												<?php $sql = "SELECT l.idusuario, l.usuario FROM contrato c inner join login l on c.Login_IdUsuario = l.IdUsuario group by c.Login_IdUsuario order by c.Login_IdUsuario asc;";
                           $result=mysqli_query($conexao,$sql);
                           echo "<select class='form-control custom-select' name='ulogado' id='ulogado'>";
-                          echo "<option selected value='' >Usuários</option>";
+                          echo "<option selected value='' >Todos</option>";
                           while ($row = mysqli_fetch_row($result)){?>
 												<option value='<?php echo $row[0] ?>'> <?php echo $row[1] ?></option>";
 												<?php }
@@ -177,7 +177,7 @@ require 'config/conexao.php';
 												<?php $sql = "SELECT c.foro FROM contrato c group by c.foro order by c.foro asc;";
                           $result=mysqli_query($conexao,$sql);
                           echo "<select class='form-control custom-select' name='foro' id='foro'>";
-                          echo "<option selected value='' >Cidades</option>";
+                          echo "<option selected value='' >Todos</option>";
                           while ($row = mysqli_fetch_row($result)){?>
 												<option value='<?php echo $row[0] ?>'> <?php echo $row[0] ?></option>";
 												<?php }
@@ -201,7 +201,7 @@ require 'config/conexao.php';
 												<?php $sql = "SELECT v.nome FROM contrato c inner join veiculo v on c.Veiculo_IdVeiculo = v.IdVeiculo group by v.nome order by v.nome asc;";
                           $result=mysqli_query($conexao,$sql);
                           echo "<select class='form-control custom-select' name='modelo' id='modelo'>";
-                          echo "<option selected value=''>Modelos</option>";
+                          echo "<option selected value=''>Todos</option>";
                           while ($row = mysqli_fetch_row($result)){?>
 												<option value='<?php echo $row[0] ?>'> <?php echo $row[0] ?></option>";
 												<?php }
@@ -214,7 +214,7 @@ require 'config/conexao.php';
 												<?php $sql = "SELECT v.modelo FROM contrato c inner join veiculo v on c.Veiculo_IdVeiculo = v.IdVeiculo group by v.modelo order by v.modelo asc;";
                           $result=mysqli_query($conexao,$sql);
                           echo "<select class='form-control custom-select' name='ano' id='ano'>";
-                          echo "<option selected value=''>Anos</option>";
+                          echo "<option selected value=''>Todos</option>";
                           while ($row = mysqli_fetch_row($result)){?>
 												<option value='<?php echo $row[0] ?>'> <?php echo $row[0] ?></option>";
 												<?php }

@@ -17,153 +17,155 @@ $script = "<script>
 
 //PARA COLOCAR AS INFORMAÇÕES DO BD NOS CAMPOS
 if (isset($_GET['id'])){
-    $id=$_GET['id'];
-    $op=$_GET['op'];
-    $sql = "SELECT idveiculo, nome, marca, modelo, ano, chassi, cor, placa, renavam, emnomede, valor, estado, combustivel FROM veiculo WHERE idveiculo='$id'";
-    $res=mysqli_query($conexao,$sql);
-    $row=mysqli_fetch_row($res);
-    $id= $row[0];
-    $nomevei = $row[1];
-    $marca = $row[2];
-    $modelo = $row[3];
-    $ano = $row[4];
-    $chassi = $row[5];
-    $cor = $row[6];
-    $placa = $row[7];
-    $renavam = $row[8];
-    $proprietario = $row[9];
-    $valorvei = $row[10];
-    $estado = $row[11];
-    $combustivel = $row[12];
+	$id=$_GET['id'];
+	$op=$_GET['op'];
+	$sql = "SELECT idveiculo, nome, marca, modelo, ano, chassi, cor, placa, renavam, emnomede, valor, estado, combustivel FROM veiculo WHERE idveiculo='$id'";
+	$res=mysqli_query($conexao,$sql);
+	$row=mysqli_fetch_row($res);
+	$id= $row[0];
+	$nomevei = $row[1];
+	$marca = $row[2];
+	$modelo = $row[3];
+	$ano = $row[4];
+	$chassi = $row[5];
+	$cor = $row[6];
+	$placa = $row[7];
+	$renavam = $row[8];
+	$proprietario = $row[9];
+	$valorvei = $row[10];
+	$valorvei = str_replace ( "." ,",", $valorvei);
 
-    if($estado == "novo"){
-        $novo = "checked";
-        $usado = "";
-    }else{
-        $novo = "";
-        $usado = "checked";
-    }
+	$estado = $row[11];
+	$combustivel = $row[12];
 
-    if($combustivel == "gasolina"){
-        $gasolina = "checked";
-        $etanol = "";
-        $diesel = "";
-        $gasnatural = "";
-        $eletrico = "";
-        $flex = "";
-    }else if($combustivel == "etanol"){
-        $gasolina = "";
-        $etanol = "checked";
-        $diesel = "";
-        $gasnatural = "";
-        $eletrico = "";
-        $flex = "";
-    }else if($combustivel == "diesel"){
-        $gasolina = "";
-        $etanol = "";
-        $diesel = "checked";
-        $gasnatural = "";
-        $eletrico = "";
-        $flex = "";
-    }else if($combustivel == "gasnatural"){
-        $gasolina = "";
-        $etanol = "";
-        $diesel = "";
-        $gasnatural = "checked";
-        $eletrico = "";
-        $flex = "";
-    }else if($combustivel == "eletrico"){
-        $gasolina = "";
-        $etanol = "";
-        $diesel = "";
-        $gasnatural = "";
-        $eletrico = "checked";
-        $flex = "";
-    }else if($combustivel == "flex"){
-        $gasolina = "";
-        $etanol = "";
-        $diesel = "";
-        $gasnatural = "";
-        $eletrico = "";
-        $flex = "checked";
-    }
+	if($estado == "novo"){
+		$novo = "checked";
+		$usado = "";
+	}else{
+		$novo = "";
+		$usado = "checked";
+	}
+
+	if($combustivel == "gasolina"){
+		$gasolina = "checked";
+		$etanol = "";
+		$diesel = "";
+		$gasnatural = "";
+		$eletrico = "";
+		$flex = "";
+	}else if($combustivel == "etanol"){
+		$gasolina = "";
+		$etanol = "checked";
+		$diesel = "";
+		$gasnatural = "";
+		$eletrico = "";
+		$flex = "";
+	}else if($combustivel == "diesel"){
+		$gasolina = "";
+		$etanol = "";
+		$diesel = "checked";
+		$gasnatural = "";
+		$eletrico = "";
+		$flex = "";
+	}else if($combustivel == "gasnatural"){
+		$gasolina = "";
+		$etanol = "";
+		$diesel = "";
+		$gasnatural = "checked";
+		$eletrico = "";
+		$flex = "";
+	}else if($combustivel == "eletrico"){
+		$gasolina = "";
+		$etanol = "";
+		$diesel = "";
+		$gasnatural = "";
+		$eletrico = "checked";
+		$flex = "";
+	}else if($combustivel == "flex"){
+		$gasolina = "";
+		$etanol = "";
+		$diesel = "";
+		$gasnatural = "";
+		$eletrico = "";
+		$flex = "checked";
+	}
 
 } else{
-    $id=0;
+	$id=0;
 }
 
 
 //PARA PEGAR OS DADOS DOS CAMPOS
 if (isset($_POST['enviarveiculo'])){
-    $nomevei = $_POST['nomevei'];
-    $marca = $_POST['marca'];
-    $modelo = $_POST['modelo'];
-    $ano = $_POST['ano'];
-    $chassi = $_POST['chassi'];
-    $cor = $_POST['cor'];
-    $placa = $_POST['placa'];
-    $renavam = $_POST['renavam'];
-    $proprietario = $_POST['proprietario'];
-    $valorvei2 = $_POST['valorvei'];
-    $estado = $_POST['estado'];
-    $combustivel = $_POST['combustivel'];
-    $op=$_POST['op'];
+	$nomevei = $_POST['nomevei'];
+	$marca = $_POST['marca'];
+	$modelo = $_POST['modelo'];
+	$ano = $_POST['ano'];
+	$chassi = $_POST['chassi'];
+	$cor = $_POST['cor'];
+	$placa = $_POST['placa'];
+	$renavam = $_POST['renavam'];
+	$proprietario = $_POST['proprietario'];
+	$valorvei2 = $_POST['valorvei'];
+	$estado = $_POST['estado'];
+	$combustivel = $_POST['combustivel'];
+	$op=$_POST['op'];
 
-    $valorvei1 = str_replace ( "." ,"", $valorvei2);
-    $valorvei = str_replace ( "," ,".", $valorvei1);
+	$valorvei1 = str_replace ( "." ,"", $valorvei2);
+	$valorvei = str_replace ( "," ,".", $valorvei1);
 
 
-    //PARA ATUALIZAR, HAVERÁ ID POIS HÁ UM VEICULO
-    if ($id != 0) {
-        if ($op == 'A') {
+	//PARA ATUALIZAR, HAVERÁ ID POIS HÁ UM VEICULO
+	if ($id != 0) {
+		if ($op == 'A') {
 
-            $sql="UPDATE veiculo SET Nome ='$nomevei', Marca ='$marca', Modelo ='$modelo', Ano ='$ano', Chassi='$chassi', Cor='$cor', Placa =UCASE('$placa'), Renavam='$renavam', EmNomeDe ='$proprietario', Valor ='$valorvei', Estado='$estado', Combustivel ='$combustivel' where IdVeiculo ='$id'";
+			$sql="UPDATE veiculo SET Nome ='$nomevei', Marca ='$marca', Modelo ='$modelo', Ano ='$ano', Chassi='$chassi', Cor='$cor', Placa =UCASE('$placa'), Renavam='$renavam', EmNomeDe ='$proprietario', Valor ='$valorvei', Estado='$estado', Combustivel ='$combustivel' where IdVeiculo ='$id'";
 
-            $res = mysqli_query($conexao,$sql);
-            if (mysqli_error($conexao)) {
-                $_SESSION['msg_erro'] = "Erro na atualização de $nomevei";
-                echo $script;
-            } else {
-                $_SESSION['msg'] = "$nomevei atualizado com sucesso!";
-                header('Location:cadastro_veiculo.php');
-            }
-            mysqli_close($conexao);
+			$res = mysqli_query($conexao,$sql);
+			if (mysqli_error($conexao)) {
+				$_SESSION['msg_erro'] = "Erro na atualização de $nomevei";
+				echo $script;
+			} else {
+				$_SESSION['msg'] = "$nomevei atualizado com sucesso!";
+				header('Location:cadastro_veiculo.php');
+			}
+			mysqli_close($conexao);
 
-        } else if($op == "D") { //PARA EXCLUIR
-            $sql="DELETE FROM veiculo WHERE idveiculo='$id'";
-            $res = mysqli_query($conexao,$sql);
-            if (mysqli_affected_rows($conexao)=='1') {
-                $_SESSION['msg'] = "$nomevei excluído com sucesso!";
-                header('Location:cadastro_veiculo.php');
-            } else {
-                $_SESSION['msg_erro'] = "$nomevei já tem contrato";
-                echo $script;
-            }
-            mysqli_close($conexao);
-        }
+		} else if($op == "D") { //PARA EXCLUIR
+			$sql="DELETE FROM veiculo WHERE idveiculo='$id'";
+			$res = mysqli_query($conexao,$sql);
+			if (mysqli_affected_rows($conexao)=='1') {
+				$_SESSION['msg'] = "$nomevei excluído com sucesso!";
+				header('Location:cadastro_veiculo.php');
+			} else {
+				$_SESSION['msg_erro'] = "$nomevei já tem contrato";
+				echo $script;
+			}
+			mysqli_close($conexao);
+		}
 
-    }else{//SE FOR == 0 ENTÃO O VEICULO AINDA NÃO ESTÁ CADASTRADO
-        //INCLUSÃO
-        $sql = "SELECT * FROM veiculo WHERE placa='$placa'";
-        mysqli_query($conexao,$sql);
+	}else{//SE FOR == 0 ENTÃO O VEICULO AINDA NÃO ESTÁ CADASTRADO
+		//INCLUSÃO
+		$sql = "SELECT * FROM veiculo WHERE placa='$placa'";
+		mysqli_query($conexao,$sql);
 
-        if (mysqli_affected_rows($conexao)!=0) {
-            mysqli_close($conexao);
-            $_SESSION['msg'] = "$placa já foi cadastrada";
-        }else {
-            $sql = "INSERT INTO veiculo (nome, marca, modelo, ano, chassi, cor, placa, renavam, emnomede, valor, estado, combustivel) VALUES ('$nomevei', '$marca', '$modelo', '$ano', '$chassi', '$cor', UCASE('$placa'), '$renavam', '$proprietario', '$valorvei', '$estado', '$combustivel')";
-            mysqli_query($conexao,$sql);
+		if (mysqli_affected_rows($conexao)!=0) {
+			mysqli_close($conexao);
+			$_SESSION['msg'] = "$placa já foi cadastrada";
+		}else {
+			$sql = "INSERT INTO veiculo (nome, marca, modelo, ano, chassi, cor, placa, renavam, emnomede, valor, estado, combustivel) VALUES ('$nomevei', '$marca', '$modelo', '$ano', '$chassi', '$cor', UCASE('$placa'), '$renavam', '$proprietario', '$valorvei', '$estado', '$combustivel')";
+			mysqli_query($conexao,$sql);
 
-            if (mysqli_affected_rows($conexao) =='1') {
-                $_SESSION['msg'] = "$nomevei inserido com sucesso!";
-                header('Location:cadastro_veiculo.php');
-            } else {
-                $_SESSION['msg_erro'] ="Erro: ".mysqli_error($conexao)." no banco de dados";
-                echo $script;            }
-            mysqli_close($conexao);
-        }
-    }
-    $id=0;
+			if (mysqli_affected_rows($conexao) =='1') {
+				$_SESSION['msg'] = "$nomevei inserido com sucesso!";
+				header('Location:cadastro_veiculo.php');
+			} else {
+				$_SESSION['msg_erro'] ="Erro: ".mysqli_error($conexao)." no banco de dados";
+				echo $script;            }
+			mysqli_close($conexao);
+		}
+	}
+	$id=0;
 }
 
 ?>
@@ -185,6 +187,7 @@ if (isset($_POST['enviarveiculo'])){
 	<script src="../javascript/bootstrap.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="../css/style.css">
 	<script src="../javascript/jquery.mask.min.js"></script>
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
 	<style>
 		.form-group input {
@@ -199,53 +202,25 @@ if (isset($_POST['enviarveiculo'])){
 
 	</style>
 	<script>
-		function verif_prop(nome) {
-			str = nome;
-			if (window.XMLHttpRequest) {
-				// code for IE7+, Firefox, Chrome, Opera, Safari
-				xmlhttp = new XMLHttpRequest();
-			} else {
-				// code for IE6, IE5
-				xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-			}
-			xmlhttp.onreadystatechange = function() {
-				if (this.readyState == 4 && this.status == 200) {
-					if ((this.response) == '0') {
-						if ($("#proprietario").hasClass("is-invalid")) {
-							$("#proprietario").removeClass("is-invalid");
-						} else if ($("#proprietario").hasClass("is-valid")) {
-							$("#proprietario").removeClass("is-valid");
-						}
-
-						$("#proprietario").addClass("is-invalid");
-						$('#msg_proprietario').html("<p class='alert alert-danger' role='alert'>Proprietário não foi cadastrado como uma pessoa</p>");
-					} else {
-						if ($("#proprietario").hasClass("is-invalid")) {
-							$("#proprietario").removeClass("is-invalid");
-						} else if ($("#proprietario").hasClass("is-valid")) {
-							$("#proprietario").removeClass("is-valid");
-						}
-
-						$('#msg_proprietario').html("");
-						$("#proprietario").addClass("is-valid");
-					}
-					//return (this.response);
+		function showprop(nm) {
+			str = nm;
+			///GET
+			$.get("../config/busca_proprietario.php?q=" + str, function(data, status) {
+				if (status == 'success') {
+					$('#txtprop').html(data);
+				} else {
+					$('#txtprop').html("Erro na consulta de dados");
 				}
-			};
-			//xmlhttp.open("GET", "../config/busca_prop.php?q=" + str, true);
-			//xmlhttp.send();
-			xmlhttp.open("POST", "../config/busca_prop.php", true);
-			xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-			xmlhttp.send("q=" + str);
+			});
+
 		}
 
 		$(document).ready(function() {
-			$('#proprietario').change(function() {
-				if ($('#proprietario').val().trim() != '') {
-					verif_prop($('#proprietario').val());
-				}
+			$('#nomepesq').keyup(function() {
+				showprop($('#nomepesq').val());
+			})
 
-			});
+			showprop('')
 		});
 
 	</script>
@@ -253,7 +228,7 @@ if (isset($_POST['enviarveiculo'])){
 </head>
 
 <body style="background: #007bff;
-                 background: linear-gradient(to left, #5A8BB7, #2D9AAD);">
+				 background: linear-gradient(to left, #5A8BB7, #2D9AAD);">
 	<script type="text/javascript" src="../javascript/veiculo.js"></script>
 	<!--NAVBAR-->
 	<nav class="navbar navbar-expand-md bg-info navbar-light sticky-top">
@@ -307,17 +282,12 @@ if (isset($_POST['enviarveiculo'])){
 					<form action="#" method="post" class="form-padrao">
 
 						<?php
-                            if (isset($_SESSION['msg_erro'])) {
-                                echo "<div class='toast'>
-              <div class='toast-header'>
-                Notificação
-              </div>
-              <div class='toast-body'>";
-                                echo  $_SESSION['msg_erro'];
-                                unset ($_SESSION['msg_erro']);
-
-                                echo "</div></div>";
-                                echo "<script>
+							if (isset($_SESSION['msg_erro'])) {
+								echo "<div class='toast'><div class='toast-header'>Notificação</div><div class='toast-body'>";
+								echo  $_SESSION['msg_erro'];
+								unset ($_SESSION['msg_erro']);
+								echo "</div></div>";
+								echo "<script>
                 $(document).ready(function() {
                 $('.toast').toast({
                   delay: 10000
@@ -326,13 +296,34 @@ if (isset($_POST['enviarveiculo'])){
                   animation: true
                 });
                 $('.toast').toast('show');
-              });
-
+				});
               </script>";
-                            }
-                            ?>
-
-
+							}
+							?>
+						<!--MODAL Proprietario Buscar-->
+						<div class="modal fade" id="modalProprietario" tabindex="-1" role="dialog" aria-labelledby="modalProprietario" aria-hidden="true">
+							<div class="modal-dialog modal-xl" role="document" style="max-width: 90%;">
+								<div class="modal-content">
+									<div class="modal-header">
+										<h5 class="modal-title" id="TituloProprietario">Encontrar proprietárior</h5>
+										<button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+											<span aria-hidden="true">&times;</span>
+										</button>
+									</div>
+									<div class="modal-body">
+										<div class="row">
+											<div class="form-group">
+												<input type='text' name='nomepesq' id='nomepesq' class="form-control" placeholder="Pesquisar uma pessoa" style="display:inline;" autofocus>
+											</div>
+										</div>
+										<div id="txtprop">
+											Dados das pessoas....
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!--MODAL Proprietario Buscar-->
 						<div class="row">
 							<div class="form-group col-xl">
 								<label for="nomevei">Modelo(Nome)</label>
@@ -391,7 +382,10 @@ if (isset($_POST['enviarveiculo'])){
 						<div class="row">
 							<div class="form-group col-xl">
 								<label for="proprietario">Proprietario</label>
-								<input type="text" id="proprietario" class="form-control" name="proprietario" title="O veículo esta em nome de ..." value="<?php echo ($id!=0)?"$proprietario":'';?>">
+								<input type="text" id="proprietario" class="form-control" name="proprietario" title="O veículo esta em nome de ..." value="<?php echo ($id!=0)?"$proprietario":'';?>" readonly>
+								<i class="material-icons " style="font-size: 24px;" data-toggle="modal" data-target="#modalProprietario">
+									search
+								</i>
 								<p id="msg_proprietario" class="form-control-feedback "></p>
 							</div>
 
@@ -434,11 +428,11 @@ if (isset($_POST['enviarveiculo'])){
 						<input type='hidden' name='op' value="<?php echo ($id!=0)?"$op":'';?>">
 
 						<?php
-                            $txtbtn="Incluir";
-                            if (isset($op)){
-                                $txtbtn=($op=='A')?'Atualizar':'Excluir';
-                            }
-                            ?>
+							$txtbtn="Incluir";
+							if (isset($op)){
+								$txtbtn=($op=='A')?'Atualizar':'Excluir';
+							}
+							?>
 						<input class="btn btn-md btn-primary btn-block text-uppercase" type="submit" name="enviarveiculo" value="<?php echo $txtbtn?>" id="salvarveiculovei">
 					</form>
 				</div>

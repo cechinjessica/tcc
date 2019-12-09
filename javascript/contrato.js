@@ -522,7 +522,7 @@ function vendedorXproprietario() {
 		$("#vendedor").addClass("is-invalid");
 		$("#veiculo").addClass("is-invalid");
 		a = false;
-		$("#msg_vendxprop").text("*Vendedor e Proprietário do Veículo não são a mesma pessoa!")
+		$("#msg_vendxprop").html("*Vendedor e Proprietário do Veículo não são a mesma pessoa! </p> <p> Ou, em caso de edição, é preciso selecionar novamente o veículo e o vendedor.")
 		$("#msg_vendxprop").css("color", "red");
 	}
 	return a;
