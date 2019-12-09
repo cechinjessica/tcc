@@ -423,7 +423,54 @@ if (isset($_POST['enviarcontrato'])){
 			xmlhttp.send("q=" + str);
 		}
 
+		function verif_prop(nome) {
+			str = nome;
+			if (window.XMLHttpRequest) {
+				// code for IE7+, Firefox, Chrome, Opera, Safari
+				xmlhttp = new XMLHttpRequest();
+			} else {
+				// code for IE6, IE5
+				xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+			}
+			xmlhttp.onreadystatechange = function() {
+				if (this.readyState == 4 && this.status == 200) {
+					if ((this.response) == '0') {
+						if ($("#proprietario").hasClass("is-invalid")) {
+							$("#proprietario").removeClass("is-invalid");
+						} else if ($("#proprietario").hasClass("is-valid")) {
+							$("#proprietario").removeClass("is-valid");
+						}
+
+						$("#proprietario").addClass("is-invalid");
+						$('#msg_proprietario').html("<p class='alert alert-danger' role='alert'>Proprietário não foi cadastrado como uma pessoa</p>");
+					} else {
+						if ($("#proprietario").hasClass("is-invalid")) {
+							$("#proprietario").removeClass("is-invalid");
+						} else if ($("#proprietario").hasClass("is-valid")) {
+							$("#proprietario").removeClass("is-valid");
+						}
+
+						$('#msg_proprietario').html("");
+						$("#proprietario").addClass("is-valid");
+					}
+					//return (this.response);
+				}
+			};
+			//xmlhttp.open("GET", "../config/busca_prop.php?q=" + str, true);
+			//xmlhttp.send();
+			xmlhttp.open("POST", "config/busca_prop.php", true);
+			xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+			xmlhttp.send("q=" + str);
+		}
+
 		$(document).ready(function() {
+			$('#proprietario').change(function() {
+				if ($('#proprietario').val().trim() != '') {
+					verif_prop($('#proprietario').val());
+				}
+
+			});
+
 			$('#nomepesq').keyup(function() {
 				showvend($('#nomepesq').val());
 			})
@@ -924,6 +971,7 @@ if (isset($_POST['enviarcontrato'])){
 							<div class="form-group col-xl">
 								<label for="proprietario">Proprietario</label>
 								<input type="text" id="proprietario" class="form-control" name="proprietario" title="O veículo esta em nome de ..." value="<?php echo ($id!=0)?"$proprietario":'';?>">
+								<p id="msg_proprietario" class="form-control-feedback "></p>
 							</div>
 
 							<div class="form-group col-xl">
